@@ -1,0 +1,4328 @@
+{
+  "id": "4fd5a5a4",
+  "name": "Area Search Hard 2",
+  "description": "Area Search Hard 2 covers a 1024×768 m mission zone. It is configured for area search. Random seeding will create 10 drones, 10 targets, 30 obstacles.",
+  "status": "inactive",
+  "creator": "Victor Zhang",
+  "task_type": "area_search",
+  "task_description": "",
+  "is_distance_3d": false,
+  "canvas_width": 1024.0,
+  "canvas_height": 768.0,
+  "created_at": 1775665410.990913,
+  "last_updated": 1780675888.665906,
+  "statistics": {
+    "drone_count": 10,
+    "target_count": 10,
+    "obstacle_count": 30,
+    "task_count": 20,
+    "environment_id": "b5322844",
+    "total_commands_executed": 0,
+    "total_flight_time": 0.0,
+    "total_distance_traveled": 0.0,
+    "total_target_reaches": 0,
+    "drones_with_target_reaches": 0,
+    "unique_targets_reached": 0,
+    "session_time": 0.0,
+    "command_history_size": 0,
+    "task_progress": {
+      "task_type": "area_search",
+      "progress_percentage": 0,
+      "is_completed": false,
+      "status_message": "Task to be Done",
+      "details": {
+        "total_targets": 10
+      },
+      "target_reach_summary": {
+        "total_reaches": 0,
+        "drones_with_reaches": 0,
+        "unique_targets_reached": 0
+      },
+      "area_coverage_summary": {
+        "total_targets_tracked": 0,
+        "average_coverage": 0.0,
+        "fully_covered_targets": 0
+      }
+    }
+  },
+  "drones": [
+    {
+      "id": "60584c31",
+      "name": "Drone 1",
+      "model": "Model-X1",
+      "status": "idle",
+      "position": {
+        "x": 25.0,
+        "y": 25.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 70.0,
+      "battery_capacity": 70.0,
+      "max_speed": 12.0,
+      "max_altitude": 203.0,
+      "home_position": {
+        "x": 25.0,
+        "y": 25.0,
+        "z": 0.0
+      },
+      "created_at": 1775666577.995116,
+      "last_updated": 1775666577.995116
+    },
+    {
+      "id": "719f5e48",
+      "name": "Drone 2",
+      "model": "Model-X2",
+      "status": "idle",
+      "position": {
+        "x": 687.0,
+        "y": 137.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 80.5,
+      "battery_capacity": 80.5,
+      "max_speed": 29.0,
+      "max_altitude": 344.0,
+      "home_position": {
+        "x": 687.0,
+        "y": 137.0,
+        "z": 0.0
+      },
+      "created_at": 1775666577.995121,
+      "last_updated": 1775666577.995121
+    },
+    {
+      "id": "07abe1ab",
+      "name": "Drone 3",
+      "model": "Model-C",
+      "status": "idle",
+      "position": {
+        "x": 150.0,
+        "y": 681.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 66.1,
+      "battery_capacity": 66.1,
+      "max_speed": 13.0,
+      "max_altitude": 373.0,
+      "home_position": {
+        "x": 150.0,
+        "y": 681.0,
+        "z": 0.0
+      },
+      "created_at": 1775666577.995125,
+      "last_updated": 1775666577.995125
+    },
+    {
+      "id": "63c593b1",
+      "name": "Drone 4",
+      "model": "Model-D",
+      "status": "idle",
+      "position": {
+        "x": 841.0,
+        "y": 734.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 62.3,
+      "battery_capacity": 62.3,
+      "max_speed": 22.0,
+      "max_altitude": 491.0,
+      "home_position": {
+        "x": 841.0,
+        "y": 734.0,
+        "z": 0.0
+      },
+      "created_at": 1775666577.9951282,
+      "last_updated": 1775666577.9951282
+    },
+    {
+      "id": "3b7672a1",
+      "name": "Drone 5",
+      "model": "Model-X3",
+      "status": "idle",
+      "position": {
+        "x": 76.0,
+        "y": 450.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 98.0,
+      "battery_capacity": 98.0,
+      "max_speed": 17.0,
+      "max_altitude": 378.0,
+      "home_position": {
+        "x": 76.0,
+        "y": 450.0,
+        "z": 0.0
+      },
+      "created_at": 1775666577.9951308,
+      "last_updated": 1775666577.9951308
+    },
+    {
+      "id": "d28f5149",
+      "name": "Drone 6",
+      "model": "Model-A",
+      "status": "idle",
+      "position": {
+        "x": 764.0,
+        "y": 244.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 92.0,
+      "battery_capacity": 92.0,
+      "max_speed": 33.0,
+      "max_altitude": 364.0,
+      "home_position": {
+        "x": 764.0,
+        "y": 244.0,
+        "z": 0.0
+      },
+      "created_at": 1775666577.9951339,
+      "last_updated": 1775666577.9951339
+    },
+    {
+      "id": "4cb15da5",
+      "name": "Drone 7",
+      "model": "Model-A",
+      "status": "idle",
+      "position": {
+        "x": 430.0,
+        "y": 297.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 73.9,
+      "battery_capacity": 73.9,
+      "max_speed": 19.0,
+      "max_altitude": 284.0,
+      "home_position": {
+        "x": 430.0,
+        "y": 297.0,
+        "z": 0.0
+      },
+      "created_at": 1775666577.995137,
+      "last_updated": 1775666577.995137
+    },
+    {
+      "id": "5b346a5e",
+      "name": "Drone 8",
+      "model": "Model-X3",
+      "status": "idle",
+      "position": {
+        "x": 170.0,
+        "y": 728.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 60.5,
+      "battery_capacity": 60.5,
+      "max_speed": 23.0,
+      "max_altitude": 462.0,
+      "home_position": {
+        "x": 170.0,
+        "y": 728.0,
+        "z": 0.0
+      },
+      "created_at": 1775666577.99514,
+      "last_updated": 1775666577.99514
+    },
+    {
+      "id": "4970af7e",
+      "name": "Drone 9",
+      "model": "Model-X1",
+      "status": "idle",
+      "position": {
+        "x": 483.0,
+        "y": 324.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 61.5,
+      "battery_capacity": 61.5,
+      "max_speed": 35.0,
+      "max_altitude": 340.0,
+      "home_position": {
+        "x": 483.0,
+        "y": 324.0,
+        "z": 0.0
+      },
+      "created_at": 1775666577.995143,
+      "last_updated": 1775666577.995143
+    },
+    {
+      "id": "4cc280e0",
+      "name": "Drone 10",
+      "model": "Model-B",
+      "status": "idle",
+      "position": {
+        "x": 346.0,
+        "y": 672.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 87.8,
+      "battery_capacity": 87.8,
+      "max_speed": 28.0,
+      "max_altitude": 234.0,
+      "home_position": {
+        "x": 346.0,
+        "y": 672.0,
+        "z": 0.0
+      },
+      "created_at": 1775666577.995146,
+      "last_updated": 1775666577.995146
+    }
+  ],
+  "targets": [
+    {
+      "id": "cd86728f",
+      "name": "Polygon Target 1",
+      "type": "polygon",
+      "position": {
+        "x": 767.0,
+        "y": 429.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 1.0,
+      "created_at": 1775666577.9952059,
+      "last_updated": 1775666577.9952059,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 618.55,
+          "y": 280.71,
+          "z": 0.0
+        },
+        {
+          "x": 914.55,
+          "y": 280.71,
+          "z": 0.0
+        },
+        {
+          "x": 914.55,
+          "y": 576.71,
+          "z": 0.0
+        },
+        {
+          "x": 618.55,
+          "y": 576.71,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "ee00b8a2",
+      "name": "Polygon Target 2",
+      "type": "polygon",
+      "position": {
+        "x": 267.0,
+        "y": 479.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 1.0,
+      "created_at": 1775666577.995289,
+      "last_updated": 1775666577.995289,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 110.41000000000003,
+          "y": 321.99,
+          "z": 0.0
+        },
+        {
+          "x": 424.41,
+          "y": 321.99,
+          "z": 0.0
+        },
+        {
+          "x": 424.41,
+          "y": 635.99,
+          "z": 0.0
+        },
+        {
+          "x": 110.41000000000003,
+          "y": 635.99,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "43185cb7",
+      "name": "Circle Target 1",
+      "type": "circle",
+      "position": {
+        "x": 474.0,
+        "y": 573.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 36,
+      "created_at": 1775666577.9953868,
+      "last_updated": 1775666577.9953868,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "2f89d00e",
+      "name": "Polygon Target 3",
+      "type": "polygon",
+      "position": {
+        "x": 406.0,
+        "y": 156.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 1.0,
+      "created_at": 1775666577.99541,
+      "last_updated": 1775666577.99541,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 299.56,
+          "y": 49.72999999999999,
+          "z": 0.0
+        },
+        {
+          "x": 511.56,
+          "y": 49.72999999999999,
+          "z": 0.0
+        },
+        {
+          "x": 511.56,
+          "y": 261.73,
+          "z": 0.0
+        },
+        {
+          "x": 299.56,
+          "y": 261.73,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "f0af8db6",
+      "name": "Polygon Target 4",
+      "type": "polygon",
+      "position": {
+        "x": 194.0,
+        "y": 144.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 1.0,
+      "created_at": 1775666577.995462,
+      "last_updated": 1775666577.995462,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 94.85,
+          "y": 44.900000000000006,
+          "z": 0.0
+        },
+        {
+          "x": 292.85,
+          "y": 44.900000000000006,
+          "z": 0.0
+        },
+        {
+          "x": 292.85,
+          "y": 242.9,
+          "z": 0.0
+        },
+        {
+          "x": 94.85,
+          "y": 242.9,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "2d4283b8",
+      "name": "Polygon Target 5",
+      "type": "polygon",
+      "position": {
+        "x": 904.0,
+        "y": 135.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 1.0,
+      "created_at": 1775666577.9955,
+      "last_updated": 1775666577.9955,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 800.49,
+          "y": 30.789999999999992,
+          "z": 0.0
+        },
+        {
+          "x": 1008.49,
+          "y": 30.789999999999992,
+          "z": 0.0
+        },
+        {
+          "x": 1008.49,
+          "y": 238.79,
+          "z": 0.0
+        },
+        {
+          "x": 800.49,
+          "y": 238.79,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "b30cb0ce",
+      "name": "Circle Target 2",
+      "type": "circle",
+      "position": {
+        "x": 565.0,
+        "y": 644.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 64,
+      "created_at": 1775666577.995533,
+      "last_updated": 1775666577.995533,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "4433eddc",
+      "name": "Circle Target 3",
+      "type": "circle",
+      "position": {
+        "x": 910.0,
+        "y": 262.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 11,
+      "created_at": 1775666577.995543,
+      "last_updated": 1775666577.995543,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "a4fdda44",
+      "name": "Polygon Target 6",
+      "type": "polygon",
+      "position": {
+        "x": 531.0,
+        "y": 443.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 1.0,
+      "created_at": 1775666577.995554,
+      "last_updated": 1775666577.995554,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 447.28,
+          "y": 359.42,
+          "z": 0.0
+        },
+        {
+          "x": 615.28,
+          "y": 359.42,
+          "z": 0.0
+        },
+        {
+          "x": 615.28,
+          "y": 527.4200000000001,
+          "z": 0.0
+        },
+        {
+          "x": 447.28,
+          "y": 527.4200000000001,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "d5a9c137",
+      "name": "Polygon Target 7",
+      "type": "polygon",
+      "position": {
+        "x": 594.0,
+        "y": 129.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 1.0,
+      "created_at": 1775666577.9955862,
+      "last_updated": 1775666577.9955862,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 534.8,
+          "y": 69.56,
+          "z": 0.0
+        },
+        {
+          "x": 652.8,
+          "y": 69.56,
+          "z": 0.0
+        },
+        {
+          "x": 652.8,
+          "y": 187.56,
+          "z": 0.0
+        },
+        {
+          "x": 534.8,
+          "y": 187.56,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "6ace7001",
+      "name": "Polygon Obstacle 1",
+      "type": "polygon",
+      "position": {
+        "x": 739,
+        "y": 684,
+        "z": 0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 665.92,
+          "y": 611.22
+        },
+        {
+          "x": 811.92,
+          "y": 611.22
+        },
+        {
+          "x": 811.92,
+          "y": 757.22
+        },
+        {
+          "x": 665.92,
+          "y": 757.22
+        }
+      ],
+      "height": 0.0,
+      "area": 21316.0,
+      "created_at": 1775666577.9956522,
+      "last_updated": 1775666577.9956522
+    },
+    {
+      "id": "585f25b2",
+      "name": "Polygon Obstacle 2",
+      "type": "polygon",
+      "position": {
+        "x": 961,
+        "y": 546,
+        "z": 0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 928.07,
+          "y": 512.85
+        },
+        {
+          "x": 994.07,
+          "y": 512.85
+        },
+        {
+          "x": 994.07,
+          "y": 578.85
+        },
+        {
+          "x": 928.07,
+          "y": 578.85
+        }
+      ],
+      "height": 0.0,
+      "area": 4356.0,
+      "created_at": 1775666577.995692,
+      "last_updated": 1775666577.995692
+    },
+    {
+      "id": "89d9f723",
+      "name": "Circle Obstacle 1",
+      "type": "circle",
+      "position": {
+        "x": 694,
+        "y": 226,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 37,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 4300.840342764427,
+      "created_at": 1775666577.9956968,
+      "last_updated": 1775666577.9956968
+    },
+    {
+      "id": "1f40e42c",
+      "name": "Circle Obstacle 2",
+      "type": "circle",
+      "position": {
+        "x": 935,
+        "y": 694,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 64,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 12867.963509103793,
+      "created_at": 1775666577.995699,
+      "last_updated": 1775666577.995699
+    },
+    {
+      "id": "d56a605f",
+      "name": "Polygon Obstacle 3",
+      "type": "polygon",
+      "position": {
+        "x": 743,
+        "y": 144,
+        "z": 0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 717.95,
+          "y": 119.03999999999999
+        },
+        {
+          "x": 767.95,
+          "y": 119.03999999999999
+        },
+        {
+          "x": 767.95,
+          "y": 169.04
+        },
+        {
+          "x": 717.95,
+          "y": 169.04
+        }
+      ],
+      "height": 0.0,
+      "area": 2500.0,
+      "created_at": 1775666577.9957361,
+      "last_updated": 1775666577.9957361
+    },
+    {
+      "id": "8b63d03b",
+      "name": "Polygon Obstacle 4",
+      "type": "polygon",
+      "position": {
+        "x": 946,
+        "y": 463,
+        "z": 0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 919.05,
+          "y": 436.26
+        },
+        {
+          "x": 973.05,
+          "y": 436.26
+        },
+        {
+          "x": 973.05,
+          "y": 490.26
+        },
+        {
+          "x": 919.05,
+          "y": 490.26
+        }
+      ],
+      "height": 0.0,
+      "area": 2916.0,
+      "created_at": 1775666577.995772,
+      "last_updated": 1775666577.995772
+    },
+    {
+      "id": "5a299ec5",
+      "name": "Circle Obstacle 3",
+      "type": "circle",
+      "position": {
+        "x": 47,
+        "y": 605,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 29,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 2642.079421669016,
+      "created_at": 1775666577.995775,
+      "last_updated": 1775666577.995775
+    },
+    {
+      "id": "2759afef",
+      "name": "Circle Obstacle 4",
+      "type": "circle",
+      "position": {
+        "x": 55,
+        "y": 350,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 42,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 5541.769440932395,
+      "created_at": 1775666577.9957771,
+      "last_updated": 1775666577.9957771
+    },
+    {
+      "id": "c42169e3",
+      "name": "Ellipse Obstacle 1",
+      "type": "ellipse",
+      "position": {
+        "x": 170,
+        "y": 286,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": null,
+      "width": 24,
+      "length": 22,
+      "vertices": [],
+      "height": 0.0,
+      "area": 1658.7609210954108,
+      "created_at": 1775666577.99578,
+      "last_updated": 1775666577.99578
+    },
+    {
+      "id": "6f23ac4b",
+      "name": "Circle Obstacle 5",
+      "type": "circle",
+      "position": {
+        "x": 325,
+        "y": 725,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 19,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 1134.1149479459152,
+      "created_at": 1775666577.995782,
+      "last_updated": 1775666577.995782
+    },
+    {
+      "id": "444a0b6e",
+      "name": "Ellipse Obstacle 2",
+      "type": "ellipse",
+      "position": {
+        "x": 225,
+        "y": 679,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": null,
+      "width": 33,
+      "length": 10,
+      "vertices": [],
+      "height": 0.0,
+      "area": 1036.7255756846318,
+      "created_at": 1775666577.995784,
+      "last_updated": 1775666577.995784
+    },
+    {
+      "id": "cb2227bb",
+      "name": "Circle Obstacle 6",
+      "type": "circle",
+      "position": {
+        "x": 707,
+        "y": 53,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 37,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 4300.840342764427,
+      "created_at": 1775666577.995786,
+      "last_updated": 1775666577.995786
+    },
+    {
+      "id": "93933676",
+      "name": "Polygon Obstacle 5",
+      "type": "polygon",
+      "position": {
+        "x": 53,
+        "y": 92,
+        "z": 0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 12.030000000000001,
+          "y": 50.58
+        },
+        {
+          "x": 94.03,
+          "y": 50.58
+        },
+        {
+          "x": 94.03,
+          "y": 132.57999999999998
+        },
+        {
+          "x": 12.030000000000001,
+          "y": 132.57999999999998
+        }
+      ],
+      "height": 0.0,
+      "area": 6723.999999999999,
+      "created_at": 1775666577.9958222,
+      "last_updated": 1775666577.9958222
+    },
+    {
+      "id": "d1b68f5c",
+      "name": "Circle Obstacle 7",
+      "type": "circle",
+      "position": {
+        "x": 564,
+        "y": 269,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 43,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 5808.804816487527,
+      "created_at": 1775666577.995824,
+      "last_updated": 1775666577.995824
+    },
+    {
+      "id": "9fb05626",
+      "name": "Circle Obstacle 8",
+      "type": "circle",
+      "position": {
+        "x": 417,
+        "y": 680,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 33,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 3421.194399759285,
+      "created_at": 1775666577.995826,
+      "last_updated": 1775666577.995826
+    },
+    {
+      "id": "01378f09",
+      "name": "Polygon Obstacle 6",
+      "type": "polygon",
+      "position": {
+        "x": 972,
+        "y": 408,
+        "z": 0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 945.18,
+          "y": 381.11
+        },
+        {
+          "x": 999.18,
+          "y": 381.11
+        },
+        {
+          "x": 999.18,
+          "y": 435.11
+        },
+        {
+          "x": 945.18,
+          "y": 435.11
+        }
+      ],
+      "height": 0.0,
+      "area": 2916.0,
+      "created_at": 1775666577.995861,
+      "last_updated": 1775666577.995861
+    },
+    {
+      "id": "95d4918d",
+      "name": "Polygon Obstacle 7",
+      "type": "polygon",
+      "position": {
+        "x": 65,
+        "y": 173,
+        "z": 0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 41.31999999999999,
+          "y": 149.1
+        },
+        {
+          "x": 89.32,
+          "y": 149.1
+        },
+        {
+          "x": 89.32,
+          "y": 197.1
+        },
+        {
+          "x": 41.31999999999999,
+          "y": 197.1
+        }
+      ],
+      "height": 0.0,
+      "area": 2304.0,
+      "created_at": 1775666577.995897,
+      "last_updated": 1775666577.995897
+    },
+    {
+      "id": "fdc69cc8",
+      "name": "Polygon Obstacle 8",
+      "type": "polygon",
+      "position": {
+        "x": 989,
+        "y": 371,
+        "z": 0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 978.89,
+          "y": 360.63
+        },
+        {
+          "x": 998.89,
+          "y": 360.63
+        },
+        {
+          "x": 998.89,
+          "y": 380.63
+        },
+        {
+          "x": 978.89,
+          "y": 380.63
+        }
+      ],
+      "height": 0.0,
+      "area": 400.0,
+      "created_at": 1775666577.9959319,
+      "last_updated": 1775666577.9959319
+    },
+    {
+      "id": "da067be4",
+      "name": "Circle Obstacle 9",
+      "type": "circle",
+      "position": {
+        "x": 62,
+        "y": 706,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 52,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 8494.8665353068,
+      "created_at": 1775666577.995934,
+      "last_updated": 1775666577.995934
+    },
+    {
+      "id": "11ca14f6",
+      "name": "Ellipse Obstacle 3",
+      "type": "ellipse",
+      "position": {
+        "x": 557,
+        "y": 33,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": null,
+      "width": 17,
+      "length": 13,
+      "vertices": [],
+      "height": 0.0,
+      "area": 694.2919764433443,
+      "created_at": 1775666577.995937,
+      "last_updated": 1775666577.995937
+    },
+    {
+      "id": "ce0232d3",
+      "name": "Ellipse Obstacle 4",
+      "type": "ellipse",
+      "position": {
+        "x": 56,
+        "y": 518,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": null,
+      "width": 34,
+      "length": 32,
+      "vertices": [],
+      "height": 0.0,
+      "area": 3418.052807105695,
+      "created_at": 1775666577.995939,
+      "last_updated": 1775666577.995939
+    },
+    {
+      "id": "dcd65fdc",
+      "name": "Circle Obstacle 10",
+      "type": "circle",
+      "position": {
+        "x": 43,
+        "y": 248,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 33,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 3421.194399759285,
+      "created_at": 1775666577.9959412,
+      "last_updated": 1775666577.9959412
+    },
+    {
+      "id": "2dc3f5ac",
+      "name": "Circle Obstacle 11",
+      "type": "circle",
+      "position": {
+        "x": 627,
+        "y": 31,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 21,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 1385.4423602330987,
+      "created_at": 1775666577.9959428,
+      "last_updated": 1775666577.9959428
+    },
+    {
+      "id": "4c2057e1",
+      "name": "Polygon Obstacle 9",
+      "type": "polygon",
+      "position": {
+        "x": 862,
+        "y": 258,
+        "z": 0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 844.21,
+          "y": 240.49
+        },
+        {
+          "x": 880.21,
+          "y": 240.49
+        },
+        {
+          "x": 880.21,
+          "y": 276.49
+        },
+        {
+          "x": 844.21,
+          "y": 276.49
+        }
+      ],
+      "height": 0.0,
+      "area": 1296.0,
+      "created_at": 1775666577.995977,
+      "last_updated": 1775666577.995977
+    },
+    {
+      "id": "66cc36d9",
+      "name": "Ellipse Obstacle 5",
+      "type": "ellipse",
+      "position": {
+        "x": 263,
+        "y": 278,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": null,
+      "width": 23,
+      "length": 14,
+      "vertices": [],
+      "height": 0.0,
+      "area": 1011.5928344559134,
+      "created_at": 1775666577.99598,
+      "last_updated": 1775666577.99598
+    },
+    {
+      "id": "3d4db37f",
+      "name": "Circle Obstacle 12",
+      "type": "circle",
+      "position": {
+        "x": 984,
+        "y": 315,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 30,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 2827.4333882308138,
+      "created_at": 1775666577.9959822,
+      "last_updated": 1775666577.9959822
+    },
+    {
+      "id": "6a58be55",
+      "name": "Circle Obstacle 13",
+      "type": "circle",
+      "position": {
+        "x": 846,
+        "y": 622,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 24,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 1809.5573684677208,
+      "created_at": 1775666577.9959838,
+      "last_updated": 1775666577.9959838
+    },
+    {
+      "id": "6a55fa0d",
+      "name": "Circle Obstacle 14",
+      "type": "circle",
+      "position": {
+        "x": 520,
+        "y": 741,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 12,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 452.3893421169302,
+      "created_at": 1775666577.995986,
+      "last_updated": 1775666577.995986
+    },
+    {
+      "id": "b84d693e",
+      "name": "Circle Obstacle 15",
+      "type": "circle",
+      "position": {
+        "x": 616,
+        "y": 735,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 19,
+      "width": null,
+      "length": null,
+      "vertices": [],
+      "height": 0.0,
+      "area": 1134.1149479459152,
+      "created_at": 1775666577.995987,
+      "last_updated": 1775666577.995987
+    },
+    {
+      "id": "dd16bb0d",
+      "name": "Polygon Obstacle 10",
+      "type": "polygon",
+      "position": {
+        "x": 480,
+        "y": 706,
+        "z": 0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 460.94,
+          "y": 687.02
+        },
+        {
+          "x": 498.94,
+          "y": 687.02
+        },
+        {
+          "x": 498.94,
+          "y": 725.02
+        },
+        {
+          "x": 460.94,
+          "y": 725.02
+        }
+      ],
+      "height": 0.0,
+      "area": 1444.0,
+      "created_at": 1775666577.996022,
+      "last_updated": 1775666577.996022
+    }
+  ],
+  "environment": {
+    "id": "b5322844",
+    "name": "Area Search Hard 2 Environment",
+    "weather": "fog",
+    "temperature": 20.08008323681923,
+    "humidity": 57.3,
+    "pressure": 1014.5,
+    "wind_speed": 7.497315864361483,
+    "wind_direction": "northwest",
+    "visibility": 9128.5,
+    "created_at": 1775666577.995094,
+    "last_updated": 1779379592.609118
+  },
+  "tasks": [
+    {
+      "id": "add3a8cc",
+      "name": "Complete Flight Cycle Verification 1",
+      "content": "Drone Drone 2 complete flight cycle test: verify full operational capability by taking off to 59 meters (must achieve takeoff), fly to waypoint (366, 462, 59), hover briefly, then return home and land properly. This validates complete flight cycle.",
+      "content_aliases": [
+        "Execute full operational test for drone Drone 2: lift off to 59 meters altitude, navigate to position (366, 462, 59), pause in hover, then return to home base and perform landing.",
+        "Drone Drone 2 complete mission sequence: ascend to 59m, proceed to waypoint coordinates (366, 462, 59), hover momentarily, fly back home and land safely.",
+        "Run end-to-end flight verification on Drone 2: take off reaching 59 meters, fly to target location (366, 462, 59), hold position briefly, return home and complete landing procedure.",
+        "Full cycle test Drone 2: departure to altitude 59m, travel to (366, 462, 59), hover in place, come back home and land properly to validate complete flight capability.",
+        "Command Drone 2 complete flight validation: achieve takeoff at 59 meters height, move to position x=366 y=462 z=59, maintain hover, then execute return home and landing to verify full operational cycle."
+      ],
+      "description": "Full takeoff, mission, and landing cycle - uses history checks",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Complete Flight Cycle Verification created by Built-in template",
+      "difficulty": "easy",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "719f5e48",
+            "altitude": 59.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "719f5e48",
+            "x": 366.0,
+            "y": 462.0,
+            "z": 59.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "719f5e48"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/return_home",
+          "parameters": {
+            "id": "719f5e48"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "719f5e48"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "719f5e48",
+              "min_altitude": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "719f5e48",
+              "x": 366.0,
+              "y": 462.0,
+              "z": 59.0,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_landed",
+            "parameters": {
+              "drone_id": "719f5e48",
+              "max_altitude": 1.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_at_home",
+            "parameters": {
+              "drone_id": "719f5e48",
+              "tolerance": 3.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "hover",
+        "return_home",
+        "land"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.021018,
+      "last_updated": 1775666578.021018
+    },
+    {
+      "id": "e77cbae1",
+      "name": "Extended Distance Flight Test 1",
+      "content": "Drone Drone 7 performs extended distance flight test: take off to 19 meters, fly a route that covers at least 1384 meters total distance. The route should include waypoints at (152, 258, 19), (725, 336, 19), (819, 801, 19), and (316, 885, 19). After completing the distance requirement, the mission concludes.",
+      "content_aliases": [
+        "Test Drone 7 endurance: fly at least 1384 meters at 19m altitude, visiting (152,258), (725,336), (819,801), and (316,885).",
+        "Command Drone 7 to cover a minimum of 1384m flight path at 19 meters altitude, specifically through WP1:(152,258), WP2:(725,336), WP3:(819,801), WP4:(316,885).",
+        "Drone 7 performs a long-range flight test: visit waypoints (152, 258), (725, 336), (819, 801), and (316, 885) at 19m to cover 1384m+.",
+        "Execute an extended flight for Drone 7 to surpass 1384m distance, utilizing all four waypoints at 19m altitude."
+      ],
+      "description": "Fly minimum distance to test endurance - uses history checks",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Extended Distance Flight Test created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "4cb15da5",
+            "altitude": 19.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_along_path",
+          "parameters": {
+            "id": "4cb15da5",
+            "waypoints": [
+              {
+                "x": "{randx_dist1:150:400}",
+                "y": "{randy_dist1:150:400}",
+                "z": "{randz_distalt:15:20}"
+              },
+              {
+                "x": "{randx_dist2:650:900}",
+                "y": "{randy_dist2:150:400}",
+                "z": "{randz_distalt:15:20}"
+              },
+              {
+                "x": "{randx_dist3:650:900}",
+                "y": "{randy_dist3:650:900}",
+                "z": "{randz_distalt:15:20}"
+              },
+              {
+                "x": "{randx_dist4:150:400}",
+                "y": "{randy_dist4:650:900}",
+                "z": "{randz_distalt:15:20}"
+              }
+            ]
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_moved_distance",
+            "parameters": {
+              "drone_id": "4cb15da5",
+              "min_distance": 1384.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "4cb15da5",
+              "x": 152.0,
+              "y": 258.0,
+              "z": 19.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "4cb15da5",
+              "x": 725.0,
+              "y": 336.0,
+              "z": 19.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "4cb15da5",
+              "x": 819.0,
+              "y": 801.0,
+              "z": 19.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "4cb15da5",
+              "x": 316.0,
+              "y": 885.0,
+              "z": 19.0,
+              "tolerance": 3.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_along_path"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.045704,
+      "last_updated": 1775666578.045704
+    },
+    {
+      "id": "d36c4c19",
+      "name": "Obstacle Avoidance Navigation 1",
+      "content": "Drone Drone 3 takes off to 23 meters altitude, navigates from start point (305, 357, 23) to destination (659, 741, 23) while avoiding obstacle Circle Obstacle 2. Must fly above obstacle height or around it. After reaching destination, land there.",
+      "content_aliases": [
+        "Navigate Drone 3 from (305,357) to (659,741) at 23m, avoiding Circle Obstacle 2, then land.",
+        "Command Drone 3 to fly obstacle-aware path: takeoff to 23m, go to (305,357), avoid Circle Obstacle 2 en route to (659,741), and land.",
+        "Drone 3 mission: takeoff 23m, traverse from (305,357) to destination (659,741) bypassing Circle Obstacle 2, followed by landing.",
+        "Execute safe passage for Drone 3: start at (305,357), fly to (659,741) at 23m avoiding Circle Obstacle 2, and conclude with landing."
+      ],
+      "description": "Navigate around obstacles to reach destination",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Obstacle Avoidance Navigation created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "07abe1ab",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "07abe1ab",
+            "x": 305.0,
+            "y": 357.0,
+            "z": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "07abe1ab",
+            "x": 659.0,
+            "y": 741.0,
+            "z": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "07abe1ab"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "x": 305.0,
+              "y": 357.0,
+              "z": 23.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "x": 659.0,
+              "y": 741.0,
+              "z": 23.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_position",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "x": 659.0,
+              "y": 741.0,
+              "z": 0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_on_ground",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "tolerance": 0.5
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "land"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.057305,
+      "last_updated": 1775666578.057305
+    },
+    {
+      "id": "924b0ccf",
+      "name": "Flight Marathon Navigation 1",
+      "content": "Drone Drone 8 performs a marathon flight. Take off to 22 meters, fly to start point (112, 105, 22), then navigate through 10 waypoints: (296, 115, 22), (376, 214, 22), (435, 396, 22), (532, 453, 22), (671, 538, 22), (740, 604, 22), (870, 772, 22), (948, 846, 22), (813, 183, 22), (130, 846, 22). Avoid obstacles Polygon Obstacle 3, Circle Obstacle 10. Finally, fly to end point (533, 536, 22) and land.",
+      "content_aliases": [
+        "Command Drone 8 on an epic journey: Take off 22m, go to start (112,105), traverse 10 WPs: (296,115), (376,214), (435,396), (532,453), (671,538), (740,604), (870,772), (948,846), (813,183), (130,846), reach end (533,536) and land, avoiding Polygon Obstacle 3, Circle Obstacle 10.",
+        "Drone 8 marathon flight: navigate 10 distinct waypoints (296,115) through (130,846) at 22m, from start (112,105) to final landing at (533,536).",
+        "Execute long-range mission for Drone 8: begin at (112,105), visit all intermediate points, end at (533,536), altitude 22m, avoiding Polygon Obstacle 3, Circle Obstacle 10.",
+        "Task Drone 8 with multi-waypoint endurance flight: 10 waypoints to clear, start (112,105) and end (533,536) points defined, final landing. Altitude: 22m."
+      ],
+      "description": "Long-distance navigation through 10 intermediate waypoints",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Flight Marathon Navigation created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "5b346a5e",
+            "altitude": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 112.0,
+            "y": 105.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 296.0,
+            "y": 115.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 376.0,
+            "y": 214.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 435.0,
+            "y": 396.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 532.0,
+            "y": 453.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 671.0,
+            "y": 538.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 740.0,
+            "y": 604.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 870.0,
+            "y": 772.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 948.0,
+            "y": 846.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 813.0,
+            "y": 183.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 130.0,
+            "y": 846.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 533.0,
+            "y": 536.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "5b346a5e"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 112.0,
+              "y": 105.0,
+              "z": 22.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 296.0,
+              "y": 115.0,
+              "z": 22.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 376.0,
+              "y": 214.0,
+              "z": 22.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 435.0,
+              "y": 396.0,
+              "z": 22.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 532.0,
+              "y": 453.0,
+              "z": 22.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 671.0,
+              "y": 538.0,
+              "z": 22.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 740.0,
+              "y": 604.0,
+              "z": 22.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 870.0,
+              "y": 772.0,
+              "z": 22.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 948.0,
+              "y": 846.0,
+              "z": 22.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 813.0,
+              "y": 183.0,
+              "z": 22.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 130.0,
+              "y": 846.0,
+              "z": 22.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 533.0,
+              "y": 536.0,
+              "z": 0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_on_ground",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "tolerance": 0.5
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "move_to",
+        "move_to",
+        "move_to",
+        "move_to",
+        "move_to",
+        "move_to",
+        "move_to",
+        "move_to",
+        "move_to",
+        "move_to",
+        "move_to",
+        "land"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.139234,
+      "last_updated": 1775666578.139234
+    },
+    {
+      "id": "1124e9b8",
+      "name": "Search Task with Photo 1",
+      "content": "Drone Drone 5 must take off to 25 meters, fly to position (300, 305, 25), hover at that location, and take a photo.",
+      "content_aliases": [
+        "Drone Drone 5 takeoff 25m, go to (300,305), hover and take photo",
+        "Search mission: drone Drone 5 to position x=300 y=305 z=25, capture photo",
+        "make drone Drone 5 fly to coordinates (300, 305) at altitude 25 meters and take picture",
+        "Drone Drone 5 reconnaissance at (300,305,25) with photo capture"
+      ],
+      "description": "Move to specific coordinates and capture photos",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Search Task with Photo created by Built-in template",
+      "difficulty": "easy",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "3b7672a1",
+            "altitude": 25.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "3b7672a1",
+            "x": 300.0,
+            "y": 305.0,
+            "z": 25.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "3b7672a1"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "3b7672a1"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "x": 300.0,
+              "y": 305.0,
+              "z": 25.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "min_count": 1
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "hover",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.14638,
+      "last_updated": 1775666578.14638
+    },
+    {
+      "id": "5f123b8a",
+      "name": "Photo Documentation Mission 1",
+      "content": "Drone Drone 5 performs photo documentation mission: take off to 19 meters, visit three waypoints at (368, 254, 19), (633, 621, 19), and (850, 762, 19). At each waypoint, take a photo.",
+      "content_aliases": [
+        "Drone 5 needs to capture photos at three locations: (368, 254), (633, 621), and (850, 762) at 19m altitude.",
+        "Send Drone 5 to photograph waypoints (368, 254), (633, 621), and (850, 762) maintaining 19m height.",
+        "Execute photo mission with Drone 5: visit (368, 254, 19), (633, 621, 19), and (850, 762, 19) to take pictures.",
+        "Task Drone 5 to fly to (368, 254), (633, 621), and (850, 762) at 19m and perform photo documentation at each spot."
+      ],
+      "description": "Take multiple photos at various waypoints - uses history checks",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Photo Documentation Mission created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "3b7672a1",
+            "altitude": 19.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "3b7672a1",
+            "x": 368.0,
+            "y": 254.0,
+            "z": 19.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "3b7672a1"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "3b7672a1",
+            "x": 633.0,
+            "y": 621.0,
+            "z": 19.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "3b7672a1"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "3b7672a1",
+            "x": 850.0,
+            "y": 762.0,
+            "z": 19.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "3b7672a1"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "min_count": 3
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "x": 368.0,
+              "y": 254.0,
+              "z": 19.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "x": 633.0,
+              "y": 621.0,
+              "z": 19.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "x": 850.0,
+              "y": 762.0,
+              "z": 19.0,
+              "tolerance": 3.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.1620119,
+      "last_updated": 1775666578.1620119
+    },
+    {
+      "id": "e556da28",
+      "name": "Sequential Multi-Target Visit 1",
+      "content": "Drone Drone 4 performs sequential multi-target mission: take off to 24 meters, visit targets Polygon Target 2, Polygon Target 7, and Circle Target 3 in sequence. At each target, get within the target radius, hover for observation, and take a photo. Plan optimal route to minimize flight distance.",
+      "content_aliases": [
+        "Have Drone 4 climb to 24m and visit Polygon Target 2, Polygon Target 7, Circle Target 3 in order; at each, enter the target radius, hover to observe, and capture a photo while following the shortest route.",
+        "Drone 4 sequential inspection run: take off to 24 meters, proceed Polygon Target 2 → Polygon Target 7 → Circle Target 3, and for each target hover within range and take a photo, optimizing the path length.",
+        "Plan an efficient three-target tour for Drone 4 at 24m: visit Polygon Target 2, then Polygon Target 7, then Circle Target 3, hovering inside each target radius for observation and photo capture.",
+        "Sequential coverage for Drone 4: ascend to 24m, reach Polygon Target 2, Polygon Target 7, Circle Target 3 in order, hover at each to observe, and take a photo while minimizing travel distance."
+      ],
+      "description": "Visit multiple targets in optimal sequence",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Sequential Multi-Target Visit created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "63c593b1",
+            "altitude": 24.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "63c593b1"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "63c593b1"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "ee00b8a2"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "d5a9c137"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "4433eddc"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "hover",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.1669939,
+      "last_updated": 1775666578.1669939
+    },
+    {
+      "id": "22697f33",
+      "name": "Target Area Complete Coverage and Photography Mission 1",
+      "content": "Drone Drone 4 comprehensive area coverage mission: take off to 23 meters altitude, perform systematic coverage of target area Circle Target 1 to achieve at least 99% area coverage. Use efficient search pattern (grid, spiral, or serpentine). Take at least 3 photos periodically for documentation. Continue coverage until 99% threshold is met or exceeded.",
+      "content_aliases": [
+        "Command Drone 4 to achieve 99% search coverage of Circle Target 1 at 23m with at least 3 periodic photos",
+        "Drone 4 full area scan: cover 99% of Circle Target 1 at 23 meters using systematic pattern and photography for taking 3 photos",
+        "Initiate high-coverage search (99%) of Circle Target 1 with Drone 4 at 23m, documenting with at least 3 photos",
+        "Task Drone 4 with complete 99% sweep of Circle Target 1 at 23m altitude including at least 3 photos capture"
+      ],
+      "description": "Achieve 99% coverage of target area - complex check logic",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Target Area Complete Coverage and Photography Mission created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "63c593b1",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "63c593b1"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "logic": "or",
+            "checks": [
+              {
+                "endpoint": "/check/target_is_fully_searched",
+                "parameters": {
+                  "target_id": "43185cb7",
+                  "coverage_threshold": 0.99
+                }
+              },
+              {
+                "endpoint": "/check/target_searched_area_percentage",
+                "parameters": {
+                  "target_id": "43185cb7",
+                  "expected_percentage": 0.99
+                }
+              }
+            ]
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "63c593b1",
+              "min_count": 3
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "move_along_path",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.1698759,
+      "last_updated": 1775666578.1698759
+    },
+    {
+      "id": "b032bb3f",
+      "name": "Delivery to Specific Location 1",
+      "content": "Drone Drone 8 should take off to 13 meters altitude, fly to pickup point at (159, 159, 13), land to collect goods, then take off again to 13 meters, fly to delivery point at (703, 579, 13), and land to complete delivery.",
+      "content_aliases": [
+        "Drone 8 delivery mission: pick up from (159,159) on ground and deliver to (703,579) at 13m, then land.",
+        "drone Drone 8 collects package on ground at position 159,159 then delivers to 703,579, and final land.",
+        "make Drone 8 pick up goods at (159,159,13) , land to pick up, and carry to (703,579,13), then land to drop off",
+        "Drone 8 transport mission from pickup point (159,159) to delivery coordinates (703,579) at altitude 13 meters"
+      ],
+      "description": "Navigate to pickup and delivery locations",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Delivery to Specific Location created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "5b346a5e",
+            "altitude": 13.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 159.0,
+            "y": 159.0,
+            "z": 13.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "5b346a5e"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "5b346a5e",
+            "altitude": 13.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "5b346a5e",
+            "x": 703.0,
+            "y": 579.0,
+            "z": 13.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "5b346a5e"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 159.0,
+              "y": 159.0,
+              "z": 0,
+              "tolerance": 1.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "x": 703.0,
+              "y": 579.0,
+              "z": 0,
+              "tolerance": 1.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_on_ground",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "tolerance": 0.5
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "land",
+        "take_off",
+        "move_to",
+        "land"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.1806972,
+      "last_updated": 1775666578.1806972
+    },
+    {
+      "id": "7acc9b9b",
+      "name": "Multi-Waypoint Delivery Route 1",
+      "content": "Drone Drone 3 executes delivery route: take off to 18 meters, fly to waypoint 1 at (283, 247, 18) and land to deliver. Then take off, fly to waypoint 2 at (581, 207, 18) and land. Finally take off, fly to waypoint 3 at (537, 534, 18) and land to complete the mission.",
+      "content_aliases": [
+        "Execute three-stop delivery circuit with Drone 3: take off, land at (283,247), take off, land at (581,207), take off, land at (537,534).",
+        "Drone 3 multi-stop delivery: visit and land at (283,247), then (581,207), then (537,534).",
+        "Task Drone 3 to deliver to 3 locations: (283,247), (581,207), (537,534), landing at each one.",
+        "Sequential delivery run for Drone 3: land at WP1 (283,247), WP2 (581,207), and WP3 (537,534)."
+      ],
+      "description": "Deliver packages to three waypoints in sequence with landings",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Multi-Waypoint Delivery Route created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "07abe1ab",
+            "altitude": 18.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "07abe1ab",
+            "x": 283.0,
+            "y": 247.0,
+            "z": 18.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "07abe1ab"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "07abe1ab",
+            "altitude": 18.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "07abe1ab",
+            "x": 581.0,
+            "y": 207.0,
+            "z": 18.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "07abe1ab"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "07abe1ab",
+            "altitude": 18.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "07abe1ab",
+            "x": 537.0,
+            "y": 534.0,
+            "z": 18.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "07abe1ab"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "x": 283.0,
+              "y": 247.0,
+              "z": 0,
+              "tolerance": 1.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "x": 581.0,
+              "y": 207.0,
+              "z": 0,
+              "tolerance": 1.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "x": 537.0,
+              "y": 534.0,
+              "z": 0,
+              "tolerance": 1.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "land",
+        "take_off",
+        "move_to",
+        "land",
+        "take_off",
+        "move_to",
+        "land"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.210786,
+      "last_updated": 1775666578.210786
+    },
+    {
+      "id": "3ba23dd3",
+      "name": "Communication Relay with Messages 1",
+      "content": "Communication relay mission: Drone Drone 7 acts as communication relay. Take off to 19 meters, position at relay point (563, 583, 19). Send broadcast messages to coordinate with other drones. Send at least 5 messages total during the mission.",
+      "content_aliases": [
+        "Drone 7 to establish relay at (563, 583) altitude 19m and broadcast 5+ coordination messages.",
+        "Deploy Drone 7 as a message hub: fly to 563,583 at 19m and transmit at least 5 broadcasts.",
+        "Mission for Drone 7: reach relay coordinates (563, 583, 19) and send multiple broadcast alerts (min 5).",
+        "Set up comms link with Drone 7 at position 563,583,19 and issue 5 fleet-wide messages."
+      ],
+      "description": "Send messages between drones - uses message history checks",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Communication Relay with Messages created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "4cb15da5",
+            "altitude": 19.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "4cb15da5",
+            "x": 563.0,
+            "y": 583.0,
+            "z": 19.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/broadcast",
+          "parameters": {
+            "id": "4cb15da5",
+            "message": "Relay station active"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/broadcast",
+          "parameters": {
+            "id": "4cb15da5",
+            "message": "Coordination message"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/broadcast",
+          "parameters": {
+            "id": "4cb15da5",
+            "message": "Mission update"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_sent_message",
+            "parameters": {
+              "drone_id": "4cb15da5",
+              "min_count": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "4cb15da5",
+              "x": 563.0,
+              "y": 583.0,
+              "z": 19.0,
+              "tolerance": 3.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "broadcast"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.218233,
+      "last_updated": 1775666578.218233
+    },
+    {
+      "id": "afc9a187",
+      "name": "Line Formation - 2 Drones 1",
+      "content": "Drones Drone 5 and Drone 4 form a line formation: both take off to 18 meters. Drone 5 positions at (561, 646, 18) and Drone 4 flys to (454, 507, 18) first, and then move to 18 meters at most to Drone 5. Both maintain formation for monitoring.",
+      "content_aliases": [
+        "Have Drone 5 and Drone 4 take off to 18m, set Drone 5 at (561,646,18) and Drone 4 at (454,507,18), then fly within a 18m gap.",
+        "Line formation at 18m: Drone 5 holds (561,646,18) while Drone 4 trails at (454,507,18) , then fly within 18m separation.",
+        "Two-drone line: climb to 18m and align Drone 5 at (561,646,18) with Drone 4 at (454,507,18), then within a 18m gap.."
+      ],
+      "description": "Two drones maintain line formation",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Line Formation - 2 Drones created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "3b7672a1",
+            "altitude": 18.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "63c593b1",
+            "altitude": 18.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "3b7672a1",
+            "x": 561.0,
+            "y": 646.0,
+            "z": 18.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "63c593b1",
+            "x": 454.0,
+            "y": 507.0,
+            "z": 18.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "3b7672a1"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "63c593b1"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "x": 561.0,
+              "y": 646.0,
+              "z": 18.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "63c593b1",
+              "x": 454.0,
+              "y": 507.0,
+              "z": 18.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/two_drones_distance",
+            "parameters": {
+              "drone_1_id": "3b7672a1",
+              "drone_2_id": "63c593b1",
+              "max_distance": 18.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.228794,
+      "last_updated": 1775666578.228794
+    },
+    {
+      "id": "c1f1d8af",
+      "name": "Triangle Formation - 3 Drones 1",
+      "content": "Drones Drone 2, Drone 10, and Drone 4 should take off to 23 meters altitude and form a triangle formation around target at position (573, 595, 23). Drone 2 positions at (573, 408, 23), Drone 10 at (502, 517, 23), and Drone 4 at (459, 632, 23). After formation is established, all drones maintain hovering.",
+      "content_aliases": [
+        "Have Drone 2, Drone 10, Drone 4 take off to 23m, form a triangle around target (573, 595, 23), with Drone 2 at (573,408,23), Drone 10 at (502,517,23), and Drone 4 at (459,632,23), then hover.",
+        "Triangle formation at 23m around target (573, 595, 23): Drone 2 holds (573,408,23), Drone 10 holds (502,517,23), Drone 4 holds (459,632,23), all hovering.",
+        "Three-drone triangulation: take off to 23m, form a triangle around (573, 595, 23) with positions Drone 2 (573,408,23), Drone 10 (502,517,23), Drone 4 (459,632,23), then hover.",
+        "Form a three-point hover after takeoff to 23m around target (573, 595, 23): Drone 2 at (573,408,23), Drone 10 at (502,517,23), Drone 4 at (459,632,23), then hover."
+      ],
+      "description": "Three drones form a triangle formation around a target",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Triangle Formation - 3 Drones created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "719f5e48",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "4cc280e0",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "63c593b1",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "719f5e48",
+            "x": 573.0,
+            "y": 408.0,
+            "z": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "4cc280e0",
+            "x": 502.0,
+            "y": 517.0,
+            "z": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "63c593b1",
+            "x": 459.0,
+            "y": 632.0,
+            "z": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "719f5e48"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "4cc280e0"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "63c593b1"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "719f5e48",
+              "x": 573.0,
+              "y": 408.0,
+              "z": 23.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "4cc280e0",
+              "x": 502.0,
+              "y": 517.0,
+              "z": 23.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "63c593b1",
+              "x": 459.0,
+              "y": 632.0,
+              "z": 23.0,
+              "tolerance": 3.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.234069,
+      "last_updated": 1775666578.234069
+    },
+    {
+      "id": "f65ae3d7",
+      "name": "Perimeter Search - 4 Drones 1",
+      "content": "Deploy drones Drone 9, Drone 1, Drone 3, and Drone 5 for perimeter search. All take off to 23 meters altitude. Position Drone 9 at guard point (506,857,23), Drone 1 at guard point (786,463,23), Drone 3 at guard point (435,248,23), and Drone 5 at west guard point (318,615,23). All drones hover, take photos at their positions, and maintain search.",
+      "content_aliases": [
+        "Launch Drone 9, Drone 1, Drone 3, Drone 5 to 23m and assign guard points: Drone 9 (506,857,23), Drone 1 (786,463,23), Drone 3 (435,248,23), Drone 5 (318,615,23); hover and take photos.",
+        "Perimeter watch at 23m: Drone 9 holds (506,857,23), Drone 1 holds (786,463,23), Drone 3 holds (435,248,23), Drone 5 holds (318,615,23); each hovers and captures imagery.",
+        "Deploy a four-drone perimeter screen: send Drone 9 to (506,857,23), Drone 1 to (786,463,23), Drone 3 to (435,248,23), Drone 5 to (318,615,23) after takeoff to 23m; hover and photograph.",
+        "Form guard posts at 23m with Drone 9 at (506,857,23), Drone 1 at (786,463,23), Drone 3 at (435,248,23), and Drone 5 at (318,615,23); maintain hover and take photos."
+      ],
+      "description": "Four drones stationed at guard points for perimeter security",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Perimeter Search - 4 Drones created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "4970af7e",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "60584c31",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "07abe1ab",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "3b7672a1",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "4970af7e",
+            "x": 506.0,
+            "y": 857.0,
+            "z": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "60584c31",
+            "x": 786.0,
+            "y": 463.0,
+            "z": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "07abe1ab",
+            "x": 435.0,
+            "y": 248.0,
+            "z": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "3b7672a1",
+            "x": 318.0,
+            "y": 615.0,
+            "z": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "4970af7e"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "60584c31"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "07abe1ab"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "3b7672a1"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "4970af7e"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "60584c31"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "07abe1ab"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "3b7672a1"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "4970af7e",
+              "x": 506.0,
+              "y": 857.0,
+              "z": 23.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "60584c31",
+              "x": 786.0,
+              "y": 463.0,
+              "z": 23.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "x": 435.0,
+              "y": 248.0,
+              "z": 23.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "x": 318.0,
+              "y": 615.0,
+              "z": 23.0,
+              "tolerance": 3.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "4970af7e",
+              "min_count": 1
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "60584c31",
+              "min_count": 1
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "min_count": 1
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "min_count": 1
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "hover",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.254346,
+      "last_updated": 1775666578.254346
+    },
+    {
+      "id": "f4f858ce",
+      "name": "Multiple Target Inspection - Advanced 1",
+      "content": "Drones Drone 4, Drone 3, and Drone 8 must take off to 23 meters. Drone 4 photographs targets Circle Target 3 and Circle Target 2. Drone 3 photographs targets Polygon Target 5 and Polygon Target 3. Drone 8 photographs targets Polygon Target 2 and Polygon Target 6.",
+      "content_aliases": [
+        "Have Drone 4, Drone 3, Drone 8 take off to 23m; Drone 4 visits Circle Target 3/Circle Target 2, Drone 3 visits Polygon Target 5/Polygon Target 3, Drone 8 visits Polygon Target 2/Polygon Target 6 for photos.",
+        "Coordinated multi-drone inspection at 23m: Drone 4 photographs Circle Target 3/Circle Target 2, Drone 3 photographs Polygon Target 5/Polygon Target 3, Drone 8 photographs Polygon Target 2/Polygon Target 6.",
+        "Three-drone photo sweep: climb to 23 meters, then Drone 4 images Circle Target 3 and Circle Target 2, Drone 3 images Polygon Target 5 and Polygon Target 3, Drone 8 images Polygon Target 2 and Polygon Target 6.",
+        "Assign target pairs at 23m: Drone 4 handles Circle Target 3/Circle Target 2, Drone 3 handles Polygon Target 5/Polygon Target 3, Drone 8 handles Polygon Target 2/Polygon Target 6."
+      ],
+      "description": "Three drones each find and photograph two targets",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Multiple Target Inspection - Advanced created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "63c593b1",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "07abe1ab",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "5b346a5e",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "63c593b1"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "63c593b1"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "07abe1ab"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "07abe1ab"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "5b346a5e"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "5b346a5e"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "4433eddc",
+              "drone_id": "63c593b1"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "4433eddc",
+              "drone_id": "63c593b1"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "b30cb0ce",
+              "drone_id": "63c593b1"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "b30cb0ce",
+              "drone_id": "63c593b1"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "2d4283b8",
+              "drone_id": "07abe1ab"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "2d4283b8",
+              "drone_id": "07abe1ab"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "2f89d00e",
+              "drone_id": "07abe1ab"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "2f89d00e",
+              "drone_id": "07abe1ab"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "ee00b8a2",
+              "drone_id": "5b346a5e"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "ee00b8a2",
+              "drone_id": "5b346a5e"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "a4fdda44",
+              "drone_id": "5b346a5e"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "a4fdda44",
+              "drone_id": "5b346a5e"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "take_photo",
+        "move_to",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.257057,
+      "last_updated": 1775666578.257057
+    },
+    {
+      "id": "4dab7e74",
+      "name": "Multiple Target Inspection - Advanced 2",
+      "content": "Drones Drone 7, Drone 9, and Drone 3 must take off to 23 meters. Drone 7 photographs targets Polygon Target 4 and Polygon Target 5. Drone 9 photographs targets Polygon Target 2 and Polygon Target 7. Drone 3 photographs targets Circle Target 1 and Circle Target 2.",
+      "content_aliases": [
+        "Have Drone 7, Drone 9, Drone 3 take off to 23m; Drone 7 visits Polygon Target 4/Polygon Target 5, Drone 9 visits Polygon Target 2/Polygon Target 7, Drone 3 visits Circle Target 1/Circle Target 2 for photos.",
+        "Coordinated multi-drone inspection at 23m: Drone 7 photographs Polygon Target 4/Polygon Target 5, Drone 9 photographs Polygon Target 2/Polygon Target 7, Drone 3 photographs Circle Target 1/Circle Target 2.",
+        "Three-drone photo sweep: climb to 23 meters, then Drone 7 images Polygon Target 4 and Polygon Target 5, Drone 9 images Polygon Target 2 and Polygon Target 7, Drone 3 images Circle Target 1 and Circle Target 2.",
+        "Assign target pairs at 23m: Drone 7 handles Polygon Target 4/Polygon Target 5, Drone 9 handles Polygon Target 2/Polygon Target 7, Drone 3 handles Circle Target 1/Circle Target 2."
+      ],
+      "description": "Three drones each find and photograph two targets",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Multiple Target Inspection - Advanced created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "4cb15da5",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "4970af7e",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "07abe1ab",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "4cb15da5"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "4cb15da5"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "4970af7e"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "4970af7e"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "07abe1ab"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "07abe1ab"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "f0af8db6",
+              "drone_id": "4cb15da5"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "f0af8db6",
+              "drone_id": "4cb15da5"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "2d4283b8",
+              "drone_id": "4cb15da5"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "2d4283b8",
+              "drone_id": "4cb15da5"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "ee00b8a2",
+              "drone_id": "4970af7e"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "ee00b8a2",
+              "drone_id": "4970af7e"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "d5a9c137",
+              "drone_id": "4970af7e"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "d5a9c137",
+              "drone_id": "4970af7e"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "43185cb7",
+              "drone_id": "07abe1ab"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "43185cb7",
+              "drone_id": "07abe1ab"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "b30cb0ce",
+              "drone_id": "07abe1ab"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "b30cb0ce",
+              "drone_id": "07abe1ab"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "take_photo",
+        "move_to",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.2596412,
+      "last_updated": 1775666578.2596412
+    },
+    {
+      "id": "326ba1e2",
+      "name": "Fleet Target Sweep (4 Drones) 1",
+      "content": "Four-drone target sweep: Drone 3, Drone 2, Drone 6, and Drone 5 take off together to 23 meters altitude. Drone 3 flies to target Polygon Target 3, Drone 2 flies to target Polygon Target 5, Drone 6 flies to target Circle Target 1, and Drone 5 flies to target Polygon Target 2. After reaching the targets, all four drones move west for 83m, then south for 62m, then north for 81m together. Each drone must complete the specified directional movements (west 83m, south 62m, north 81m) regardless of starting position - if obstacles block the path, drones should adjust position as needed to complete the full directed distance in each heading.",
+      "content_aliases": [
+        "Coordinate Drone 3, Drone 2, Drone 6, and Drone 5: ascend together to 23 meters altitude, send Drone 3 to target Polygon Target 3, Drone 2 to target Polygon Target 5, Drone 6 to target Circle Target 1, and Drone 5 to target Polygon Target 2, then execute coordinated sweep movement west 83m, south 62m, and north 81m. All drones must complete the full directional distance (west 83m, south 62m, north 81m) from their respective positions, adjusting as needed to avoid obstacles.",
+        "Four-drone target sweep operation: launch Drone 3, Drone 2, Drone 6, and Drone 5 to altitude 23m, navigate to targets Polygon Target 3, Polygon Target 5, Circle Target 1, Polygon Target 2 respectively, then shift west by 83 meters, south by 62 meters, and north by 81 meters in synchronized operation. Each drone travels the specified distance in each direction regardless of obstacles encountered.",
+        "Execute four-drone sweep mission: Drone 3, Drone 2, Drone 6, Drone 5 take off reaching 23 meters height, fly to targets Polygon Target 3, Polygon Target 5, Circle Target 1, Polygon Target 2 respectively, then proceed west for 83m, subsequently south for 62m, and finally north for 81m together, with each drone completing the full directed movements by repositioning around obstacles if necessary.",
+        "Four-drone coordinated target mission: Drone 3, Drone 2, Drone 6, and Drone 5 lift off to 23m elevation, reach targets Polygon Target 3, Polygon Target 5, Circle Target 1, Polygon Target 2 respectively, then travel west 83 meters, south 62 meters, and north 81 meters in sequence. The specified directional distances must be achieved by each drone, adapting position to circumvent any obstacles."
+      ],
+      "description": "Four drones visit targets, then sweep west, south, and north",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Fleet Target Sweep (4 Drones) created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "07abe1ab",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "719f5e48",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "d28f5149",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "3b7672a1",
+            "altitude": 23.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "07abe1ab",
+            "distance": 83.0,
+            "heading": 270
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "719f5e48",
+            "distance": 83.0,
+            "heading": 270
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "d28f5149",
+            "distance": 83.0,
+            "heading": 270
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "3b7672a1",
+            "distance": 83.0,
+            "heading": 270
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "07abe1ab",
+            "distance": 62.0,
+            "heading": 180
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "719f5e48",
+            "distance": 62.0,
+            "heading": 180
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "d28f5149",
+            "distance": 62.0,
+            "heading": 180
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "3b7672a1",
+            "distance": 62.0,
+            "heading": 180
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "07abe1ab",
+            "distance": 81.0,
+            "heading": 0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "719f5e48",
+            "distance": 81.0,
+            "heading": 0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "d28f5149",
+            "distance": 81.0,
+            "heading": 0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "3b7672a1",
+            "distance": 81.0,
+            "heading": 0
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "2f89d00e",
+              "drone_id": "07abe1ab"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "2d4283b8",
+              "drone_id": "719f5e48"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "43185cb7",
+              "drone_id": "d28f5149"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "ee00b8a2",
+              "drone_id": "3b7672a1"
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "min_distance": 83.0,
+              "heading": 270,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "719f5e48",
+              "min_distance": 83.0,
+              "heading": 270,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "d28f5149",
+              "min_distance": 83.0,
+              "heading": 270,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "min_distance": 83.0,
+              "heading": 270,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "min_distance": 62.0,
+              "heading": 180,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "719f5e48",
+              "min_distance": 62.0,
+              "heading": 180,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "d28f5149",
+              "min_distance": 62.0,
+              "heading": 180,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "min_distance": 62.0,
+              "heading": 180,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "min_distance": 81.0,
+              "heading": 0,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "719f5e48",
+              "min_distance": 81.0,
+              "heading": 0,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "d28f5149",
+              "min_distance": 81.0,
+              "heading": 0,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "3b7672a1",
+              "min_distance": 81.0,
+              "heading": 0,
+              "tolerance": 5.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "move_towards"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.262611,
+      "last_updated": 1775666578.262611
+    },
+    {
+      "id": "1e04d68a",
+      "name": "Fleet Target Sweep (5 Drones) 1",
+      "content": "Five-drone target sweep: Drone 3, Drone 8, Drone 2, Drone 6, and Drone 4 take off together to 25 meters altitude. Drone 3 flies to target Polygon Target 5, Drone 8 flies to target Polygon Target 7, Drone 2 flies to target Polygon Target 3, Drone 6 flies to target Polygon Target 6, and Drone 4 flies to target Circle Target 2. After reaching the targets, all five drones move west for 76m, then south for 119m, then north for 102m together. Each drone must complete the specified directional movements (west 76m, south 119m, north 102m) regardless of starting position - if obstacles block the path, drones should adjust position as needed to complete the full directed distance in each heading.",
+      "content_aliases": [
+        "Coordinate Drone 3, Drone 8, Drone 2, Drone 6, and Drone 4: ascend together to 25 meters altitude, send Drone 3 to target Polygon Target 5, Drone 8 to target Polygon Target 7, Drone 2 to target Polygon Target 3, Drone 6 to target Polygon Target 6, and Drone 4 to target Circle Target 2, then execute coordinated sweep movement west 76m, south 119m, and north 102m. All drones must complete the full directional distance (west 76m, south 119m, north 102m) from their respective positions, adjusting as needed to avoid obstacles.",
+        "Five-drone target sweep operation: launch Drone 3, Drone 8, Drone 2, Drone 6, and Drone 4 to altitude 25m, navigate to targets Polygon Target 5, Polygon Target 7, Polygon Target 3, Polygon Target 6, Circle Target 2 respectively, then shift west by 76 meters, south by 119 meters, and north by 102 meters in synchronized operation. Each drone travels the specified distance in each direction regardless of obstacles encountered.",
+        "Execute five-drone sweep mission: Drone 3, Drone 8, Drone 2, Drone 6, Drone 4 take off reaching 25 meters height, fly to targets Polygon Target 5, Polygon Target 7, Polygon Target 3, Polygon Target 6, Circle Target 2 respectively, then proceed west for 76m, subsequently south for 119m, and finally north for 102m together, with each drone completing the full directed movements by repositioning around obstacles if necessary.",
+        "Five-drone coordinated target mission: Drone 3, Drone 8, Drone 2, Drone 6, and Drone 4 lift off to 25m elevation, reach targets Polygon Target 5, Polygon Target 7, Polygon Target 3, Polygon Target 6, Circle Target 2 respectively, then travel west 76 meters, south 119 meters, and north 102 meters in sequence. The specified directional distances must be achieved by each drone, adapting position to circumvent any obstacles."
+      ],
+      "description": "Five drones visit targets, then sweep west, south, and north",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Fleet Target Sweep (5 Drones) created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "07abe1ab",
+            "altitude": 25.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "5b346a5e",
+            "altitude": 25.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "719f5e48",
+            "altitude": 25.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "d28f5149",
+            "altitude": 25.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "63c593b1",
+            "altitude": 25.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "07abe1ab",
+            "distance": 76.0,
+            "heading": 270
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "5b346a5e",
+            "distance": 76.0,
+            "heading": 270
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "719f5e48",
+            "distance": 76.0,
+            "heading": 270
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "d28f5149",
+            "distance": 76.0,
+            "heading": 270
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "63c593b1",
+            "distance": 76.0,
+            "heading": 270
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "07abe1ab",
+            "distance": 119.0,
+            "heading": 180
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "5b346a5e",
+            "distance": 119.0,
+            "heading": 180
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "719f5e48",
+            "distance": 119.0,
+            "heading": 180
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "d28f5149",
+            "distance": 119.0,
+            "heading": 180
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "63c593b1",
+            "distance": 119.0,
+            "heading": 180
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "07abe1ab",
+            "distance": 102.0,
+            "heading": 0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "5b346a5e",
+            "distance": 102.0,
+            "heading": 0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "719f5e48",
+            "distance": 102.0,
+            "heading": 0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "d28f5149",
+            "distance": 102.0,
+            "heading": 0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_towards",
+          "parameters": {
+            "id": "63c593b1",
+            "distance": 102.0,
+            "heading": 0
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "2d4283b8",
+              "drone_id": "07abe1ab"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "d5a9c137",
+              "drone_id": "5b346a5e"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "2f89d00e",
+              "drone_id": "719f5e48"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "a4fdda44",
+              "drone_id": "d28f5149"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "b30cb0ce",
+              "drone_id": "63c593b1"
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "min_distance": 76.0,
+              "heading": 270,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "min_distance": 76.0,
+              "heading": 270,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "719f5e48",
+              "min_distance": 76.0,
+              "heading": 270,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "d28f5149",
+              "min_distance": 76.0,
+              "heading": 270,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "63c593b1",
+              "min_distance": 76.0,
+              "heading": 270,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "min_distance": 119.0,
+              "heading": 180,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "min_distance": 119.0,
+              "heading": 180,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "719f5e48",
+              "min_distance": 119.0,
+              "heading": 180,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "d28f5149",
+              "min_distance": 119.0,
+              "heading": 180,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "63c593b1",
+              "min_distance": 119.0,
+              "heading": 180,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "07abe1ab",
+              "min_distance": 102.0,
+              "heading": 0,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "5b346a5e",
+              "min_distance": 102.0,
+              "heading": 0,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "719f5e48",
+              "min_distance": 102.0,
+              "heading": 0,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "d28f5149",
+              "min_distance": 102.0,
+              "heading": 0,
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_moved_directed_distance",
+            "parameters": {
+              "drone_id": "63c593b1",
+              "min_distance": 102.0,
+              "heading": 0,
+              "tolerance": 5.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "move_towards"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1775666578.2685928,
+      "last_updated": 1775666578.2685928
+    },
+    {
+      "id": "e4669136",
+      "name": "Complete Area Coverage Search",
+      "content": "Drone 4 executes comprehensive area search of Polygon Target 5. Take off to 24 meters and perform a systematic coverage pattern to search at least 95% of the target area using an efficient pattern.",
+      "content_aliases": [
+        "Task Drone 4 to perform a 95% coverage search of Polygon Target 5 at 24m altitude",
+        "Execute systematic search with Drone 4 over Polygon Target 5 at 24m, ensuring 95% area coverage",
+        "Drone 4 mission: scan Polygon Target 5 completely (95%+) using an efficient pattern at 24 meters",
+        "Deploy Drone 4 for comprehensive 95% sweep of Polygon Target 5 at 24m"
+      ],
+      "description": "Systematically search and cover a target area completely",
+      "creator": "multi-uav-plat",
+      "originated_from": "Task Template Complete Area Coverage Search created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "63c593b1",
+            "altitude": 24.0
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "2d4283b8",
+              "drone_id": "63c593b1"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_fully_searched",
+            "parameters": {
+              "target_id": "2d4283b8",
+              "coverage_threshold": 0.95
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "move_along_path"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1779379233.899492,
+      "last_updated": 1779379233.899492
+    },
+    {
+      "id": "a2fa2e02",
+      "name": "Any Drone Two-Target Area Coverage Search",
+      "content": "Use any available drone or drones to execute comprehensive area coverage searches of Polygon Target 4 and Polygon Target 3. Cover both target areas with efficient grid, spiral, or serpentine patterns until each target reaches at least 95% area coverage.",
+      "content_aliases": [
+        "Perform 95% coverage searches of Polygon Target 4 and Polygon Target 3 using any available drone or drones.",
+        "Search Polygon Target 4 and Polygon Target 3 without assigning specific drones, ensuring at least 95% area coverage for each target.",
+        "Use available drones as needed to scan both Polygon Target 4 and Polygon Target 3 completely (95%+) with efficient coverage patterns.",
+        "Complete flexible-drone coverage sweeps of Polygon Target 4 and Polygon Target 3, reaching at least 95% searched area on both."
+      ],
+      "description": "Search and cover two target areas without assigning specific drones",
+      "creator": "multi-uav-plat",
+      "originated_from": "Task Template Any Drone Two-Target Area Coverage Search created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "f0af8db6"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "2f89d00e"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_fully_searched",
+            "parameters": {
+              "target_id": "f0af8db6",
+              "coverage_threshold": 0.95
+            }
+          },
+          {
+            "endpoint": "/check/target_is_fully_searched",
+            "parameters": {
+              "target_id": "2f89d00e",
+              "coverage_threshold": 0.95
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "move_along_path"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1780675888.66589,
+      "last_updated": 1780675888.66589
+    }
+  ],
+  "history": {
+    "command_history": [],
+    "status_history": {},
+    "path_history": {},
+    "area_coverage": {},
+    "target_reaches": {
+      "by_drone": {},
+      "by_target": {}
+    },
+    "moving_target_tracking": {}
+  }
+}

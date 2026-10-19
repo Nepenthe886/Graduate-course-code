@@ -1,0 +1,195 @@
+{
+  "/drones/{id}/command": {
+    "parameters": [
+      "id",
+      "command",
+      "parameters"
+    ],
+    "required": [
+      "id",
+      "command"
+    ],
+    "transport": "json",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/take_off": {
+    "parameters": [
+      "id",
+      "altitude"
+    ],
+    "required": [
+      "id"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/land": {
+    "parameters": [
+      "id"
+    ],
+    "required": [
+      "id"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/move_to": {
+    "parameters": [
+      "id",
+      "x",
+      "y",
+      "z"
+    ],
+    "required": [
+      "id",
+      "x",
+      "y",
+      "z"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/move_towards": {
+    "parameters": [
+      "id",
+      "distance",
+      "heading",
+      "dx",
+      "dy",
+      "dz",
+      "azimuth",
+      "elevation"
+    ],
+    "required": [
+      "id",
+      "distance"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/move_along_path": {
+    "parameters": [
+      "id",
+      "waypoints",
+      "allow_partial_move"
+    ],
+    "required": [
+      "id",
+      "waypoints"
+    ],
+    "transport": "json",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/change_altitude": {
+    "parameters": [
+      "id",
+      "altitude"
+    ],
+    "required": [
+      "id",
+      "altitude"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/hover": {
+    "parameters": [
+      "id",
+      "duration"
+    ],
+    "required": [
+      "id"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/rotate": {
+    "parameters": [
+      "id",
+      "heading"
+    ],
+    "required": [
+      "id",
+      "heading"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/return_home": {
+    "parameters": [
+      "id"
+    ],
+    "required": [
+      "id"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/set_home": {
+    "parameters": [
+      "id"
+    ],
+    "required": [
+      "id"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/calibrate": {
+    "parameters": [
+      "id"
+    ],
+    "required": [
+      "id"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/take_photo": {
+    "parameters": [
+      "id"
+    ],
+    "required": [
+      "id"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/send_message": {
+    "parameters": [
+      "id",
+      "target_drone_id",
+      "message"
+    ],
+    "required": [
+      "id",
+      "target_drone_id",
+      "message"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/broadcast": {
+    "parameters": [
+      "id",
+      "message"
+    ],
+    "required": [
+      "id",
+      "message"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  },
+  "/drones/{id}/command/charge": {
+    "parameters": [
+      "id",
+      "charge_amount"
+    ],
+    "required": [
+      "id"
+    ],
+    "transport": "query",
+    "completion": "command_status"
+  }
+}
