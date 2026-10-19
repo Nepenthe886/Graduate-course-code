@@ -1,0 +1,99 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-a005b1e5-1e2e-42cf-809d-bb05abb7f114",
+  "experiment": {
+    "run_id": "rid-a005b1e5-1e2e-42cf-809d-bb05abb7f114",
+    "experiment_id": "eid-48a402c7-9860-5106-87b3-a16b3076fa23"
+  },
+  "service_instance_id": "20261019T161551-3dfff74b7339",
+  "batch_file": "../../batch.json",
+  "command_id": "26582fc6-a2e6-4fab-b0a9-abb76a583777",
+  "job_id": null,
+  "command": "List all drones and report each one's id, status, position and battery. Do not send any flight command.",
+  "created_at": "2026-10-19 16:39:06",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-19 16:39:13",
+  "requested_run_id": null,
+  "started_at": "2026-10-19 16:39:06",
+  "runtime": {
+    "run_id": "rid-a005b1e5-1e2e-42cf-809d-bb05abb7f114",
+    "experiment": {
+      "run_id": "rid-a005b1e5-1e2e-42cf-809d-bb05abb7f114",
+      "experiment_id": "eid-48a402c7-9860-5106-87b3-a16b3076fa23"
+    },
+    "provider": "openai-compatible",
+    "model": "deepseek-flash",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "8a4e7fc0",
+    "task_type": null,
+    "task_description": "General purpose example session for testing and demonstration",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "eb80836a34511192b19690879e4a69aaa2edeab8b23fff256e2cad0a3277cf91",
+    "uav_api_client.py_sha256": "4e2d4bc3e65dca320701bcd1de2c71682c9470d999cb7ed6d4cfff7dbb7b776d",
+    "uav_langchain_tools.py_sha256": "f87f2c962fc65af55b0de19d586df24f210b24697d8b83a6720dc059b661593f",
+    "agent_api_service.py_sha256": "f61ce297c842912e69fade8ba21bb268e8a19a4d1b544ba3a929ae8ba585b853",
+    "template/system_prompt.py_sha256": "d9b42f2b138d706ec11a037f8c007625eb42f72824a3e0113e80993f8ee38897"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "5aabad33",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "3902a1286539c3edfec169182e6f6eb311414d7f9e22be32f892825b502098f6",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "Here are all available drones in the current session:\n\n| Drone | ID | Status | Position (x, y, z) | Battery |\n|-------|----|--------|--------------------|---------|\n| Drone 1 | `19673f54` | hovering | (601.0, 573.0, 10.0) | 99.0% |\n| Drone 2 | `572d72a0` | idle | (59.0, 345.0, 0.0) | 100.0% |\n| Drone 3 | `87c81cad` | idle | (467.0, 75.0, 0.0) | 100.0% |\n\nSummary:\n- **Drone 1** (`19673f54`): hovering at altitude 10.0 m, battery 99.0%.\n- **Drone 2** (`572d72a0`): idle on the ground, battery 100.0%.\n- **Drone 3** (`87c81cad`): idle on the ground, battery 100.0%.\n\nNo flight commands were sent.\n\n[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"19673f54\",\n    \"name\": \"Drone 1\",\n    \"model\": \"Model-X4\",\n    \"status\": \"hovering\",\n    \"position\": {\n      \"x\": 601.0,\n      \"y\": 573.0,\n      \"z\": 10.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 99.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 601.0,\n      \"y\": 573.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.266082,\n    \"last_updated\": 1792398376.6340365\n  },\n  {\n    \"id\": \"572d72a0\",\n    \"name\": \"Drone 2\",\n    \"model\": \"Model-D\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 59.0,\n      \"y\": 345.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 247.0,\n    \"battery_capacity\": 75.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 59.0,\n      \"y\": 345.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.266089,\n    \"last_updated\": 1792398143.0513616\n  },\n  {\n    \"id\": \"87c81cad\",\n    \"name\": \"Drone 3\",\n    \"model\": \"Model-X5\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 467.0,\n      \"y\": 75.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 31.0,\n    \"max_altitude\": 234.0,\n    \"battery_capacity\": 96.2,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 467.0,\n      \"y\": 75.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.266094,\n    \"last_updated\": 1792398143.0513947\n  }\n]"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 10857,
+      "completion_tokens": 298,
+      "total_tokens": 11155,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-a005b1e5-1e2e-42cf-809d-bb05abb7f114",
+    "command_id": "26582fc6-a2e6-4fab-b0a9-abb76a583777",
+    "experiment": {
+      "run_id": "rid-a005b1e5-1e2e-42cf-809d-bb05abb7f114",
+      "experiment_id": "eid-48a402c7-9860-5106-87b3-a16b3076fa23"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-a005b1e5-1e2e-42cf-809d-bb05abb7f114",
+      "request_history": "/agent/runs/rid-a005b1e5-1e2e-42cf-809d-bb05abb7f114/artifacts/request_history",
+      "events": "/agent/runs/rid-a005b1e5-1e2e-42cf-809d-bb05abb7f114/artifacts/events",
+      "related_apis": "/agent/runs/rid-a005b1e5-1e2e-42cf-809d-bb05abb7f114/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-a005b1e5-1e2e-42cf-809d-bb05abb7f114/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}
