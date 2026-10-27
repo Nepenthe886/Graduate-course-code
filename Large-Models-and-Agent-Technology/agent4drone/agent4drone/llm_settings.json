@@ -1,5 +1,5 @@
 {
-  "selected_provider": "Deepseek API",
+  "selected_provider": "LocalQwen3",
   "uav_base_url": "http://localhost:8000",
   "toolchain_json_recording": false,
   "llm_io_recording": true,
@@ -124,6 +124,21 @@
       "default_models": [
         "Qwen3.5-397B-A17B"
       ],
+      "allow_endpoint_edit": true,
+      "allow_api_toggle": true,
+      "system_prompt": "You are a UAV task planning and action control agent. please answer in English no matter what language I ask."
+    },
+    "LocalQwen3": {
+      "type": "openai-compatible",
+      "base_url": "http://127.0.0.1:8010/v1",
+      "default_model": "Qwen3-8B",
+      "default_models": [
+        "Qwen3-8B"
+      ],
+      "requires_api_key": true,
+      "models_endpoint": "/models",
+      "chat_endpoint": "/chat/completions",
+      "encoding": "utf-8",
       "allow_endpoint_edit": true,
       "allow_api_toggle": true,
       "system_prompt": "You are a UAV task planning and action control agent. please answer in English no matter what language I ask."

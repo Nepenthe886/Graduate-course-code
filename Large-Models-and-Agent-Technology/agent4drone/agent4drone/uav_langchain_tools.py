@@ -36,8 +36,88 @@ def _normalize_waypoints(waypoints: list[dict]) -> list[dict]:
     return [_normalize_waypoint(waypoint) for waypoint in waypoints]
 
 
+# ---------------------------------------------------------------------------
+# 名字 -> 真实 id 解析代理
+# 说明：本地小模型经常把 "Drone 1" 这样的名字当 id 传给 API（导致 404）。
+#       这里在工具层兜底：参数名是 drone_id / target_drone_id 时自动解析成 id。
+# ---------------------------------------------------------------------------
+import inspect as _inspect
+
+
+class _IdResolvingClient:
+    """包一层 UAVAPIClient：调用前把 drone 名字解析成真实 id。"""
+
+    _DRONE_KEYS = ("drone_id", "target_drone_id")
+
+    def __init__(self, client):
+        self._client = client
+        self._id_by_name: dict = {}
+
+    # ---- 解析 ----
+    def _refresh(self) -> None:
+        try:
+            drones = self._client.list_drones() or []
+        except Exception:
+            drones = []
+        mapping: dict = {}
+        for drone in drones:
+            if not isinstance(drone, dict):
+                continue
+            drone_id = drone.get("id") or drone.get("drone_id")
+            name = drone.get("name")
+            if not drone_id:
+                continue
+            mapping[str(drone_id).strip().lower()] = drone_id
+            if name:
+                mapping[str(name).strip().lower()] = drone_id
+        self._id_by_name = mapping
+
+    @staticmethod
+    def _looks_like_id(value: str) -> bool:
+        return len(value) == 8 and all(c in "0123456789abcdefABCDEF" for c in value)
+
+    def resolve_drone(self, value):
+        if not isinstance(value, str) or not value.strip():
+            return value
+        raw = value.strip()
+        low = raw.lower()
+        if low in self._id_by_name:
+            return self._id_by_name[low]
+        if self._looks_like_id(raw):
+            return raw
+        self._refresh()
+        if low in self._id_by_name:
+            return self._id_by_name[low]
+        for name, drone_id in self._id_by_name.items():
+            if low in name or name in low:
+                return drone_id
+        return raw  # 解析不了就原样传，让 API 报错
+
+    # ---- 代理 ----
+    def __getattr__(self, item):
+        attr = getattr(self._client, item)
+        if not callable(attr) or item.startswith("_"):
+            return attr
+        try:
+            signature = _inspect.signature(attr)
+        except (TypeError, ValueError):
+            return attr
+
+        def wrapper(*args, **kwargs):
+            bound = signature.bind_partial(*args, **kwargs)
+            for key in list(bound.arguments):
+                if key in self._DRONE_KEYS:
+                    bound.arguments[key] = self.resolve_drone(bound.arguments[key])
+            return attr(*bound.args, **bound.kwargs)
+
+        wrapper.__name__ = getattr(attr, "__name__", item)
+        wrapper.__doc__ = getattr(attr, "__doc__", None)
+        return wrapper
+
+
 def create_uav_tools(client: UAVAPIClient) -> list:
     """Create basic query and control tools without automatic mission planning."""
+    client = _IdResolvingClient(client)  # 名字 -> id 兜底
 
     @tool
     def list_drones() -> str:
