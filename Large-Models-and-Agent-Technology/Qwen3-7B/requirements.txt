@@ -1,0 +1,40 @@
+# ============================================================
+# Qwen3 本地部署依赖（Windows / Python 3.12 / NVIDIA 显卡）
+#
+# !!! 顺序很重要 !!!
+# PyPI 与国内镜像上的 Windows torch 是 **CPU 版**（约 124 MB）。
+# 直接 `pip install -r requirements.txt` 会装到 CPU 版，运行时报：
+#     AssertionError: Torch not compiled with CUDA enabled
+#
+# 正确做法（scripts/setup_env.cmd 已自动按此顺序执行）：
+#   1) 先装 CUDA 版 torch（主索引必须是 cu128）
+#        py -3.12 -m venv .venv
+#        .venv\Scripts\python.exe -m pip install torch --index-url https://download.pytorch.org/whl/cu128
+#   2) 再装本文件
+#        .venv\Scripts\python.exe -m pip install -r requirements.txt -i https://mirrors.ustc.edu.cn/pypi/simple
+#   3) 验证（期望：2.x.x+cu128 12.8 True (12, 0)）
+#        .venv\Scripts\python.exe -c "import torch;print(torch.__version__,torch.version.cuda,torch.cuda.is_available(),torch.cuda.get_device_capability())"
+# ============================================================
+
+# ---------- 推理核心 ----------
+torch>=2.7,<3               # 由 setup_env.cmd 单独以 cu128 源安装
+transformers>=4.51
+accelerate>=1.6
+bitsandbytes>=0.46
+safetensors>=0.4.3
+huggingface_hub>=0.30
+sentencepiece>=0.2
+protobuf>=4.25
+numpy>=1.26
+
+# ---------- OpenAI 兼容服务 ----------
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+
+# ---------- 客户端 / 工具 ----------
+requests>=2.32
+psutil>=5.9
+
+# ---------- 可选：国内更稳的模型下载 ----------
+# modelscope>=1.20
