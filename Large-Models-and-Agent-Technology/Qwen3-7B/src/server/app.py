@@ -23,7 +23,7 @@ import torch
 from fastapi import FastAPI, Header, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from transformers import TextIteratorStreamer
+from transformers import StoppingCriteria, StoppingCriteriaList, TextIteratorStreamer
 
 from ..config import AppConfig, apply_overrides, load_config
 from ..model_loader import build_prompt, load_model, load_tokenizer, model_id
@@ -113,6 +113,21 @@ def parse_tool_calls(text: str) -> tuple[str, list[dict]]:
     return cleaned.strip(), calls
 
 
+class _TimeLimit(StoppingCriteria):
+    """墙钟超时：超过 max_seconds 就停止生成，避免单次请求挂死。"""
+
+    def __init__(self, max_seconds: float):
+        self.max_seconds = max_seconds
+        self._start = None
+
+    def __call__(self, input_ids, scores, **kwargs):  # noqa: ANN001
+        import time as _t
+
+        if self._start is None:
+            self._start = _t.time()
+        return (_t.time() - self._start) > self.max_seconds
+
+
 def create_app(cfg: AppConfig) -> FastAPI:
     app = FastAPI(title="Qwen3 local OpenAI-compatible server", version="2.0")
 
@@ -171,6 +186,14 @@ def create_app(cfg: AppConfig) -> FastAPI:
             "pad_token_id": tokenizer.pad_token_id,
             "eos_token_id": tokenizer.eos_token_id,
         }
+        if tools:
+            # 工具调用轮次不需要长文本，限制长度以降低单轮耗时
+            gen_kwargs["max_new_tokens"] = min(
+                gen_kwargs["max_new_tokens"], int(STATE.get("tool_max_new_tokens", 256))
+            )
+        gen_kwargs["stopping_criteria"] = StoppingCriteriaList(
+            [_TimeLimit(float(STATE.get("time_limit", 60.0)))]
+        )
         return prompt, inputs["input_ids"].shape[1], gen_kwargs, tools
 
     @app.post("/v1/chat/completions")
@@ -183,9 +206,15 @@ def create_app(cfg: AppConfig) -> FastAPI:
 
         # 有 tools：非流式生成后按 OpenAI 协议回 tool_calls（流式则合成 SSE）
         if tools:
+            _t0 = time.time()
             with LOCK, torch.inference_mode():
                 out = model.generate(**gen_kwargs)
             new_tokens = out[0][prompt_len:]
+            print(
+                "[gen] tools prompt=%d new=%d elapsed=%.1fs"
+                % (prompt_len, int(new_tokens.shape[0]), time.time() - _t0),
+                flush=True,
+            )
             raw = tokenizer.decode(new_tokens, skip_special_tokens=True)
             clean, calls = parse_tool_calls(raw)
             if calls:
@@ -311,6 +340,10 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--port", type=int, default=None)
     ap.add_argument("--max-new-tokens", type=int, default=None)
     ap.add_argument("--api-key", default=None)
+    ap.add_argument("--tool-max-new-tokens", type=int, default=256,
+                    help="工具调用轮次的生成长度上限（默认 256）")
+    ap.add_argument("--time-limit", type=float, default=60.0,
+                    help="单次生成墙钟超时秒数（默认 60）")
     args = ap.parse_args(argv)
 
     cfg = apply_overrides(
@@ -334,6 +367,8 @@ def main(argv: list[str] | None = None) -> int:
             print(f'       查占用:  netstat -ano | findstr ":{cfg.port}"', flush=True)
             return 4
 
+    STATE["tool_max_new_tokens"] = args.tool_max_new_tokens
+    STATE["time_limit"] = args.time_limit
     tokenizer = load_tokenizer(cfg)
     model, tokenizer = load_model(cfg, tokenizer)
     STATE.update(model=model, tokenizer=tokenizer, model_id=model_id(cfg))

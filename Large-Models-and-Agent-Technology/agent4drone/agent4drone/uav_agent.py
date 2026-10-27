@@ -484,6 +484,8 @@ class UAVControlAgent:
             temperature=temperature,
             api_key=llm_api_key,
             base_url=final_base_url,
+            timeout=120,       # 单次请求 120s 超时，避免无限等待
+            max_retries=1,     # 只重试 1 次，失败尽快暴露
         )
         if self.debug:
             print(f"✅ {provider_name} LLM initialized")
