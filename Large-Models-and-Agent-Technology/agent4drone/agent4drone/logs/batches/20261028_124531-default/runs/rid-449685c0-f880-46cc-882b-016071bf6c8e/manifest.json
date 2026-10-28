@@ -1,0 +1,157 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-449685c0-f880-46cc-882b-016071bf6c8e",
+  "experiment": {
+    "run_id": "rid-449685c0-f880-46cc-882b-016071bf6c8e",
+    "experiment_id": "eid-91d41ca6-d6bb-5181-8485-145d26a23535"
+  },
+  "service_instance_id": "20261028T124326-bb367eda2d88",
+  "batch_file": "../../batch.json",
+  "command_id": "a9917929-2870-4669-b011-92f03e6b03a7",
+  "job_id": null,
+  "command": "Drone Drone 1 should take off to 13 meters altitude, fly to pickup point at (344, 305, 13), land to collect goods, then take off again to 13 meters, fly to delivery point at (797, 556, 13), and land to complete delivery.",
+  "created_at": "2026-10-28 12:53:30",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-28 12:53:56",
+  "requested_run_id": null,
+  "started_at": "2026-10-28 12:53:30",
+  "runtime": {
+    "run_id": "rid-449685c0-f880-46cc-882b-016071bf6c8e",
+    "experiment": {
+      "run_id": "rid-449685c0-f880-46cc-882b-016071bf6c8e",
+      "experiment_id": "eid-91d41ca6-d6bb-5181-8485-145d26a23535"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "9ddae16c",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 7,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "9ddae16c",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "686ef893c68d48bd345c244e11fff929f88e627a3648de9c15ebf05ef53c2859",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "b5c873c5",
+            "altitude": 13.0
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"2b7861bb\",\n  \"drone_id\": \"b5c873c5\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 13.0m (battery: -0.5%/-0mAh, remaining: 93.7%/62mAh)\",\n  \"timestamp\": 1793163221.264526\n}"
+      ],
+      [
+        {
+          "tool": "move_to",
+          "tool_input": {
+            "drone_id": "b5c873c5",
+            "x": 344.0,
+            "y": 305.0,
+            "z": 13.0
+          },
+          "log": "Preparing to call tool 'move_to'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"bc6c3fa7\",\n  \"drone_id\": \"b5c873c5\",\n  \"command\": \"move_to\",\n  \"status\": \"success\",\n  \"message\": \"Drone moved to position (344.0, 305.0, 13.0), heading: 243.6\\u00b0 (battery: -3.9%/-3mAh, remaining: 89.8%/59mAh) - Reached target(s): Circle Target 1, Polygon Target 1\",\n  \"timestamp\": 1793163224.3885064\n}"
+      ],
+      [
+        {
+          "tool": "land",
+          "tool_input": {
+            "drone_id": "b5c873c5"
+          },
+          "log": "Preparing to call tool 'land'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"ca09e17a\",\n  \"drone_id\": \"b5c873c5\",\n  \"command\": \"land\",\n  \"status\": \"success\",\n  \"message\": \"Drone landed successfully (battery: -0.0%/-0mAh, remaining: 89.8%/59mAh)\",\n  \"timestamp\": 1793163227.096104\n}"
+      ],
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "b5c873c5",
+            "altitude": 13.0
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"2ab836d7\",\n  \"drone_id\": \"b5c873c5\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 13.0m (battery: -0.5%/-0mAh, remaining: 89.3%/59mAh)\",\n  \"timestamp\": 1793163229.9219933\n}"
+      ],
+      [
+        {
+          "tool": "move_to",
+          "tool_input": {
+            "drone_id": "b5c873c5",
+            "x": 797.0,
+            "y": 556.0,
+            "z": 13.0
+          },
+          "log": "Preparing to call tool 'move_to'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"a9314025\",\n  \"drone_id\": \"b5c873c5\",\n  \"command\": \"move_to\",\n  \"status\": \"success\",\n  \"message\": \"Drone moved to position (797.0, 556.0, 13.0), heading: 61.0\\u00b0 (battery: -3.0%/-2mAh, remaining: 86.3%/57mAh) - Reached target(s): Polygon Target 1\",\n  \"timestamp\": 1793163233.111701\n}"
+      ],
+      [
+        {
+          "tool": "land",
+          "tool_input": {
+            "drone_id": "b5c873c5"
+          },
+          "log": "Preparing to call tool 'land'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"adcd9898\",\n  \"drone_id\": \"b5c873c5\",\n  \"command\": \"land\",\n  \"status\": \"success\",\n  \"message\": \"Drone landed successfully (battery: -0.0%/-0mAh, remaining: 86.3%/57mAh)\",\n  \"timestamp\": 1793163235.8353097\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 38809,
+      "completion_tokens": 285,
+      "total_tokens": 39094,
+      "llm_calls": 7
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "complete",
+    "recording_status": "complete",
+    "sha256": "e5f77d3682b4170594f410fb9c65039ace33c433ac8af1c7ce1fc60500bbd341",
+    "source_indices": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "issues": [],
+    "count": 6,
+    "replay_validation": "not_run"
+  }
+}

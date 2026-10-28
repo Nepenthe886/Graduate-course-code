@@ -1,0 +1,24 @@
+2026-10-27 18:53:53 [INFO] uav_agent: Initializing UAVControlAgent provider=openai-compatible model=Qwen3-8B base_url=http://localhost:8000
+2026-10-27 18:53:53 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/sessions/current params=null json=null data=null
+2026-10-27 18:53:57 [WARNING] uav_agent: Could not connect to UAV API at http://localhost:8000: API request failed: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /sessions/current (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。"))
+2026-10-27 18:53:57 [INFO] uav_agent: Created 22 UAV control tools
+2026-10-27 18:53:57 [INFO] uav_agent: Agent runtime created
+2026-10-27 18:53:57 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/sessions/current params=null json=null data=null
+2026-10-27 18:54:01 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/sessions/current params=null json=null data=null
+2026-10-27 18:54:03 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/sessions/current/task-progress params=null json=null data=null
+2026-10-27 18:54:05 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/drones params=null json=null data=null
+2026-10-27 18:54:19 [INFO] uav_agent: Initializing UAVControlAgent provider=openai-compatible model=Qwen3-8B base_url=http://localhost:8000
+2026-10-27 18:54:19 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/sessions/current params=null json=null data=null
+2026-10-27 18:54:21 [INFO] uav_agent: Connected to UAV API session_id=3ea6e306 task=None
+2026-10-27 18:54:21 [INFO] uav_agent: Created 22 UAV control tools
+2026-10-27 18:54:21 [INFO] uav_agent: Agent runtime created
+2026-10-27 18:54:21 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/sessions/current params=null json=null data=null
+2026-10-27 18:54:23 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/sessions/current params=null json=null data=null
+2026-10-27 18:54:25 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/sessions/current/task-progress params=null json=null data=null
+2026-10-27 18:54:27 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/drones params=null json=null data=null
+2026-10-27 18:55:45 [INFO] ui_interface: GUI command started command_length=87
+2026-10-27 18:55:45 [INFO] uav_agent run_id=rid-c70b238d-d95e-4c2a-bc09-9d1aaa3c6d42 command_id=8faea050-512a-4078-8e06-16344d8b0ba5 experiment_id=eid-3d82451b-e012-5094-a4ad-03a3fd6608e3 service_instance_id=20261027T185352-9d374ec440c7: Command started command_id=8faea050-512a-4078-8e06-16344d8b0ba5 provider=openai-compatible model=Qwen3-8B command_length=87 command="Drone Drone 1 should take off to 13 meters, then climb to 23 meters altitude and hover."
+2026-10-27 18:55:45 [INFO] uav_api_client run_id=rid-c70b238d-d95e-4c2a-bc09-9d1aaa3c6d42 command_id=8faea050-512a-4078-8e06-16344d8b0ba5 experiment_id=eid-3d82451b-e012-5094-a4ad-03a3fd6608e3 service_instance_id=20261027T185352-9d374ec440c7: MultiUAV-Plat request method=GET endpoint=/sessions/current params=null json=null data=null
+2026-10-27 18:56:03 [INFO] httpx2 run_id=rid-c70b238d-d95e-4c2a-bc09-9d1aaa3c6d42 command_id=8faea050-512a-4078-8e06-16344d8b0ba5 experiment_id=eid-3d82451b-e012-5094-a4ad-03a3fd6608e3 session_id=c8149bec service_instance_id=20261027T185352-9d374ec440c7: HTTP Request: POST http://127.0.0.1:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-27 18:56:03 [INFO] uav_agent run_id=rid-c70b238d-d95e-4c2a-bc09-9d1aaa3c6d42 command_id=8faea050-512a-4078-8e06-16344d8b0ba5 experiment_id=eid-3d82451b-e012-5094-a4ad-03a3fd6608e3 session_id=c8149bec service_instance_id=20261027T185352-9d374ec440c7: Provider LLM call completed command_id=8faea050-512a-4078-8e06-16344d8b0ba5 provider=openai-compatible model=Qwen3-8B prompt_tokens=5177 completion_tokens=32 total_tokens=5209 llm_calls=1
+2026-10-27 18:56:03 [INFO] uav_api_client run_id=rid-c70b238d-d95e-4c2a-bc09-9d1aaa3c6d42 command_id=8faea050-512a-4078-8e06-16344d8b0ba5 experiment_id=eid-3d82451b-e012-5094-a4ad-03a3fd6608e3 session_id=c8149bec service_instance_id=20261027T185352-9d374ec440c7: MultiUAV-Plat request method=GET endpoint=/drones params=null json=null data=null

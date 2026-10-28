@@ -1,95 +1,91 @@
-"""下载 Qwen3 权重（HF / hf-mirror / ModelScope），默认关闭 Xet。"""
+"""下载 GGUF 模型（ModelScope 直链，支持 Range 断点续传），全部落在项目内。"""
 from __future__ import annotations
 
 import argparse
-import json
-import os
-import time
+import sys
 from pathlib import Path
 
+import requests
+
 from .config import load_config
-from .paths import ensure_dirs, resolve, setup_env_vars
+from .paths import lock_caches_into_project, resolve
 
-IGNORE = ["*.pth", "*.gguf", "*.bin", "original/*", "*.msgpack", "*.h5", "coreml/*", "onnx/*"]
+CHUNK = 4 * 1024 * 1024
 
 
-def _preflight(url: str, timeout: int = 10) -> tuple[bool, str]:
-    """用 GET(stream) 做连通性探测；HEAD 常被镜像拒绝，故不用 HEAD。"""
-    try:
-        import requests
+def build_url(endpoint: str, repo: str, filename: str) -> str:
+    """ModelScope 的 resolve 直链（实测比 api/v1 重定向快 4 倍以上）。"""
+    return f"{endpoint.rstrip('/')}/models/{repo}/resolve/master/{filename}"
 
-        started = time.time()
-        resp = requests.get(url, timeout=timeout, allow_redirects=True, stream=True)
-        resp.close()
-        return True, f"{url} -> HTTP {resp.status_code} ({time.time() - started:.1f}s)"
-    except Exception as exc:  # noqa: BLE001
-        return False, f"{url} -> {type(exc).__name__}: {str(exc)[:140]}"
+
+def download_with_resume(url: str, target: Path) -> int:
+    target.parent.mkdir(parents=True, exist_ok=True)
+    part = target.with_suffix(target.suffix + ".part")
+    have = part.stat().st_size if part.exists() else 0
+    headers = {"Range": f"bytes={have}-"} if have else {}
+
+    with requests.get(url, headers=headers, stream=True, timeout=60, allow_redirects=True) as resp:
+        if have and resp.status_code == 200:
+            print("[warn] 服务器不支持断点续传，从头下载")
+            have = 0
+            part.unlink(missing_ok=True)
+        elif have:
+            print(f"[resume] 从 {have / 2**20:.1f} MiB 继续")
+
+        total = resp.headers.get("Content-Length")
+        total_bytes = int(total) + have if total and total.isdigit() else None
+        mode = "ab" if have else "wb"
+        with part.open(mode) as handle:
+            done = have
+            for chunk in resp.iter_content(CHUNK):
+                if not chunk:
+                    continue
+                handle.write(chunk)
+                done += len(chunk)
+                if total_bytes:
+                    pct = done * 100 / total_bytes
+                    print(f"\r  {done / 2**20:8.1f} / {total_bytes / 2**20:.1f} MiB  ({pct:5.1f}%)", end="")
+                else:
+                    print(f"\r  {done / 2**20:8.1f} MiB", end="")
+    print()
+    part.replace(target)
+    return target.stat().st_size
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="下载 Qwen3 权重")
+    ap = argparse.ArgumentParser(description="下载 GGUF 模型到项目 models/ 目录")
     ap.add_argument("--config", default=None)
-    ap.add_argument("--method", choices=["hf", "modelscope"], default=None)
-    ap.add_argument("--mirror", action="store_true", help="使用 https://hf-mirror.com")
-    ap.add_argument("--endpoint", default=None)
-    ap.add_argument("--xet", action="store_true", help="启用 Xet（默认关闭）")
     ap.add_argument("--repo", default=None)
-    ap.add_argument("--out", default=None, help="默认取配置里的 model_dir（相对项目根）")
+    ap.add_argument("--file", default=None)
+    ap.add_argument("--force", action="store_true")
     args = ap.parse_args(argv)
 
+    lock_caches_into_project()
     cfg = load_config(args.config)
-    ensure_dirs()
-    setup_env_vars()
-
-    repo = args.repo or cfg.hf_repo
-    out = resolve(args.out or cfg.model_dir)
-    method = args.method or cfg.hf_method
-    endpoint = args.endpoint or ("https://hf-mirror.com" if args.mirror else cfg.hf_endpoint)
-
-    if not args.xet and cfg.hf_disable_xet:
-        os.environ["HF_HUB_DISABLE_XET"] = "1"
-    if endpoint:
-        os.environ["HF_ENDPOINT"] = endpoint
+    repo = args.repo or cfg.model_repo
+    filename = args.file or cfg.model_file
+    target = resolve(cfg.model_dir) / filename
 
     print(f"[info] repo   = {repo}")
-    print(f"[info] target = {out}  (相对项目根: {cfg.model_dir})")
-    print(f"[info] method = {method}")
-    print(f"[info] HF_ENDPOINT = {os.environ.get('HF_ENDPOINT', '(默认)')}")
-    print(f"[info] HF_HUB_DISABLE_XET = {os.environ.get('HF_HUB_DISABLE_XET', '(未设置)')}")
-    print(f"[info] MODELSCOPE_CACHE = {os.environ.get('MODELSCOPE_CACHE', '(未设置)')}")
+    print(f"[info] file   = {filename}")
+    print(f"[info] target = {target}")
 
-    if method == "hf":
-        ok, msg = _preflight(os.environ.get("HF_ENDPOINT", "https://huggingface.co"))
-        print(f"[net ] {msg}")
-        if not ok:
-            print("[WARN] 预检失败（镜像可能拒绝探测或超时），仍尝试下载；"
-                  "若失败请改用 --method modelscope")
-        from huggingface_hub import snapshot_download
+    if target.exists() and not args.force:
+        print(f"[skip] 已存在（{target.stat().st_size / 2**30:.2f} GiB），加 --force 可重下")
+        return 0
 
-        path = snapshot_download(repo_id=repo, local_dir=str(out),
-                                 ignore_patterns=IGNORE, max_workers=8)
-    else:
-        try:
-            from modelscope import snapshot_download as ms_download
-        except ImportError:
-            print("[FAIL] 未安装 modelscope：")
-            print("       .venv\\Scripts\\python.exe -m pip install modelscope "
-                  "-i https://mirrors.ustc.edu.cn/pypi/simple")
-            return 2
-        path = ms_download(repo, local_dir=str(out))
-
-    cfg_file = Path(path) / "config.json"
-    if not cfg_file.exists():
-        print("[warn] 缺少 config.json，下载可能不完整，可重复执行续传")
+    url = build_url(cfg.modelscope_endpoint, repo, filename)
+    print(f"[info] url    = {url}")
+    try:
+        size = download_with_resume(url, target)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[FAIL] 下载失败: {exc}")
+        print("       可手动用浏览器/魔搭下载，然后放到上面的 target 路径")
         return 1
 
-    data = json.loads(cfg_file.read_text(encoding="utf-8"))
-    total = sum(f.stat().st_size for f in Path(path).rglob("*") if f.is_file()) / 2**30
-    print(f"[ok] {path}")
-    print(f"[ok] arch={data.get('architectures')} layers={data.get('num_hidden_layers')} "
-          f"size={total:.2f} GiB")
+    print(f"[ok] 完成 {target.name}（{size / 2**30:.2f} GiB）")
     return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    sys.exit(main())

@@ -1,0 +1,31 @@
+{
+  "_comment": "所有路径都相对本工程根目录解析；external_map_dirs 里可写相对路径指向别处的地图目录",
+  "map_dir": "maps",
+  "external_map_dirs": [
+    "../MultiUAV-Plat-v0.46_Windows/UAVSessions",
+    "../agent4drone/agent4drone"
+  ],
+  "default_map": "../MultiUAV-Plat-v0.46_Windows/UAVSessions/Area_Search_Easy_3_9ddae16c.json",
+  "clearance": 45.0,
+  "grid_step": 10.0,
+  "arrival_tolerance": 5.0,
+  "z_default": 59.0,
+  "max_detour_attempts": 3,
+  "uav_api_base": "http://127.0.0.1:8000",
+  "frame": {
+    "world_axes": "x=东, y=北, z=上 (meters)",
+    "yaw_unit": "deg",
+    "yaw_zero_axis": "x",
+    "yaw_positive": "ccw"
+  },
+  "planning_dim": "2d",
+  "vertical_margin": 5.0,
+  "max_altitude": 120.0,
+  "altitude_step": 10.0,
+  "vertical_penalty": 1.5,
+  "z_min": 5.0,
+  "smoothing": true,
+  "smooth_iterations": 2,
+  "max_waypoints": 40,
+  "max_turn_deg": 60.0
+}

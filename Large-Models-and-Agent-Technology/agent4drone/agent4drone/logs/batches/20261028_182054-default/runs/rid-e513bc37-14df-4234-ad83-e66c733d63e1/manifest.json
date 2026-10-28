@@ -1,0 +1,130 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-e513bc37-14df-4234-ad83-e66c733d63e1",
+  "experiment": {
+    "run_id": "rid-e513bc37-14df-4234-ad83-e66c733d63e1",
+    "experiment_id": "eid-921b58cd-38bc-5c92-8a28-8158a3132552"
+  },
+  "service_instance_id": "20261028T182022-e51c3ded13a1",
+  "batch_file": "../../batch.json",
+  "command_id": "45bf38ae-28f8-4a7c-91d9-d2490e15e53a",
+  "job_id": null,
+  "command": "Drone Drone 2 takes off to 74 meters, flies to (881, 573, 74), loiters for 10 seconds, and captures a photo.",
+  "created_at": "2026-10-28 18:21:55",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-28 18:22:15",
+  "requested_run_id": null,
+  "started_at": "2026-10-28 18:21:55",
+  "runtime": {
+    "run_id": "rid-e513bc37-14df-4234-ad83-e66c733d63e1",
+    "experiment": {
+      "run_id": "rid-e513bc37-14df-4234-ad83-e66c733d63e1",
+      "experiment_id": "eid-921b58cd-38bc-5c92-8a28-8158a3132552"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "bad1e9e5",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 5,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "bad1e9e5",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "ad5b0d68dd727d703284710e9fd2d3229f4f7eb394b9152e6c349aa3fabd4dba",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "f1790e11",
+            "altitude": 74.0
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"6694e4c5\",\n  \"drone_id\": \"f1790e11\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 74.0m (battery: -0.5%/-0mAh, remaining: 98.0%/95mAh)\",\n  \"timestamp\": 1793182926.2065687\n}"
+      ],
+      [
+        {
+          "tool": "move_to",
+          "tool_input": {
+            "drone_id": "f1790e11",
+            "x": 881.0,
+            "y": 573.0,
+            "z": 74.0
+          },
+          "log": "Preparing to call tool 'move_to'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"e52738f9\",\n  \"drone_id\": \"f1790e11\",\n  \"command\": \"move_to\",\n  \"status\": \"success\",\n  \"message\": \"Drone moved to position (881.0, 573.0, 74.0), heading: 60.7\\u00b0 (battery: -0.8%/-1mAh, remaining: 97.2%/94mAh)\",\n  \"timestamp\": 1793182929.8376052\n}"
+      ],
+      [
+        {
+          "tool": "hover",
+          "tool_input": {
+            "drone_id": "f1790e11",
+            "duration": 10.0
+          },
+          "log": "Preparing to call tool 'hover'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"265421bb\",\n  \"drone_id\": \"f1790e11\",\n  \"command\": \"hover\",\n  \"status\": \"success\",\n  \"message\": \"Drone now hovering (battery: -0.1%/-0mAh, remaining: 97.1%/94mAh)\",\n  \"timestamp\": 1793182932.7897613\n}"
+      ],
+      [
+        {
+          "tool": "take_photo",
+          "tool_input": {
+            "drone_id": "f1790e11"
+          },
+          "log": "Preparing to call tool 'take_photo'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"6e9de121\",\n  \"drone_id\": \"f1790e11\",\n  \"command\": \"take_photo\",\n  \"status\": \"success\",\n  \"message\": \"Photo taken successfully. Photo ID: 5879fb4f (battery: -0.3%/-0mAh, remaining: 96.8%/94mAh)\",\n  \"timestamp\": 1793182935.554111\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 29826,
+      "completion_tokens": 188,
+      "total_tokens": 30014,
+      "llm_calls": 5
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "complete",
+    "recording_status": "complete",
+    "sha256": "65375b15efd722fe705a5dd024347ca0681920f2145670a30568cae2fb54fb5a",
+    "source_indices": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "issues": [],
+    "count": 4,
+    "replay_validation": "not_run"
+  }
+}

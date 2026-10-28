@@ -1,0 +1,94 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-a3e7ee8f-5a30-4cbc-8273-ad9c66664ead",
+  "experiment": {
+    "run_id": "rid-a3e7ee8f-5a30-4cbc-8273-ad9c66664ead",
+    "experiment_id": "eid-0d80c2e5-6ce2-58d6-93d6-de85c9c7b607"
+  },
+  "service_instance_id": "20261028T115309-efec6738ba0d",
+  "batch_file": "../../batch.json",
+  "command_id": "3648bb46-a04b-4565-a74b-593aa0fe1380",
+  "job_id": null,
+  "command": "Drone Drone 3 should take off to 18 meters altitude, then fly a quadrangle patrol route visiting four points in different sectors: (180, 384, 18), (643, 135, 18), (709, 884, 18), (307, 867, 18), and finally return to the start point (180, 384, 18).",
+  "created_at": "2026-10-28 11:55:38",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-28 11:55:47",
+  "requested_run_id": null,
+  "started_at": "2026-10-28 11:55:38",
+  "runtime": {
+    "run_id": "rid-a3e7ee8f-5a30-4cbc-8273-ad9c66664ead",
+    "experiment": {
+      "run_id": "rid-a3e7ee8f-5a30-4cbc-8273-ad9c66664ead",
+      "experiment_id": "eid-0d80c2e5-6ce2-58d6-93d6-de85c9c7b607"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "9ddae16c",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "5d5e27695dd921829d29d9ec9341421f379b22bc43d94bc1112ff2465bbf91b8",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "9ddae16c",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "1bdf5620675f2c91f9d68714627c3d9bea3e2e1b2b12484d65071be1afc384cf",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "The drone is currently hovering, which means it cannot take off. Please land the drone first or ensure it is on the ground before attempting to take off. [TASK FAILED]\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "e6c529b5",
+            "altitude": 18.0
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"a6afac8c\",\n  \"drone_id\": \"e6c529b5\",\n  \"command\": \"take_off\",\n  \"status\": \"error\",\n  \"message\": \"Cannot take off from current status: DroneStatus.HOVERING\",\n  \"timestamp\": 1793159747.1840382\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 10185,
+      "completion_tokens": 79,
+      "total_tokens": 10264,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "conversion_required",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [
+      {
+        "index": 3,
+        "path": "/drones/e6c529b5/command/take_off",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      }
+    ],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}
