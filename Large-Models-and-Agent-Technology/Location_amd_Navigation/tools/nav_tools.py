@@ -5,6 +5,8 @@
 from __future__ import annotations
 
 import json
+import re
+import urllib.request
 from typing import Any
 
 from src.config import NavConfig, load_config
@@ -16,14 +18,67 @@ from src.planner import Planner
 from src.worldmap import WorldMap
 
 
+def _compact_result(result: Any) -> dict:
+    """压缩执行结果，避免几百步明细撑爆模型上下文。"""
+    if not isinstance(result, dict):
+        return {"result": str(result)[:500]}
+    compact = {key: result.get(key) for key in
+               ("ok", "mode", "planned", "photos_taken", "photos_required", "coverage", "take_off")
+               if key in result}
+    executed = result.get("executed") or []
+    compact["steps"] = len(executed)
+    compact["sample"] = executed[:3]
+    failures = result.get("failures") or []
+    compact["failures"] = failures[:5]
+    if len(failures) > 5:
+        compact["failures_total"] = len(failures)
+    return compact
+
+
+def _xyz_item(item: Any, default_z: float = 20.0) -> tuple[float, float, float]:
+    """兼容 dict({x,y,z}) 与列表([x,y,z]) 两种坐标写法。"""
+    if isinstance(item, dict):
+        return (float(item.get("x", 0.0)), float(item.get("y", 0.0)),
+                float(item.get("z", default_z)))
+    values = list(item) if isinstance(item, (list, tuple)) else []
+    x = float(values[0]) if len(values) > 0 else 0.0
+    y = float(values[1]) if len(values) > 1 else 0.0
+    z = float(values[2]) if len(values) > 2 else float(default_z)
+    return (x, y, z)
+
+
+def _payload_from_list(items: list) -> dict:
+    """把模型直接传来的数组归一化成 dict：航点列表 / 动作列表。"""
+    if not items:
+        return {}
+    if all(isinstance(item, dict) for item in items):
+        if all("x" in item and "y" in item for item in items):
+            return {"waypoints": items}
+        if all(("name" in item or "kind" in item) for item in items):
+            return {"actions": items}
+    return {"items": items}
+
+
 def _payload(input_json: Any) -> dict:
     if input_json is None:
         return {}
     if isinstance(input_json, dict):
         return input_json
+    if isinstance(input_json, (list, tuple)):
+        return _payload_from_list(list(input_json))
     if isinstance(input_json, str):
         text = input_json.strip()
-        return json.loads(text) if text else {}
+        if not text:
+            return {}
+        try:
+            value = json.loads(text)
+        except json.JSONDecodeError:
+            return {"text": text}
+        if isinstance(value, dict):
+            return value
+        if isinstance(value, list):
+            return _payload_from_list(value)
+        return {"value": value}
     raise TypeError(f"无法解析参数: {input_json!r}")
 
 
@@ -63,6 +118,58 @@ class NavToolkit:
                                      arrival_tolerance=self.config.arrival_tolerance,
                                      z_default=self.config.z_default)
 
+    # ---------- 实时位姿同步 ----------
+    def _live_pose(self, drone_ref: Any = None):
+        """按 drone_id/名字从 UAV API 拉实时位姿（失败返回 None）。"""
+        import urllib.request
+
+        base = str(getattr(self.config, "uav_api_base", "http://127.0.0.1:8000")).rstrip("/")
+        needle = str(drone_ref or self.drone_name or "").strip()
+        if not needle:
+            return None
+        try:
+            if len(needle) == 8 and all(ch in "0123456789abcdefABCDEF" for ch in needle):
+                url = base + "/drones/" + needle
+                data = json.loads(urllib.request.urlopen(url, timeout=3).read().decode())
+                drone = data if isinstance(data, dict) else {}
+            else:
+                drones = json.loads(urllib.request.urlopen(base + "/drones", timeout=3).read().decode())
+                drone = {}
+                for item in (drones or []):
+                    if str(item.get("name", "")).strip().lower() == needle.lower() \
+                            or str(item.get("id", "")).lower() == needle.lower():
+                        drone = item
+                        break
+            position = drone.get("position") or {}
+            if "x" not in position:
+                return None
+            from src.frames import Pose
+
+            pose = Pose(float(position.get("x", 0.0)), float(position.get("y", 0.0)),
+                        float(position.get("z", 0.0)), float(drone.get("heading") or 0.0))
+            self.localizer.set_pose(pose)
+            return pose
+        except Exception:  # noqa: BLE001
+            return None
+
+    def _best_drone(self):
+        """返回电量最高的无人机（失败返回 None）。"""
+        base = str(getattr(self.config, "uav_api_base", "http://127.0.0.1:8000")).rstrip("/")
+        try:
+            drones = json.loads(urllib.request.urlopen(base + "/drones", timeout=3).read().decode())
+        except Exception:  # noqa: BLE001
+            return None
+        best, best_battery = None, -1.0
+        for drone in (drones or []):
+            battery = float(drone.get("battery_level") or 0.0)
+            if battery > best_battery:
+                best, best_battery = drone, battery
+        return best
+
+    def _sync_pose(self, data: dict | None = None) -> None:
+        payload = data or {}
+        self._live_pose(payload.get("drone_id") or payload.get("drone") or payload.get("drone_name"))
+
     # ---------- 1 地图信息 ----------
     def nav_map_info(self, input_json: Any = None) -> dict:
         return {
@@ -86,6 +193,7 @@ class NavToolkit:
     # ---------- 2 附近障碍 ----------
     def nav_nearby_obstacles(self, input_json: Any = None) -> dict:
         data = _payload(input_json)
+        self._sync_pose(data)
         origin = _point([data["x"], data["y"]]) if ("x" in data and "y" in data) else self.localizer.pose.xy
         radius = float(data.get("radius", 150.0))
         found = []
@@ -106,6 +214,7 @@ class NavToolkit:
     # ---------- 3 线段检查 ----------
     def nav_check_line(self, input_json: Any = None) -> dict:
         data = _payload(input_json)
+        self._sync_pose(data)
         start = _point(data["start"]) if data.get("start") else self.localizer.pose.xy
         goal = _point(data["goal"])
         check = self.planner.segment(start, goal)
@@ -114,6 +223,7 @@ class NavToolkit:
     # ---------- 4 规划绕障路线 ----------
     def nav_plan_route(self, input_json: Any = None) -> dict:
         data = _payload(input_json)
+        self._sync_pose(data)
         start = _point(data["start"]) if data.get("start") else self.localizer.pose.xy
         goal = _point(data["goal"])
         clearance = float(data["clearance"]) if data.get("clearance") is not None else None
@@ -125,6 +235,7 @@ class NavToolkit:
     # ---------- 5 到目标名的航点 ----------
     def nav_route_to_target(self, input_json: Any = None) -> dict:
         data = _payload(input_json)
+        self._sync_pose(data)
         name = data.get("target")
         if not name:
             return {"error": "缺少 target 参数"}
@@ -149,12 +260,14 @@ class NavToolkit:
     # ---------- 6 位姿 ----------
     def nav_pose(self, input_json: Any = None) -> dict:
         data = _payload(input_json)
+        self._sync_pose(data)
         target = self.world.target_by_name(str(data["target"])) if data.get("target") else None
         return self.localizer.describe(target.center if target else None)
 
     # ---------- 7 到达验证 ----------
     def nav_verify_arrival(self, input_json: Any = None) -> dict:
         data = _payload(input_json)
+        self._sync_pose(data)
         goal = _point(data["goal"])
         tolerance = float(data["tolerance"]) if data.get("tolerance") is not None else None
         return self.navigation.verify(goal, tolerance)
@@ -179,6 +292,7 @@ class NavToolkit:
         from src.mission import plan_mission
 
         data = _payload(input_json)
+        self._sync_pose(data)
         if not data.get("waypoints"):
             return {"error": "缺少 waypoints"}
         start = self.localizer.pose
@@ -199,26 +313,37 @@ class NavToolkit:
         from src.mission_run import execute_mission
 
         data = _payload(input_json)
-        drone_id = str(data.get("drone_id") or "")
-        if not drone_id:
-            return {"error": "缺少 drone_id"}
-        # 允许传名字（如 "Drone 3"），内部解析成 8 位 id
+        self._sync_pose(data)
+        drone_values = [str(item) for item in (data.get("drones") or [])]
+        if not drone_values and data.get("drone_id"):
+            drone_values.append(str(data["drone_id"]))
+        task_text = str(data.get("task_text") or "")
+        if not drone_values or re.search(r"any available drone", task_text, re.I):
+            best = self._best_drone()
+            if isinstance(best, dict) and best.get("id"):
+                drone_values = [str(best["id"])]
+        if not drone_values:
+            return {"error": "需要 drone_id 或 drones 列表"}
+
         def _looks_like_id(value: str) -> bool:
             return len(value) == 8 and all(ch in "0123456789abcdefABCDEF" for ch in value)
-        if not _looks_like_id(drone_id):
-            drone = self.world.drone_by_name(drone_id) or (self.world.drones[0] if self.world.drones else None)
-            resolved = str((drone or {}).get("id") or "")
-            if resolved:
-                drone_id = resolved
+
+        resolved_ids: list[str] = []
+        for value in drone_values:
+            if _looks_like_id(value):
+                resolved_ids.append(value)
+                continue
+            drone = self.world.drone_by_name(value)
+            if isinstance(drone, dict) and drone.get("id"):
+                resolved_ids.append(str(drone["id"]))
+            elif self.world.drones:
+                resolved_ids.append(str((self.world.drones[0] or {}).get("id") or value))
+            else:
+                resolved_ids.append(value)
+        drone_id = resolved_ids[0]
         if data.get("actions"):
             spec = {"actions": data["actions"],
                     "altitude": float(data.get("altitude", self.config.z_default)),
-                    "land_at_end": bool(data.get("land_at_end", True))}
-        elif data.get("waypoints"):
-            spec = {"altitude": float(data.get("altitude", self.config.z_default)),
-                    "waypoints": [{"x": float(w["x"]), "y": float(w["y"]),
-                                   "z": float(w.get("z", data.get("altitude", self.config.z_default)))}
-                                  for w in data["waypoints"]],
                     "land_at_end": bool(data.get("land_at_end", True))}
         elif data.get("task_text"):
             from src.mission_run import build_spec_from_task
@@ -226,18 +351,39 @@ class NavToolkit:
                                         float(data.get("altitude", self.config.z_default)),
                                         bool(data.get("land_at_end", True)),
                                         world=self.world)
+            if not spec.get("actions") and not spec.get("waypoints") and data.get("waypoints"):
+                spec = {"altitude": float(data.get("altitude", self.config.z_default)),
+                        "waypoints": data["waypoints"],
+                        "land_at_end": bool(data.get("land_at_end", True))}
+        elif data.get("waypoints"):
+            alt_default = float(data.get("altitude", self.config.z_default))
+            spec = {"altitude": alt_default,
+                    "waypoints": [dict(zip(("x", "y", "z"), _xyz_item(item, alt_default)))
+                                  for item in data["waypoints"]],
+                    "land_at_end": bool(data.get("land_at_end", True))}
         else:
             return {"error": "需要 task_text 或 waypoints"}
         if spec.get("error"):
             return {"error": spec["error"]}
-        if not spec.get("waypoints"):
-            return {"error": "任务里没有可解析的航点，也不是可识别的覆盖任务"}
-        return execute_mission(str(self.map_path), drone_id, spec, self.config.uav_api_base)
+        if not spec.get("actions") and not spec.get("waypoints"):
+            return {"error": "任务里没有可解析的航点，也不是可识别的覆盖/编队任务"}
+        if spec.get("actions"):
+            # 动作规格内部已按 drone_id 指定每架机，执行一次即可
+            return _compact_result(execute_mission(str(self.map_path), drone_id, spec,
+                                                   self.config.uav_api_base))
+        results = [execute_mission(str(self.map_path), did, spec, self.config.uav_api_base)
+                   for did in resolved_ids]
+        if len(results) == 1:
+            return _compact_result(results[0])
+        return {"ok": all(bool(r.get("ok")) for r in results),
+                "drones": resolved_ids,
+                "results": [_compact_result(r) for r in results]}
 
     # ---------- 8 覆盖航线 ----------
     def nav_coverage_route(self, input_json: Any = None) -> dict:
         """圆形区域蛇形覆盖航线 + 覆盖率估算（用于"覆盖率≥95%"类任务）。"""
         data = _payload(input_json)
+        self._sync_pose(data)
         center = None
         radius = float(data.get("radius") or 0.0)
         if data.get("target_name"):
@@ -286,13 +432,16 @@ class NavToolkit:
             "radius": radius, "spacing": spacing,
             "estimated_coverage": round(coverage, 4),
             "waypoint_count": len(waypoints),
-            "move_along_path_waypoints": waypoints,
+            "waypoints_sample": waypoints[:5],
+            "waypoints_truncated": max(0, len(waypoints) - 5),
+            "hint": "执行请用 nav_execute_mission(task_text=...)，不要自己传完整航点",
         }
 
     # ---------- 9 坐标串 -> 一条航线 ----------
     def nav_points_route(self, input_json: Any = None) -> dict:
         """把一串坐标合成一条绕障航线（长任务用，一次 move_along_path 发完）。"""
         data = _payload(input_json)
+        self._sync_pose(data)
         raw_points = data.get("points") or []
         if not raw_points:
             return {"error": "缺少 points"}
@@ -301,20 +450,22 @@ class NavToolkit:
         current = self.localizer.pose.xy
         total = 0.0
         for item in raw_points:
-            point = (float(item.get("x", 0.0)), float(item.get("y", 0.0)))
-            z = float(item.get("z", self.config.z_default))
+            x, y, z = _xyz_item(item, self.config.z_default)
+            point = (x, y)
             route = self.planner.plan(current, point, clearance, altitude=z)
             for p in (route.waypoints_xyz or [(q[0], q[1], z) for q in route.waypoints]):
                 waypoints.append({"x": round(p[0], 2), "y": round(p[1], 2), "z": round(p[2], 2)})
             total += route.length_3d or route.length
             current = point
         return {"waypoint_count": len(waypoints), "total_length": round(total, 2),
-                "move_along_path_waypoints": waypoints}
+                "waypoints_sample": waypoints[:5],
+                "hint": "执行请用 nav_execute_mission(task_text=...)，不要自己传完整航点"}
 
     # ---------- 10 多机任务 ----------
     def nav_multi_drone_route(self, input_json: Any = None) -> dict:
         """按无人机分别生成航点（多机任务用，避免只飞一架）。"""
         data = _payload(input_json)
+        self._sync_pose(data)
         assignments = data.get("assignments") or []
         if not assignments:
             return {"error": "缺少 assignments"}
@@ -359,7 +510,7 @@ NAV_TOOL_SPECS: list[tuple[str, str, str]] = [
     ("nav_verify_arrival", "验证是否到达目标点，参数 {\"goal\":{...},\"tolerance\":5}。", "nav_verify_arrival"),
     ("nav_coverage_route", "【覆盖率任务必用】圆形区域蛇形覆盖航线+覆盖率估算，参数 {\"target_name\":\"...\",\"z\":22,\"spacing\":20}。", "nav_coverage_route"),
     ("nav_points_route", "【长航点任务必用】把一串坐标合成一条绕障航线，参数 {\"points\":[...]}，一次 move_along_path 发完。", "nav_points_route"),
-    ("nav_execute_mission", "【长任务唯一入口】把任务交给行为树执行（逐点推进/避障/到点任务），参数 {\"task_text\":\"...\",\"drone_id\":\"...\",\"altitude\":32}。", "nav_execute_mission"),
+    ("nav_execute_mission", "【长任务唯一入口】把任务交给行为树执行（多机/编队/定向位移/覆盖/逐点避障）。参数 {\"task_text\":\"...\",\"drones\":[\"Drone 1\",\"Drone 2\"],\"altitude\":19}；也可直接传 {\"actions\":[{name,params},...]} 或 {\"drone_id\":\"...\",\"waypoints\":[...]}。", "nav_execute_mission"),
     ("nav_mission_plan", "【多段任务必用】用行为树把目标点/途径点/每点任务展开成可执行步骤，参数 {\"waypoints\":[...]}。", "nav_mission_plan"),
     ("nav_multi_drone_route", "【多机任务必用】按无人机分别生成航点，参数 {\"assignments\":[{\"drone\":\"Drone 1\",\"target_name\":\"...\"}]}。", "nav_multi_drone_route"),
 ]

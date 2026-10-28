@@ -1,0 +1,134 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-afa088cd-cee9-433b-b34c-51632b509b73",
+  "experiment": {
+    "run_id": "rid-afa088cd-cee9-433b-b34c-51632b509b73",
+    "experiment_id": "eid-6c601b59-dcd7-5d16-ae66-4a83c9ed307f"
+  },
+  "service_instance_id": "20261028T224936-3c17c55cfb02",
+  "batch_file": "../../batch.json",
+  "command_id": "2f00794e-ca6b-415c-9f7d-d3d0be6bdbc6",
+  "job_id": null,
+  "command": "Drone Drone 2 navigates complex obstacle course from start (253, 384, 17) through waypoints (312, 252, 17), (612, 306, 17), (731, 556, 17), (480, 646, 17) to destination (670, 669, 17). Course includes obstacles Ellipse Obstacle 1, Ellipse Obstacle 2, and Polygon Obstacle 1. Must visit all waypoints in sequence while avoiding all obstacles, adjusting altitude as needed. Reach destination and land safely.",
+  "created_at": "2026-10-28 22:56:39",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-28 22:57:04",
+  "requested_run_id": null,
+  "started_at": "2026-10-28 22:56:39",
+  "runtime": {
+    "run_id": "rid-afa088cd-cee9-433b-b34c-51632b509b73",
+    "experiment": {
+      "run_id": "rid-afa088cd-cee9-433b-b34c-51632b509b73",
+      "experiment_id": "eid-6c601b59-dcd7-5d16-ae66-4a83c9ed307f"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "25239af9",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 3,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "25239af9",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "dc2823e60a56a802d638d325d488e68209c0bdfbbff696f2f4349a604cc959c0",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "Error executing command: 'list' object has no attribute 'get'",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Drone 2 navigates complex obstacle course from start (253, 384, 17) through waypoints (312, 252, 17), (612, 306, 17), (731, 556, 17), (480, 646, 17) to destination (670, 669, 17). Course includes obstacles Ellipse Obstacle 1, Ellipse Obstacle 2, and Polygon Obstacle 1. Must visit all waypoints in sequence while avoiding all obstacles, adjusting altitude as needed. Reach destination and land safely.",
+            "drones": [
+              "Drone 2"
+            ],
+            "altitude": 17
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"planned\": {\"waypoints\": 6, \"legs\": 6, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"a3a799e8\", \"drone_id\": \"721a1d95\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 17.0m (battery: -0.5%/-0mAh, remaining: 99.5%/71mAh)\", \"timestamp\": 1793199411.213136}, \"steps\": 7, \"sample\": [{\"leg\": 1, \"goal\": [253.0, 384.0], \"waypoints\": 3, \"plan_ms\": 641, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [312.0, 252.0], \"waypoints\": 1, \"plan_ms\": 32, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [612.0, 306.0], \"waypoints\": 1, \"plan_ms\": 34, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [{\"leg\": 4, \"goal\": [731.0, 556.0], \"projected\": [734.7, 557.53], \"error\": \"航点在障碍物内，已投影 4.0 m（原位置仍不可达）\"}]}"
+      ],
+      [
+        {
+          "tool": "nav_plan_route",
+          "tool_input": {
+            "goal": {
+              "x": 731.0,
+              "y": 556.0
+            },
+            "clearance": 45,
+            "z": 17
+          },
+          "log": "Preparing to call tool 'nav_plan_route'",
+          "message_log": null
+        },
+        "{\"start\": [670.0, 669.0], \"goal\": [731.0, 556.0], \"waypoints\": [[768.0, 600.0], [731.0, 556.0]], \"waypoints_xyz\": [[670.0, 669.0, 17.0], [768.0, 600.0, 17.0], [731.0, 556.0, 17.0]], \"length\": 177.34, \"length_3d\": 177.34, \"min_clearance\": 1.62, \"detoured\": true, \"avoided\": [\"Ellipse Obstacle 2\"], \"planning_dim\": \"2d\", \"altitude\": 17.0, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}"
+      ],
+      [
+        {
+          "tool": "nav_points_route",
+          "tool_input": {
+            "points": [
+              [
+                670.0,
+                669.0,
+                17.0
+              ],
+              [
+                768.0,
+                600.0,
+                17.0
+              ],
+              [
+                731.0,
+                556.0,
+                17.0
+              ]
+            ]
+          },
+          "log": "Preparing to call tool 'nav_points_route'",
+          "message_log": null
+        },
+        ""
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 18826,
+      "completion_tokens": 326,
+      "total_tokens": 19152,
+      "llm_calls": 3
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

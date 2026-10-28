@@ -490,7 +490,18 @@ def enforce_mission_delegation(payload: dict, request_messages: list, task_text:
     points = parse_task_waypoints(task_text)
     coverage_task = bool(re.search(r"(polygon|circle|ellipse)\s*target\s*\d+", task_text or "", re.I)) \
         and bool(re.search(r"coverage|search pattern|serpentine|grid|spiral", task_text or "", re.I))
-    if len(points) < 4 and not coverage_task:
+    formation_task = bool(re.search(r"formation", task_text or "", re.I)) \
+        and bool(re.search(r"move\s+(north|south|east|west)", task_text or "", re.I))
+    multitarget_task = bool(re.search(r"(polygon|circle|ellipse)\s+target\s*\d+", task_text or "", re.I)) \
+        and bool(re.search(r"visit|in sequence|sequential|multi-target|at each target", task_text or "", re.I))
+    inspection_task = bool(re.search(r"(polygon|circle|ellipse)\s+target\s*\d+", task_text or "", re.I)) \
+        and bool(re.search(r"inspect", task_text or "", re.I))
+    photo_task = bool(re.search(r"photo|photograph|image", task_text or "", re.I)) and len(points) >= 2
+    relay_task = bool(re.search(r"relay|broadcast", task_text or "", re.I))
+    fleet_task = bool(re.search(r"target sweep|guard point|perimeter|photographs?\s+targets?|"
+                                r"surveys?\s+target|assign|coordinated search sweep", task_text or "", re.I))
+    template_task = multitarget_task or inspection_task or photo_task or relay_task or fleet_task
+    if len(points) < 4 and not coverage_task and not formation_task and not template_task:
         return payload, None
     if _mission_already_called(request_messages):
         return payload, None
@@ -524,6 +535,15 @@ def enforce_mission_delegation(payload: dict, request_messages: list, task_text:
         message["content"] = None
         choice["finish_reason"] = "tool_calls"
         return result, "mission_enforced_replaced:" + ",".join(names)
+    # 覆盖/编队任务：除查询类工具外，一律改成行为树入口
+    if existing and (coverage_task or formation_task or template_task):
+        allowlist = {"nav_execute_mission", "list_drones", "get_session_info", "get_weather",
+                     "get_drone_status", "nav_map_info", "nav_nearby_obstacles"}
+        if any(name not in allowlist for name in names):
+            message["tool_calls"] = [forced]
+            message["content"] = None
+            choice["finish_reason"] = "tool_calls"
+            return result, "mission_enforced_forced_task:" + ",".join(names)
     if not existing:
         message["tool_calls"] = [forced]
         message["content"] = None
@@ -564,6 +584,25 @@ def failure_evidence(request_messages: list):
     return None
 
 
+MAX_TOOL_CONTENT = 3000
+
+
+def trim_tool_messages(messages: list) -> list:
+    """截断过大的工具结果（覆盖航线/执行明细），避免超出模型上下文。"""
+    result = []
+    for message in (messages or []):
+        if isinstance(message, dict) and str(message.get("role") or "") in ("tool", "function"):
+            content = message.get("content")
+            if isinstance(content, str) and len(content) > MAX_TOOL_CONTENT:
+                kept = content[:MAX_TOOL_CONTENT]
+                updated = dict(message)
+                updated["content"] = kept + "\n...[truncated %d chars]" % (len(content) - MAX_TOOL_CONTENT)
+                result.append(updated)
+                continue
+        result.append(message)
+    return result
+
+
 def rewrite_completion(payload: dict, request_messages: list, guard_done: bool = True):
     if not isinstance(payload, dict):
         return payload, None
@@ -583,6 +622,14 @@ def rewrite_completion(payload: dict, request_messages: list, guard_done: bool =
     if has_done and reason:
         new_content = DONE_RE.sub("[TASK FAILED] " + reason, content)
         return _replace_content(payload, new_content), "done_with_failures"
+
+    # 复读退化 / 超长且无终态标记：截断并补终态，避免死循环与"无 TASK DONE"
+    if not tool_calls and len(content) > 1200:
+        cleaned = content[:600].rstrip()
+        marker = "[TASK FAILED] " + (reason or "执行失败（输出过长/重复，已截断）")
+        return _replace_content(payload, cleaned + "\n\n" + marker), "degraded_truncated"
+    if not tool_calls and reason and not has_done and not has_failed:
+        return _replace_content(payload, content.rstrip() + "\n\n[TASK FAILED] " + reason), "failure_marker_added"
 
     if has_failed and has_done:
         return _replace_content(payload, DONE_RE.sub("", content).strip()), "removed_conflicting_task_done"
@@ -690,6 +737,10 @@ class Handler(BaseHTTPRequestHandler):
                         if changed:
                             data["messages"] = new_messages
                             raw = json.dumps(data, ensure_ascii=False).encode("utf-8")
+                    trimmed = trim_tool_messages(data.get("messages") or [])
+                    if trimmed != data.get("messages"):
+                        data["messages"] = trimmed
+                        raw = json.dumps(data, ensure_ascii=False).encode("utf-8")
 
         status, payload = forward(method, target, raw, dict(self.headers))
 

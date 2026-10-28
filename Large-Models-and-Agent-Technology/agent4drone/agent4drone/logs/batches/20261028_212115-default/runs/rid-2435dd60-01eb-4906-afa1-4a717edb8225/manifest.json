@@ -1,0 +1,89 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-2435dd60-01eb-4906-afa1-4a717edb8225",
+  "experiment": {
+    "run_id": "rid-2435dd60-01eb-4906-afa1-4a717edb8225",
+    "experiment_id": "eid-99bcee1a-2e9e-5e11-8b74-eb95ec28c223"
+  },
+  "service_instance_id": "20261028T212043-ccbfcefcb7a4",
+  "batch_file": "../../batch.json",
+  "command_id": "134c128b-aa53-44a2-a020-947219217e18",
+  "job_id": null,
+  "command": "Drone 1 performs an extreme marathon flight. Take off to 29 meters, fly to start point (98, 102, 29), then zigzag across the full map through 20 intermediate waypoints: (114, 151, 29), (852, 212, 29), (183, 228, 29), (782, 332, 29), (144, 414, 29), (897, 446, 29), (176, 522, 29), (809, 678, 29), (165, 744, 29), (959, 788, 29), (146, 864, 29), (810, 874, 29), (518, 773, 29), (924, 552, 29), (77, 597, 29), (964, 416, 29), (119, 381, 29), (829, 129, 29), (262, 943, 29), (730, 467, 29). Avoid obstacles Ellipse Obstacle 2, Ellipse Obstacle 1, and Circle Obstacle 1. Finally, fly to end point (907, 924, 29) and land.",
+  "created_at": "2026-10-28 21:21:15",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-28 21:22:03",
+  "requested_run_id": null,
+  "started_at": "2026-10-28 21:21:15",
+  "runtime": {
+    "run_id": "rid-2435dd60-01eb-4906-afa1-4a717edb8225",
+    "experiment": {
+      "run_id": "rid-2435dd60-01eb-4906-afa1-4a717edb8225",
+      "experiment_id": "eid-99bcee1a-2e9e-5e11-8b74-eb95ec28c223"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "25239af9",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "25239af9",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "04e108b8e08a13af84491dd04b471f1d3a7f3b893c1b1ce0390a91e01f531a16",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "The drone has encountered insufficient battery levels to complete the remaining segments of the mission. The battery is critically low, and the drone has landed as a result. The mission could not be completed due to the battery issue. [TASK FAILED]\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Take off to 29 meters, fly to start point (98, 102, 29), then zigzag across the full map through 20 intermediate waypoints: (114, 151, 29), (852, 212, 29), (183, 228, 29), (782, 332, 29), (144, 414, 29), (897, 446, 29), (176, 522, 29), (809, 678, 29), (165, 744, 29), (959, 788, 29), (146, 864, 29), (810, 874, 29), (518, 773, 29), (924, 552, 29), (77, 597, 29), (964, 416, 29), (119, 381, 29), (829, 129, 29), (262, 943, 29), (730, 467, 29). Avoid obstacles Ellipse Obstacle 2, Ellipse Obstacle 1, and Circle Obstacle 1. Finally, fly to end point (907, 924, 29) and land.",
+            "drone_id": "5cf9f40c",
+            "altitude": 29
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"planned\": {\"waypoints\": 22, \"legs\": 22, \"mode\": \"per_leg_jit\"}, \"executed\": [{\"leg\": 1, \"goal\": [98.0, 102.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [114.0, 151.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [852.0, 212.0], \"waypoints\": 4, \"plan_ms\": 618, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 4, \"goal\": [183.0, 228.0], \"waypoints\": 5, \"plan_ms\": 74, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 5, \"goal\": [782.0, 332.0], \"waypoints\": 2, \"plan_ms\": 5, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 6, \"goal\": [144.0, 414.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 7, \"goal\": [897.0, 446.0], \"waypoints\": 2, \"plan_ms\": 4, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 8, \"goal\": [176.0, 522.0], \"waypoints\": 3, \"plan_ms\": 19, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 9, \"goal\": [809.0, 678.0], \"waypoints\": 4, \"plan_ms\": 41, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 10, \"goal\": [165.0, 744.0], \"waypoints\": 4, \"plan_ms\": 45, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 11, \"goal\": [959.0, 788.0], \"waypoints\": 4, \"plan_ms\": 685, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 12, \"goal\": [146.0, 864.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 13, \"goal\": [810.0, 874.0], \"waypoints\": 4, \"plan_ms\": 682, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 14, \"goal\": [518.0, 773.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 15, \"goal\": [924.0, 552.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 16, \"goal\": [77.0, 597.0], \"waypoints\": 9, \"plan_ms\": 125, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 17, \"goal\": [964.0, 416.0], \"waypoints\": 7, \"plan_ms\": 165, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 18, \"goal\": [119.0, 381.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 19, \"goal\": [829.0, 129.0], \"waypoints\": 3, \"plan_ms\": 14, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 20, \"goal\": [262.0, 943.0], \"waypoints\": 6, \"plan_ms\": 16695, \"arrived\": false, \"distance_m\": 992.0, \"target\": null, \"target_reached\": null, \"error\": \"Insufficient battery to complete path: requires 7.55%, available 0.93% (shortage: 6.61%)\"}, {\"leg\": 21, \"goal\": [730.0, 467.0], \"waypoints\": 5, \"plan_ms\": 29, \"arrived\": false, \"distance_m\": 352.2, \"target\": null, \"target_reached\": null, \"error\": \"Insufficient battery to complete path: requires 3.00%, available 0.93% (shortage: 2.07%)\"}, {\"leg\": 22, \"goal\": [907.0, 924.0], \"waypoints\": 3, \"plan_ms\": 6474, \"arrived\": false, \"distance_m\": 798.8, \"target\": null, \"target_reached\": null, \"error\": \"Insufficient battery to complete path: requires 6.34%, available 0.93% (shortage: 5.41%)\"}, {\"action\": \"land\"}], \"failures\": [{\"leg\": 20, \"goal\": [262.0, 943.0], \"waypoints\": 6, \"plan_ms\": 16695, \"arrived\": false, \"distance_m\": 992.0, \"target\": null, \"target_reached\": null, \"error\": \"Insufficient battery to complete path: requires 7.55%, available 0.93% (shortage: 6.61%)\"}, {\"leg\": 21, \"goal\": [730.0, 467.0], \"waypoints\": 5, \"plan_ms\": 29, \"arrived\": false, \"distance_m\": 352.2, \"target\": null, \"target_reached\": null, \"error\": \"Insufficient battery to complete path: requires 3.00%, available 0.93% (shortage: 2.07%)\"}, {\"leg\": 22, \"goal\": [907.0, 924.0], \"waypoints\": 3, \"plan_ms\": 6474, \"arrived\": false, \"distance_m\": 798.8, \"target\": null, \"target_reached\": null, \"error\": \"Insufficient battery to complete path: requires 6.34%, available 0.93% (shortage: 5.41%)\"}], \"take_off\": {\"command_id\": \"85953f80\", \"drone_id\": \"5cf9f40c\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 29.0m (battery: -0.5%/-0mAh, remaining: 99.5%/66mAh)\", \"timestamp\": 1793193691.2511482}, \"photos_taken\": 0}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14415,
+      "completion_tokens": 456,
+      "total_tokens": 14871,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

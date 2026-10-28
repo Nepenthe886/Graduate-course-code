@@ -11,8 +11,8 @@
   "job_id": null,
   "command": "Drone Drone 1 must take off to 18 meters, navigate to target Polygon Target 3, and take a photo.",
   "created_at": "2026-10-28 18:59:04",
-  "execution_status": "running",
-  "execution_finished_at": null,
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-28 18:59:33",
   "requested_run_id": null,
   "started_at": "2026-10-28 18:59:04",
   "runtime": {
@@ -39,12 +39,129 @@
   "llm_io_recording": true,
   "llm_calls_file": "llm_calls.jsonl",
   "llm_io_schema_version": 1,
-  "llm_call_count": 7,
+  "llm_call_count": 8,
   "llm_recording_errors": 0,
-  "llm_incomplete_calls": 1,
-  "llm_recording_status": "partial",
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
   "observed_session_id": "5aabad33",
   "requested_session_id": null,
   "session_source": "runtime_observed",
-  "prompt_sha256": "39bd0e82e0c650fdbce0bff54f200d8907812e62d8115b1c021b0f9a7bff62dc"
+  "prompt_sha256": "39bd0e82e0c650fdbce0bff54f200d8907812e62d8115b1c021b0f9a7bff62dc",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"19673f54\",\n    \"name\": \"Drone 1\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 523.0,\n      \"y\": 578.0,\n      \"z\": 0.0\n    },\n    \"heading\": 121.31525997194687,\n    \"speed\": 0.0,\n    \"battery_level\": 73.89089138712161,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 601.0,\n      \"y\": 573.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.266082,\n    \"last_updated\": 1793185122.2694514\n  },\n  {\n    \"id\": \"572d72a0\",\n    \"name\": \"Drone 2\",\n    \"model\": \"Model-D\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 813.0,\n      \"y\": 732.0,\n      \"z\": 0.0\n    },\n    \"heading\": 67.36973087929147,\n    \"speed\": 0.0,\n    \"battery_level\": 91.12989366454845,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 247.0,\n    \"battery_capacity\": 75.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 59.0,\n      \"y\": 345.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.266089,\n    \"last_updated\": 1793185039.9504218\n  },\n  {\n    \"id\": \"87c81cad\",\n    \"name\": \"Drone 3\",\n    \"model\": \"Model-X5\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 677.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 64.96021568032403,\n    \"speed\": 0.0,\n    \"battery_level\": 93.27443886377547,\n    \"max_speed\": 31.0,\n    \"max_altitude\": 234.0,\n    \"battery_capacity\": 96.2,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 467.0,\n      \"y\": 75.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.266094,\n    \"last_updated\": 1793185065.738295\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"5aabad33\",\n  \"name\": \"Area Search Easy 1\",\n  \"description\": \"Area Search Easy 1 covers a 1024\\u00d7768 m mission zone. It is configured for area search. Random seeding will create 3 drones, 3 targets, 6 obstacles.\",\n  \"status\": \"active\",\n  \"creator\": \"Victor Zhang\",\n  \"task_type\": \"area_search\",\n  \"task_description\": \"\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1775664850.2625332,\n  \"last_updated\": 1793185154.5512943,\n  \"statistics\": {\n    \"drone_count\": 3,\n    \"target_count\": 3,\n    \"obstacle_count\": 6,\n    \"task_count\": 20,\n    \"environment_id\": \"e0fea91a\",\n    \"total_commands_executed\": 30,\n    \"total_flight_time\": 250.59817996733534,\n    \"total_distance_traveled\": 6457.314412200805,\n    \"total_target_reaches\": 15,\n    \"drones_with_target_reaches\": 3,\n    \"unique_targets_reached\": 3,\n    \"session_time\": 150.0399305820465,\n    \"command_history_size\": 30,\n    \"task_progress\": {\n      \"task_type\": \"area_search\",\n      \"progress_percentage\": 24,\n      \"is_completed\": false,\n      \"status_message\": \"Task to be Done\",\n      \"details\": {\n        \"total_targets\": 3\n      },\n      \"target_reach_summary\": {\n        \"total_reaches\": 15,\n        \"drones_with_reaches\": 3,\n        \"unique_targets_reached\": 3\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 3,\n        \"average_coverage\": 24.916508015374422,\n        \"fully_covered_targets\": 0\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"e0fea91a\",\n  \"name\": \"Area Search Easy 1 Environment\",\n  \"weather\": \"partly_cloudy\",\n  \"temperature\": 13.487036712763794,\n  \"humidity\": 56.0,\n  \"pressure\": 1016.5,\n  \"wind_speed\": 2.5794790971946777,\n  \"wind_direction\": \"southeast\",\n  \"visibility\": 14028.7,\n  \"created_at\": 1775664850.2660391,\n  \"last_updated\": 1793185159.5764613\n}"
+      ],
+      [
+        {
+          "tool": "nav_route_to_target",
+          "tool_input": {
+            "drone_id": "19673f54",
+            "target": "Polygon Target 3",
+            "z": 18.0
+          },
+          "log": "Preparing to call tool 'nav_route_to_target'",
+          "message_log": null
+        },
+        "{\"target\": {\"name\": \"Polygon Target 3\", \"center\": [241.0, 433.0], \"radius\": 1.0}, \"route\": {\"start\": [813.0, 732.0], \"goal\": [241.0, 433.0], \"waypoints\": [[241.0, 433.0]], \"waypoints_xyz\": [[813.0, 732.0, 18.0], [241.0, 433.0, 18.0]], \"length\": 645.43, \"length_3d\": 645.43, \"min_clearance\": 65.38, \"detoured\": false, \"avoided\": [], \"planning_dim\": \"2d\", \"altitude\": 18.0, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}, \"move_along_path_waypoints\": [{\"x\": 241.0, \"y\": 433.0, \"z\": 18.0}]}"
+      ],
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "19673f54",
+            "altitude": 18.0
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"b7b9d515\",\n  \"drone_id\": \"19673f54\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 18.0m (battery: -0.5%/-0mAh, remaining: 73.4%/72mAh)\",\n  \"timestamp\": 1793185166.1448207\n}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "19673f54",
+            "waypoints": [
+              {
+                "x": 813.0,
+                "y": 732.0,
+                "z": 18.0
+              },
+              {
+                "x": 241.0,
+                "y": 433.0,
+                "z": 18.0
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"b5341fdc\",\n  \"drone_id\": \"19673f54\",\n  \"command\": \"move_along_path\",\n  \"status\": \"success\",\n  \"message\": \"Drone completed path with 2 waypoints (total distance: 973.79m, battery: -5.6%/-5mAh, remaining: 67.8%/67mAh) - Reached target(s): Polygon Target 2, Polygon Target 3\",\n  \"successful_points_count\": 2,\n  \"successful_points\": [\n    [\n      813.0,\n      732.0,\n      18.0\n    ],\n    [\n      241.0,\n      433.0,\n      18.0\n    ]\n  ],\n  \"unsuccessful_points_count\": 0,\n  \"unsuccessful_points\": [],\n  \"timestamp\": 1793185170.3310003\n}"
+      ],
+      [
+        {
+          "tool": "take_photo",
+          "tool_input": {
+            "drone_id": "19673f54"
+          },
+          "log": "Preparing to call tool 'take_photo'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"6ec3a1bd\",\n  \"drone_id\": \"19673f54\",\n  \"command\": \"take_photo\",\n  \"status\": \"success\",\n  \"message\": \"Photo taken successfully. Photo ID: 3034270d (battery: -0.3%/-0mAh, remaining: 67.5%/66mAh)\",\n  \"timestamp\": 1793185173.214216\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 58217,
+      "completion_tokens": 294,
+      "total_tokens": 58511,
+      "llm_calls": 8
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "complete",
+    "recording_status": "complete",
+    "sha256": "fcf8dd07b43fc648ad640bfb0a31f9fe59cad99874c4c7bb722645ef3e4fe9f0",
+    "source_indices": [
+      8,
+      9,
+      10
+    ],
+    "issues": [],
+    "count": 3,
+    "replay_validation": "not_run"
+  }
 }

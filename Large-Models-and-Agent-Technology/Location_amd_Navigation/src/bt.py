@@ -131,7 +131,9 @@ class ActionLeaf(Node):
                 {"ok": False, "name": self.action_name, "error": "缺少 api/drone_id"})
             return Status.FAILURE
         result = actions.run_atomic(api, str(drone_id), self.action_name, self.params)
-        blackboard.setdefault("results", []).append(result)
+        blackboard.setdefault("results", []).append(
+            {"ok": bool(result.get("ok")), "name": self.action_name,
+             "error": result.get("error")})
         return Status.SUCCESS if result.get("ok") else Status.FAILURE
 
 
