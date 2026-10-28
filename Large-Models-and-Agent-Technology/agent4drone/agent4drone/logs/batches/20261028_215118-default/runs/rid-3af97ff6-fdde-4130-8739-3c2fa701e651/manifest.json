@@ -1,0 +1,91 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-3af97ff6-fdde-4130-8739-3c2fa701e651",
+  "experiment": {
+    "run_id": "rid-3af97ff6-fdde-4130-8739-3c2fa701e651",
+    "experiment_id": "eid-3d91f93f-d2ad-535d-b657-6c3716a97ce6"
+  },
+  "service_instance_id": "20261028T214936-249f394514a5",
+  "batch_file": "../../batch.json",
+  "command_id": "52600efe-54a6-41f3-8250-499e3d86bbc0",
+  "job_id": null,
+  "command": "Drone Drone 2 performs sequential multi-target mission: take off to 18 meters, visit targets Circle Target 2, Circle Target 1, and Polygon Target 1 in sequence. At each target, get within the target radius, hover for observation, and take a photo. Plan optimal route to minimize flight distance.",
+  "created_at": "2026-10-28 21:51:18",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-28 21:51:29",
+  "requested_run_id": null,
+  "started_at": "2026-10-28 21:51:18",
+  "runtime": {
+    "run_id": "rid-3af97ff6-fdde-4130-8739-3c2fa701e651",
+    "experiment": {
+      "run_id": "rid-3af97ff6-fdde-4130-8739-3c2fa701e651",
+      "experiment_id": "eid-3d91f93f-d2ad-535d-b657-6c3716a97ce6"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "25239af9",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "25239af9",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "04e108b8e08a13af84491dd04b471f1d3a7f3b893c1b1ce0390a91e01f531a16",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "The task failed due to an unknown action \"navigate_to_pose\" in the mission plan. This indicates that the system is unable to handle the navigation to specific poses or targets as described in the mission. Please ensure that the mission plan includes valid actions and commands that the system can execute. [TASK FAILED]\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "take off to 18 meters, visit targets Circle Target 2, Circle Target 1, and Polygon Target 1 in sequence. At each target, get within the target radius, hover for observation, and take a photo",
+            "drones": [
+              "Drone 2"
+            ],
+            "altitude": 18
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"mode\": \"actions\", \"steps\": [{\"kind\": \"take_off\", \"params\": {\"altitude\": 18.0}}, {\"kind\": \"fail\", \"params\": {\"error\": \"未知动作: navigate_to_pose\"}}, {\"kind\": \"hover\", \"params\": {\"duration\": 5.0}}, {\"kind\": \"take_photo\", \"params\": {}}, {\"kind\": \"fail\", \"params\": {\"error\": \"未知动作: navigate_to_pose\"}}, {\"kind\": \"hover\", \"params\": {\"duration\": 5.0}}, {\"kind\": \"take_photo\", \"params\": {}}, {\"kind\": \"fail\", \"params\": {\"error\": \"未知动作: navigate_to_pose\"}}, {\"kind\": \"hover\", \"params\": {\"duration\": 5.0}}, {\"kind\": \"take_photo\", \"params\": {}}], \"executed\": [{\"ok\": true, \"name\": \"take_off\", \"error\": null, \"body\": {\"command_id\": \"a0c936b1\", \"drone_id\": \"721a1d95\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 18.0m (battery: -0.5%/-0mAh, remaining: 99.5%/71mAh)\", \"timestamp\": 1793195488.3426223}}, {\"ok\": false, \"name\": \"fail\", \"error\": \"未知动作: navigate_to_pose\"}, {\"ok\": true, \"name\": \"land\"}], \"failures\": [{\"ok\": false, \"name\": \"fail\", \"error\": \"未知动作: navigate_to_pose\"}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 11811,
+      "completion_tokens": 151,
+      "total_tokens": 11962,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

@@ -92,6 +92,44 @@ class WorldMap:
     targets: list[Target] = field(default_factory=list)
     drones: list[dict] = field(default_factory=list)
 
+    # ---------- 几何查询 ----------
+    def clearance_to_obstacles(self, point: tuple[float, float]) -> float:
+        """点到所有障碍物的最小距离（0 表示在障碍内）。"""
+        best = float("inf")
+        for obstacle in self.obstacles:
+            try:
+                footprint = obstacle.footprint()
+            except Exception:  # noqa: BLE001
+                continue
+            if geometry.point_in_polygon(point, footprint):
+                return 0.0
+            for index in range(len(footprint)):
+                distance = geometry.point_segment_distance(
+                    point, footprint[index], footprint[(index + 1) % len(footprint)])
+                if distance < best:
+                    best = distance
+        return best if best != float("inf") else 1e9
+
+    def free_point_near(self, point: tuple[float, float], clearance: float = 5.0,
+                        max_radius: float = 80.0):
+        """把落在障碍内（或离障碍过近）的点投影到最近的可飞点；找不到返回 None。"""
+        if self.clearance_to_obstacles(point) >= clearance:
+            return (float(point[0]), float(point[1]))
+        import math as _math
+
+        radius = 2.0
+        while radius <= max_radius:
+            for step in range(16):
+                angle = 2.0 * _math.pi * step / 16.0
+                candidate = (float(point[0]) + radius * _math.cos(angle),
+                             float(point[1]) + radius * _math.sin(angle))
+                if not (0.0 <= candidate[0] <= self.width and 0.0 <= candidate[1] <= self.height):
+                    continue
+                if self.clearance_to_obstacles(candidate) >= clearance:
+                    return candidate
+            radius += 2.0
+        return None
+
     # ---------- 加载 ----------
     @classmethod
     def load(cls, path: str | Path) -> "WorldMap":

@@ -88,7 +88,7 @@ class Route:
 
 
 class Planner:
-    def __init__(self, world: WorldMap, clearance: float = 45.0, grid_step: float = 10.0,
+    def __init__(self, world: WorldMap, clearance: float = 1.5, grid_step: float = 10.0,
                  planning_dim: str = "2d", altitude: float | None = None,
                  vertical_margin: float = 5.0, max_altitude: float = 120.0,
                  altitude_step: float = 10.0, vertical_penalty: float = 1.5,
@@ -147,8 +147,7 @@ class Planner:
     def point_clear(self, point: Point, clearance: float | None = None,
                     altitude: float | None = None) -> bool:
         margin = self.clearance if clearance is None else float(clearance)
-        if not self.world.in_bounds(point, margin=0.0):
-            return False
+        # 注意：不检查画布边界——实测服务端允许飞到画布外（如 y=900/943）
         for obstacle in self.active_obstacles(altitude if self.planning_dim == "3d" else None):
             polygon = self._footprints[obstacle.name]
             if geometry.point_in_polygon(point, polygon):
@@ -161,8 +160,7 @@ class Planner:
     # ---------- 3D 体素级检查 ----------
     def point_free_3d(self, x: float, y: float, z: float, clearance: float | None = None) -> bool:
         margin = self.clearance if clearance is None else float(clearance)
-        if not (0.0 <= x <= self.world.width and 0.0 <= y <= self.world.height):
-            return False
+        # 不检查画布边界：服务端允许飞到画布外
         if z < 0.0 or z > self.max_altitude:
             return False
         for obstacle in self.world.obstacles:
