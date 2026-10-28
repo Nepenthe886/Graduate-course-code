@@ -3,7 +3,10 @@ Student baseline UAV agent using LangChain and basic simulator tools.
 """
 import argparse
 from getpass import getpass
+import importlib.util
 import json
+import re
+import sys
 import os
 import uuid
 from datetime import datetime
@@ -25,6 +28,22 @@ from template.system_prompt import build_system_prompt
 
 
 logger = get_logger(__name__)
+
+NAV_SETTINGS_FILE = Path(__file__).resolve().parent / "nav_settings.json"
+NAV_MODULE_ENTRY = Path("tools") / "nav_tools.py"
+
+
+def _load_nav_settings() -> Dict[str, Any]:
+    """读取导航模块注入配置（路径相对本文件目录）。"""
+    if not NAV_SETTINGS_FILE.is_file():
+        return {"enabled": False}
+    try:
+        data = json.loads(NAV_SETTINGS_FILE.read_text(encoding="utf-8"))
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("无法读取 nav_settings.json: %s", exc)
+        return {"enabled": False}
+    data.pop("_comment", None)
+    return data
 
 
 def patch_openai_compatible_reasoning_content() -> None:
@@ -493,10 +512,142 @@ class UAVControlAgent:
         return llm
 
     def _create_tools(self) -> List[Any]:
-        return create_uav_tools(self.client)
+        tools = create_uav_tools(self.client)
+        tools.extend(self._create_nav_tools())
+        return tools
+
+    def _auto_map_from_session(self) -> Optional[str]:
+        """按 UAV 后端当前会话 id 自动选地图（nav_settings.json 的 map 为空/auto 时使用）。"""
+        try:
+            session = self.client.get_current_session()
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("无法获取当前会话，导航地图退回默认值: %s", exc)
+            return None
+        if not isinstance(session, dict):
+            return None
+        session_id = str(session.get("id") or "").strip()
+        if not session_id:
+            return None
+        sessions_dir = Path(__file__).resolve().parents[2] / "MultiUAV-Plat-v0.46_Windows" / "UAVSessions"
+        for path in sorted(sessions_dir.glob(f"*_{session_id}.json")):
+            logger.info("导航地图自动跟随当前会话: %s（%s）", session.get("name"), path.name)
+            return str(path)
+        logger.warning("会话 %s 在 %s 下没有对应地图文件", session_id, sessions_dir)
+        return None
+
+    def _create_nav_tools(self) -> List[Any]:
+        """注入 Location_amd_Navigation 的定位/导航工具（失败则跳过，不影响主流程）。"""
+        settings = _load_nav_settings()
+        if not settings.get("enabled"):
+            return []
+        module_dir = (NAV_SETTINGS_FILE.parent / str(settings.get("module_dir", ""))).resolve()
+        entry = module_dir / NAV_MODULE_ENTRY
+        if not entry.is_file():
+            logger.warning("导航模块入口不存在，跳过注入: %s", entry)
+            return []
+
+        spec = importlib.util.spec_from_file_location("_locnav_tools", entry)
+        if spec is None or spec.loader is None:
+            logger.warning("无法加载导航模块: %s", entry)
+            return []
+        module = importlib.util.module_from_spec(spec)
+        sys.path.insert(0, str(module_dir))
+        try:
+            spec.loader.exec_module(module)
+        finally:
+            if str(module_dir) in sys.path:
+                sys.path.remove(str(module_dir))
+
+        if not hasattr(module, "create_nav_tools"):
+            logger.warning("导航模块缺少 create_nav_tools")
+            return []
+
+        map_setting = settings.get("map")
+        if map_setting and str(map_setting).lower() not in ("auto", "session"):
+            map_path = str((NAV_SETTINGS_FILE.parent / str(map_setting)).resolve())
+        else:
+            map_path = self._auto_map_from_session()
+        drone_name = settings.get("drone") or None
+        frames = sys.modules.get("src.frames")
+        pose_cls = getattr(frames, "Pose", None) if frames is not None else None
+
+        def pose_provider():
+            """用实时 UAV API 数据构造导航模块的 Pose。"""
+            if pose_cls is None or not drone_name:
+                return None
+            try:
+                drones = self.client.list_drones()
+            except Exception:  # noqa: BLE001
+                return None
+            needle = str(drone_name).strip().lower()
+            for drone in drones:
+                if (str(drone.get("id", "")).lower() == needle
+                        or str(drone.get("name", "")).strip().lower() == needle):
+                    position = drone.get("position") or {}
+                    return pose_cls(
+                        x=float(position.get("x", 0.0)),
+                        y=float(position.get("y", 0.0)),
+                        z=float(position.get("z", 0.0)),
+                        yaw_deg=float(drone.get("heading") or 0.0),
+                    )
+            return None
+
+        nav_tools = module.create_nav_tools(
+            map_path=map_path,
+            drone_name=drone_name,
+            pose_provider=pose_provider if pose_cls is not None else None,
+        )
+        if isinstance(nav_tools, list):
+            logger.info("已注入导航工具 %d 个（模块 %s）", len(nav_tools), module_dir)
+            return list(nav_tools)
+        logger.info("导航模块返回函数表（无 langchain），跳过注入")
+        return []
 
     def _build_system_prompt(self) -> str:
-        return build_system_prompt(self.tools)
+        return build_system_prompt(self.tools) + self._context_block()
+
+    def _context_block(self) -> str:
+        """注入实时实体清单 + 一个真实 tool_call 示例。
+
+        小模型（8B/4bit）常见问题：忘记先调 list_drones、把显示名当 id。
+        这里把事实直接放进 prompt，等价于替模型做掉"查询"这一步。
+        """
+        lines = ["", "", "CURRENT ENTITY ROSTER (use these ids directly; never pass a display name):"]
+        drones = []
+        try:
+            drones = self.client.list_drones() or []
+        except Exception as exc:  # noqa: BLE001
+            lines.append(f"- (roster unavailable: {exc})")
+        if drones:
+            for drone in drones[:20]:
+                pos = drone.get("position") or {}
+                lines.append(
+                    "- drone name={name!r} id={id} status={status} battery={battery} position=({x},{y},{z})".format(
+                        name=drone.get("name"),
+                        id=drone.get("id"),
+                        status=drone.get("status"),
+                        battery=drone.get("battery_level"),
+                        x=pos.get("x"), y=pos.get("y"), z=pos.get("z"),
+                    )
+                )
+            example_id = drones[0].get("id")
+            example = (
+                '<tool_call>\n'
+                '{"name": "take_off", "arguments": {"input_json": '
+                '"{\\"drone_id\\": \\"%s\\", \\"altitude\\": 15.0}"}}\n'
+                '</tool_call>' % example_id
+            )
+            lines.extend([
+                "",
+                "EXAMPLE (correct format; tool arguments are a JSON *string*):",
+                example,
+                "",
+                "ENFORCED RULES:",
+                "1. Use the exact id from the roster above for every drone_id argument.",
+                "2. After each tool call, read the tool result before deciding the next step.",
+                "3. Verify with get_drone_status / get_nearby_entities before writing [TASK DONE].",
+            ])
+        return "\n".join(lines)
 
     def _create_agent_runtime(self) -> Any:
         prompt = self._build_system_prompt()
@@ -829,11 +980,15 @@ Drones: {len(drones)} available
         )
 
     def _incomplete_output_reason(self, output: str) -> Optional[str]:
-        if not output.strip():
+        text = (output or "").strip()
+        if not text:
             return "Agent stopped without a final response; task completion was not verified."
-        if "[TASK DONE]" not in output:
-            return "Agent final response did not include [TASK DONE]; task completion was not verified."
-        return None
+        compact = re.sub(r"[^A-Z]", "", text.upper())
+        if "TASKDONE" in compact or "任务完成" in text:
+            return None
+        if "TASKFAILED" in compact or "TASKFAIL" in compact:
+            return "Agent reported the task as FAILED; task completion was not verified."
+        return "Agent final response did not include [TASK DONE]; task completion was not verified."
 
     def _runtime_metadata_for_toolchain(self, empty_response_retries: int) -> Dict[str, Any]:
         session_context = getattr(self, "session_context", {}) or {}
@@ -1163,7 +1318,10 @@ Drones: {len(drones)} available
                     )
                     result_payload = {
                         "success": False,
-                        "output": incomplete_reason,
+                        "output": (
+                            f"{output.strip()}\n\n[verification] {incomplete_reason}"
+                            if output and output.strip() else incomplete_reason
+                        ),
                         "intermediate_steps": all_intermediate_steps,
                         "token_usage": total_token_usage,
                         "empty_response_retries": empty_response_retries,

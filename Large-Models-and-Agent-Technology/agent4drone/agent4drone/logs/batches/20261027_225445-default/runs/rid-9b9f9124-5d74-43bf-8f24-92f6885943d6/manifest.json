@@ -1,0 +1,85 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-9b9f9124-5d74-43bf-8f24-92f6885943d6",
+  "experiment": {
+    "run_id": "rid-9b9f9124-5d74-43bf-8f24-92f6885943d6",
+    "experiment_id": "eid-06e74f4c-85ad-5ac6-a6cb-2a3e56c2bdb3"
+  },
+  "service_instance_id": "20261027T225407-ae3968c22159",
+  "batch_file": "../../batch.json",
+  "command_id": "fff4e777-04ee-4e82-9e09-4f331a5d61de",
+  "job_id": null,
+  "command": "Drone Drone 3 multi-target verification mission: take off to 18 meters, visit and reach targets Circle Target 1 and Polygon Target 1. Each target must be reached at least once to verify successful visits. Fly within target radius for each visit.",
+  "created_at": "2026-10-27 22:54:45",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-27 22:59:21",
+  "requested_run_id": null,
+  "started_at": "2026-10-27 22:54:45",
+  "runtime": {
+    "run_id": "rid-9b9f9124-5d74-43bf-8f24-92f6885943d6",
+    "experiment": {
+      "run_id": "rid-9b9f9124-5d74-43bf-8f24-92f6885943d6",
+      "experiment_id": "eid-06e74f4c-85ad-5ac6-a6cb-2a3e56c2bdb3"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "7ef736b5",
+    "task_type": null,
+    "task_description": "General purpose example session for testing and demonstration",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "8339f1a07b6a05755afbd88576cf4939e8cc06720ff00b7604563198aa5603f4",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "5e7b84aab8c14df98d45276371ff58ce444771fd50f57a39f252029b28ca7131",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "9d65bf495cccab19c77c1317aa0174a7b8e3024d52d399546ba5e96030d6cbf3"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 1,
+  "llm_recording_status": "partial",
+  "observed_session_id": "25239af9",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "3902a1286539c3edfec169182e6f6eb311414d7f9e22be32f892825b502098f6",
+  "recording_status": "partial",
+  "result": {
+    "success": false,
+    "output": "Error executing command: Request timed out.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"5cf9f40c\",\n    \"name\": \"Drone 1\",\n    \"model\": \"Model-B\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 125.0,\n      \"y\": 276.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 18.0,\n    \"max_altitude\": 295.0,\n    \"battery_capacity\": 66.5,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 125.0,\n      \"y\": 276.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.7378728,\n    \"last_updated\": 1775664850.7378728\n  },\n  {\n    \"id\": \"721a1d95\",\n    \"name\": \"Drone 2\",\n    \"model\": \"Model-X5\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 555.0,\n      \"y\": 357.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 30.0,\n    \"max_altitude\": 291.0,\n    \"battery_capacity\": 71.5,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 555.0,\n      \"y\": 357.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.737879,\n    \"last_updated\": 1775664850.737879\n  },\n  {\n    \"id\": \"c1a1079d\",\n    \"name\": \"Drone 3\",\n    \"model\": \"Model-X3\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 531.0,\n      \"y\": 239.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 32.0,\n    \"max_altitude\": 384.0,\n    \"battery_capacity\": 76.2,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 531.0,\n      \"y\": 239.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.7378829,\n    \"last_updated\": 1775664850.7378829\n  }\n]"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 5205,
+      "completion_tokens": 21,
+      "total_tokens": 5226,
+      "llm_calls": 1
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

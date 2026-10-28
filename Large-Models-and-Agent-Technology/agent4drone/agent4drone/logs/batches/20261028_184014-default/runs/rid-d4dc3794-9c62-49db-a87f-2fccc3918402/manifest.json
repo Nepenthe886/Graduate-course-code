@@ -1,0 +1,116 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-d4dc3794-9c62-49db-a87f-2fccc3918402",
+  "experiment": {
+    "run_id": "rid-d4dc3794-9c62-49db-a87f-2fccc3918402",
+    "experiment_id": "eid-b0a1edfe-b14c-5ce7-ac97-e8388984e9f8"
+  },
+  "service_instance_id": "20261028T183928-af0cf0573607",
+  "batch_file": "../../batch.json",
+  "command_id": "4cf7f54c-9394-4f52-badd-d26cbf3477d3",
+  "job_id": null,
+  "command": "Drone Drone 3 should take off to 13 meters, then climb to 28 meters altitude and hover.",
+  "created_at": "2026-10-28 18:40:14",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-28 18:40:31",
+  "requested_run_id": null,
+  "started_at": "2026-10-28 18:40:14",
+  "runtime": {
+    "run_id": "rid-d4dc3794-9c62-49db-a87f-2fccc3918402",
+    "experiment": {
+      "run_id": "rid-d4dc3794-9c62-49db-a87f-2fccc3918402",
+      "experiment_id": "eid-b0a1edfe-b14c-5ce7-ac97-e8388984e9f8"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "9a993bc9",
+    "task_type": null,
+    "task_description": "General purpose example session for testing and demonstration",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 4,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "5aabad33",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "18c282a6ffec29a0cfb5b4765e15c1ac303ad2190c5bb24772490da25fd19598",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "87c81cad",
+            "altitude": 13.0
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"a1c952af\",\n  \"drone_id\": \"87c81cad\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 13.0m (battery: -0.5%/-0mAh, remaining: 99.5%/96mAh)\",\n  \"timestamp\": 1793184025.6146884\n}"
+      ],
+      [
+        {
+          "tool": "change_altitude",
+          "tool_input": {
+            "drone_id": "87c81cad",
+            "altitude": 28.0
+          },
+          "log": "Preparing to call tool 'change_altitude'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"5ce0ebfe\",\n  \"drone_id\": \"87c81cad\",\n  \"command\": \"change_altitude\",\n  \"status\": \"success\",\n  \"message\": \"Drone altitude changed to 28.0m (battery: -0.1%/-0mAh, remaining: 99.4%/96mAh)\",\n  \"timestamp\": 1793184028.5418901\n}"
+      ],
+      [
+        {
+          "tool": "hover",
+          "tool_input": {
+            "drone_id": "87c81cad",
+            "duration": 5.0
+          },
+          "log": "Preparing to call tool 'hover'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"a8ac37ed\",\n  \"drone_id\": \"87c81cad\",\n  \"command\": \"hover\",\n  \"status\": \"success\",\n  \"message\": \"Drone now hovering (battery: -0.1%/-0mAh, remaining: 99.3%/96mAh)\",\n  \"timestamp\": 1793184031.4089024\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 23280,
+      "completion_tokens": 127,
+      "total_tokens": 23407,
+      "llm_calls": 4
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "complete",
+    "recording_status": "complete",
+    "sha256": "39fbf68f46ef10cf717ab6b95a7ea84ee3e6ce455f7d05d1f148ae3f19767d11",
+    "source_indices": [
+      4,
+      5,
+      6
+    ],
+    "issues": [],
+    "count": 3,
+    "replay_validation": "not_run"
+  }
+}

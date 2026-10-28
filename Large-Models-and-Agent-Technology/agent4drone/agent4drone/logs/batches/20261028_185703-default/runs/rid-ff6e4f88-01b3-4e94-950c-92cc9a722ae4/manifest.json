@@ -1,0 +1,89 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-ff6e4f88-01b3-4e94-950c-92cc9a722ae4",
+  "experiment": {
+    "run_id": "rid-ff6e4f88-01b3-4e94-950c-92cc9a722ae4",
+    "experiment_id": "eid-2cf3d02d-4321-5062-9a1c-dd9db982aab2"
+  },
+  "service_instance_id": "20261028T185618-951e5e814b4c",
+  "batch_file": "../../batch.json",
+  "command_id": "49ca5a66-71d3-4fb1-81e9-85b25a0a8dac",
+  "job_id": null,
+  "command": "Drone Drone 3 navigates complex obstacle course from start (351, 344, 16) through waypoints (420, 388, 16), (594, 399, 16), (598, 540, 16), (540, 681, 16) to destination (677, 745, 16). Course includes obstacles Ellipse Obstacle 2, Circle Obstacle 2, and Polygon Obstacle 1. Must visit all waypoints in sequence while avoiding all obstacles, adjusting altitude as needed. Reach destination and land safely.",
+  "created_at": "2026-10-28 18:57:29",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-28 18:57:46",
+  "requested_run_id": null,
+  "started_at": "2026-10-28 18:57:29",
+  "runtime": {
+    "run_id": "rid-ff6e4f88-01b3-4e94-950c-92cc9a722ae4",
+    "experiment": {
+      "run_id": "rid-ff6e4f88-01b3-4e94-950c-92cc9a722ae4",
+      "experiment_id": "eid-2cf3d02d-4321-5062-9a1c-dd9db982aab2"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "5aabad33",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "5aabad33",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "97a381a5e3dd0b6e2dbcf9b5f050b37f1763a4dbc08e5c3bdcc17d8bc9f9cea4",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "navigate complex obstacle course from start (351, 344, 16) through waypoints (420, 388, 16), (594, 399, 16), (598, 540, 16), (540, 681, 16) to destination (677, 745, 16). Course includes obstacles Ellipse Obstacle 2, Circle Obstacle 2, and Polygon Obstacle 1. Must visit all waypoints in sequence while avoiding all obstacles, adjusting altitude as needed. Reach destination and land safely.",
+            "drone_id": "87c81cad",
+            "altitude": 16
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 6, \"legs\": 6, \"mode\": \"per_leg_jit\"}, \"executed\": [{\"leg\": 1, \"goal\": [351.0, 344.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [420.0, 388.0], \"waypoints\": 1, \"plan_ms\": 1, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [594.0, 399.0], \"waypoints\": 4, \"plan_ms\": 642, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 4, \"goal\": [598.0, 540.0], \"waypoints\": 4, \"plan_ms\": 13, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 5, \"goal\": [540.0, 681.0], \"waypoints\": 2, \"plan_ms\": 8, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 6, \"goal\": [677.0, 745.0], \"waypoints\": 1, \"plan_ms\": 1, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"action\": \"land\"}], \"failures\": [], \"take_off\": {\"command_id\": \"815d6db3\", \"drone_id\": \"87c81cad\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 16.0m (battery: -0.5%/-0mAh, remaining: 99.5%/96mAh)\", \"timestamp\": 1793185062.814528}, \"photos_taken\": 0}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 12194,
+      "completion_tokens": 187,
+      "total_tokens": 12381,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

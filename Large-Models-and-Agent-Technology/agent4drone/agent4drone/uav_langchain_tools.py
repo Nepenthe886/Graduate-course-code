@@ -3,6 +3,7 @@
 Each tool calls one UAV API operation. Parameterized tools accept JSON strings.
 """
 import json
+import re
 
 from langchain.tools import tool
 from uav_api_client import UAVAPIClient
@@ -45,7 +46,7 @@ import inspect as _inspect
 
 
 class _IdResolvingClient:
-    """包一层 UAVAPIClient：调用前把 drone 名字解析成真实 id。"""
+    """包一层 UAVAPIClient：调用前把 drone 名字/模糊编号解析成真实 id。"""
 
     _DRONE_KEYS = ("drone_id", "target_drone_id")
 
@@ -53,7 +54,18 @@ class _IdResolvingClient:
         self._client = client
         self._id_by_name: dict = {}
 
-    # ---- 解析 ----
+    # ---- 归一化：去掉空格/连字符/斜杠，小写，并去掉数字段前导零 ----
+    @staticmethod
+    def _norm(value) -> str:
+        text = str(value).strip().lower()
+        text = "".join(ch for ch in text if ch.isalnum())
+        text = re.sub(r"(?<![0-9])0+(?=[0-9])", "", text)
+        return text
+
+    @staticmethod
+    def _looks_like_id(value: str) -> bool:
+        return len(value) == 8 and all(c in "0123456789abcdefABCDEF" for c in value)
+
     def _refresh(self) -> None:
         try:
             drones = self._client.list_drones() or []
@@ -67,29 +79,35 @@ class _IdResolvingClient:
             name = drone.get("name")
             if not drone_id:
                 continue
-            mapping[str(drone_id).strip().lower()] = drone_id
+            mapping[self._norm(drone_id)] = drone_id
             if name:
-                mapping[str(name).strip().lower()] = drone_id
+                mapping[self._norm(name)] = drone_id
         self._id_by_name = mapping
-
-    @staticmethod
-    def _looks_like_id(value: str) -> bool:
-        return len(value) == 8 and all(c in "0123456789abcdefABCDEF" for c in value)
 
     def resolve_drone(self, value):
         if not isinstance(value, str) or not value.strip():
             return value
         raw = value.strip()
-        low = raw.lower()
-        if low in self._id_by_name:
-            return self._id_by_name[low]
+        # 1) 精确 8 位 id
         if self._looks_like_id(raw):
             return raw
+        key = self._norm(raw)
+        # 2) 直接命中（名字或 id 归一化后）
+        if key in self._id_by_name:
+            return self._id_by_name[key]
+        # 3) 刷新一次再试
         self._refresh()
-        if low in self._id_by_name:
-            return self._id_by_name[low]
+        if key in self._id_by_name:
+            return self._id_by_name[key]
+        # 4) 纯数字 / 带编号：drone-003 / 3 / 003 -> drone3
+        digits = re.findall(r"\d+", raw)
+        if digits:
+            candidate = "drone" + str(int(digits[-1]))
+            if candidate in self._id_by_name:
+                return self._id_by_name[candidate]
+        # 5) 子串包含匹配
         for name, drone_id in self._id_by_name.items():
-            if low in name or name in low:
+            if key and (key in name or name in key):
                 return drone_id
         return raw  # 解析不了就原样传，让 API 报错
 

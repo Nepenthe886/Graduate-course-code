@@ -1,0 +1,130 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-afcb1219-5f07-42f3-81d8-5cf154388761",
+  "experiment": {
+    "run_id": "rid-afcb1219-5f07-42f3-81d8-5cf154388761",
+    "experiment_id": "eid-b0a1edfe-b14c-5ce7-ac97-e8388984e9f8"
+  },
+  "service_instance_id": "20261028T183928-af0cf0573607",
+  "batch_file": "../../batch.json",
+  "command_id": "76dbc044-2e49-4e2b-a385-6c9f9c270867",
+  "job_id": null,
+  "command": "Drone Drone 1 performs a marathon flight. Take off to 23 meters, fly to start point (136, 155, 23), then navigate through 10 waypoints: (249, 147, 23), (356, 259, 23), (467, 327, 23), (527, 499, 23), (643, 540, 23), (726, 656, 23), (843, 727, 23), (985, 862, 23), (875, 156, 23), (117, 825, 23). Avoid obstacles Ellipse Obstacle 1, Circle Obstacle 3. Finally, fly to end point (523, 578, 23) and land.",
+  "created_at": "2026-10-28 18:42:17",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-10-28 18:42:54",
+  "requested_run_id": null,
+  "started_at": "2026-10-28 18:42:17",
+  "runtime": {
+    "run_id": "rid-afcb1219-5f07-42f3-81d8-5cf154388761",
+    "experiment": {
+      "run_id": "rid-afcb1219-5f07-42f3-81d8-5cf154388761",
+      "experiment_id": "eid-b0a1edfe-b14c-5ce7-ac97-e8388984e9f8"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "5aabad33",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 6,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "5aabad33",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "4e6eff7ed1e60309658e78c39e525cdc4449e050017352480226888e721b3e1a",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "The mission execution failed due to two out-of-bounds waypoints and an error during takeoff. The out-of-bounds waypoints are (985, 862) and (117, 825), which exceed the map boundaries of 1024x768. Additionally, the drone could not take off because it was in a hovering state.\n\n[TASK FAILED]\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"19673f54\",\n    \"name\": \"Drone 1\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 601.0,\n      \"y\": 573.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 601.0,\n      \"y\": 573.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.266082,\n    \"last_updated\": 1775664850.266082\n  },\n  {\n    \"id\": \"572d72a0\",\n    \"name\": \"Drone 2\",\n    \"model\": \"Model-D\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 788.0,\n      \"y\": 569.0,\n      \"z\": 0.0\n    },\n    \"heading\": 76.0377183406207,\n    \"speed\": 0.0,\n    \"battery_level\": 95.37211264781747,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 247.0,\n    \"battery_capacity\": 75.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 59.0,\n      \"y\": 345.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.266089,\n    \"last_updated\": 1793184090.2324493\n  },\n  {\n    \"id\": \"87c81cad\",\n    \"name\": \"Drone 3\",\n    \"model\": \"Model-X5\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 467.0,\n      \"y\": 75.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 99.28963699375001,\n    \"max_speed\": 31.0,\n    \"max_altitude\": 234.0,\n    \"battery_capacity\": 96.2,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 467.0,\n      \"y\": 75.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1775664850.266094,\n    \"last_updated\": 1793184031.4088912\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"5aabad33\",\n  \"name\": \"Area Search Easy 1\",\n  \"description\": \"Area Search Easy 1 covers a 1024\\u00d7768 m mission zone. It is configured for area search. Random seeding will create 3 drones, 3 targets, 6 obstacles.\",\n  \"status\": \"active\",\n  \"creator\": \"Victor Zhang\",\n  \"task_type\": \"area_search\",\n  \"task_description\": \"\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1775664850.2625332,\n  \"last_updated\": 1793184152.440637,\n  \"statistics\": {\n    \"drone_count\": 3,\n    \"target_count\": 3,\n    \"obstacle_count\": 6,\n    \"task_count\": 20,\n    \"environment_id\": \"e0fea91a\",\n    \"total_commands_executed\": 6,\n    \"total_flight_time\": 30.632464639300167,\n    \"total_distance_traveled\": 765.8116159825042,\n    \"total_target_reaches\": 4,\n    \"drones_with_target_reaches\": 1,\n    \"unique_targets_reached\": 2,\n    \"session_time\": 175.05194425582886,\n    \"command_history_size\": 7,\n    \"task_progress\": {\n      \"task_type\": \"area_search\",\n      \"progress_percentage\": 13,\n      \"is_completed\": false,\n      \"status_message\": \"Task to be Done\",\n      \"details\": {\n        \"total_targets\": 3\n      },\n      \"target_reach_summary\": {\n        \"total_reaches\": 4,\n        \"drones_with_reaches\": 1,\n        \"unique_targets_reached\": 2\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 3,\n        \"average_coverage\": 13.907567171648601,\n        \"fully_covered_targets\": 0\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"e0fea91a\",\n  \"name\": \"Area Search Easy 1 Environment\",\n  \"weather\": \"partly_cloudy\",\n  \"temperature\": 18.825356852437537,\n  \"humidity\": 56.0,\n  \"pressure\": 1016.5,\n  \"wind_speed\": 0.6682444305934401,\n  \"wind_direction\": \"northwest\",\n  \"visibility\": 14028.7,\n  \"created_at\": 1775664850.2660391,\n  \"last_updated\": 1793184159.2637951\n}"
+      ],
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "19673f54",
+            "altitude": 23.0
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"53004d53\",\n  \"drone_id\": \"19673f54\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 23.0m (battery: -0.5%/-0mAh, remaining: 99.5%/98mAh)\",\n  \"timestamp\": 1793184165.1016276\n}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Drone 1 performs a marathon flight. Take off to 23 meters, fly to start point (136, 155, 23), then navigate through 10 waypoints: (249, 147, 23), (356, 259, 23), (467, 327, 23), (527, 499, 23), (643, 540, 23), (726, 656, 23), (843, 727, 23), (985, 862, 23), (875, 156, 23), (117, 825, 23). Avoid obstacles Ellipse Obstacle 1, Circle Obstacle 3. Finally, fly to end point (523, 578, 23) and land.",
+            "drone_id": "Drone 1",
+            "altitude": 23.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"planned\": {\"waypoints\": 12, \"legs\": 12, \"mode\": \"per_leg_jit\"}, \"executed\": [{\"leg\": 1, \"goal\": [136.0, 155.0], \"waypoints\": 3, \"plan_ms\": 605, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [249.0, 147.0], \"waypoints\": 1, \"plan_ms\": 1, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [356.0, 259.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 4, \"goal\": [467.0, 327.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 5, \"goal\": [527.0, 499.0], \"waypoints\": 4, \"plan_ms\": 7, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 6, \"goal\": [643.0, 540.0], \"waypoints\": 4, \"plan_ms\": 17, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 7, \"goal\": [726.0, 656.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 8, \"goal\": [843.0, 727.0], \"waypoints\": 1, \"plan_ms\": 0, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 9, \"goal\": [985.0, 862.0], \"out_of_bounds\": true, \"error\": \"航点超出地图边界（地图 1024x768）\"}, {\"leg\": 10, \"goal\": [875.0, 156.0], \"waypoints\": 2, \"plan_ms\": 4, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 11, \"goal\": [117.0, 825.0], \"out_of_bounds\": true, \"error\": \"航点超出地图边界（地图 1024x768）\"}, {\"leg\": 12, \"goal\": [523.0, 578.0], \"waypoints\": 4, \"plan_ms\": 38, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"action\": \"land\"}], \"failures\": [{\"leg\": 9, \"goal\": [985.0, 862.0], \"out_of_bounds\": true, \"error\": \"航点超出地图边界（地图 1024x768）\"}, {\"leg\": 11, \"goal\": [117.0, 825.0], \"out_of_bounds\": true, \"error\": \"航点超出地图边界（地图 1024x768）\"}], \"take_off\": {\"command_id\": \"839da718\", \"drone_id\": \"19673f54\", \"command\": \"take_off\", \"status\": \"error\", \"message\": \"Cannot take off from current status: DroneStatus.HOVERING\", \"timestamp\": 1793184168.4791937}, \"photos_taken\": 0}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 43490,
+      "completion_tokens": 240,
+      "total_tokens": 43730,
+      "llm_calls": 6
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "complete",
+    "recording_status": "complete",
+    "sha256": "b4249e78e39cfb8862b97dd15aec54f016b50dc6109ce50b1889bfb6bacf55f5",
+    "source_indices": [
+      7
+    ],
+    "issues": [],
+    "count": 1,
+    "replay_validation": "not_run"
+  }
+}
