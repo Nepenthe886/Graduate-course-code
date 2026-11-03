@@ -1,0 +1,101 @@
+{
+  "image": "E:\\Code\\Graduate-course-code\\Principles and Applications of Pattern Recognition\\作业\\线性支持向量机\\demo_boat.png",
+  "reference": {
+    "slope": 0.07136,
+    "intercept": 82.65
+  },
+  "detections": [
+    {
+      "name": "a（自设计SVM）",
+      "has_waterline": true,
+      "columns": 404,
+      "coverage": 0.933,
+      "detection_rate": 0.933,
+      "vs_ref": {
+        "columns": 404,
+        "mae": 0.687,
+        "rmse": 1.141,
+        "inlier_2px": 0.96,
+        "inlier_3px": 0.978,
+        "bias": -0.543
+      },
+      "seg_vs_ref_accuracy": 0.8387,
+      "seg_vs_ref_IoU_water": 0.7681,
+      "seg_vs_ref_IoU_sky": 0.6536
+    },
+    {
+      "name": "b（原空间法）",
+      "has_waterline": true,
+      "columns": 404,
+      "coverage": 0.933,
+      "detection_rate": 0.933,
+      "vs_ref": {
+        "columns": 404,
+        "mae": 0.655,
+        "rmse": 1.105,
+        "inlier_2px": 0.965,
+        "inlier_3px": 0.978,
+        "bias": -0.491
+      },
+      "seg_vs_ref_accuracy": 0.8385,
+      "seg_vs_ref_IoU_water": 0.7678,
+      "seg_vs_ref_IoU_sky": 0.6535
+    },
+    {
+      "name": "c（对偶空间法）",
+      "has_waterline": true,
+      "columns": 404,
+      "coverage": 0.933,
+      "detection_rate": 0.933,
+      "vs_ref": {
+        "columns": 404,
+        "mae": 0.652,
+        "rmse": 1.102,
+        "inlier_2px": 0.965,
+        "inlier_3px": 0.978,
+        "bias": -0.479
+      },
+      "seg_vs_ref_accuracy": 0.8385,
+      "seg_vs_ref_IoU_water": 0.7678,
+      "seg_vs_ref_IoU_sky": 0.6535
+    }
+  ],
+  "robustness": [
+    {
+      "blur_radius": 0,
+      "columns": 404,
+      "mae": 0.687,
+      "rmse": 1.141,
+      "inlier_2px": 0.96,
+      "inlier_3px": 0.978,
+      "bias": -0.543
+    },
+    {
+      "blur_radius": 1,
+      "columns": 404,
+      "mae": 1.064,
+      "rmse": 1.523,
+      "inlier_2px": 0.921,
+      "inlier_3px": 0.968,
+      "bias": -1.05
+    },
+    {
+      "blur_radius": 2,
+      "columns": 405,
+      "mae": 1.91,
+      "rmse": 2.219,
+      "inlier_2px": 0.716,
+      "inlier_3px": 0.928,
+      "bias": -1.91
+    },
+    {
+      "blur_radius": 3,
+      "columns": 405,
+      "mae": 2.827,
+      "rmse": 3.127,
+      "inlier_2px": 0.501,
+      "inlier_3px": 0.694,
+      "bias": -2.822
+    }
+  ]
+}

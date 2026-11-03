@@ -1,0 +1,69 @@
+{
+  "image": "E:\\Code\\Graduate-course-code\\Principles and Applications of Pattern Recognition\\作业\\线性支持向量机\\demo_boat.png",
+  "C": 1.0,
+  "train_samples": 400,
+  "dual_solver": "scipy SLSQP（对偶 QP）",
+  "primal": {
+    "train_time_s": 0.081,
+    "n_sv": 108,
+    "w": [
+      2.547468,
+      3.012001,
+      2.622046
+    ],
+    "b": -4.71548,
+    "objective": 96.865867,
+    "segmentation": {
+      "accuracy": 0.9312,
+      "precision": 1.0,
+      "recall": 0.8968,
+      "f1": 0.9456,
+      "tp": 49703,
+      "fp": 0,
+      "fn": 5721,
+      "tn": 27712
+    }
+  },
+  "dual": {
+    "train_time_s": 2.684,
+    "n_sv": 111,
+    "w": [
+      2.585782,
+      2.96992,
+      2.60528
+    ],
+    "b": -4.702481,
+    "dual_objective": 96.864086,
+    "primal_objective_at_dual_solution": 96.864086,
+    "duality_gap": 0.0,
+    "segmentation": {
+      "accuracy": 0.9312,
+      "precision": 1.0,
+      "recall": 0.8968,
+      "f1": 0.9456,
+      "tp": 49703,
+      "fp": 0,
+      "fn": 5721,
+      "tn": 27712
+    }
+  },
+  "agreement": 0.999986,
+  "cosine_similarity_w": 0.999926,
+  "relative_w_diff": 0.012525,
+  "waterline_diff": {
+    "columns": 404,
+    "mae": 0.0,
+    "rmse": 0.0,
+    "inlier_2px": 1.0,
+    "inlier_3px": 1.0,
+    "bias": 0.0
+  },
+  "line_fit_primal": {
+    "slope": 0.07982,
+    "intercept": 81.33
+  },
+  "line_fit_dual": {
+    "slope": 0.07982,
+    "intercept": 81.33
+  }
+}
