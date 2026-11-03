@@ -1,0 +1,36 @@
+# ---- 基座模型目录（内含嵌套 .git，整体不追踪）----
+Qwen2.5-0.5B-Instruct/
+
+# ============================================================
+# 上传规则：单文件 > 10 MB 一律不上传 GitHub
+# （GitHub 单文件硬上限 100 MB；本目录含 942 MB 权重）
+# 说明见同目录《大文件说明.md》
+# ============================================================
+
+# ---- 当前 >10MB 的文件（共 7 个，逐个列出）----
+# 模型权重（942.3 MB × 2）
+Qwen2.5-0.5B-Instruct/model.safetensors
+qwen0.5b-lora-merged/model.safetensors
+# 分词器（10.9 MB × 5）
+qwen0.5b-lora/tokenizer.json
+qwen0.5b-lora/checkpoint-38/tokenizer.json
+qwen0.5b-lora/checkpoint-76/tokenizer.json
+qwen0.5b-lora/checkpoint-114/tokenizer.json
+qwen0.5b-lora-merged/tokenizer.json
+# 训练中间检查点（目录内多为中间产物）
+qwen0.5b-lora/checkpoint-*/
+qwen0.5b-lora-merged/checkpoint-*/
+
+# ---- 缓存目录 ----
+.cache/
+outputs/
+wandb/
+__pycache__/
+
+# ---- 说明 ----
+# 单文件 ≤10 MB 的内容允许上传，例如：
+#   qwen0.5b-lora/adapter_model.safetensors   (约 2.1 MB，LoRA 适配器，建议上传)
+#   qwen0.5b-lora/adapter_config.json
+#   Qwen2.5-0.5B-Instruct/tokenizer.json      (7.0 MB)
+#   qwen0.5b-lora*/vocab.json / merges.txt
+# 若将来出现新的 >10 MB 文件，请在此追加明确路径（git 不支持按文件大小忽略）。
