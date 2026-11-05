@@ -1,0 +1,2729 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "SC-09",
+  "name": "Desert Search and Rescue after Sandstorm",
+  "language": "en",
+  "difficulty": 5,
+  "mission_theme": "Featureless dunes, buried track, one stranded vehicle: wide search, thermal detection and a long wadi transit.",
+  "mission_window_s": 4200,
+  "map": {
+    "size_m": [
+      6000,
+      6000
+    ],
+    "geofence": "AO-09",
+    "origin": "SW corner, +x east, +y north",
+    "altitude_ceiling_m": 300,
+    "nfz": [
+      {
+        "id": "NFZ-RUINS",
+        "center": [
+          5400,
+          5400
+        ],
+        "radius_m": 250
+      },
+      {
+        "id": "NFZ-PIPELINE",
+        "center": [
+          4800,
+          4800
+        ],
+        "radius_m": 120,
+        "shape": "corridor",
+        "width_m": 80
+      }
+    ],
+    "lz": [
+      {
+        "id": "LZ-CAMP",
+        "center": [
+          700,
+          4300
+        ],
+        "capacity": 2
+      },
+      {
+        "id": "LZ-ROADSTOP",
+        "center": [
+          5600,
+          900
+        ],
+        "capacity": 2
+      }
+    ]
+  },
+  "zones": [
+    {
+      "id": "AREA-DUNE-N",
+      "kind": "search_area",
+      "center": [
+        4500,
+        4800
+      ],
+      "radius_m": 600
+    },
+    {
+      "id": "AREA-DUNE-S",
+      "kind": "search_area",
+      "center": [
+        1500,
+        1500
+      ],
+      "radius_m": 600
+    },
+    {
+      "id": "BLOCK-ROAD-1",
+      "kind": "survey_block",
+      "center": [
+        3000,
+        4000
+      ],
+      "radius_m": 500
+    },
+    {
+      "id": "BLOCK-ROAD-2",
+      "kind": "survey_block",
+      "center": [
+        3000,
+        2000
+      ],
+      "radius_m": 500
+    },
+    {
+      "id": "POI-TRUCK",
+      "kind": "poi",
+      "center": [
+        4200,
+        3200
+      ],
+      "radius_m": 60,
+      "notes": "stranded vehicle, thermal signature"
+    },
+    {
+      "id": "POI-WELL",
+      "kind": "poi",
+      "center": [
+        1800,
+        2800
+      ],
+      "radius_m": 40
+    },
+    {
+      "id": "POI-CAMP",
+      "kind": "poi",
+      "center": [
+        900,
+        4500
+      ],
+      "radius_m": 80
+    },
+    {
+      "id": "GRID-SAND",
+      "kind": "grid_area",
+      "center": [
+        2400,
+        1200
+      ],
+      "radius_m": 350,
+      "grid": "5x4, 120 m spacing"
+    },
+    {
+      "id": "CORRIDOR-WADI",
+      "kind": "corridor",
+      "center": [
+        3000,
+        3000
+      ],
+      "length_m": 4000,
+      "width_m": 150,
+      "entry": [
+        1000,
+        3000
+      ],
+      "exit": [
+        5000,
+        3000
+      ]
+    },
+    {
+      "id": "PERIM-CAMP",
+      "kind": "perimeter",
+      "center": [
+        900,
+        4500
+      ],
+      "radius_m": 400
+    },
+    {
+      "id": "AREA-DEBRIS",
+      "kind": "track_area",
+      "center": [
+        4800,
+        2200
+      ],
+      "radius_m": 300
+    },
+    {
+      "id": "DZ-CAMP",
+      "kind": "drop_zone",
+      "center": [
+        950,
+        4400
+      ],
+      "radius_m": 60
+    },
+    {
+      "id": "PICKUP-CAMP",
+      "kind": "pickup",
+      "center": [
+        800,
+        4700
+      ],
+      "radius_m": 40
+    },
+    {
+      "id": "GS-CAMP",
+      "kind": "ground_station",
+      "center": [
+        700,
+        5000
+      ],
+      "radius_m": 30
+    },
+    {
+      "id": "GS-ROADSTOP",
+      "kind": "ground_station",
+      "center": [
+        5800,
+        700
+      ],
+      "radius_m": 30
+    }
+  ],
+  "fleet": [
+    {
+      "uav_id": "UAV-1",
+      "model": "D-Rescue-long",
+      "payload_kg": 1.5,
+      "endurance_min": 38,
+      "cruise_mps": 19,
+      "sensors": [
+        "IR",
+        "EO"
+      ],
+      "role": "lead"
+    },
+    {
+      "uav_id": "UAV-2",
+      "model": "D-Rescue-long",
+      "payload_kg": 1.5,
+      "endurance_min": 38,
+      "cruise_mps": 19,
+      "sensors": [
+        "IR",
+        "EO"
+      ],
+      "role": "member"
+    },
+    {
+      "uav_id": "UAV-3",
+      "model": "D-Rescue-long",
+      "payload_kg": 1.5,
+      "endurance_min": 38,
+      "cruise_mps": 19,
+      "sensors": [
+        "IR",
+        "EO"
+      ],
+      "role": "member"
+    },
+    {
+      "uav_id": "UAV-4",
+      "model": "D-Rescue-long",
+      "payload_kg": 1.5,
+      "endurance_min": 38,
+      "cruise_mps": 19,
+      "sensors": [
+        "IR",
+        "EO"
+      ],
+      "role": "member"
+    }
+  ],
+  "environment": {
+    "wind_mps": 10,
+    "gust_mps": 16,
+    "visibility_km": 7,
+    "time_of_day": "day",
+    "temperature_c": 38
+  },
+  "comms": {
+    "link_range_m": 1700,
+    "relay_required_beyond_m": 2700,
+    "degradation_events": [
+      {
+        "at_s": 1200,
+        "type": "dust_attenuation",
+        "duration_s": 360,
+        "radius_m": 1000
+      }
+    ]
+  },
+  "task_generation": {
+    "seed": 20261104,
+    "total_tasks": 20,
+    "from_templates": 14,
+    "composite": 6,
+    "template_ratio": 0.7,
+    "rule": "tasks are instantiated from the 10 task templates with scenario-specific parameters; composite tasks add contingency patterns that combine two templates"
+  },
+  "tasks": [
+    {
+      "task_id": "SC-09-T01",
+      "scenario_id": "SC-09",
+      "template_id": "TT-06",
+      "template_name": "Cooperative Search and Rescue",
+      "source": "template",
+      "title": "Search and rescue sweep of AREA-DUNE-N (sweep 120 m, beacon in C4)",
+      "category": "search",
+      "difficulty": 4,
+      "priority": "high",
+      "window": {
+        "start_s": 630,
+        "end_s": 1110
+      },
+      "depends_on": [],
+      "agents_required": 2,
+      "params": {
+        "beacon_cell": "C4",
+        "detection_alt_m": 100,
+        "localize_err_m": 25,
+        "lz": "LZ-CAMP",
+        "min_sep_m": 25,
+        "search_area": "AREA-DUNE-N",
+        "sweep_width_m": 120,
+        "uav_count": 4
+      },
+      "brief": "A distress beacon is active somewhere in AREA-DUNE-N. Sweep the area cooperatively at 100 m with 120 m spacing between tracks so that at least 95% of the area is observed once. When a UAV detects the signal, localise it to within 25 m, mark the spot (hover >= 10 s and transmit the position) and hand the position to the rescue element. Do not leave uncovered strips when the first detection happens.",
+      "objective": "Sweep AREA-DUNE-N with 4 UAVs at 100 m using a 120 m sweep width until the distress beacon is detected, localised to within 25 m and marked.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "split AREA-DUNE-N into 4 sweep lanes",
+            "declare track spacing 120 m"
+          ],
+          "output": "sweep plan"
+        },
+        {
+          "phase": "2-sweep",
+          "actions": [
+            "fly the lanes at 100 m",
+            "report lane completion"
+          ],
+          "output": "area coverage log"
+        },
+        {
+          "phase": "3-detect",
+          "actions": [
+            "report the beacon to the team",
+            "convert bearing into a position"
+          ],
+          "output": "beacon position estimate"
+        },
+        {
+          "phase": "4-mark",
+          "actions": [
+            "close to the beacon",
+            "hover >= 10 s and transmit",
+            "hand the position over"
+          ],
+          "output": "marked distress point"
+        },
+        {
+          "phase": "5-complete",
+          "actions": [
+            "finish any uncovered lane",
+            "recover to LZ-CAMP"
+          ],
+          "output": "complete sweep statement"
+        }
+      ],
+      "constraints": [
+        "minimum separation 25 m",
+        "no flight inside the marked danger radius before the rescue element arrives"
+      ],
+      "failure_conditions": [
+        "beacon not detected within the window",
+        "marked position error above 40 m",
+        "abandoning the sweep to chase a false signal"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Sweep coverage",
+          "metric": "area observed at least once before task end",
+          "target": ">= 95% of AREA-DUNE-N",
+          "verification": "platform coverage grid",
+          "weight": 25
+        },
+        {
+          "id": "CP-2",
+          "name": "Detection",
+          "metric": "beacon detection event",
+          "target": "detected before the task window closes",
+          "verification": "platform sensor log",
+          "weight": 20
+        },
+        {
+          "id": "CP-3",
+          "name": "Localisation",
+          "metric": "error of the transmitted beacon position",
+          "target": "<= 25 m",
+          "verification": "platform ground-truth comparison",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "Marking and handover",
+          "metric": "hover time at the beacon and handover message",
+          "target": "hover >= 10 s and handover message sent",
+          "verification": "platform payload log",
+          "weight": 20
+        },
+        {
+          "id": "CP-5",
+          "name": "No uncovered strip",
+          "metric": "uncovered strips left when detection happens",
+          "target": "0 strips wider than 1.5 x 120",
+          "verification": "platform coverage grid",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T02",
+      "scenario_id": "SC-09",
+      "template_id": "TT-06",
+      "template_name": "Cooperative Search and Rescue",
+      "source": "template",
+      "title": "Search and rescue sweep of AREA-DUNE-S (sweep 100 m, beacon in C3)",
+      "category": "search",
+      "difficulty": 4,
+      "priority": "high",
+      "window": {
+        "start_s": 756,
+        "end_s": 1236
+      },
+      "depends_on": [],
+      "agents_required": 2,
+      "params": {
+        "beacon_cell": "C3",
+        "detection_alt_m": 90,
+        "localize_err_m": 20,
+        "lz": "LZ-ROADSTOP",
+        "min_sep_m": 25,
+        "search_area": "AREA-DUNE-S",
+        "sweep_width_m": 100,
+        "uav_count": 3
+      },
+      "brief": "A distress beacon is active somewhere in AREA-DUNE-S. Sweep the area cooperatively at 90 m with 100 m spacing between tracks so that at least 95% of the area is observed once. When a UAV detects the signal, localise it to within 20 m, mark the spot (hover >= 10 s and transmit the position) and hand the position to the rescue element. Do not leave uncovered strips when the first detection happens.",
+      "objective": "Sweep AREA-DUNE-S with 3 UAVs at 90 m using a 100 m sweep width until the distress beacon is detected, localised to within 20 m and marked.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "split AREA-DUNE-S into 3 sweep lanes",
+            "declare track spacing 100 m"
+          ],
+          "output": "sweep plan"
+        },
+        {
+          "phase": "2-sweep",
+          "actions": [
+            "fly the lanes at 90 m",
+            "report lane completion"
+          ],
+          "output": "area coverage log"
+        },
+        {
+          "phase": "3-detect",
+          "actions": [
+            "report the beacon to the team",
+            "convert bearing into a position"
+          ],
+          "output": "beacon position estimate"
+        },
+        {
+          "phase": "4-mark",
+          "actions": [
+            "close to the beacon",
+            "hover >= 10 s and transmit",
+            "hand the position over"
+          ],
+          "output": "marked distress point"
+        },
+        {
+          "phase": "5-complete",
+          "actions": [
+            "finish any uncovered lane",
+            "recover to LZ-ROADSTOP"
+          ],
+          "output": "complete sweep statement"
+        }
+      ],
+      "constraints": [
+        "minimum separation 25 m",
+        "no flight inside the marked danger radius before the rescue element arrives"
+      ],
+      "failure_conditions": [
+        "beacon not detected within the window",
+        "marked position error above 40 m",
+        "abandoning the sweep to chase a false signal"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Sweep coverage",
+          "metric": "area observed at least once before task end",
+          "target": ">= 95% of AREA-DUNE-S",
+          "verification": "platform coverage grid",
+          "weight": 25
+        },
+        {
+          "id": "CP-2",
+          "name": "Detection",
+          "metric": "beacon detection event",
+          "target": "detected before the task window closes",
+          "verification": "platform sensor log",
+          "weight": 20
+        },
+        {
+          "id": "CP-3",
+          "name": "Localisation",
+          "metric": "error of the transmitted beacon position",
+          "target": "<= 20 m",
+          "verification": "platform ground-truth comparison",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "Marking and handover",
+          "metric": "hover time at the beacon and handover message",
+          "target": "hover >= 10 s and handover message sent",
+          "verification": "platform payload log",
+          "weight": 20
+        },
+        {
+          "id": "CP-5",
+          "name": "No uncovered strip",
+          "metric": "uncovered strips left when detection happens",
+          "target": "0 strips wider than 1.5 x 100",
+          "verification": "platform coverage grid",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T03",
+      "scenario_id": "SC-09",
+      "template_id": "TT-01",
+      "template_name": "Area Coverage Survey",
+      "source": "template",
+      "title": "Coverage survey of BLOCK-ROAD-1 (90% target, 2 UAVs)",
+      "category": "survey",
+      "difficulty": 2,
+      "priority": "normal",
+      "window": {
+        "start_s": 672,
+        "end_s": 1092
+      },
+      "depends_on": [],
+      "agents_required": 2,
+      "params": {
+        "altitude_m": 110,
+        "area": "BLOCK-ROAD-1",
+        "coverage_pct": 90,
+        "lz": "LZ-CAMP",
+        "min_sep_m": 25,
+        "sidelap_pct": 25,
+        "uav_count": 2
+      },
+      "brief": "Your team must survey the block BLOCK-ROAD-1 completely. Fly parallel tracks at 110 m AGL with 25 % side overlap and keep every UAV 25 m apart. The survey is accepted only when the reported coverage of the block is at least 90 %. Recover to LZ-CAMP when the coverage target is met or the task window closes.",
+      "objective": "Fly a complete parallel-track survey of BLOCK-ROAD-1 with 2 UAVs at 110 m AGL and deliver a coverage record that reaches at least 90 % of the block with 25 % side overlap between adjacent tracks.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "decompose BLOCK-ROAD-1 into 2 track strips",
+            "assign one strip set per UAV",
+            "declare track spacing and heading"
+          ],
+          "output": "track plan with strip ids and entry points"
+        },
+        {
+          "phase": "2-launch",
+          "actions": [
+            "take off in sequence",
+            "climb to 110 m",
+            "form a safe line before entering the block"
+          ],
+          "output": "airborne team inside the block"
+        },
+        {
+          "phase": "3-survey",
+          "actions": [
+            "fly strips with 25 % side overlap",
+            "report coverage after each strip",
+            "re-fly any strip that reports a gap"
+          ],
+          "output": "coverage record per strip"
+        },
+        {
+          "phase": "4-verify",
+          "actions": [
+            "aggregate coverage raster",
+            "compare with 90 % target",
+            "declare complete or request a re-fly"
+          ],
+          "output": "coverage verification statement"
+        },
+        {
+          "phase": "5-recover",
+          "actions": [
+            "leave the block",
+            "land at LZ-CAMP with separation",
+            "report per-UAV flight time"
+          ],
+          "output": "recovered fleet"
+        }
+      ],
+      "constraints": [
+        "minimum separation 25 m at all times",
+        "single sortie per UAV for this task",
+        "no manual pilot override"
+      ],
+      "failure_conditions": [
+        "any UAV leaves the geofence",
+        "any UAV enters a no-fly zone",
+        "coverage below 60% when the task window closes",
+        "loss-of-control or collision flag"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Team launch",
+          "metric": "elapsed time from task start to last UAV inside BLOCK-ROAD-1",
+          "target": "<= 120 s and all 2 UAVs airborne",
+          "verification": "platform event log",
+          "weight": 15
+        },
+        {
+          "id": "CP-2",
+          "name": "Track discipline",
+          "metric": "cross-track error per strip and side overlap between adjacent strips",
+          "target": "cross-track error <= 8 m; overlap >= 25 %",
+          "verification": "platform track raster",
+          "weight": 20
+        },
+        {
+          "id": "CP-3",
+          "name": "Coverage target",
+          "metric": "union coverage of BLOCK-ROAD-1 at the recorded altitude",
+          "target": ">= 90 %",
+          "verification": "platform coverage grid",
+          "weight": 35
+        },
+        {
+          "id": "CP-4",
+          "name": "Airspace integrity",
+          "metric": "time outside geofence and inside no-fly zones",
+          "target": "0 s outside geofence, 0 s inside any no-fly zone",
+          "verification": "platform geofence monitor",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Recovery",
+          "metric": "landing separation and hard-landing flag",
+          "target": "all UAVs on ground at LZ-CAMP, separation >= 10 m, no hard landing",
+          "verification": "platform landing log",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T04",
+      "scenario_id": "SC-09",
+      "template_id": "TT-01",
+      "template_name": "Area Coverage Survey",
+      "source": "template",
+      "title": "Coverage survey of BLOCK-ROAD-2 (90% target, 2 UAVs)",
+      "category": "survey",
+      "difficulty": 2,
+      "priority": "normal",
+      "window": {
+        "start_s": 798,
+        "end_s": 1218
+      },
+      "depends_on": [],
+      "agents_required": 2,
+      "params": {
+        "altitude_m": 110,
+        "area": "BLOCK-ROAD-2",
+        "coverage_pct": 90,
+        "lz": "LZ-ROADSTOP",
+        "min_sep_m": 25,
+        "sidelap_pct": 25,
+        "uav_count": 2
+      },
+      "brief": "Your team must survey the block BLOCK-ROAD-2 completely. Fly parallel tracks at 110 m AGL with 25 % side overlap and keep every UAV 25 m apart. The survey is accepted only when the reported coverage of the block is at least 90 %. Recover to LZ-ROADSTOP when the coverage target is met or the task window closes.",
+      "objective": "Fly a complete parallel-track survey of BLOCK-ROAD-2 with 2 UAVs at 110 m AGL and deliver a coverage record that reaches at least 90 % of the block with 25 % side overlap between adjacent tracks.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "decompose BLOCK-ROAD-2 into 2 track strips",
+            "assign one strip set per UAV",
+            "declare track spacing and heading"
+          ],
+          "output": "track plan with strip ids and entry points"
+        },
+        {
+          "phase": "2-launch",
+          "actions": [
+            "take off in sequence",
+            "climb to 110 m",
+            "form a safe line before entering the block"
+          ],
+          "output": "airborne team inside the block"
+        },
+        {
+          "phase": "3-survey",
+          "actions": [
+            "fly strips with 25 % side overlap",
+            "report coverage after each strip",
+            "re-fly any strip that reports a gap"
+          ],
+          "output": "coverage record per strip"
+        },
+        {
+          "phase": "4-verify",
+          "actions": [
+            "aggregate coverage raster",
+            "compare with 90 % target",
+            "declare complete or request a re-fly"
+          ],
+          "output": "coverage verification statement"
+        },
+        {
+          "phase": "5-recover",
+          "actions": [
+            "leave the block",
+            "land at LZ-ROADSTOP with separation",
+            "report per-UAV flight time"
+          ],
+          "output": "recovered fleet"
+        }
+      ],
+      "constraints": [
+        "minimum separation 25 m at all times",
+        "single sortie per UAV for this task",
+        "no manual pilot override"
+      ],
+      "failure_conditions": [
+        "any UAV leaves the geofence",
+        "any UAV enters a no-fly zone",
+        "coverage below 60% when the task window closes",
+        "loss-of-control or collision flag"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Team launch",
+          "metric": "elapsed time from task start to last UAV inside BLOCK-ROAD-2",
+          "target": "<= 120 s and all 2 UAVs airborne",
+          "verification": "platform event log",
+          "weight": 15
+        },
+        {
+          "id": "CP-2",
+          "name": "Track discipline",
+          "metric": "cross-track error per strip and side overlap between adjacent strips",
+          "target": "cross-track error <= 8 m; overlap >= 25 %",
+          "verification": "platform track raster",
+          "weight": 20
+        },
+        {
+          "id": "CP-3",
+          "name": "Coverage target",
+          "metric": "union coverage of BLOCK-ROAD-2 at the recorded altitude",
+          "target": ">= 90 %",
+          "verification": "platform coverage grid",
+          "weight": 35
+        },
+        {
+          "id": "CP-4",
+          "name": "Airspace integrity",
+          "metric": "time outside geofence and inside no-fly zones",
+          "target": "0 s outside geofence, 0 s inside any no-fly zone",
+          "verification": "platform geofence monitor",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Recovery",
+          "metric": "landing separation and hard-landing flag",
+          "target": "all UAVs on ground at LZ-ROADSTOP, separation >= 10 m, no hard landing",
+          "verification": "platform landing log",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T05",
+      "scenario_id": "SC-09",
+      "template_id": "TT-02",
+      "template_name": "Point Inspection",
+      "source": "template",
+      "title": "Point inspection of POI-TRUCK (25 m standoff, 5 images)",
+      "category": "inspection",
+      "difficulty": 2,
+      "priority": "normal",
+      "window": {
+        "start_s": 840,
+        "end_s": 1140
+      },
+      "depends_on": [],
+      "agents_required": 1,
+      "params": {
+        "capture_alt_m": 35,
+        "hover_s": 10,
+        "images": 5,
+        "lz": "LZ-CAMP",
+        "min_sep_m": 10,
+        "pitch_deg": 30,
+        "poi": "POI-TRUCK",
+        "standoff_m": 25,
+        "uav_sep_m": 30
+      },
+      "brief": "Inspect POI-TRUCK. Hold a standoff of 25 m (tolerance 3 m) at 35 m AGL, aim the gimbal 30 deg down and take at least 5 images per face. Hover at least 10 s at each capture point so the image is stable. Do not enter the 10 m keep-out radius around POI-TRUCK and keep 30 m from your teammate.",
+      "objective": "Inspect POI-TRUCK from 25 m standoff at 35 m AGL, capture at least 5 images per viewing angle with the gimbal pitched 30 deg down, and hold each capture position for 10 s.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "choose approach azimuth",
+            "split capture angles between UAVs",
+            "declare hover points"
+          ],
+          "output": "inspection plan with capture points"
+        },
+        {
+          "phase": "2-approach",
+          "actions": [
+            "climb to 35 m",
+            "move to the 25 m standoff ring"
+          ],
+          "output": "stable standoff positions"
+        },
+        {
+          "phase": "3-capture",
+          "actions": [
+            "hover 10 s per point",
+            "capture 5 images per angle with 30 deg pitch"
+          ],
+          "output": "image set with metadata"
+        },
+        {
+          "phase": "4-verify",
+          "actions": [
+            "check image count and pitch per angle",
+            "re-capture any angle short of 5 images"
+          ],
+          "output": "inspection verification"
+        },
+        {
+          "phase": "5-depart",
+          "actions": [
+            "retreat along the planned azimuth",
+            "land or hand over"
+          ],
+          "output": "cleared airspace around the target"
+        }
+      ],
+      "constraints": [
+        "hover only at declared capture points",
+        "no flight below 35 m in the inspection ring"
+      ],
+      "failure_conditions": [
+        "entering the 10 m keep-out radius",
+        "fewer than one complete angle set at task end",
+        "loss of link during capture with no recovery"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Standoff",
+          "metric": "horizontal distance to POI-TRUCK during capture",
+          "target": "25 +/- 3 m",
+          "verification": "platform range telemetry",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Image set",
+          "metric": "images captured per viewing angle at 35 m",
+          "target": ">= 5 images for each of >= 3 angles",
+          "verification": "platform payload log",
+          "weight": 30
+        },
+        {
+          "id": "CP-3",
+          "name": "Hover stability",
+          "metric": "hover time at each declared capture point",
+          "target": ">= 10 s per point",
+          "verification": "platform state log",
+          "weight": 15
+        },
+        {
+          "id": "CP-4",
+          "name": "Gimbal aim",
+          "metric": "gimbal pitch during capture",
+          "target": "30 deg +/- 5 deg",
+          "verification": "gimbal telemetry",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Separation",
+          "metric": "UAV-to-UAV distance and UAV-to-target distance",
+          "target": ">= 30 m between UAVs and >= 10 m to the target",
+          "verification": "platform proximity monitor",
+          "weight": 20
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T06",
+      "scenario_id": "SC-09",
+      "template_id": "TT-02",
+      "template_name": "Point Inspection",
+      "source": "template",
+      "title": "Point inspection of POI-WELL (20 m standoff, 4 images)",
+      "category": "inspection",
+      "difficulty": 2,
+      "priority": "normal",
+      "window": {
+        "start_s": 966,
+        "end_s": 1266
+      },
+      "depends_on": [],
+      "agents_required": 1,
+      "params": {
+        "capture_alt_m": 30,
+        "hover_s": 8,
+        "images": 4,
+        "lz": "LZ-CAMP",
+        "min_sep_m": 10,
+        "pitch_deg": 30,
+        "poi": "POI-WELL",
+        "standoff_m": 20,
+        "uav_sep_m": 25
+      },
+      "brief": "Inspect POI-WELL. Hold a standoff of 20 m (tolerance 3 m) at 30 m AGL, aim the gimbal 30 deg down and take at least 4 images per face. Hover at least 8 s at each capture point so the image is stable. Do not enter the 10 m keep-out radius around POI-WELL and keep 25 m from your teammate.",
+      "objective": "Inspect POI-WELL from 20 m standoff at 30 m AGL, capture at least 4 images per viewing angle with the gimbal pitched 30 deg down, and hold each capture position for 8 s.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "choose approach azimuth",
+            "split capture angles between UAVs",
+            "declare hover points"
+          ],
+          "output": "inspection plan with capture points"
+        },
+        {
+          "phase": "2-approach",
+          "actions": [
+            "climb to 30 m",
+            "move to the 20 m standoff ring"
+          ],
+          "output": "stable standoff positions"
+        },
+        {
+          "phase": "3-capture",
+          "actions": [
+            "hover 8 s per point",
+            "capture 4 images per angle with 30 deg pitch"
+          ],
+          "output": "image set with metadata"
+        },
+        {
+          "phase": "4-verify",
+          "actions": [
+            "check image count and pitch per angle",
+            "re-capture any angle short of 4 images"
+          ],
+          "output": "inspection verification"
+        },
+        {
+          "phase": "5-depart",
+          "actions": [
+            "retreat along the planned azimuth",
+            "land or hand over"
+          ],
+          "output": "cleared airspace around the target"
+        }
+      ],
+      "constraints": [
+        "hover only at declared capture points",
+        "no flight below 30 m in the inspection ring"
+      ],
+      "failure_conditions": [
+        "entering the 10 m keep-out radius",
+        "fewer than one complete angle set at task end",
+        "loss of link during capture with no recovery"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Standoff",
+          "metric": "horizontal distance to POI-WELL during capture",
+          "target": "20 +/- 3 m",
+          "verification": "platform range telemetry",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Image set",
+          "metric": "images captured per viewing angle at 30 m",
+          "target": ">= 4 images for each of >= 3 angles",
+          "verification": "platform payload log",
+          "weight": 30
+        },
+        {
+          "id": "CP-3",
+          "name": "Hover stability",
+          "metric": "hover time at each declared capture point",
+          "target": ">= 8 s per point",
+          "verification": "platform state log",
+          "weight": 15
+        },
+        {
+          "id": "CP-4",
+          "name": "Gimbal aim",
+          "metric": "gimbal pitch during capture",
+          "target": "30 deg +/- 5 deg",
+          "verification": "gimbal telemetry",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Separation",
+          "metric": "UAV-to-UAV distance and UAV-to-target distance",
+          "target": ">= 25 m between UAVs and >= 10 m to the target",
+          "verification": "platform proximity monitor",
+          "weight": 20
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T07",
+      "scenario_id": "SC-09",
+      "template_id": "TT-02",
+      "template_name": "Point Inspection",
+      "source": "template",
+      "title": "Point inspection of POI-CAMP (20 m standoff, 4 images)",
+      "category": "inspection",
+      "difficulty": 2,
+      "priority": "normal",
+      "window": {
+        "start_s": 1092,
+        "end_s": 1392
+      },
+      "depends_on": [],
+      "agents_required": 1,
+      "params": {
+        "capture_alt_m": 40,
+        "hover_s": 8,
+        "images": 4,
+        "lz": "LZ-CAMP",
+        "min_sep_m": 10,
+        "pitch_deg": 15,
+        "poi": "POI-CAMP",
+        "standoff_m": 20,
+        "uav_sep_m": 25
+      },
+      "brief": "Inspect POI-CAMP. Hold a standoff of 20 m (tolerance 3 m) at 40 m AGL, aim the gimbal 15 deg down and take at least 4 images per face. Hover at least 8 s at each capture point so the image is stable. Do not enter the 10 m keep-out radius around POI-CAMP and keep 25 m from your teammate.",
+      "objective": "Inspect POI-CAMP from 20 m standoff at 40 m AGL, capture at least 4 images per viewing angle with the gimbal pitched 15 deg down, and hold each capture position for 8 s.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "choose approach azimuth",
+            "split capture angles between UAVs",
+            "declare hover points"
+          ],
+          "output": "inspection plan with capture points"
+        },
+        {
+          "phase": "2-approach",
+          "actions": [
+            "climb to 40 m",
+            "move to the 20 m standoff ring"
+          ],
+          "output": "stable standoff positions"
+        },
+        {
+          "phase": "3-capture",
+          "actions": [
+            "hover 8 s per point",
+            "capture 4 images per angle with 15 deg pitch"
+          ],
+          "output": "image set with metadata"
+        },
+        {
+          "phase": "4-verify",
+          "actions": [
+            "check image count and pitch per angle",
+            "re-capture any angle short of 4 images"
+          ],
+          "output": "inspection verification"
+        },
+        {
+          "phase": "5-depart",
+          "actions": [
+            "retreat along the planned azimuth",
+            "land or hand over"
+          ],
+          "output": "cleared airspace around the target"
+        }
+      ],
+      "constraints": [
+        "hover only at declared capture points",
+        "no flight below 40 m in the inspection ring"
+      ],
+      "failure_conditions": [
+        "entering the 10 m keep-out radius",
+        "fewer than one complete angle set at task end",
+        "loss of link during capture with no recovery"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Standoff",
+          "metric": "horizontal distance to POI-CAMP during capture",
+          "target": "20 +/- 3 m",
+          "verification": "platform range telemetry",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Image set",
+          "metric": "images captured per viewing angle at 40 m",
+          "target": ">= 4 images for each of >= 3 angles",
+          "verification": "platform payload log",
+          "weight": 30
+        },
+        {
+          "id": "CP-3",
+          "name": "Hover stability",
+          "metric": "hover time at each declared capture point",
+          "target": ">= 8 s per point",
+          "verification": "platform state log",
+          "weight": 15
+        },
+        {
+          "id": "CP-4",
+          "name": "Gimbal aim",
+          "metric": "gimbal pitch during capture",
+          "target": "15 deg +/- 5 deg",
+          "verification": "gimbal telemetry",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Separation",
+          "metric": "UAV-to-UAV distance and UAV-to-target distance",
+          "target": ">= 25 m between UAVs and >= 10 m to the target",
+          "verification": "platform proximity monitor",
+          "weight": 20
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T08",
+      "scenario_id": "SC-09",
+      "template_id": "TT-09",
+      "template_name": "Grid Sampling and Revisit",
+      "source": "template",
+      "title": "Grid sampling of GRID-SAND (18 points, revisit every 12 min)",
+      "category": "sampling",
+      "difficulty": 3,
+      "priority": "normal",
+      "window": {
+        "start_s": 882,
+        "end_s": 1482
+      },
+      "depends_on": [],
+      "agents_required": 1,
+      "params": {
+        "grid_area": "GRID-SAND",
+        "interval_min": 12,
+        "lz": "LZ-CAMP",
+        "min_sep_m": 20,
+        "n_points": 18,
+        "revisit_count": 2,
+        "sensor": "IR"
+      },
+      "brief": "Sample the 18 points of the GRID-SAND grid with the IR sensor. Every point needs at least 2 samples, taken 12 +/- 2 min apart, and each sample must be geotagged within 5 m. Plan the order so that the revisit interval is respected without waiting on the ground.",
+      "objective": "Collect at least 2 sensor samples at each of 18 grid points inside GRID-SAND with a revisit interval of 12 +/- 2 min, and keep every sample geotagged within 5 m.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "order the 18 points into a route that meets the 12 min revisit",
+            "assign points to UAVs"
+          ],
+          "output": "sampling schedule"
+        },
+        {
+          "phase": "2-sample",
+          "actions": [
+            "fly to each point",
+            "hold >= 3 s and take the IR sample"
+          ],
+          "output": "sample log"
+        },
+        {
+          "phase": "3-revisit",
+          "actions": [
+            "return to each point 12 min after the first sample",
+            "take the repeat sample"
+          ],
+          "output": "revisit log"
+        },
+        {
+          "phase": "4-upload",
+          "actions": [
+            "upload samples",
+            "verify checksums and geotags"
+          ],
+          "output": "complete data set"
+        },
+        {
+          "phase": "5-recover",
+          "actions": [
+            "land at LZ-CAMP"
+          ],
+          "output": "recovered fleet"
+        }
+      ],
+      "constraints": [
+        "hover >= 3 s at every point",
+        "no sampling above 30 m AGL"
+      ],
+      "failure_conditions": [
+        "fewer than half of the points visited",
+        "revisit interval outside 50% tolerance",
+        "corrupted sample set"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Sample completeness",
+          "metric": "samples collected per grid point",
+          "target": ">= 2 samples at all 18 points",
+          "verification": "platform payload log",
+          "weight": 30
+        },
+        {
+          "id": "CP-2",
+          "name": "Revisit timing",
+          "metric": "interval between samples at the same point",
+          "target": "12 +/- 2 min",
+          "verification": "platform payload log",
+          "weight": 20
+        },
+        {
+          "id": "CP-3",
+          "name": "Geotag accuracy",
+          "metric": "sample position error",
+          "target": "<= 5 m per sample",
+          "verification": "platform payload metadata",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "Data integrity",
+          "metric": "uploaded samples and checksum status",
+          "target": "100% uploaded, checksums OK",
+          "verification": "platform data log",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Recovery",
+          "metric": "all UAVs landed at LZ-CAMP",
+          "target": "all on ground, no hard landing",
+          "verification": "platform landing log",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T09",
+      "scenario_id": "SC-09",
+      "template_id": "TT-07",
+      "template_name": "Communication Relay Chain",
+      "source": "template",
+      "title": "Relay chain between GS-CAMP and GS-ROADSTOP (3 hops, 15 min)",
+      "category": "comms",
+      "difficulty": 3,
+      "priority": "normal",
+      "window": {
+        "start_s": 1050,
+        "end_s": 1650
+      },
+      "depends_on": [],
+      "agents_required": 2,
+      "params": {
+        "chain_alt_m": 180,
+        "hold_min": 15,
+        "hops": 3,
+        "lz": "LZ-CAMP",
+        "min_rssi_dbm": -92,
+        "min_sep_m": 150,
+        "separation_m": 6800,
+        "site_a": "GS-CAMP",
+        "site_b": "GS-ROADSTOP"
+      },
+      "brief": "Link GS-CAMP and GS-ROADSTOP, which are 6800 m apart and cannot see each other. Fly a relay chain of 3 UAVs at 180 m AGL, keep the end-to-end link above -92 dBm for 15 min, and rebuild the chain within 45 s if a relay drops. No UAV may hover closer than 150 m to another.",
+      "objective": "Position 3 UAVs so that GS-CAMP and GS-ROADSTOP keep an end-to-end link with RSSI >= -92 dBm for 15 min, and rebuild the chain within 45 s if one relay is lost.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "compute relay positions on the GS-CAMP-GS-ROADSTOP line",
+            "assign one altitude per relay to reduce interference"
+          ],
+          "output": "relay slot table"
+        },
+        {
+          "phase": "2-deploy",
+          "actions": [
+            "fly to the slots at 180 m",
+            "declare link up"
+          ],
+          "output": "chain established"
+        },
+        {
+          "phase": "3-hold",
+          "actions": [
+            "hold the slots for 15 min",
+            "report RSSI every minute"
+          ],
+          "output": "link quality log"
+        },
+        {
+          "phase": "4-recover-link",
+          "actions": [
+            "replace a lost relay within 45 s",
+            "re-balance the slots"
+          ],
+          "output": "link restored"
+        },
+        {
+          "phase": "5-withdraw",
+          "actions": [
+            "hand over or land at LZ-CAMP"
+          ],
+          "output": "recovered fleet"
+        }
+      ],
+      "constraints": [
+        "relay altitude >= 180 m - 20 m",
+        "no relay outside the geofence"
+      ],
+      "failure_conditions": [
+        "link down for more than 60 s in total",
+        "relay chain not established by t = 300 s",
+        "both relays hovering at the same slot"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Chain setup",
+          "metric": "time to first end-to-end link",
+          "target": "<= 180 s",
+          "verification": "platform link log",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Link continuity",
+          "metric": "fraction of 15 min with RSSI >= -92 dBm",
+          "target": ">= 98%",
+          "verification": "platform link log",
+          "weight": 30
+        },
+        {
+          "id": "CP-3",
+          "name": "Re-form after loss",
+          "metric": "time to restore the link after an injected relay loss",
+          "target": "<= 45 s",
+          "verification": "platform link log",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "Packet delivery",
+          "metric": "end-to-end packet loss",
+          "target": "<= 2%",
+          "verification": "platform link statistic",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Relay separation",
+          "metric": "distance between relay stations",
+          "target": ">= 150 m",
+          "verification": "platform proximity monitor",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T10",
+      "scenario_id": "SC-09",
+      "template_id": "TT-04",
+      "template_name": "Formation Corridor Transit",
+      "source": "template",
+      "title": "Formation transit through CORRIDOR-WADI (column, 30 m spacing)",
+      "category": "formation",
+      "difficulty": 3,
+      "priority": "normal",
+      "window": {
+        "start_s": 1302,
+        "end_s": 1602
+      },
+      "depends_on": [],
+      "agents_required": 3,
+      "params": {
+        "corridor": "CORRIDOR-WADI",
+        "corridor_width_m": 150,
+        "emcon": false,
+        "emcon_target": "link held, >= 1 status report per 60 s",
+        "entry": "WP-ENTRY-W",
+        "exit": "WP-EXIT-E",
+        "formation": "column",
+        "lz": "LZ-CAMP",
+        "min_sep_m": 20,
+        "spacing_m": 30,
+        "time_budget_s": 600
+      },
+      "brief": "Fly from WP-ENTRY-W to WP-EXIT-E through CORRIDOR-WADI in a column formation with 30 m spacing. Assemble the formation before the corridor entry; inside the corridor there are obstacle edges within 150 m. Keep formation error small, never trigger a separation warning, and complete the transit within 600 s.",
+      "objective": "Assemble a column formation with 30 m spacing and transit CORRIDOR-WADI end to end within 600 s, keeping formation error within tolerance and no separation conflict.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "choose the formation geometry and slot assignment",
+            "pick entry and exit alignment"
+          ],
+          "output": "slot table"
+        },
+        {
+          "phase": "2-assemble",
+          "actions": [
+            "hold at the staging point",
+            "build the column formation with 30 m spacing"
+          ],
+          "output": "formation ready at entry"
+        },
+        {
+          "phase": "3-transit",
+          "actions": [
+            "fly the corridor at constant speed",
+            "correct drift back to slot"
+          ],
+          "output": "fleet at the exit"
+        },
+        {
+          "phase": "4-verify",
+          "actions": [
+            "check formation error at exit",
+            "report transit time"
+          ],
+          "output": "transit statement"
+        },
+        {
+          "phase": "5-recover",
+          "actions": [
+            "break formation safely",
+            "land at LZ-CAMP"
+          ],
+          "output": "recovered fleet"
+        }
+      ],
+      "constraints": [
+        "constant speed inside the corridor",
+        "no re-planning that changes slot order mid-corridor"
+      ],
+      "failure_conditions": [
+        "corridor obstacle strike",
+        "formation broken for more than 30 s",
+        "UAV exits the corridor volume"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Formation assembly",
+          "metric": "formation error at corridor entry",
+          "target": "<= 0.5 x 30 m at entry",
+          "verification": "platform formation monitor",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Formation hold",
+          "metric": "mean and peak formation error inside the corridor",
+          "target": "mean <= 3 m, peak <= 6 m",
+          "verification": "platform formation monitor",
+          "weight": 30
+        },
+        {
+          "id": "CP-3",
+          "name": "Transit time",
+          "metric": "time from entry to exit",
+          "target": "<= 600 s",
+          "verification": "platform event log",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "Separation safety",
+          "metric": "separation warnings between members",
+          "target": "0 warnings below the 30 m nominal spacing minus 30%",
+          "verification": "platform proximity monitor",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Comms discipline",
+          "metric": "radio transmissions inside the corridor",
+          "target": "link held, >= 1 status report per 60 s",
+          "verification": "platform link log",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T11",
+      "scenario_id": "SC-09",
+      "template_id": "TT-08",
+      "template_name": "Multi-Target Tracking",
+      "source": "template",
+      "title": "Track 2 moving targets in AREA-DEBRIS (10 min)",
+      "category": "tracking",
+      "difficulty": 4,
+      "priority": "high",
+      "window": {
+        "start_s": 1092,
+        "end_s": 1512
+      },
+      "depends_on": [],
+      "agents_required": 2,
+      "params": {
+        "duration_min": 10,
+        "lz": "LZ-ROADSTOP",
+        "max_standoff_m": 350,
+        "min_sep_m": 25,
+        "min_standoff_m": 100,
+        "n_targets": 2,
+        "track_area": "AREA-DEBRIS"
+      },
+      "brief": "2 vehicles move inside AREA-DEBRIS. Keep every target under continuous observation for 10 min from no closer than 100 m and no further than 350 m. When a target crosses into another UAV's sector, hand it over so that no track is lost for more than 10 s. Report target count and positions every 30 s.",
+      "objective": "Track 2 independent ground targets inside AREA-DEBRIS for 10 min, keeping each target locked for at least 90% of the time and handing targets between UAVs without losing track.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "divide AREA-DEBRIS into observation sectors",
+            "assign primary and backup observed per sector"
+          ],
+          "output": "sector and target assignment"
+        },
+        {
+          "phase": "2-acquire",
+          "actions": [
+            "find all 2 targets",
+            "declare lock per target"
+          ],
+          "output": "all targets locked"
+        },
+        {
+          "phase": "3-maintain",
+          "actions": [
+            "keep standoff between 100 and 350 m",
+            "report counts every 30 s"
+          ],
+          "output": "track log"
+        },
+        {
+          "phase": "4-handoff",
+          "actions": [
+            "hand targets that cross sectors",
+            "confirm the receiving UAV has the lock"
+          ],
+          "output": "handoff records"
+        },
+        {
+          "phase": "5-complete",
+          "actions": [
+            "report final target set",
+            "recover to LZ-ROADSTOP"
+          ],
+          "output": "tracking summary"
+        }
+      ],
+      "constraints": [
+        "no target identification reveal before classification is complete",
+        "no descent below 50 m over the track area"
+      ],
+      "failure_conditions": [
+        "two or more targets lost at the same time",
+        "entering the 100 m standoff of any target",
+        "UAV-UAV separation warning"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Acquisition",
+          "metric": "time until all 2 targets are locked",
+          "target": "<= 120 s",
+          "verification": "platform tracking log",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Per-target continuity",
+          "metric": "fraction of 10 min with each target locked",
+          "target": ">= 90% per target",
+          "verification": "platform tracking log",
+          "weight": 30
+        },
+        {
+          "id": "CP-3",
+          "name": "Standoff window",
+          "metric": "distance to tracked targets",
+          "target": "all lock samples within 100-350 m",
+          "verification": "platform range telemetry",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "Handoff quality",
+          "metric": "track gap during sector handoff",
+          "target": "no gap longer than 10 s",
+          "verification": "platform tracking log",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Safety",
+          "metric": "separation between tracking UAVs",
+          "target": ">= 40 m at all times",
+          "verification": "platform proximity monitor",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T12",
+      "scenario_id": "SC-09",
+      "template_id": "TT-05",
+      "template_name": "Perimeter Patrol and Intrusion Response",
+      "source": "template",
+      "title": "Perimeter patrol and intrusion response at PERIM-CAMP (sector S2)",
+      "category": "security",
+      "difficulty": 3,
+      "priority": "high",
+      "window": {
+        "start_s": 1134,
+        "end_s": 1554
+      },
+      "depends_on": [],
+      "agents_required": 2,
+      "params": {
+        "detect_window_s": 60,
+        "intercept_radius_m": 300,
+        "intruder_sector": "S2",
+        "loop_period_s": 240,
+        "lz": "LZ-CAMP",
+        "min_sep_m": 20,
+        "patrol_alt_m": 90,
+        "perimeter": "PERIM-CAMP"
+      },
+      "brief": "Patrol the closed perimeter PERIM-CAMP at 90 m, one UAV per assigned sector, and log a complete loop every 240 s. An intruder will enter from sector S2; detect it within 60 s, identify it (hover >= 5 s within 60 m) and shadow it while it stays within 300 m of the perimeter. Do not leave the geofence while chasing.",
+      "objective": "Keep a continuous patrol of PERIM-CAMP at 90 m, detect an intrusion entering at sector S2 within 60 s, identify it positively and shadow it inside 300 m of the perimeter.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "split PERIM-CAMP into sectors",
+            "assign one UAV per sector with overlap"
+          ],
+          "output": "sector plan"
+        },
+        {
+          "phase": "2-patrol",
+          "actions": [
+            "fly the loop at 90 m",
+            "report loop completion each 240 s"
+          ],
+          "output": "continuous patrol log"
+        },
+        {
+          "phase": "3-detect",
+          "actions": [
+            "report the intrusion within 60 s",
+            "hand the track to the nearest UAV"
+          ],
+          "output": "intrusion track"
+        },
+        {
+          "phase": "4-identify",
+          "actions": [
+            "close to 60 m",
+            "hover 5 s for identification",
+            "shadow within 300 m"
+          ],
+          "output": "identification record"
+        },
+        {
+          "phase": "5-resume",
+          "actions": [
+            "return to the abandoned sector",
+            "rebuild the patrol loop"
+          ],
+          "output": "patrol restored"
+        }
+      ],
+      "constraints": [
+        "minimum altitude 90 m - 20 m",
+        "no pursuit outside 300 m"
+      ],
+      "failure_conditions": [
+        "perimeter left uncovered for more than 120 s",
+        "geofence breach during the pursuit",
+        "intruder never detected"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Patrol continuity",
+          "metric": "perimeter length covered per loop and loop period",
+          "target": ">= 90% of the perimeter each loop, period <= 240 s",
+          "verification": "platform route log",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Detection latency",
+          "metric": "time from intrusion to first detection report",
+          "target": "<= 60 s",
+          "verification": "platform detection log",
+          "weight": 25
+        },
+        {
+          "id": "CP-3",
+          "name": "Positive identification",
+          "metric": "hover time within 60 m of the intruder",
+          "target": ">= 5 s hover and ID record submitted",
+          "verification": "platform payload/ID log",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "Shadowing",
+          "metric": "intruder distance from the perimeter while shadowed",
+          "target": "intruder never beyond 300 m unshadowed for > 20 s",
+          "verification": "platform track log",
+          "weight": 20
+        },
+        {
+          "id": "CP-5",
+          "name": "Patrol resume",
+          "metric": "time to restore the abandoned sector",
+          "target": "<= 90 s after the intruder leaves",
+          "verification": "platform route log",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T13",
+      "scenario_id": "SC-09",
+      "template_id": "TT-03",
+      "template_name": "Payload Delivery",
+      "source": "template",
+      "title": "Payload delivery to DZ-CAMP (1.5 kg, +/-4 m)",
+      "category": "logistics",
+      "difficulty": 2,
+      "priority": "normal",
+      "window": {
+        "start_s": 924,
+        "end_s": 1344
+      },
+      "depends_on": [],
+      "agents_required": 2,
+      "params": {
+        "accuracy_m": 4,
+        "deadline_s": 900,
+        "drop_alt_m": 15,
+        "drop_zone": "DZ-CAMP",
+        "lz": "LZ-CAMP",
+        "min_sep_m": 20,
+        "payload_kg": 1.5,
+        "pickup": "PICKUP-CAMP"
+      },
+      "brief": "Deliver 1.5 kg from PICKUP-CAMP to DZ-CAMP before t = 900 s. Release from at least 15 m so the payload is not damaged; the landing point must be within 4 m of the drop-zone centre and the impact speed below 3 m/s. One teammate may carry the payload while the other screens the corridor. Recover to LZ-CAMP afterwards.",
+      "objective": "Move 1.5 kg from PICKUP-CAMP to DZ-CAMP and release it so that the impact point is within 4 m of the drop-zone centre, with an impact speed below 3 m/s.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "choose the delivery UAV and the escort role",
+            "pick a route that avoids no-fly zones"
+          ],
+          "output": "route and role assignment"
+        },
+        {
+          "phase": "2-pickup",
+          "actions": [
+            "land or hover at PICKUP-CAMP",
+            "latch the payload",
+            "verify mass reading"
+          ],
+          "output": "payload latched"
+        },
+        {
+          "phase": "3-transit",
+          "actions": [
+            "fly the route",
+            "report position on corridor waypoints"
+          ],
+          "output": "arrival over DZ-CAMP"
+        },
+        {
+          "phase": "4-drop",
+          "actions": [
+            "descend to 15 m",
+            "align within 4 m of the centre",
+            "release and confirm"
+          ],
+          "output": "payload on the ground"
+        },
+        {
+          "phase": "5-recover",
+          "actions": [
+            "climb clear of the drop area",
+            "land at LZ-CAMP"
+          ],
+          "output": "recovered fleet"
+        }
+      ],
+      "constraints": [
+        "single payload per task",
+        "no release over a no-fly zone",
+        "escort UAV keeps >= 20 m from the carrier"
+      ],
+      "failure_conditions": [
+        "payload released above 25 m",
+        "payload damage flag raised",
+        "delivery after the task window closes"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Payload secured",
+          "metric": "latch event and mass reading",
+          "target": "payload latched at PICKUP-CAMP before t = 120 s",
+          "verification": "platform payload telemetry",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Drop accuracy",
+          "metric": "distance from impact point to DZ-CAMP centre",
+          "target": "<= 4 m",
+          "verification": "platform impact record",
+          "weight": 30
+        },
+        {
+          "id": "CP-3",
+          "name": "Payload integrity",
+          "metric": "impact speed and damage flag",
+          "target": "impact speed < 3 m/s and damage flag = 0",
+          "verification": "platform impact record",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "Time budget",
+          "metric": "release time",
+          "target": "<= 900 s after task start",
+          "verification": "platform event log",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Recovery",
+          "metric": "all UAVs landed",
+          "target": "all UAVs on the ground at LZ-CAMP",
+          "verification": "platform landing log",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T14",
+      "scenario_id": "SC-09",
+      "template_id": "TT-10",
+      "template_name": "Fault-Tolerant Reallocation and Return",
+      "source": "template",
+      "title": "Fault recovery for UAV-3 (GPS at t=600 s) during AREA-DUNE-N",
+      "category": "recovery",
+      "difficulty": 5,
+      "priority": "critical",
+      "window": {
+        "start_s": 2436,
+        "end_s": 2916
+      },
+      "depends_on": [
+        "SC-09-T01"
+      ],
+      "agents_required": 3,
+      "params": {
+        "critical_coverage_pct": 75,
+        "critical_task": "AREA-DUNE-N",
+        "fault_at_s": 600,
+        "fault_type": "GPS",
+        "fault_uav": "UAV-3",
+        "lz": "LZ-CAMP",
+        "min_sep_m": 20,
+        "rtb_zone": "LZ-CAMP"
+      },
+      "brief": "During AREA-DUNE-N the UAV UAV-3 will suffer a GPS fault at about t = 600 s. The mission still requires at least 75 % of the critical work. Reallocate the faulted UAV's share within 90 s of the fault declaration, keep the remaining work safe, and bring UAV-3 back to LZ-CAMP without breaching the geofence. Report what was dropped.",
+      "objective": "When UAV-3 declares a GPS fault at t = 600 s, reallocate its share of AREA-DUNE-N to the remaining fleet so that critical coverage stays above 75 %, and recover UAV-3 to LZ-CAMP without any other conflict.",
+      "mission_phases": [
+        {
+          "phase": "1-detect",
+          "actions": [
+            "receive the fault declaration",
+            "confirm the degraded capability"
+          ],
+          "output": "fault statement within 30 s"
+        },
+        {
+          "phase": "2-reallocate",
+          "actions": [
+            "re-split the faulted UAV's remaining work",
+            "declare new assignments"
+          ],
+          "output": "reallocation plan within 90 s"
+        },
+        {
+          "phase": "3-continue",
+          "actions": [
+            "fly the reallocated work",
+            "keep 75 % coverage"
+          ],
+          "output": "continued mission"
+        },
+        {
+          "phase": "4-recover",
+          "actions": [
+            "route UAV-3 to LZ-CAMP",
+            "land it safely"
+          ],
+          "output": "faulted UAV on the ground"
+        },
+        {
+          "phase": "5-report",
+          "actions": [
+            "report dropped work and residual risk",
+            "propose a resume plan"
+          ],
+          "output": "recovery report"
+        }
+      ],
+      "constraints": [
+        "faulted UAV may not continue work after the declaration",
+        "no new task may be started after t = 600 s"
+      ],
+      "failure_conditions": [
+        "fault not reported within 120 s",
+        "faulted UAV crashes or lands outside LZ-CAMP",
+        "critical coverage falls below 60%"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Fault declaration",
+          "metric": "time from injection to acknowledged fault report",
+          "target": "<= 30 s",
+          "verification": "platform event log",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Reallocation",
+          "metric": "time to publish new assignments and coverage kept afterwards",
+          "target": "<= 90 s and >= 75 % of AREA-DUNE-N",
+          "verification": "platform coverage grid",
+          "weight": 30
+        },
+        {
+          "id": "CP-3",
+          "name": "Safe return",
+          "metric": "landing of UAV-3 at LZ-CAMP, geofence events",
+          "target": "landed at LZ-CAMP, 0 geofence breaches",
+          "verification": "platform landing log",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "Deconfliction",
+          "metric": "separation warnings during the replan",
+          "target": "0 warnings below 30 m",
+          "verification": "platform proximity monitor",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Recovery report",
+          "metric": "work dropped and resume plan submitted",
+          "target": "report contains dropped tasks and a resume plan",
+          "verification": "platform report channel",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T15",
+      "scenario_id": "SC-09",
+      "template_id": "CP-A",
+      "template_name": "Emergency MEDEVAC Delivery with Escort",
+      "source": "composite",
+      "title": "Priority MEDEVAC delivery to DZ-CAMP with escort",
+      "category": "composite",
+      "difficulty": 3,
+      "priority": "high",
+      "window": {
+        "start_s": 1722,
+        "end_s": 2082
+      },
+      "depends_on": [
+        "SC-09-T13"
+      ],
+      "agents_required": 2,
+      "params": {
+        "accuracy_m": 4,
+        "cruise_mps": 19,
+        "deadline_s": 840,
+        "drop_alt_m": 15,
+        "drop_zone": "DZ-CAMP",
+        "escort_sep_m": 150,
+        "lz": "LZ-CAMP",
+        "min_sep_m": 20,
+        "payload_kg": 1.5
+      },
+      "brief": "A casualty needs the medical kit at DZ-CAMP within 840 s. Fly the carrier on the shortest safe route at 19 m/s, keep the escort 150 m ahead on the corridor, and release within 4 m of the drop-zone centre from at least 15 m. If the corridor is blocked, the escort must declare the blocking object before the carrier enters it.",
+      "objective": "Deliver the 1.5 kg medical kit to DZ-CAMP inside 840 s while the escort UAV screens the corridor and reports any obstruction.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "assign carrier and escort",
+            "declare the corridor to DZ-CAMP"
+          ],
+          "output": "role plan"
+        },
+        {
+          "phase": "2-escort",
+          "actions": [
+            "escort flies 150 m ahead",
+            "declares obstructions"
+          ],
+          "output": "cleared corridor"
+        },
+        {
+          "phase": "3-deliver",
+          "actions": [
+            "release at 15 m within 4 m",
+            "confirm delivery"
+          ],
+          "output": "kit on the ground"
+        },
+        {
+          "phase": "4-recover",
+          "actions": [
+            "both UAVs recover to the nearest landing zone"
+          ],
+          "output": "recovered fleet"
+        }
+      ],
+      "constraints": [
+        "escort never loses sight of the carrier",
+        "no release over people-dense areas"
+      ],
+      "failure_conditions": [
+        "kit released above 25 m",
+        "delivery after the deadline",
+        "carrier enters a corridor section the escort has not cleared"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Role separation",
+          "metric": "escort lead distance and carrier separation",
+          "target": "escort leads by 150 +/- 20 m; carrier-escort >= 40 m",
+          "verification": "platform formation monitor",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Delivery accuracy",
+          "metric": "impact distance to DZ-CAMP centre and impact speed",
+          "target": "<= 4 m and < 3 m/s",
+          "verification": "platform impact record",
+          "weight": 30
+        },
+        {
+          "id": "CP-3",
+          "name": "Deadline",
+          "metric": "release time",
+          "target": "<= 840 s",
+          "verification": "platform event log",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "Obstruction reporting",
+          "metric": "blocking-object reports from the escort before carrier entry",
+          "target": "1 report per blocking object, no carrier entry before the report",
+          "verification": "platform message log",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Recovery",
+          "metric": "both UAVs landed",
+          "target": "both on ground, no hard landing",
+          "verification": "platform landing log",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T16",
+      "scenario_id": "SC-09",
+      "template_id": "CP-C",
+      "template_name": "Dynamic Re-tasking after Wind Shift",
+      "source": "composite",
+      "title": "Re-tasked survey of BLOCK-ROAD-1 after a wind shift at t=420 s",
+      "category": "composite",
+      "difficulty": 4,
+      "priority": "high",
+      "window": {
+        "start_s": 1848,
+        "end_s": 2268
+      },
+      "depends_on": [],
+      "agents_required": 2,
+      "params": {
+        "altitude_m": 110,
+        "area": "BLOCK-ROAD-1",
+        "coverage_pct": 90,
+        "gust_mps": 16,
+        "lz": "LZ-CAMP",
+        "min_sep_m": 20,
+        "shift_at_s": 420,
+        "shift_deg": 70
+      },
+      "brief": "You are surveying BLOCK-ROAD-1 to 90 % at 110 m. At about t = 420 s the wind shifts by 70 deg and gusts to 16 m/s. Continuing on the old track heading will leave gaps, so re-plan the tracks and redistribute the strips. Coverage accuracy still matters more than finishing early.",
+      "objective": "Complete a 90 % survey of BLOCK-ROAD-1 although the wind shifts by 70 deg at t = 420 s, forcing the tracks to be re-planned with a new heading and spacing.",
+      "mission_phases": [
+        {
+          "phase": "1-survey",
+          "actions": [
+            "start the baseline survey",
+            "report coverage per strip"
+          ],
+          "output": "partial coverage"
+        },
+        {
+          "phase": "2-detect-shift",
+          "actions": [
+            "notice the wind shift at 420 s",
+            "declare the affected strips"
+          ],
+          "output": "impact statement"
+        },
+        {
+          "phase": "3-replan",
+          "actions": [
+            "rotate the track heading by the new wind angle",
+            "re-split the remaining area"
+          ],
+          "output": "re-plan"
+        },
+        {
+          "phase": "4-complete",
+          "actions": [
+            "fly the new tracks",
+            "reach 90 %"
+          ],
+          "output": "complete coverage"
+        },
+        {
+          "phase": "5-report",
+          "actions": [
+            "report the re-plan cost in time and energy"
+          ],
+          "output": "re-plan report"
+        }
+      ],
+      "constraints": [
+        "new track heading within +/- 60 deg of the wind-perpendicular",
+        "no re-entry into already covered strips except for overlap control"
+      ],
+      "failure_conditions": [
+        "coverage below 70% at task end",
+        "geofence breach while compensating for the wind",
+        "no re-plan after the shift"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Shift detection",
+          "metric": "time from the shift to the impact statement",
+          "target": "<= 45 s",
+          "verification": "platform event log",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Re-plan quality",
+          "metric": "overlap between old and new track sets and duplicate coverage",
+          "target": "duplicate coverage <= 15% after the shift",
+          "verification": "platform coverage grid",
+          "weight": 20
+        },
+        {
+          "id": "CP-3",
+          "name": "Final coverage",
+          "metric": "union coverage of BLOCK-ROAD-1",
+          "target": ">= 90 %",
+          "verification": "platform coverage grid",
+          "weight": 35
+        },
+        {
+          "id": "CP-4",
+          "name": "Airspace integrity",
+          "metric": "geofence and no-fly-zone events",
+          "target": "0 events",
+          "verification": "platform geofence monitor",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Report",
+          "metric": "re-plan report submitted",
+          "target": "report contains the new heading, spacing and time cost",
+          "verification": "platform report channel",
+          "weight": 10
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T17",
+      "scenario_id": "SC-09",
+      "template_id": "CP-E",
+      "template_name": "Survey Quality Audit",
+      "source": "composite",
+      "title": "Quality audit of the earlier BLOCK-ROAD-2 survey",
+      "category": "composite",
+      "difficulty": 3,
+      "priority": "high",
+      "window": {
+        "start_s": 1470,
+        "end_s": 1890
+      },
+      "depends_on": [
+        "SC-09-T04"
+      ],
+      "agents_required": 1,
+      "params": {
+        "altitude_m": 110,
+        "area": "BLOCK-ROAD-2",
+        "audit_pct": 30,
+        "coverage_pct": 90,
+        "gap_m": 60,
+        "lz": "LZ-CAMP",
+        "min_sep_m": 20,
+        "sweep_width_m": 120
+      },
+      "brief": "BLOCK-ROAD-2 was already surveyed once. As the audit team, re-fly 30 % of the block with a 120 m track spacing at 110 m, compare with the stored survey, and report every gap wider than 60 m. If the audit shows the claim is wrong, state the corrected coverage number and what has to be re-flown.",
+      "objective": "Re-fly 30 % of BLOCK-ROAD-2 and compare it with the earlier survey to decide whether the block meets the 90 % coverage claim, reporting any gap wider than 60 m.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "choose the audited sample of 30 %",
+            "declare the audit tracks"
+          ],
+          "output": "audit plan"
+        },
+        {
+          "phase": "2-fly",
+          "actions": [
+            "fly the audit tracks at 110 m",
+            "record the coverage raster"
+          ],
+          "output": "audit raster"
+        },
+        {
+          "phase": "3-compare",
+          "actions": [
+            "overlay the audit on the stored survey",
+            "list gaps wider than 60 m"
+          ],
+          "output": "gap list"
+        },
+        {
+          "phase": "4-decide",
+          "actions": [
+            "state whether 90 % holds",
+            "define the re-fly set"
+          ],
+          "output": "audit verdict"
+        }
+      ],
+      "constraints": [
+        "audit tracks must not simply repeat the original track headings",
+        "no re-fly of the whole block"
+      ],
+      "failure_conditions": [
+        "audit plan identical to the original tracks",
+        "verdict without a corrected coverage number"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Audit sample",
+          "metric": "fraction of the block actually re-flown",
+          "target": ">= 30 %",
+          "verification": "platform coverage grid",
+          "weight": 25
+        },
+        {
+          "id": "CP-2",
+          "name": "Gap reporting",
+          "metric": "gaps wider than 60 m reported",
+          "target": "all gaps found and reported",
+          "verification": "platform report comparison",
+          "weight": 30
+        },
+        {
+          "id": "CP-3",
+          "name": "Verdict accuracy",
+          "metric": "corrected coverage statement versus ground truth",
+          "target": "corrected coverage within 5 percentage points",
+          "verification": "platform ground truth",
+          "weight": 25
+        },
+        {
+          "id": "CP-4",
+          "name": "Airspace integrity",
+          "metric": "geofence and no-fly-zone events",
+          "target": "0 events",
+          "verification": "platform geofence monitor",
+          "weight": 10
+        },
+        {
+          "id": "CP-5",
+          "name": "Re-fly definition",
+          "metric": "re-fly set defined",
+          "target": "re-fly set submitted with strip ids",
+          "verification": "platform report channel",
+          "weight": 10
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T18",
+      "scenario_id": "SC-09",
+      "template_id": "CP-F",
+      "template_name": "Canyon Transit with Relay",
+      "source": "composite",
+      "title": "Canyon transit of CORRIDOR-WADI with one relay above the rim",
+      "category": "composite",
+      "difficulty": 5,
+      "priority": "high",
+      "window": {
+        "start_s": 1596,
+        "end_s": 2136
+      },
+      "depends_on": [],
+      "agents_required": 3,
+      "params": {
+        "corridor": "CORRIDOR-WADI",
+        "formation": "column",
+        "lz": "LZ-CAMP",
+        "min_rssi_dbm": -92,
+        "min_sep_m": 20,
+        "relay_alt_m": 220,
+        "transit_budget_s": 700,
+        "transit_uavs": 3
+      },
+      "brief": "Fly 3 UAVs through CORRIDOR-WADI in a column formation. The canyon walls block the link to base, so one UAV must stay above the rim at 220 m as a relay for the whole transit and keep the link at -92 dBm or better. If the relay drops below the required link quality, the transit must pause until it is restored.",
+      "objective": "Transit CORRIDOR-WADI with 3 UAVs while one relay stays above the rim so the base keeps a link at RSSI >= -92 dBm for the whole transit.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "assign the relay UAV and its orbit above the rim",
+            "declare the transit formation"
+          ],
+          "output": "relay and transit plan"
+        },
+        {
+          "phase": "2-relay",
+          "actions": [
+            "relay climbs to 220 m and declares link up"
+          ],
+          "output": "link established"
+        },
+        {
+          "phase": "3-transit",
+          "actions": [
+            "transit UAVs enter CORRIDOR-WADI in column",
+            "pause if the link drops"
+          ],
+          "output": "fleet at the exit"
+        },
+        {
+          "phase": "4-recover",
+          "actions": [
+            "relay hands over and lands",
+            "transit UAVs land"
+          ],
+          "output": "recovered fleet"
+        }
+      ],
+      "constraints": [
+        "relay orbit radius <= 200 m",
+        "transit speed <= 8 m/s inside the canyon"
+      ],
+      "failure_conditions": [
+        "relay leaves its orbit during the transit",
+        "transit continues with no link for more than 20 s",
+        "obstacle strike in the corridor"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Relay link",
+          "metric": "fraction of the transit with RSSI >= -92 dBm",
+          "target": ">= 97%",
+          "verification": "platform link log",
+          "weight": 30
+        },
+        {
+          "id": "CP-2",
+          "name": "Transit completion",
+          "metric": "time to move all transit UAVs through CORRIDOR-WADI",
+          "target": "<= 700 s",
+          "verification": "platform event log",
+          "weight": 25
+        },
+        {
+          "id": "CP-3",
+          "name": "Formation integrity",
+          "metric": "formation error inside the corridor",
+          "target": "mean <= 5 m",
+          "verification": "platform formation monitor",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "Pause discipline",
+          "metric": "transits continued while the link was below the floor",
+          "target": "0 corridor metres flown below the link floor",
+          "verification": "platform link and position log",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Recovery",
+          "metric": "all UAVs landed",
+          "target": "all on ground, no hard landing",
+          "verification": "platform landing log",
+          "weight": 10
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T19",
+      "scenario_id": "SC-09",
+      "template_id": "CP-G",
+      "template_name": "Night Thermal Priority Survey",
+      "source": "composite",
+      "title": "Night thermal survey of BLOCK-ROAD-2 (90% target, no RGB)",
+      "category": "composite",
+      "difficulty": 3,
+      "priority": "high",
+      "window": {
+        "start_s": 1722,
+        "end_s": 2142
+      },
+      "depends_on": [],
+      "agents_required": 2,
+      "params": {
+        "altitude_m": 120,
+        "area": "BLOCK-ROAD-2",
+        "confirm_revisit": true,
+        "coverage_pct": 90,
+        "hotspot_c": 200,
+        "lz": "LZ-CAMP",
+        "min_sep_m": 20
+      },
+      "brief": "It is night and only the thermal payload works. Survey BLOCK-ROAD-2 at 120 m to 90 % coverage, and report every thermal hotspot above 200 degC with its position and peak temperature. The RGB camera must not be used, and no illumination is allowed. Re-visit any hotspot once to confirm it before reporting.",
+      "objective": "Survey BLOCK-ROAD-2 at night with the thermal sensor only at 120 m, reaching 90 % coverage and flagging every hotspot above 200 degC.",
+      "mission_phases": [
+        {
+          "phase": "1-plan",
+          "actions": [
+            "plan thermal tracks at 120 m",
+            "declare the hotspot threshold"
+          ],
+          "output": "thermal survey plan"
+        },
+        {
+          "phase": "2-survey",
+          "actions": [
+            "fly the tracks with the thermal payload",
+            "record the thermal mosaic"
+          ],
+          "output": "thermal raster"
+        },
+        {
+          "phase": "3-confirm",
+          "actions": [
+            "re-visit each hotspot once",
+            "record peak temperature"
+          ],
+          "output": "confirmed hotspot list"
+        },
+        {
+          "phase": "4-report",
+          "actions": [
+            "report positions and peaks",
+            "recover"
+          ],
+          "output": "hotspot report"
+        }
+      ],
+      "constraints": [
+        "no illumination",
+        "thermal payload is the only sensor",
+        "altitude >= 60 m"
+      ],
+      "failure_conditions": [
+        "RGB used during the survey",
+        "no illumination allowed: any searchlight event",
+        "coverage below 75%"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Coverage",
+          "metric": "thermal union coverage of BLOCK-ROAD-2",
+          "target": ">= 90 %",
+          "verification": "platform coverage grid",
+          "weight": 30
+        },
+        {
+          "id": "CP-2",
+          "name": "Sensor discipline",
+          "metric": "RGB frames taken during the survey",
+          "target": "0 RGB frames",
+          "verification": "payload log",
+          "weight": 20
+        },
+        {
+          "id": "CP-3",
+          "name": "Hotspot detection",
+          "metric": "hotspots found above 200 degC versus ground truth",
+          "target": ">= 90% of true hotspots, <= 1 false positive",
+          "verification": "payload and ground truth comparison",
+          "weight": 25
+        },
+        {
+          "id": "CP-4",
+          "name": "Confirmation pass",
+          "metric": "re-visits per hotspot",
+          "target": ">= 1 re-visit per reported hotspot",
+          "verification": "payload log",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Recovery",
+          "metric": "all UAVs landed",
+          "target": "all on ground at the nearest landing zone",
+          "verification": "platform landing log",
+          "weight": 10
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    },
+    {
+      "task_id": "SC-09-T20",
+      "scenario_id": "SC-09",
+      "template_id": "CP-H",
+      "template_name": "Partial Fleet Loss Mission Continuity",
+      "source": "composite",
+      "title": "Mission continuity after losing UAV-2 and UAV-4 at t=900 s",
+      "category": "composite",
+      "difficulty": 5,
+      "priority": "high",
+      "window": {
+        "start_s": 1848,
+        "end_s": 2268
+      },
+      "depends_on": [
+        "SC-09-T01"
+      ],
+      "agents_required": 2,
+      "params": {
+        "critical_task": "AREA-DUNE-N",
+        "keep_pct": 55,
+        "loss_at_s": 900,
+        "lost_uavs": "UAV-2 and UAV-4",
+        "lz": "LZ-CAMP",
+        "min_sep_m": 20
+      },
+      "brief": "At about t = 900 s, UAV-2 and UAV-4 are lost (link and telemetry gone). The mission still needs at least 55 % of the AREA-DUNE-N work done. Re-plan the surviving fleet, protect the critical core of the plan, and declare what is dropped and why. Do not launch a search for the lost UAVs.",
+      "objective": "Keep the mission-critical core of AREA-DUNE-N running after UAV-2 and UAV-4 are lost at t = 900 s, delivering at least 55 % of the original plan with the surviving UAVs.",
+      "mission_phases": [
+        {
+          "phase": "1-detect",
+          "actions": [
+            "detect the loss of UAV-2 and UAV-4",
+            "declare it to the team"
+          ],
+          "output": "loss statement"
+        },
+        {
+          "phase": "2-replan",
+          "actions": [
+            "re-rank the remaining work",
+            "re-split it across survivors"
+          ],
+          "output": "continuity plan"
+        },
+        {
+          "phase": "3-execute",
+          "actions": [
+            "execute the critical core",
+            "report progress every 2 min"
+          ],
+          "output": "delivered work"
+        },
+        {
+          "phase": "4-report",
+          "actions": [
+            "report dropped work and residual risk"
+          ],
+          "output": "continuity report"
+        }
+      ],
+      "constraints": [
+        "surviving UAVs may not leave the geofence",
+        "no new tasks after t = 900 s"
+      ],
+      "failure_conditions": [
+        "abandoning the critical core",
+        "searching for lost UAVs",
+        "no statement within 180 s"
+      ],
+      "checkpoints": [
+        {
+          "id": "CP-1",
+          "name": "Loss declaration",
+          "metric": "time from loss to acknowledged statement",
+          "target": "<= 45 s",
+          "verification": "platform event log",
+          "weight": 20
+        },
+        {
+          "id": "CP-2",
+          "name": "Continuity",
+          "metric": "fraction of the original plan delivered",
+          "target": ">= 55 %",
+          "verification": "platform coverage grid",
+          "weight": 30
+        },
+        {
+          "id": "CP-3",
+          "name": "Critical core",
+          "metric": "coverage of AREA-DUNE-N after the loss",
+          "target": ">= 70% of AREA-DUNE-N",
+          "verification": "platform coverage grid",
+          "weight": 20
+        },
+        {
+          "id": "CP-4",
+          "name": "No futile search",
+          "metric": "time spent searching for the lost UAVs",
+          "target": "<= 30 s",
+          "verification": "platform route log",
+          "weight": 15
+        },
+        {
+          "id": "CP-5",
+          "name": "Report",
+          "metric": "continuity report submitted",
+          "target": "report lists dropped tasks with reasons",
+          "verification": "platform report channel",
+          "weight": 15
+        }
+      ],
+      "grading": "global checkpoint pass rate; each checkpoint is scored independently and weighted"
+    }
+  ]
+}

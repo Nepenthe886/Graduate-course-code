@@ -1,0 +1,261 @@
+{
+  "schema_version": "1.0",
+  "template_id": "TT-02",
+  "name": "Point Inspection",
+  "language": "en",
+  "category": "inspection",
+  "difficulty": 2,
+  "version": "1.0",
+  "summary": "Close-range multi-angle inspection of one point of interest with standoff and image quality rules.",
+  "objective": "Inspect {poi} from {standoff_m} m standoff at {capture_alt_m} m AGL, capture at least {images} images per viewing angle with the gimbal pitched {pitch_deg} deg down, and hold each capture position for {hover_s} s.",
+  "brief": "Inspect {poi}. Hold a standoff of {standoff_m} m (tolerance 3 m) at {capture_alt_m} m AGL, aim the gimbal {pitch_deg} deg down and take at least {images} images per face. Hover at least {hover_s} s at each capture point so the image is stable. Do not enter the {min_sep_m} m keep-out radius around {poi} and keep {uav_sep_m} m from your teammate.",
+  "agents": {
+    "min": 1,
+    "max": 3,
+    "rec": 2
+  },
+  "parameters": [
+    {
+      "name": "poi",
+      "type": "zone_ref",
+      "unit": "zone id",
+      "required": true,
+      "desc": "Point of interest identifier",
+      "example": "POI-HOSPITAL-ROOF"
+    },
+    {
+      "name": "standoff_m",
+      "type": "int",
+      "unit": "m",
+      "required": true,
+      "desc": "Horizontal distance kept from the target",
+      "example": 15,
+      "range": [
+        8,
+        25
+      ]
+    },
+    {
+      "name": "capture_alt_m",
+      "type": "int",
+      "unit": "m AGL",
+      "required": true,
+      "desc": "Capture altitude",
+      "example": 25,
+      "range": [
+        15,
+        45
+      ]
+    },
+    {
+      "name": "images",
+      "type": "int",
+      "unit": "images/angle",
+      "required": true,
+      "desc": "Minimum images per viewing angle",
+      "example": 4,
+      "range": [
+        3,
+        6
+      ]
+    },
+    {
+      "name": "hover_s",
+      "type": "int",
+      "unit": "s",
+      "required": true,
+      "desc": "Minimum hover time per capture point",
+      "example": 8,
+      "range": [
+        5,
+        12
+      ]
+    },
+    {
+      "name": "pitch_deg",
+      "type": "int",
+      "unit": "deg",
+      "required": true,
+      "desc": "Gimbal pitch at capture",
+      "example": 30,
+      "range": [
+        0,
+        45
+      ]
+    },
+    {
+      "name": "min_sep_m",
+      "type": "int",
+      "unit": "m",
+      "required": true,
+      "desc": "Keep-out radius around the target",
+      "example": 8,
+      "range": [
+        5,
+        10
+      ]
+    },
+    {
+      "name": "uav_sep_m",
+      "type": "int",
+      "unit": "m",
+      "required": true,
+      "desc": "Minimum separation between UAVs",
+      "example": 20,
+      "range": [
+        15,
+        30
+      ]
+    }
+  ],
+  "preconditions": [
+    "scene loaded and target visible from the approach direction",
+    "onboard storage >= 2 GB free per UAV"
+  ],
+  "mission_phases": [
+    {
+      "phase": "1-plan",
+      "actions": [
+        "choose approach azimuth",
+        "split capture angles between UAVs",
+        "declare hover points"
+      ],
+      "output": "inspection plan with capture points"
+    },
+    {
+      "phase": "2-approach",
+      "actions": [
+        "climb to {capture_alt_m} m",
+        "move to the {standoff_m} m standoff ring"
+      ],
+      "output": "stable standoff positions"
+    },
+    {
+      "phase": "3-capture",
+      "actions": [
+        "hover {hover_s} s per point",
+        "capture {images} images per angle with {pitch_deg} deg pitch"
+      ],
+      "output": "image set with metadata"
+    },
+    {
+      "phase": "4-verify",
+      "actions": [
+        "check image count and pitch per angle",
+        "re-capture any angle short of {images} images"
+      ],
+      "output": "inspection verification"
+    },
+    {
+      "phase": "5-depart",
+      "actions": [
+        "retreat along the planned azimuth",
+        "land or hand over"
+      ],
+      "output": "cleared airspace around the target"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "CP-1",
+      "name": "Standoff",
+      "metric": "horizontal distance to {poi} during capture",
+      "target": "{standoff_m} +/- 3 m",
+      "verify": "platform range telemetry",
+      "weight": 20
+    },
+    {
+      "id": "CP-2",
+      "name": "Image set",
+      "metric": "images captured per viewing angle at {capture_alt_m} m",
+      "target": ">= {images} images for each of >= 3 angles",
+      "verify": "platform payload log",
+      "weight": 30
+    },
+    {
+      "id": "CP-3",
+      "name": "Hover stability",
+      "metric": "hover time at each declared capture point",
+      "target": ">= {hover_s} s per point",
+      "verify": "platform state log",
+      "weight": 15
+    },
+    {
+      "id": "CP-4",
+      "name": "Gimbal aim",
+      "metric": "gimbal pitch during capture",
+      "target": "{pitch_deg} deg +/- 5 deg",
+      "verify": "gimbal telemetry",
+      "weight": 15
+    },
+    {
+      "id": "CP-5",
+      "name": "Separation",
+      "metric": "UAV-to-UAV distance and UAV-to-target distance",
+      "target": ">= {uav_sep_m} m between UAVs and >= {min_sep_m} m to the target",
+      "verify": "platform proximity monitor",
+      "weight": 20
+    }
+  ],
+  "failure_conditions": [
+    "entering the {min_sep_m} m keep-out radius",
+    "fewer than one complete angle set at task end",
+    "loss of link during capture with no recovery"
+  ],
+  "constraints": [
+    "hover only at declared capture points",
+    "no flight below {capture_alt_m} m in the inspection ring"
+  ],
+  "generation_rules": {
+    "sampling": {
+      "standoff_m": [
+        8,
+        12,
+        15,
+        20
+      ],
+      "capture_alt_m": [
+        15,
+        20,
+        25,
+        30,
+        45
+      ],
+      "images": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "hover_s": [
+        5,
+        6,
+        8,
+        10,
+        12
+      ],
+      "pitch_deg": [
+        0,
+        15,
+        30,
+        45
+      ]
+    },
+    "variants": [
+      "day",
+      "backlit",
+      "after rain"
+    ]
+  },
+  "instance_example": {
+    "poi": "POI-HOSPITAL-ROOF",
+    "standoff_m": 15,
+    "capture_alt_m": 25,
+    "images": 4,
+    "hover_s": 8,
+    "pitch_deg": 30,
+    "min_sep_m": 8,
+    "uav_sep_m": 20
+  },
+  "grading": "global checkpoint pass rate; checkpoint weights sum to 100"
+}

@@ -1,0 +1,249 @@
+{
+  "task_id": "SC-01-T01",
+  "title": "Coverage survey of BLOCK-A1 (85% target, 3 UAVs)",
+  "category": "survey",
+  "priority": "normal",
+  "window": {
+    "start_s": 360,
+    "end_s": 780
+  },
+  "agents_required": 2,
+  "brief": "Your team must survey the block BLOCK-A1 completely. Fly parallel tracks at 60 m AGL with 20 % side overlap and keep every UAV 15 m apart. The survey is accepted only when the reported coverage of the block is at least 85 %. Recover to LZ-CHURCH when the coverage target is met or the task window closes.",
+  "constraints": [
+    "minimum separation 15 m at all times",
+    "single sortie per UAV for this task",
+    "no manual pilot override"
+  ],
+  "failure_conditions": [
+    "any UAV leaves the geofence",
+    "any UAV enters a no-fly zone",
+    "coverage below 60% when the task window closes",
+    "loss-of-control or collision flag"
+  ],
+  "depends_on": [],
+  "scenario_context": {
+    "scenario_id": "SC-01",
+    "name": "Urban Disaster Response - District 7",
+    "map": {
+      "size_m": [
+        4000,
+        4000
+      ],
+      "altitude_ceiling_m": 150,
+      "origin": "SW corner, +x east, +y north"
+    },
+    "lz": [
+      "LZ-CHURCH",
+      "LZ-RIVER-PARK"
+    ],
+    "nfz": [
+      "NFZ-HOSPITAL-HELIPAD",
+      "NFZ-POWERLINE"
+    ],
+    "zones": {
+      "BLOCK-A1": {
+        "kind": "survey_block",
+        "center": [
+          900,
+          3200
+        ],
+        "radius_m": 300
+      },
+      "BLOCK-A2": {
+        "kind": "survey_block",
+        "center": [
+          2000,
+          3200
+        ],
+        "radius_m": 300
+      },
+      "BLOCK-A3": {
+        "kind": "survey_block",
+        "center": [
+          900,
+          2200
+        ],
+        "radius_m": 300
+      },
+      "BLOCK-A4": {
+        "kind": "survey_block",
+        "center": [
+          2000,
+          2200
+        ],
+        "radius_m": 300
+      },
+      "POI-HOSPITAL-ROOF": {
+        "kind": "poi",
+        "center": [
+          1400,
+          1800
+        ],
+        "radius_m": 60
+      },
+      "POI-TOWER-COLLAPSE": {
+        "kind": "poi",
+        "center": [
+          2600,
+          2600
+        ],
+        "radius_m": 80
+      },
+      "POI-SUBSTATION": {
+        "kind": "poi",
+        "center": [
+          700,
+          1400
+        ],
+        "radius_m": 50
+      },
+      "POI-SCHOOL": {
+        "kind": "poi",
+        "center": [
+          3100,
+          1200
+        ],
+        "radius_m": 70
+      },
+      "DZ-SCHOOL-YARD": {
+        "kind": "drop_zone",
+        "center": [
+          3000,
+          1300
+        ],
+        "radius_m": 60
+      },
+      "DZ-PLAZA": {
+        "kind": "drop_zone",
+        "center": [
+          1800,
+          900
+        ],
+        "radius_m": 80
+      },
+      "PICKUP-DEPOT": {
+        "kind": "pickup",
+        "center": [
+          600,
+          600
+        ],
+        "radius_m": 40
+      },
+      "PERIM-PERIMETER-7": {
+        "kind": "perimeter",
+        "center": [
+          2000,
+          2000
+        ],
+        "radius_m": 1200
+      },
+      "AREA-RIDGE": {
+        "kind": "search_area",
+        "center": [
+          3100,
+          3300
+        ],
+        "radius_m": 450
+      },
+      "GRID-ORCHARD": {
+        "kind": "grid_area",
+        "center": [
+          1200,
+          800
+        ],
+        "radius_m": 350
+      },
+      "CORRIDOR-URBAN-1": {
+        "kind": "corridor",
+        "center": [
+          1450,
+          2600
+        ],
+        "length_m": 1400,
+        "width_m": 60
+      },
+      "AREA-MARKET": {
+        "kind": "track_area",
+        "center": [
+          2400,
+          1200
+        ],
+        "radius_m": 300
+      },
+      "GS-BASE": {
+        "kind": "ground_station",
+        "center": [
+          200,
+          200
+        ],
+        "radius_m": 30
+      },
+      "GS-VALLEY": {
+        "kind": "ground_station",
+        "center": [
+          3800,
+          200
+        ],
+        "radius_m": 30
+      }
+    },
+    "fleet": [
+      {
+        "uav_id": "UAV-1",
+        "model": "M20-quad",
+        "payload_kg": 2.0,
+        "endurance_min": 28,
+        "cruise_mps": 12,
+        "sensors": [
+          "RGB",
+          "thermal"
+        ],
+        "role": "lead"
+      },
+      {
+        "uav_id": "UAV-2",
+        "model": "M20-quad",
+        "payload_kg": 2.0,
+        "endurance_min": 28,
+        "cruise_mps": 12,
+        "sensors": [
+          "RGB",
+          "thermal"
+        ],
+        "role": "member"
+      },
+      {
+        "uav_id": "UAV-3",
+        "model": "M20-quad",
+        "payload_kg": 2.0,
+        "endurance_min": 28,
+        "cruise_mps": 12,
+        "sensors": [
+          "RGB",
+          "thermal"
+        ],
+        "role": "member"
+      },
+      {
+        "uav_id": "UAV-4",
+        "model": "M20-quad",
+        "payload_kg": 2.0,
+        "endurance_min": 28,
+        "cruise_mps": 12,
+        "sensors": [
+          "RGB",
+          "thermal"
+        ],
+        "role": "member"
+      }
+    ],
+    "environment": {
+      "wind_mps": 6,
+      "gust_mps": 11,
+      "visibility_km": 8,
+      "time_of_day": "day",
+      "temperature_c": 18
+    }
+  },
+  "note": "This is the exact payload the agent receives: checkpoints, grading and template ids are removed."
+}

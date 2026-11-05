@@ -1,0 +1,206 @@
+{
+  "schema_version": "1.0",
+  "template_id": "CP-B",
+  "name": "Multi-zone Inspection under Radio Silence",
+  "language": "en",
+  "category": "composite",
+  "difficulty": 4,
+  "version": "1.0",
+  "derived_from": [
+    "TT-02",
+    "TT-04"
+  ],
+  "summary": "Inspect several points while the team flies the whole segment in EMCON and reports at the end.",
+  "objective": "Inspect {poi_a} and {poi_b} in one sortie with no radio transmission between {emcon_start_s} s and {emcon_end_s} s, then upload all images when the link is allowed again.",
+  "brief": "Inspect {poi_a} and then {poi_b} in a single sortie. From t = {emcon_start_s} s to t = {emcon_end_s} s the team must fly in complete radio silence: no telemetry, no messages, no updates. Agree on the timeline before takeoff, because during EMCON nobody can re-plan. After EMCON the team has {upload_window_s} s to upload all images and confirm the completed angles.",
+  "agents": {
+    "min": 2,
+    "max": 3,
+    "rec": 2
+  },
+  "parameters": [
+    {
+      "name": "poi_a",
+      "type": "zone_ref",
+      "required": true,
+      "desc": "First point of interest",
+      "example": "POI-HOSPITAL-ROOF"
+    },
+    {
+      "name": "poi_b",
+      "type": "zone_ref",
+      "required": true,
+      "desc": "Second point of interest",
+      "example": "POI-SUBSTATION"
+    },
+    {
+      "name": "emcon_start_s",
+      "type": "int",
+      "unit": "s",
+      "required": true,
+      "desc": "Start of radio silence",
+      "example": 120,
+      "range": [
+        60,
+        180
+      ]
+    },
+    {
+      "name": "emcon_end_s",
+      "type": "int",
+      "unit": "s",
+      "required": true,
+      "desc": "End of radio silence",
+      "example": 480,
+      "range": [
+        360,
+        600
+      ]
+    },
+    {
+      "name": "upload_window_s",
+      "type": "int",
+      "unit": "s",
+      "required": true,
+      "desc": "Time to upload after EMCON",
+      "example": 120,
+      "range": [
+        60,
+        180
+      ]
+    },
+    {
+      "name": "images",
+      "type": "int",
+      "unit": "images/angle",
+      "required": true,
+      "desc": "Images per angle",
+      "example": 3,
+      "range": [
+        3,
+        5
+      ]
+    },
+    {
+      "name": "standoff_m",
+      "type": "int",
+      "unit": "m",
+      "required": true,
+      "desc": "Standoff for inspection",
+      "example": 15,
+      "range": [
+        8,
+        25
+      ]
+    }
+  ],
+  "mission_phases": [
+    {
+      "phase": "1-brief",
+      "actions": [
+        "agree on the timeboxed route before takeoff",
+        "fix the capture order"
+      ],
+      "output": "frozen plan"
+    },
+    {
+      "phase": "2-inspect",
+      "actions": [
+        "capture {images} images per angle at {poi_a} then {poi_b}",
+        "record everything onboard"
+      ],
+      "output": "image set in onboard storage"
+    },
+    {
+      "phase": "3-emcon",
+      "actions": [
+        "transmit nothing between {emcon_start_s} and {emcon_end_s} s"
+      ],
+      "output": "zero transmissions"
+    },
+    {
+      "phase": "4-upload",
+      "actions": [
+        "upload all images within {upload_window_s} s",
+        "confirm the angle coverage"
+      ],
+      "output": "verified inspection"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "CP-1",
+      "name": "Radio silence",
+      "metric": "transmissions during the EMCON window",
+      "target": "0 transmitted packets between {emcon_start_s} and {emcon_end_s} s",
+      "verify": "platform link log",
+      "weight": 25
+    },
+    {
+      "id": "CP-2",
+      "name": "Inspection completeness",
+      "metric": "angles and images captured at {poi_a} and {poi_b}",
+      "target": ">= {images} images for >= 3 angles at both points",
+      "verify": "payload log after upload",
+      "weight": 30
+    },
+    {
+      "id": "CP-3",
+      "name": "Standoff",
+      "metric": "distance during capture",
+      "target": "{standoff_m} +/- 3 m",
+      "verify": "platform range telemetry",
+      "weight": 20
+    },
+    {
+      "id": "CP-4",
+      "name": "Upload window",
+      "metric": "time from EMCON end to complete upload",
+      "target": "<= {upload_window_s} s",
+      "verify": "platform data log",
+      "weight": 15
+    },
+    {
+      "id": "CP-5",
+      "name": "Recovery",
+      "metric": "all UAVs landed",
+      "target": "all on ground at the nearest landing zone",
+      "verify": "platform landing log",
+      "weight": 10
+    }
+  ],
+  "failure_conditions": [
+    "any transmission inside the EMCON window",
+    "an inspection angle missed with no time to recover",
+    "images lost on landing"
+  ],
+  "constraints": [
+    "EMCON is absolute: no ping, no heartbeat, no re-plan",
+    "single sortie"
+  ],
+  "generation_rules": {
+    "sampling": {
+      "emcon_start_s": [
+        60,
+        120,
+        180
+      ],
+      "emcon_end_s": [
+        360,
+        480,
+        600
+      ],
+      "upload_window_s": [
+        60,
+        90,
+        120,
+        180
+      ]
+    },
+    "variants": [
+      "day",
+      "night"
+    ]
+  },
+  "grading": "global checkpoint pass rate; checkpoint weights sum to 100"
+}

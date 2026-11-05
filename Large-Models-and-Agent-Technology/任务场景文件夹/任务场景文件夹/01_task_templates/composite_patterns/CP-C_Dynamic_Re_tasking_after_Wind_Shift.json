@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "template_id": "CP-C",
+  "name": "Dynamic Re-tasking after Wind Shift",
+  "language": "en",
+  "category": "composite",
+  "difficulty": 4,
+  "version": "1.0",
+  "derived_from": [
+    "TT-01"
+  ],
+  "summary": "A gust front invalidates the survey plan; the team must re-plan coverage without losing time.",
+  "objective": "Complete a {coverage_pct} % survey of {area} although the wind shifts by {shift_deg} deg at t = {shift_at_s} s, forcing the tracks to be re-planned with a new heading and spacing.",
+  "brief": "You are surveying {area} to {coverage_pct} % at {altitude_m} m. At about t = {shift_at_s} s the wind shifts by {shift_deg} deg and gusts to {gust_mps} m/s. Continuing on the old track heading will leave gaps, so re-plan the tracks and redistribute the strips. Coverage accuracy still matters more than finishing early.",
+  "agents": {
+    "min": 2,
+    "max": 4,
+    "rec": 3
+  },
+  "parameters": [
+    {
+      "name": "area",
+      "type": "zone_ref",
+      "required": true,
+      "desc": "Survey block",
+      "example": "BLOCK-A3"
+    },
+    {
+      "name": "coverage_pct",
+      "type": "int",
+      "unit": "%",
+      "required": true,
+      "desc": "Coverage target",
+      "example": 85,
+      "range": [
+        80,
+        95
+      ]
+    },
+    {
+      "name": "altitude_m",
+      "type": "int",
+      "unit": "m AGL",
+      "required": true,
+      "desc": "Survey altitude",
+      "example": 60,
+      "range": [
+        40,
+        80
+      ]
+    },
+    {
+      "name": "shift_at_s",
+      "type": "int",
+      "unit": "s",
+      "required": true,
+      "desc": "Time of the wind shift",
+      "example": 240,
+      "range": [
+        120,
+        420
+      ]
+    },
+    {
+      "name": "shift_deg",
+      "type": "int",
+      "unit": "deg",
+      "required": true,
+      "desc": "Wind direction change",
+      "example": 40,
+      "range": [
+        20,
+        70
+      ]
+    },
+    {
+      "name": "gust_mps",
+      "type": "int",
+      "unit": "m/s",
+      "required": true,
+      "desc": "Gust speed after the shift",
+      "example": 11,
+      "range": [
+        8,
+        15
+      ]
+    }
+  ],
+  "mission_phases": [
+    {
+      "phase": "1-survey",
+      "actions": [
+        "start the baseline survey",
+        "report coverage per strip"
+      ],
+      "output": "partial coverage"
+    },
+    {
+      "phase": "2-detect-shift",
+      "actions": [
+        "notice the wind shift at {shift_at_s} s",
+        "declare the affected strips"
+      ],
+      "output": "impact statement"
+    },
+    {
+      "phase": "3-replan",
+      "actions": [
+        "rotate the track heading by the new wind angle",
+        "re-split the remaining area"
+      ],
+      "output": "re-plan"
+    },
+    {
+      "phase": "4-complete",
+      "actions": [
+        "fly the new tracks",
+        "reach {coverage_pct} %"
+      ],
+      "output": "complete coverage"
+    },
+    {
+      "phase": "5-report",
+      "actions": [
+        "report the re-plan cost in time and energy"
+      ],
+      "output": "re-plan report"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "CP-1",
+      "name": "Shift detection",
+      "metric": "time from the shift to the impact statement",
+      "target": "<= 45 s",
+      "verify": "platform event log",
+      "weight": 20
+    },
+    {
+      "id": "CP-2",
+      "name": "Re-plan quality",
+      "metric": "overlap between old and new track sets and duplicate coverage",
+      "target": "duplicate coverage <= 15% after the shift",
+      "verify": "platform coverage grid",
+      "weight": 20
+    },
+    {
+      "id": "CP-3",
+      "name": "Final coverage",
+      "metric": "union coverage of {area}",
+      "target": ">= {coverage_pct} %",
+      "verify": "platform coverage grid",
+      "weight": 35
+    },
+    {
+      "id": "CP-4",
+      "name": "Airspace integrity",
+      "metric": "geofence and no-fly-zone events",
+      "target": "0 events",
+      "verify": "platform geofence monitor",
+      "weight": 15
+    },
+    {
+      "id": "CP-5",
+      "name": "Report",
+      "metric": "re-plan report submitted",
+      "target": "report contains the new heading, spacing and time cost",
+      "verify": "platform report channel",
+      "weight": 10
+    }
+  ],
+  "failure_conditions": [
+    "coverage below 70% at task end",
+    "geofence breach while compensating for the wind",
+    "no re-plan after the shift"
+  ],
+  "constraints": [
+    "new track heading within +/- 60 deg of the wind-perpendicular",
+    "no re-entry into already covered strips except for overlap control"
+  ],
+  "generation_rules": {
+    "sampling": {
+      "shift_at_s": [
+        120,
+        240,
+        360,
+        420
+      ],
+      "shift_deg": [
+        20,
+        30,
+        40,
+        70
+      ],
+      "gust_mps": [
+        8,
+        10,
+        11,
+        15
+      ]
+    },
+    "variants": [
+      "day",
+      "dust"
+    ]
+  },
+  "grading": "global checkpoint pass rate; checkpoint weights sum to 100"
+}

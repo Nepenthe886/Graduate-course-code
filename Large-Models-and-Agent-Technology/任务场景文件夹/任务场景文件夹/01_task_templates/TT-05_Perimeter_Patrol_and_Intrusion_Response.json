@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.0",
+  "template_id": "TT-05",
+  "name": "Perimeter Patrol and Intrusion Response",
+  "language": "en",
+  "category": "security",
+  "difficulty": 3,
+  "version": "1.0",
+  "summary": "Sustain a perimeter patrol, detect an intrusion, identify it positively and shadow it before it leaves.",
+  "objective": "Keep a continuous patrol of {perimeter} at {patrol_alt_m} m, detect an intrusion entering at sector {intruder_sector} within {detect_window_s} s, identify it positively and shadow it inside {intercept_radius_m} m of the perimeter.",
+  "brief": "Patrol the closed perimeter {perimeter} at {patrol_alt_m} m, one UAV per assigned sector, and log a complete loop every {loop_period_s} s. An intruder will enter from sector {intruder_sector}; detect it within {detect_window_s} s, identify it (hover >= 5 s within 60 m) and shadow it while it stays within {intercept_radius_m} m of the perimeter. Do not leave the geofence while chasing.",
+  "agents": {
+    "min": 2,
+    "max": 4,
+    "rec": 3
+  },
+  "parameters": [
+    {
+      "name": "perimeter",
+      "type": "zone_ref",
+      "unit": "zone id",
+      "required": true,
+      "desc": "Closed perimeter identifier",
+      "example": "PERIM-DEPOT"
+    },
+    {
+      "name": "patrol_alt_m",
+      "type": "int",
+      "unit": "m AGL",
+      "required": true,
+      "desc": "Patrol altitude",
+      "example": 80,
+      "range": [
+        50,
+        120
+      ]
+    },
+    {
+      "name": "loop_period_s",
+      "type": "int",
+      "unit": "s",
+      "required": true,
+      "desc": "Time to complete one perimeter loop",
+      "example": 180,
+      "range": [
+        120,
+        300
+      ]
+    },
+    {
+      "name": "intruder_sector",
+      "type": "enum",
+      "unit": "sector",
+      "required": true,
+      "desc": "Sector where the intrusion starts",
+      "example": "S3",
+      "choices": [
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "name": "detect_window_s",
+      "type": "int",
+      "unit": "s",
+      "required": true,
+      "desc": "Detection latency budget",
+      "example": 45,
+      "range": [
+        20,
+        90
+      ]
+    },
+    {
+      "name": "intercept_radius_m",
+      "type": "int",
+      "unit": "m",
+      "required": true,
+      "desc": "Shadowing radius around the perimeter",
+      "example": 300,
+      "range": [
+        150,
+        500
+      ]
+    }
+  ],
+  "preconditions": [
+    "perimeter patrol route approved",
+    "electro-optical payload calibrated"
+  ],
+  "mission_phases": [
+    {
+      "phase": "1-plan",
+      "actions": [
+        "split {perimeter} into sectors",
+        "assign one UAV per sector with overlap"
+      ],
+      "output": "sector plan"
+    },
+    {
+      "phase": "2-patrol",
+      "actions": [
+        "fly the loop at {patrol_alt_m} m",
+        "report loop completion each {loop_period_s} s"
+      ],
+      "output": "continuous patrol log"
+    },
+    {
+      "phase": "3-detect",
+      "actions": [
+        "report the intrusion within {detect_window_s} s",
+        "hand the track to the nearest UAV"
+      ],
+      "output": "intrusion track"
+    },
+    {
+      "phase": "4-identify",
+      "actions": [
+        "close to 60 m",
+        "hover 5 s for identification",
+        "shadow within {intercept_radius_m} m"
+      ],
+      "output": "identification record"
+    },
+    {
+      "phase": "5-resume",
+      "actions": [
+        "return to the abandoned sector",
+        "rebuild the patrol loop"
+      ],
+      "output": "patrol restored"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "CP-1",
+      "name": "Patrol continuity",
+      "metric": "perimeter length covered per loop and loop period",
+      "target": ">= 90% of the perimeter each loop, period <= {loop_period_s} s",
+      "verify": "platform route log",
+      "weight": 20
+    },
+    {
+      "id": "CP-2",
+      "name": "Detection latency",
+      "metric": "time from intrusion to first detection report",
+      "target": "<= {detect_window_s} s",
+      "verify": "platform detection log",
+      "weight": 25
+    },
+    {
+      "id": "CP-3",
+      "name": "Positive identification",
+      "metric": "hover time within 60 m of the intruder",
+      "target": ">= 5 s hover and ID record submitted",
+      "verify": "platform payload/ID log",
+      "weight": 20
+    },
+    {
+      "id": "CP-4",
+      "name": "Shadowing",
+      "metric": "intruder distance from the perimeter while shadowed",
+      "target": "intruder never beyond {intercept_radius_m} m unshadowed for > 20 s",
+      "verify": "platform track log",
+      "weight": 20
+    },
+    {
+      "id": "CP-5",
+      "name": "Patrol resume",
+      "metric": "time to restore the abandoned sector",
+      "target": "<= 90 s after the intruder leaves",
+      "verify": "platform route log",
+      "weight": 15
+    }
+  ],
+  "failure_conditions": [
+    "perimeter left uncovered for more than 120 s",
+    "geofence breach during the pursuit",
+    "intruder never detected"
+  ],
+  "constraints": [
+    "minimum altitude {patrol_alt_m} m - 20 m",
+    "no pursuit outside {intercept_radius_m} m"
+  ],
+  "generation_rules": {
+    "sampling": {
+      "patrol_alt_m": [
+        60,
+        80,
+        100
+      ],
+      "loop_period_s": [
+        120,
+        180,
+        240
+      ],
+      "detect_window_s": [
+        30,
+        45,
+        60,
+        90
+      ],
+      "intercept_radius_m": [
+        200,
+        300,
+        400
+      ]
+    },
+    "variants": [
+      "day",
+      "night",
+      "fog 2 km"
+    ]
+  },
+  "instance_example": {
+    "perimeter": "PERIM-DEPOT",
+    "patrol_alt_m": 80,
+    "loop_period_s": 180,
+    "intruder_sector": "S3",
+    "detect_window_s": 45,
+    "intercept_radius_m": 300
+  },
+  "grading": "global checkpoint pass rate; checkpoint weights sum to 100"
+}

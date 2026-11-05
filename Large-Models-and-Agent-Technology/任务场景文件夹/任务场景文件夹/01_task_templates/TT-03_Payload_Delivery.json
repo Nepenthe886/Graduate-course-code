@@ -1,0 +1,237 @@
+{
+  "schema_version": "1.0",
+  "template_id": "TT-03",
+  "name": "Payload Delivery",
+  "language": "en",
+  "category": "logistics",
+  "difficulty": 2,
+  "version": "1.0",
+  "summary": "Pick up a payload, deliver it to a drop zone inside an accuracy and time budget, keep it intact.",
+  "objective": "Move {payload_kg} kg from {pickup} to {drop_zone} and release it so that the impact point is within {accuracy_m} m of the drop-zone centre, with an impact speed below 3 m/s.",
+  "brief": "Deliver {payload_kg} kg from {pickup} to {drop_zone} before t = {deadline_s} s. Release from at least {drop_alt_m} m so the payload is not damaged; the landing point must be within {accuracy_m} m of the drop-zone centre and the impact speed below 3 m/s. One teammate may carry the payload while the other screens the corridor. Recover to {lz} afterwards.",
+  "agents": {
+    "min": 2,
+    "max": 4,
+    "rec": 2
+  },
+  "parameters": [
+    {
+      "name": "pickup",
+      "type": "zone_ref",
+      "unit": "zone id",
+      "required": true,
+      "desc": "Pickup point with the payload attached on the ground",
+      "example": "PICKUP-DEPOT"
+    },
+    {
+      "name": "drop_zone",
+      "type": "zone_ref",
+      "unit": "zone id",
+      "required": true,
+      "desc": "Target drop zone",
+      "example": "DZ-SCHOOL-YARD"
+    },
+    {
+      "name": "payload_kg",
+      "type": "float",
+      "unit": "kg",
+      "required": true,
+      "desc": "Payload mass",
+      "example": 1.5,
+      "range": [
+        0.5,
+        2.5
+      ]
+    },
+    {
+      "name": "drop_alt_m",
+      "type": "int",
+      "unit": "m AGL",
+      "required": true,
+      "desc": "Release altitude",
+      "example": 15,
+      "range": [
+        8,
+        20
+      ]
+    },
+    {
+      "name": "accuracy_m",
+      "type": "enum",
+      "unit": "m",
+      "required": true,
+      "desc": "Circular error allowed at the drop zone",
+      "example": 3,
+      "choices": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "deadline_s",
+      "type": "int",
+      "unit": "s",
+      "required": true,
+      "desc": "Latest release time",
+      "example": 420,
+      "range": [
+        300,
+        600
+      ]
+    },
+    {
+      "name": "lz",
+      "type": "zone_ref",
+      "unit": "zone id",
+      "required": true,
+      "desc": "Recovery landing zone",
+      "example": "LZ-PARK"
+    }
+  ],
+  "preconditions": [
+    "payload secured on the pickup point",
+    "carrier UAV shows payload mass in its pre-takeoff check"
+  ],
+  "mission_phases": [
+    {
+      "phase": "1-plan",
+      "actions": [
+        "choose the delivery UAV and the escort role",
+        "pick a route that avoids no-fly zones"
+      ],
+      "output": "route and role assignment"
+    },
+    {
+      "phase": "2-pickup",
+      "actions": [
+        "land or hover at {pickup}",
+        "latch the payload",
+        "verify mass reading"
+      ],
+      "output": "payload latched"
+    },
+    {
+      "phase": "3-transit",
+      "actions": [
+        "fly the route",
+        "report position on corridor waypoints"
+      ],
+      "output": "arrival over {drop_zone}"
+    },
+    {
+      "phase": "4-drop",
+      "actions": [
+        "descend to {drop_alt_m} m",
+        "align within {accuracy_m} m of the centre",
+        "release and confirm"
+      ],
+      "output": "payload on the ground"
+    },
+    {
+      "phase": "5-recover",
+      "actions": [
+        "climb clear of the drop area",
+        "land at {lz}"
+      ],
+      "output": "recovered fleet"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "CP-1",
+      "name": "Payload secured",
+      "metric": "latch event and mass reading",
+      "target": "payload latched at {pickup} before t = 120 s",
+      "verify": "platform payload telemetry",
+      "weight": 20
+    },
+    {
+      "id": "CP-2",
+      "name": "Drop accuracy",
+      "metric": "distance from impact point to {drop_zone} centre",
+      "target": "<= {accuracy_m} m",
+      "verify": "platform impact record",
+      "weight": 30
+    },
+    {
+      "id": "CP-3",
+      "name": "Payload integrity",
+      "metric": "impact speed and damage flag",
+      "target": "impact speed < 3 m/s and damage flag = 0",
+      "verify": "platform impact record",
+      "weight": 20
+    },
+    {
+      "id": "CP-4",
+      "name": "Time budget",
+      "metric": "release time",
+      "target": "<= {deadline_s} s after task start",
+      "verify": "platform event log",
+      "weight": 15
+    },
+    {
+      "id": "CP-5",
+      "name": "Recovery",
+      "metric": "all UAVs landed",
+      "target": "all UAVs on the ground at {lz}",
+      "verify": "platform landing log",
+      "weight": 15
+    }
+  ],
+  "failure_conditions": [
+    "payload released above 25 m",
+    "payload damage flag raised",
+    "delivery after the task window closes"
+  ],
+  "constraints": [
+    "single payload per task",
+    "no release over a no-fly zone",
+    "escort UAV keeps >= 20 m from the carrier"
+  ],
+  "generation_rules": {
+    "sampling": {
+      "payload_kg": [
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5
+      ],
+      "drop_alt_m": [
+        8,
+        12,
+        15,
+        20
+      ],
+      "accuracy_m": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "deadline_s": [
+        300,
+        360,
+        420,
+        540
+      ]
+    },
+    "variants": [
+      "calm",
+      "crosswind 8 m/s",
+      "crowded corridor"
+    ]
+  },
+  "instance_example": {
+    "pickup": "PICKUP-DEPOT",
+    "drop_zone": "DZ-SCHOOL-YARD",
+    "payload_kg": 1.5,
+    "drop_alt_m": 15,
+    "accuracy_m": 3,
+    "deadline_s": 420,
+    "lz": "LZ-PARK"
+  },
+  "grading": "global checkpoint pass rate; checkpoint weights sum to 100"
+}

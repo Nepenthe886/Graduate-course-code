@@ -1,0 +1,231 @@
+{
+  "schema_version": "1.0",
+  "template_id": "TT-06",
+  "name": "Cooperative Search and Rescue",
+  "language": "en",
+  "category": "search",
+  "difficulty": 4,
+  "version": "1.0",
+  "summary": "Sweep a search area cooperatively, localise a distress beacon, mark it and guide a ground element.",
+  "objective": "Sweep {search_area} with {uav_count} UAVs at {detection_alt_m} m using a {sweep_width_m} m sweep width until the distress beacon is detected, localised to within {localize_err_m} m and marked.",
+  "brief": "A distress beacon is active somewhere in {search_area}. Sweep the area cooperatively at {detection_alt_m} m with {sweep_width_m} m spacing between tracks so that at least 95% of the area is observed once. When a UAV detects the signal, localise it to within {localize_err_m} m, mark the spot (hover >= 10 s and transmit the position) and hand the position to the rescue element. Do not leave uncovered strips when the first detection happens.",
+  "agents": {
+    "min": 2,
+    "max": 5,
+    "rec": 3
+  },
+  "parameters": [
+    {
+      "name": "search_area",
+      "type": "zone_ref",
+      "unit": "zone id",
+      "required": true,
+      "desc": "Search area identifier",
+      "example": "AREA-RIDGE"
+    },
+    {
+      "name": "uav_count",
+      "type": "int",
+      "unit": "UAVs",
+      "required": true,
+      "desc": "UAVs committed to the sweep",
+      "example": 3,
+      "range": [
+        2,
+        5
+      ]
+    },
+    {
+      "name": "sweep_width_m",
+      "type": "enum",
+      "unit": "m",
+      "required": true,
+      "desc": "Spacing between adjacent search tracks",
+      "example": 80,
+      "choices": [
+        60,
+        80,
+        100,
+        120
+      ]
+    },
+    {
+      "name": "detection_alt_m",
+      "type": "int",
+      "unit": "m AGL",
+      "required": true,
+      "desc": "Search altitude",
+      "example": 70,
+      "range": [
+        40,
+        100
+      ]
+    },
+    {
+      "name": "beacon_cell",
+      "type": "enum",
+      "unit": "cell",
+      "required": true,
+      "desc": "Cell holding the beacon (unknown to the agent)",
+      "example": "C4",
+      "choices": [
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ]
+    },
+    {
+      "name": "localize_err_m",
+      "type": "int",
+      "unit": "m",
+      "required": true,
+      "desc": "Positional error allowed at marking",
+      "example": 20,
+      "range": [
+        10,
+        30
+      ]
+    }
+  ],
+  "preconditions": [
+    "search area boundaries published",
+    "beacon frequency known to the payload"
+  ],
+  "mission_phases": [
+    {
+      "phase": "1-plan",
+      "actions": [
+        "split {search_area} into {uav_count} sweep lanes",
+        "declare track spacing {sweep_width_m} m"
+      ],
+      "output": "sweep plan"
+    },
+    {
+      "phase": "2-sweep",
+      "actions": [
+        "fly the lanes at {detection_alt_m} m",
+        "report lane completion"
+      ],
+      "output": "area coverage log"
+    },
+    {
+      "phase": "3-detect",
+      "actions": [
+        "report the beacon to the team",
+        "convert bearing into a position"
+      ],
+      "output": "beacon position estimate"
+    },
+    {
+      "phase": "4-mark",
+      "actions": [
+        "close to the beacon",
+        "hover >= 10 s and transmit",
+        "hand the position over"
+      ],
+      "output": "marked distress point"
+    },
+    {
+      "phase": "5-complete",
+      "actions": [
+        "finish any uncovered lane",
+        "recover to {lz}"
+      ],
+      "output": "complete sweep statement"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "CP-1",
+      "name": "Sweep coverage",
+      "metric": "area observed at least once before task end",
+      "target": ">= 95% of {search_area}",
+      "verify": "platform coverage grid",
+      "weight": 25
+    },
+    {
+      "id": "CP-2",
+      "name": "Detection",
+      "metric": "beacon detection event",
+      "target": "detected before the task window closes",
+      "verify": "platform sensor log",
+      "weight": 20
+    },
+    {
+      "id": "CP-3",
+      "name": "Localisation",
+      "metric": "error of the transmitted beacon position",
+      "target": "<= {localize_err_m} m",
+      "verify": "platform ground-truth comparison",
+      "weight": 20
+    },
+    {
+      "id": "CP-4",
+      "name": "Marking and handover",
+      "metric": "hover time at the beacon and handover message",
+      "target": "hover >= 10 s and handover message sent",
+      "verify": "platform payload log",
+      "weight": 20
+    },
+    {
+      "id": "CP-5",
+      "name": "No uncovered strip",
+      "metric": "uncovered strips left when detection happens",
+      "target": "0 strips wider than 1.5 x {sweep_width_m}",
+      "verify": "platform coverage grid",
+      "weight": 15
+    }
+  ],
+  "failure_conditions": [
+    "beacon not detected within the window",
+    "marked position error above 40 m",
+    "abandoning the sweep to chase a false signal"
+  ],
+  "constraints": [
+    "minimum separation {min_sep_m} m",
+    "no flight inside the marked danger radius before the rescue element arrives"
+  ],
+  "generation_rules": {
+    "sampling": {
+      "uav_count": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "sweep_width_m": [
+        60,
+        80,
+        100,
+        120
+      ],
+      "detection_alt_m": [
+        40,
+        60,
+        70,
+        100
+      ],
+      "localize_err_m": [
+        10,
+        20,
+        30
+      ]
+    },
+    "variants": [
+      "day",
+      "dusk",
+      "smoke 1.5 km"
+    ]
+  },
+  "instance_example": {
+    "search_area": "AREA-RIDGE",
+    "uav_count": 3,
+    "sweep_width_m": 80,
+    "detection_alt_m": 70,
+    "beacon_cell": "C4",
+    "localize_err_m": 20
+  },
+  "grading": "global checkpoint pass rate; checkpoint weights sum to 100"
+}

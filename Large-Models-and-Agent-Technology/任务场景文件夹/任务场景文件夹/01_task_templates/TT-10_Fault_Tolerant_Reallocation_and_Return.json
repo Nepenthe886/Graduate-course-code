@@ -1,0 +1,228 @@
+{
+  "schema_version": "1.0",
+  "template_id": "TT-10",
+  "name": "Fault-Tolerant Reallocation and Return",
+  "language": "en",
+  "category": "recovery",
+  "difficulty": 5,
+  "version": "1.0",
+  "summary": "A UAV fails mid-mission: declare the fault, reallocate coverage to the rest of the fleet, recover safely.",
+  "objective": "When {fault_uav} declares a {fault_type} fault at t = {fault_at_s} s, reallocate its share of {critical_task} to the remaining fleet so that critical coverage stays above {critical_coverage_pct} %, and recover {fault_uav} to {rtb_zone} without any other conflict.",
+  "brief": "During {critical_task} the UAV {fault_uav} will suffer a {fault_type} fault at about t = {fault_at_s} s. The mission still requires at least {critical_coverage_pct} % of the critical work. Reallocate the faulted UAV's share within 90 s of the fault declaration, keep the remaining work safe, and bring {fault_uav} back to {rtb_zone} without breaching the geofence. Report what was dropped.",
+  "agents": {
+    "min": 3,
+    "max": 5,
+    "rec": 4
+  },
+  "parameters": [
+    {
+      "name": "fault_uav",
+      "type": "enum",
+      "unit": "uav id",
+      "required": true,
+      "desc": "UAV that will fail",
+      "example": "UAV-2",
+      "choices": [
+        "UAV-1",
+        "UAV-2",
+        "UAV-3",
+        "UAV-4",
+        "UAV-5"
+      ]
+    },
+    {
+      "name": "fault_type",
+      "type": "enum",
+      "unit": "fault",
+      "required": true,
+      "desc": "Injected fault",
+      "example": "battery",
+      "choices": [
+        "battery",
+        "GPS",
+        "motor",
+        "link"
+      ]
+    },
+    {
+      "name": "fault_at_s",
+      "type": "int",
+      "unit": "s",
+      "required": true,
+      "desc": "Fault injection time",
+      "example": 240,
+      "range": [
+        120,
+        480
+      ]
+    },
+    {
+      "name": "critical_task",
+      "type": "zone_ref",
+      "unit": "zone id",
+      "required": true,
+      "desc": "Mission element that must stay above the coverage floor",
+      "example": "BLOCK-A1"
+    },
+    {
+      "name": "critical_coverage_pct",
+      "type": "int",
+      "unit": "%",
+      "required": true,
+      "desc": "Coverage that must be kept after the fault",
+      "example": 80,
+      "range": [
+        70,
+        90
+      ]
+    },
+    {
+      "name": "rtb_zone",
+      "type": "zone_ref",
+      "unit": "zone id",
+      "required": true,
+      "desc": "Return-to-base landing zone",
+      "example": "LZ-CHURCH"
+    }
+  ],
+  "preconditions": [
+    "mission already running with {critical_task} assigned",
+    "fault injection enabled in the scenario"
+  ],
+  "mission_phases": [
+    {
+      "phase": "1-detect",
+      "actions": [
+        "receive the fault declaration",
+        "confirm the degraded capability"
+      ],
+      "output": "fault statement within 30 s"
+    },
+    {
+      "phase": "2-reallocate",
+      "actions": [
+        "re-split the faulted UAV's remaining work",
+        "declare new assignments"
+      ],
+      "output": "reallocation plan within 90 s"
+    },
+    {
+      "phase": "3-continue",
+      "actions": [
+        "fly the reallocated work",
+        "keep {critical_coverage_pct} % coverage"
+      ],
+      "output": "continued mission"
+    },
+    {
+      "phase": "4-recover",
+      "actions": [
+        "route {fault_uav} to {rtb_zone}",
+        "land it safely"
+      ],
+      "output": "faulted UAV on the ground"
+    },
+    {
+      "phase": "5-report",
+      "actions": [
+        "report dropped work and residual risk",
+        "propose a resume plan"
+      ],
+      "output": "recovery report"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "CP-1",
+      "name": "Fault declaration",
+      "metric": "time from injection to acknowledged fault report",
+      "target": "<= 30 s",
+      "verify": "platform event log",
+      "weight": 20
+    },
+    {
+      "id": "CP-2",
+      "name": "Reallocation",
+      "metric": "time to publish new assignments and coverage kept afterwards",
+      "target": "<= 90 s and >= {critical_coverage_pct} % of {critical_task}",
+      "verify": "platform coverage grid",
+      "weight": 30
+    },
+    {
+      "id": "CP-3",
+      "name": "Safe return",
+      "metric": "landing of {fault_uav} at {rtb_zone}, geofence events",
+      "target": "landed at {rtb_zone}, 0 geofence breaches",
+      "verify": "platform landing log",
+      "weight": 20
+    },
+    {
+      "id": "CP-4",
+      "name": "Deconfliction",
+      "metric": "separation warnings during the replan",
+      "target": "0 warnings below 30 m",
+      "verify": "platform proximity monitor",
+      "weight": 15
+    },
+    {
+      "id": "CP-5",
+      "name": "Recovery report",
+      "metric": "work dropped and resume plan submitted",
+      "target": "report contains dropped tasks and a resume plan",
+      "verify": "platform report channel",
+      "weight": 15
+    }
+  ],
+  "failure_conditions": [
+    "fault not reported within 120 s",
+    "faulted UAV crashes or lands outside {rtb_zone}",
+    "critical coverage falls below 60%"
+  ],
+  "constraints": [
+    "faulted UAV may not continue work after the declaration",
+    "no new task may be started after t = 600 s"
+  ],
+  "generation_rules": {
+    "sampling": {
+      "fault_uav": [
+        "UAV-1",
+        "UAV-2",
+        "UAV-3",
+        "UAV-4"
+      ],
+      "fault_type": [
+        "battery",
+        "GPS",
+        "motor",
+        "link"
+      ],
+      "fault_at_s": [
+        120,
+        180,
+        240,
+        360,
+        480
+      ],
+      "critical_coverage_pct": [
+        70,
+        75,
+        80,
+        85,
+        90
+      ]
+    },
+    "variants": [
+      "single fault",
+      "fault during a handoff"
+    ]
+  },
+  "instance_example": {
+    "fault_uav": "UAV-2",
+    "fault_type": "battery",
+    "fault_at_s": 240,
+    "critical_task": "BLOCK-A1",
+    "critical_coverage_pct": 80,
+    "rtb_zone": "LZ-CHURCH"
+  },
+  "grading": "global checkpoint pass rate; checkpoint weights sum to 100"
+}
