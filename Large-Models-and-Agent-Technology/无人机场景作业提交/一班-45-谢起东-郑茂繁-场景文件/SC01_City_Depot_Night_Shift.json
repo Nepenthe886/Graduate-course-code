@@ -1,0 +1,2385 @@
+{
+  "id": "0f149685",
+  "name": "City Depot Night Shift",
+  "description": "A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.",
+  "status": "active",
+  "creator": "Xie Qidong",
+  "task_type": "area_assignment_and_patrol",
+  "task_description": "A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.",
+  "is_distance_3d": false,
+  "canvas_width": 1024.0,
+  "canvas_height": 768.0,
+  "created_at": 1794123809.3518019,
+  "last_updated": 1794123809.3518019,
+  "statistics": {
+    "drone_count": 3,
+    "target_count": 4,
+    "obstacle_count": 3,
+    "task_count": 20,
+    "environment_id": "70d131e9",
+    "total_commands_executed": 0,
+    "total_flight_time": 0.0,
+    "total_distance_traveled": 0.0,
+    "total_target_reaches": 0,
+    "drones_with_target_reaches": 0,
+    "unique_targets_reached": 0,
+    "session_time": 0.0,
+    "command_history_size": 0,
+    "task_progress": {
+      "task_type": "area_assignment_and_patrol",
+      "progress_percentage": 0,
+      "is_completed": false,
+      "status_message": "Task to be Done",
+      "details": {
+        "total_targets": 4
+      },
+      "target_reach_summary": {
+        "total_reaches": 0,
+        "drones_with_reaches": 0,
+        "unique_targets_reached": 0
+      },
+      "area_coverage_summary": {
+        "total_targets_tracked": 0,
+        "average_coverage": 0.0,
+        "fully_covered_targets": 0
+      }
+    }
+  },
+  "drones": [
+    {
+      "id": "a659c73b",
+      "name": "Alpha",
+      "model": "Model-X4",
+      "status": "idle",
+      "position": {
+        "x": 120.0,
+        "y": 640.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 98.1,
+      "battery_capacity": 98.1,
+      "max_speed": 25.0,
+      "max_altitude": 494.0,
+      "home_position": {
+        "x": 120.0,
+        "y": 640.0,
+        "z": 0.0
+      },
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "e59e46d2",
+      "name": "Bravo",
+      "model": "Model-X4",
+      "status": "idle",
+      "position": {
+        "x": 200.0,
+        "y": 640.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 98.1,
+      "battery_capacity": 98.1,
+      "max_speed": 25.0,
+      "max_altitude": 494.0,
+      "home_position": {
+        "x": 200.0,
+        "y": 640.0,
+        "z": 0.0
+      },
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "6a4cc2b8",
+      "name": "Charlie",
+      "model": "Model-X4",
+      "status": "idle",
+      "position": {
+        "x": 280.0,
+        "y": 640.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 50.0,
+      "task_radius": 20.0,
+      "battery_level": 100.0,
+      "battery_volume": 98.1,
+      "battery_capacity": 98.1,
+      "max_speed": 25.0,
+      "max_altitude": 494.0,
+      "home_position": {
+        "x": 280.0,
+        "y": 640.0,
+        "z": 0.0
+      },
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    }
+  ],
+  "targets": [
+    {
+      "id": "856bff93",
+      "name": "Depot Yard A",
+      "type": "polygon",
+      "position": {
+        "x": 512.0,
+        "y": 384.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 1.0,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 494.0,
+          "y": 366.0,
+          "z": 0.0
+        },
+        {
+          "x": 530.0,
+          "y": 366.0,
+          "z": 0.0
+        },
+        {
+          "x": 530.0,
+          "y": 402.0,
+          "z": 0.0
+        },
+        {
+          "x": 494.0,
+          "y": 402.0,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "ed155109",
+      "name": "Depot Yard B",
+      "type": "polygon",
+      "position": {
+        "x": 700.0,
+        "y": 240.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 1.0,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 620,
+          "y": 160,
+          "z": 0.0
+        },
+        {
+          "x": 780,
+          "y": 160,
+          "z": 0.0
+        },
+        {
+          "x": 780,
+          "y": 320,
+          "z": 0.0
+        },
+        {
+          "x": 620,
+          "y": 320,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "c0155a52",
+      "name": "Loading Bay",
+      "type": "polygon",
+      "position": {
+        "x": 520.0,
+        "y": 560.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 1.0,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 450,
+          "y": 490,
+          "z": 0.0
+        },
+        {
+          "x": 590,
+          "y": 490,
+          "z": 0.0
+        },
+        {
+          "x": 590,
+          "y": 630,
+          "z": 0.0
+        },
+        {
+          "x": 450,
+          "y": 630,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "fdb0cb0b",
+      "name": "Charging Pad",
+      "type": "waypoint",
+      "position": {
+        "x": 150.0,
+        "y": 650.0,
+        "z": 0.0
+      },
+      "description": "Automatic charging station: land inside its radius to recharge.",
+      "radius": 15.0,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": 100.0,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [],
+      "tracking_status": null
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "e5b27520",
+      "name": "Warehouse Block",
+      "type": "polygon",
+      "position": {
+        "x": 460.0,
+        "y": 220.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 380.0,
+          "y": 140.0,
+          "z": 0.0
+        },
+        {
+          "x": 540.0,
+          "y": 140.0,
+          "z": 0.0
+        },
+        {
+          "x": 540.0,
+          "y": 300.0,
+          "z": 0.0
+        },
+        {
+          "x": 380.0,
+          "y": 300.0,
+          "z": 0.0
+        }
+      ],
+      "height": 15.0,
+      "area": 25600.0,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "32afefaf",
+      "name": "Tank Farm",
+      "type": "polygon",
+      "position": {
+        "x": 860.0,
+        "y": 600.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 800,
+          "y": 540,
+          "z": 0.0
+        },
+        {
+          "x": 920,
+          "y": 540,
+          "z": 0.0
+        },
+        {
+          "x": 920,
+          "y": 660,
+          "z": 0.0
+        },
+        {
+          "x": 800,
+          "y": 660,
+          "z": 0.0
+        }
+      ],
+      "height": 15.0,
+      "area": 14400.0,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "a0eed60a",
+      "name": "Office Row",
+      "type": "polygon",
+      "position": {
+        "x": 200.0,
+        "y": 300.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 140,
+          "y": 240,
+          "z": 0.0
+        },
+        {
+          "x": 260,
+          "y": 240,
+          "z": 0.0
+        },
+        {
+          "x": 260,
+          "y": 360,
+          "z": 0.0
+        },
+        {
+          "x": 140,
+          "y": 360,
+          "z": 0.0
+        }
+      ],
+      "height": 15.0,
+      "area": 14400.0,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    }
+  ],
+  "environment": {
+    "id": "70d131e9",
+    "name": "City Depot Night Shift Environment",
+    "weather": "partly_cloudy",
+    "temperature": 14.5,
+    "humidity": 62.0,
+    "pressure": 1013.2,
+    "wind_speed": 3.1,
+    "wind_direction": "northwest",
+    "visibility": 9000.0,
+    "created_at": 1794123809.3518019,
+    "last_updated": 1794123809.3518019
+  },
+  "tasks": [
+    {
+      "id": "aa236f06",
+      "name": "Altitude Hold Checkpoint 1",
+      "content": "Command Charlie to take off to 28.5 meters and hold that altitude, hovering in place while the sensor pod stabilises. The drone reaches its cruise height in the take-off itself; there is no second climb.",
+      "content_aliases": [
+        "Command Charlie to take off to 28.5 meters and hold that altitude, hovering in place while the sensor pod stabilises. The drone reaches its cruise height in the take-off itself; there is no second climb."
+      ],
+      "description": "Take off directly to the working altitude, hold heading and hover while the sensor pod stabilises. Graded on reaching the altitude during the flight.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Altitude Hold Checkpoint created by custom template",
+      "difficulty": "easy",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "altitude": 28.5
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "min_altitude": 26.5
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_hovered",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "min_duration": 2.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "change_altitude",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "2736919a",
+      "name": "Grid Survey Coverage Sweep 2",
+      "content": "Have Alpha take off to 26.4 meters, then fly a rectangular survey grid over the south-west corner (259.2, 457.5), the south-east corner (642.2, 574.6), the north-east corner (768.9, 174.5) and back to the south-west corner, staying at 26.4 meters the whole time. Take a photo as it reaches every waypoint, including the return over the south-west corner, so four photographs in total, and finish hovering above that last waypoint. Fly the waypoints in the order listed and pass within 12 m of every one of them before returning home; do not cut the loop short.",
+      "content_aliases": [
+        "Send Alpha up to 26.4 m and run a four-corner survey grid: (259.2, 457.5) then (642.2, 574.6) then (768.9, 174.5) and close the loop, with a photo at each corner.",
+        "Alpha should climb to 26.4 m and sweep the survey rectangle starting at (259.2, 457.5), taking four photos, one per corner.",
+        "Coverage task: Alpha at 26.4 m, four waypoints (259.2, 457.5) / (642.2, 574.6) / (768.9, 174.5), four photos, then hover."
+      ],
+      "description": "One drone flies a four-corner survey grid at a fixed altitude and photographs the area. Use it when the scenario needs systematic area coverage rather than point inspection.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Grid Survey Coverage Sweep created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "a659c73b",
+            "altitude": 26.4
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_along_path",
+          "parameters": {
+            "id": "a659c73b",
+            "waypoints": [
+              {
+                "x": 259.2,
+                "y": 457.5,
+                "z": 26.4
+              },
+              {
+                "x": 642.2,
+                "y": 574.6,
+                "z": 26.4
+              },
+              {
+                "x": 768.9,
+                "y": 174.5,
+                "z": 26.4
+              },
+              {
+                "x": 259.2,
+                "y": 457.5,
+                "z": 26.4
+              }
+            ]
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "a659c73b"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "a659c73b"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "a659c73b"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "a659c73b"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "a659c73b"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "a659c73b",
+              "min_altitude": 26.4
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "a659c73b",
+              "x": 642.2,
+              "y": 574.6,
+              "z": 26.4,
+              "tolerance": 12.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "a659c73b",
+              "x": 768.9,
+              "y": 174.5,
+              "z": 26.4,
+              "tolerance": 12.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "a659c73b",
+              "min_count": 4
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_along_path",
+        "take_photo",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "15b6b305",
+      "name": "Target Inspection Photo Pass 3",
+      "content": "Take Charlie off to 27.1 meters and fly it to the target Depot Yard A. Once the drone is over the target, point it at the target and take two photographs of Depot Yard A. The drone should finish hovering above the target. Position beacon: (512.0, 384.0) at 27.1 m. Fly there with a single move_to command rather than a sequence of short hops.",
+      "content_aliases": [
+        "Inspect Depot Yard A: Charlie climbs to 27.1 m, reaches the target and shoots two photos of it.",
+        "Charlie must reach Depot Yard A, point at it and capture two photographs from above 27.1 m.",
+        "Photo pass on Depot Yard A by Charlie, altitude 27.1 m, two images required."
+      ],
+      "description": "One drone reaches a ground target, faces it and photographs it. Targets must already exist in the scenario; this template never creates them.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Target Inspection Photo Pass created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "altitude": 27.1
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "x": 512.0,
+            "y": 384.0,
+            "z": 27.1
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "target_id": "856bff93"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "target_id": "856bff93"
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "min_count": 2
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_photo",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "6724b68c",
+      "name": "Perimeter Patrol With Return 4",
+      "content": "Send Charlie on a perimeter patrol at 23.2 meters: start at corner A (141.3, 139.7), continue to corner B (843.5, 206.4), corner C (898.9, 493.9) and corner D (135.5, 585.9), then return home and land. The patrol is only complete when the drone is back on the ground at its home position. Fly the waypoints in the order listed and pass within 12 m of every one of them before returning home; do not cut the loop short.",
+      "content_aliases": [
+        "Charlie patrols the four corners (141.3, 139.7), (843.5, 206.4), (876.5, 555), (135.5, 585.9) at 23.2 m and comes home to land.",
+        "Round-the-compound patrol for Charlie at 23.2 m, ending with return home and land.",
+        "Fly Charlie around the perimeter at 23.2 m and bring it back to the home pad."
+      ],
+      "description": "One drone flies a closed four-corner patrol around a protected area and returns home. Checks both the visited corners and the final home position.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Perimeter Patrol With Return created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "altitude": 23.2
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_along_path",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "waypoints": [
+              {
+                "x": 141.3,
+                "y": 139.7,
+                "z": 23.2
+              },
+              {
+                "x": 843.5,
+                "y": 206.4,
+                "z": 23.2
+              },
+              {
+                "x": 898.9,
+                "y": 493.9,
+                "z": 23.2
+              },
+              {
+                "x": 135.5,
+                "y": 585.9,
+                "z": 23.2
+              }
+            ]
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/return_home",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "x": 843.5,
+              "y": 206.4,
+              "z": 23.2,
+              "tolerance": 12.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "x": 898.9,
+              "y": 493.9,
+              "z": 23.2,
+              "tolerance": 12.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_at_home",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_landed",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "min_count": 1
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_along_path",
+        "return_home",
+        "land"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "76e1765b",
+      "name": "Battery Cycle And Ground Readiness 5",
+      "content": "Fly Bravo up to 31.3 meters, cross to the charging pad at (150.0, 650.0), descend and land on the pad, stay on the ground long enough for the station to top the battery up, then take off again to 12 meters and hold position. Report when the drone is back in the air. Position beacon: (150.0, 650.0) at 31.3 m. Fly there with a single move_to command rather than a sequence of short hops.",
+      "content_aliases": [
+        "Turnaround at the charging station: Bravo climbs to 30 meters, lands on the pad at (150.0, 650.0), recharges on the ground, then lifts off to 12 meters.",
+        "Bravo flies to the charging pad (150.0, 650.0), lands, charges there and takes off again at 12 meters."
+      ],
+      "description": "One drone flies to the charging pad, lands on it, lets the battery top up and then takes off again. Use it between flight legs to model a turnaround at a charging station.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Battery Cycle And Ground Readiness created by custom template",
+      "difficulty": "easy",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 31.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "e59e46d2",
+            "x": 150.0,
+            "y": 650.0,
+            "z": 31.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 12.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "x": 150.0,
+              "y": 650.0,
+              "z": 31.3,
+              "tolerance": 20.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_landed",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_count": 1
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_altitude": 10.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "land",
+        "take_off",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "fe37c709",
+      "name": "Two-Drone Line-Abreast Formation 6",
+      "content": "Put Bravo and Charlie in the air at 27.9 meters. Bravo holds over (285.5, 385.5) and Charlie holds over (480, 380), so the pair keeps a 200 meter lateral spacing while both hover. Position beacon: (480.0, 380.0) at 27.9 m. Fly there with a single move_to command rather than a sequence of short hops.",
+      "content_aliases": [
+        "Both Bravo and Charlie climb to 27.9 m and hold a line abreast formation 200 m apart.",
+        "Formation: Bravo at (280, 380), Charlie at (480, 380), both at 27.9 m, gap 200 m.",
+        "Keep Bravo and Charlie flying at 27.9 m, side by side, 200 m apart."
+      ],
+      "description": "Two drones take off to the same altitude and hold a lateral separation of about 200 m. Needs at least two drones in the session.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Two-Drone Line-Abreast Formation created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 27.9
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "altitude": 27.9
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "e59e46d2",
+            "x": 285.5,
+            "y": 385.5,
+            "z": 27.9
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "x": 480.0,
+            "y": 380.0,
+            "z": 27.9
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/two_drones_distance",
+            "parameters": {
+              "drone_1_id": "e59e46d2",
+              "drone_2_id": "6a4cc2b8",
+              "max_distance": 210
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_altitude": 25.9
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "min_altitude": 25.9
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "666a1173",
+      "name": "Relay Link Message Handoff 7",
+      "content": "Set up a two-station relay: Alpha climbs to 31.3 meters and holds over (252.1, 404.2), Bravo climbs to 31.3 meters and holds over (600, 400). Alpha then sends the message \"photo evidence uploaded\" to Bravo. The two stations are 350 meters apart and must stay within 380 meters of each other. Position beacon: (600.0, 400.0) at 31.3 m. Fly there with a single move_to command rather than a sequence of short hops.",
+      "content_aliases": [
+        "Relay task: Alpha at (250, 400) and Bravo at (600, 400), both at 31.3 m, then Alpha sends \"photo evidence uploaded\".",
+        "Alpha and Bravo hover at 31.3 m and pass the report \"photo evidence uploaded\" along the 350 m link.",
+        "Build a link between the two drones and forward \"photo evidence uploaded\" from Alpha to Bravo."
+      ],
+      "description": "Two drones hold a relay geometry 350 m apart and exchange a status message. Verifies the message content and the spacing between the relay stations.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Relay Link Message Handoff created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "a659c73b",
+            "altitude": 31.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 31.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "a659c73b",
+            "x": 252.1,
+            "y": 404.2,
+            "z": 31.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "e59e46d2",
+            "x": 600.0,
+            "y": 400.0,
+            "z": 31.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/send_message",
+          "parameters": {
+            "id": "a659c73b",
+            "target_drone_id": "e59e46d2",
+            "message": "photo evidence uploaded"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "a659c73b"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/two_drones_distance",
+            "parameters": {
+              "drone_1_id": "a659c73b",
+              "drone_2_id": "e59e46d2",
+              "max_distance": 380
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_sent_message",
+            "parameters": {
+              "drone_id": "a659c73b",
+              "min_count": 1
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_sent_message_content",
+            "parameters": {
+              "drone_id": "a659c73b",
+              "content": "photo evidence uploaded"
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_altitude": 29.3
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "send_message",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "d1cdeb55",
+      "name": "Obstacle Corridor Detour Survey 8",
+      "content": "Cover the corridor from (210.8, 163.9) to (822.8, 493.9) with Bravo flying at 28.6 meters. A blocked structure (Warehouse Block) sits between the two ends: stay at least 49 meters away from it and take two photographs, one at each end, then hover at the far end when finished. Fly the waypoints in the order listed and pass within 12 m of every one of them before returning home; do not cut the loop short.",
+      "content_aliases": [
+        "Bravo flies the corridor from (210.8, 163.9) to (853.3, 580.9) at 28.6 m, avoiding Warehouse Block with a 49 m margin, photo at both ends.",
+        "Detour survey: Bravo at 28.6 m, does not enter the Warehouse Block footprint, takes two photos and hovers at the far end.",
+        "Fly Bravo through the corridor while keeping clear of Warehouse Block, altitude 28.6 m."
+      ],
+      "description": "One drone crosses a corridor containing a no-entry block and photographs both ends. The avoided obstacle must be present in the scenario.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Obstacle Corridor Detour Survey created by custom template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 28.6
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_along_path",
+          "parameters": {
+            "id": "e59e46d2",
+            "waypoints": [
+              {
+                "x": 210.8,
+                "y": 163.9,
+                "z": 28.6
+              },
+              {
+                "x": 822.8,
+                "y": 493.9,
+                "z": 28.6
+              }
+            ]
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_moved_distance",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_distance": 400
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_count": 2
+            }
+          },
+          {
+            "endpoint": "/check/obstacle_within_drone_distance",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "obstacle_id": "e5b27520",
+              "max_distance": 150
+            },
+            "expect": false
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_along_path",
+        "take_photo",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "d6a779fc",
+      "name": "Grid Survey Coverage Sweep 9",
+      "content": "Have Charlie take off to 29.9 meters, then fly a rectangular survey grid over the south-west corner (300.9, 614.7), the south-east corner (685.4, 441.3), the north-east corner (693.8, 192.7) and back to the south-west corner, staying at 29.9 meters the whole time. Take a photo as it reaches every waypoint, including the return over the south-west corner, so four photographs in total, and finish hovering above that last waypoint. Fly the waypoints in the order listed and pass within 12 m of every one of them before returning home; do not cut the loop short.",
+      "content_aliases": [
+        "Send Charlie up to 29.9 m and run a four-corner survey grid: (300.9, 614.7) then (685.4, 441.3) then (693.8, 192.7) and close the loop, with a photo at each corner.",
+        "Charlie should climb to 29.9 m and sweep the survey rectangle starting at (300.9, 614.7), taking four photos, one per corner.",
+        "Coverage task: Charlie at 29.9 m, four waypoints (300.9, 614.7) / (685.4, 441.3) / (693.8, 192.7), four photos, then hover."
+      ],
+      "description": "One drone flies a four-corner survey grid at a fixed altitude and photographs the area. Use it when the scenario needs systematic area coverage rather than point inspection.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Grid Survey Coverage Sweep created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "altitude": 29.9
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_along_path",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "waypoints": [
+              {
+                "x": 300.9,
+                "y": 614.7,
+                "z": 29.9
+              },
+              {
+                "x": 685.4,
+                "y": 441.3,
+                "z": 29.9
+              },
+              {
+                "x": 693.8,
+                "y": 192.7,
+                "z": 29.9
+              },
+              {
+                "x": 300.9,
+                "y": 614.7,
+                "z": 29.9
+              }
+            ]
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "min_altitude": 29.9
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "x": 685.4,
+              "y": 441.3,
+              "z": 29.9,
+              "tolerance": 12.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "x": 693.8,
+              "y": 192.7,
+              "z": 29.9,
+              "tolerance": 12.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "min_count": 4
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_along_path",
+        "take_photo",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "283e3888",
+      "name": "Target Area Coverage Pass 10",
+      "content": "Have Bravo take off to 23 meters and fly to the target Depot Yard A. Hold position over the target and take two photographs of it, then stay hovering above the target. Position beacon: (512.0, 384.0) at 22.3 m. Fly there with a single move_to command rather than a sequence of short hops.",
+      "content_aliases": [
+        "Bravo climbs to 23 m, flies to Depot Yard A and takes two photos of it.",
+        "Photo pass on Depot Yard A: Bravo at 23 m, hover over the target, two photographs, keep hovering afterwards.",
+        "Depot Yard A needs photo evidence; Bravo goes there at 23 m and shoots two frames."
+      ],
+      "description": "One drone flies to a named target, hovers over it and delivers two photographs as evidence. Use it when the scenario needs proof that a specific site was visited and imaged.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Target Area Coverage Pass created by custom template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 22.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "e59e46d2",
+            "x": 512.0,
+            "y": 384.0,
+            "z": 22.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_count": 2
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "856bff93"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "target_id": "856bff93"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_photo",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "b0945e4b",
+      "name": "Target Inspection Photo Pass 11",
+      "content": "Take Bravo off to 25.5 meters and fly it to the target Depot Yard A. Once the drone is over the target, point it at the target and take two photographs of Depot Yard A. The drone should finish hovering above the target. Position beacon: (512.0, 384.0) at 25.5 m. Fly there with a single move_to command rather than a sequence of short hops.",
+      "content_aliases": [
+        "Inspect Depot Yard A: Bravo climbs to 25.5 m, reaches the target and shoots two photos of it.",
+        "Bravo must reach Depot Yard A, point at it and capture two photographs from above 25.5 m.",
+        "Photo pass on Depot Yard A by Bravo, altitude 25.5 m, two images required."
+      ],
+      "description": "One drone reaches a ground target, faces it and photographs it. Targets must already exist in the scenario; this template never creates them.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Target Inspection Photo Pass created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 25.5
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "e59e46d2",
+            "x": 512.0,
+            "y": 384.0,
+            "z": 25.5
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "target_id": "856bff93"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "target_id": "856bff93"
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_count": 2
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_photo",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "40ea2fa3",
+      "name": "Perimeter Patrol With Return 12",
+      "content": "Send Bravo on a perimeter patrol at 26.7 meters: start at corner A (133.6, 201.0), continue to corner B (830.3, 211.1), corner C (945.9, 514.9) and corner D (152.9, 567.5), then return home and land. The patrol is only complete when the drone is back on the ground at its home position. Fly the waypoints in the order listed and pass within 12 m of every one of them before returning home; do not cut the loop short.",
+      "content_aliases": [
+        "Bravo patrols the four corners (141, 212), (830.3, 211.1), (870.7, 589.4), (152.9, 567.5) at 26.7 m and comes home to land.",
+        "Round-the-compound patrol for Bravo at 26.7 m, ending with return home and land.",
+        "Fly Bravo around the perimeter at 26.7 m and bring it back to the home pad."
+      ],
+      "description": "One drone flies a closed four-corner patrol around a protected area and returns home. Checks both the visited corners and the final home position.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Perimeter Patrol With Return created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 26.7
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_along_path",
+          "parameters": {
+            "id": "e59e46d2",
+            "waypoints": [
+              {
+                "x": 133.6,
+                "y": 201.0,
+                "z": 26.7
+              },
+              {
+                "x": 830.3,
+                "y": 211.1,
+                "z": 26.7
+              },
+              {
+                "x": 945.9,
+                "y": 514.9,
+                "z": 26.7
+              },
+              {
+                "x": 152.9,
+                "y": 567.5,
+                "z": 26.7
+              }
+            ]
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/return_home",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "x": 830.3,
+              "y": 211.1,
+              "z": 26.7,
+              "tolerance": 12.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "x": 945.9,
+              "y": 514.9,
+              "z": 26.7,
+              "tolerance": 12.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_at_home",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "tolerance": 5.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_landed",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_count": 1
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_along_path",
+        "return_home",
+        "land"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "345ad339",
+      "name": "Battery Cycle And Ground Readiness 13",
+      "content": "Fly Bravo up to 32 meters, cross to the charging pad at (150.0, 650.0), descend and land on the pad, stay on the ground long enough for the station to top the battery up, then take off again to 12 meters and hold position. Report when the drone is back in the air. Position beacon: (150.0, 650.0) at 32.0 m. Fly there with a single move_to command rather than a sequence of short hops.",
+      "content_aliases": [
+        "Turnaround at the charging station: Bravo climbs to 30 meters, lands on the pad at (150.0, 650.0), recharges on the ground, then lifts off to 12 meters.",
+        "Bravo flies to the charging pad (150.0, 650.0), lands, charges there and takes off again at 12 meters."
+      ],
+      "description": "One drone flies to the charging pad, lands on it, lets the battery top up and then takes off again. Use it between flight legs to model a turnaround at a charging station.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Battery Cycle And Ground Readiness created by custom template",
+      "difficulty": "easy",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 32.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "e59e46d2",
+            "x": 150.0,
+            "y": 650.0,
+            "z": 32.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/land",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 12.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "x": 150.0,
+              "y": 650.0,
+              "z": 32.0,
+              "tolerance": 20.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_landed",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_count": 1
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_altitude": 10.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "land",
+        "take_off",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "dabd0391",
+      "name": "Two-Drone Line-Abreast Formation 14",
+      "content": "Put Alpha and Bravo in the air at 22.3 meters. Alpha holds over (285.5, 385.5) and Bravo holds over (480, 380), so the pair keeps a 200 meter lateral spacing while both hover. Position beacon: (480.0, 380.0) at 22.3 m. Fly there with a single move_to command rather than a sequence of short hops.",
+      "content_aliases": [
+        "Both Alpha and Bravo climb to 22.3 m and hold a line abreast formation 200 m apart.",
+        "Formation: Alpha at (280, 380), Bravo at (480, 380), both at 22.3 m, gap 200 m.",
+        "Keep Alpha and Bravo flying at 22.3 m, side by side, 200 m apart."
+      ],
+      "description": "Two drones take off to the same altitude and hold a lateral separation of about 200 m. Needs at least two drones in the session.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Two-Drone Line-Abreast Formation created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "a659c73b",
+            "altitude": 22.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 22.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "a659c73b",
+            "x": 285.5,
+            "y": 385.5,
+            "z": 22.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "e59e46d2",
+            "x": 480.0,
+            "y": 380.0,
+            "z": 22.3
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "a659c73b"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/two_drones_distance",
+            "parameters": {
+              "drone_1_id": "a659c73b",
+              "drone_2_id": "e59e46d2",
+              "max_distance": 210
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "a659c73b",
+              "min_altitude": 20.3
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_altitude": 20.3
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "e1967fab",
+      "name": "Relay Link Message Handoff 15",
+      "content": "Set up a two-station relay: Charlie climbs to 30.6 meters and holds over (252.1, 404.2), Bravo climbs to 30.6 meters and holds over (600, 400). Charlie then sends the message \"wind gust on the ridge\" to Bravo. The two stations are 350 meters apart and must stay within 380 meters of each other. Position beacon: (600.0, 400.0) at 30.6 m. Fly there with a single move_to command rather than a sequence of short hops.",
+      "content_aliases": [
+        "Relay task: Charlie at (250, 400) and Bravo at (600, 400), both at 30.6 m, then Charlie sends \"wind gust on the ridge\".",
+        "Charlie and Bravo hover at 30.6 m and pass the report \"wind gust on the ridge\" along the 350 m link.",
+        "Build a link between the two drones and forward \"wind gust on the ridge\" from Charlie to Bravo."
+      ],
+      "description": "Two drones hold a relay geometry 350 m apart and exchange a status message. Verifies the message content and the spacing between the relay stations.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Relay Link Message Handoff created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "altitude": 30.6
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 30.6
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "x": 252.1,
+            "y": 404.2,
+            "z": 30.6
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "e59e46d2",
+            "x": 600.0,
+            "y": 400.0,
+            "z": 30.6
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/send_message",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "target_drone_id": "e59e46d2",
+            "message": "wind gust on the ridge"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/two_drones_distance",
+            "parameters": {
+              "drone_1_id": "6a4cc2b8",
+              "drone_2_id": "e59e46d2",
+              "max_distance": 380
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_sent_message",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "min_count": 1
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_sent_message_content",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "content": "wind gust on the ridge"
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_altitude": 28.6
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to",
+        "send_message",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "7e4c0983",
+      "name": "Altitude Hold Checkpoint 16",
+      "content": "Command Charlie to take off to 29 meters and hold that altitude, hovering in place while the sensor pod stabilises. The drone reaches its cruise height in the take-off itself; there is no second climb.",
+      "content_aliases": [
+        "Command Charlie to take off to 29 meters and hold that altitude, hovering in place while the sensor pod stabilises. The drone reaches its cruise height in the take-off itself; there is no second climb."
+      ],
+      "description": "Take off directly to the working altitude, hold heading and hover while the sensor pod stabilises. Graded on reaching the altitude during the flight.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Altitude Hold Checkpoint created by custom template",
+      "difficulty": "easy",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "altitude": 29.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "min_altitude": 27.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_hovered",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "min_duration": 2.0
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "change_altitude",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "cb3c3e2f",
+      "name": "Target Area Coverage Pass 17",
+      "content": "Have Charlie take off to 29.4 meters and fly to the target Depot Yard A. Hold position over the target and take two photographs of it, then stay hovering above the target. Position beacon: (512.0, 384.0) at 22.6 m. Fly there with a single move_to command rather than a sequence of short hops.",
+      "content_aliases": [
+        "Charlie climbs to 29.4 m, flies to Depot Yard A and takes two photos of it.",
+        "Photo pass on Depot Yard A: Charlie at 29.4 m, hover over the target, two photographs, keep hovering afterwards.",
+        "Depot Yard A needs photo evidence; Charlie goes there at 29.4 m and shoots two frames."
+      ],
+      "description": "One drone flies to a named target, hovers over it and delivers two photographs as evidence. Use it when the scenario needs proof that a specific site was visited and imaged.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Target Area Coverage Pass created by custom template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "altitude": 22.6
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "6a4cc2b8",
+            "x": 512.0,
+            "y": 384.0,
+            "z": 22.6
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "6a4cc2b8"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "min_count": 2
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "856bff93"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "drone_id": "6a4cc2b8",
+              "target_id": "856bff93"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_photo",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "7eb3159d",
+      "name": "Obstacle Corridor Detour Survey 18",
+      "content": "Cover the corridor from (131, 156.3) to (939.1, 691.1) with Bravo flying at 28.2 meters. A blocked structure (Warehouse Block) sits between the two ends: stay at least 59 meters away from it and take two photographs, one at each end, then hover at the far end when finished. Fly the waypoints in the order listed and pass within 12 m of every one of them before returning home; do not cut the loop short.",
+      "content_aliases": [
+        "Bravo flies the corridor from (131, 156.3) to (881, 624.2) at 28.2 m, avoiding Warehouse Block with a 59 m margin, photo at both ends.",
+        "Detour survey: Bravo at 28.2 m, does not enter the Warehouse Block footprint, takes two photos and hovers at the far end.",
+        "Fly Bravo through the corridor while keeping clear of Warehouse Block, altitude 28.2 m."
+      ],
+      "description": "One drone crosses a corridor containing a no-entry block and photographs both ends. The avoided obstacle must be present in the scenario.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Obstacle Corridor Detour Survey created by custom template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 28.2
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_along_path",
+          "parameters": {
+            "id": "e59e46d2",
+            "waypoints": [
+              {
+                "x": 131.0,
+                "y": 156.3,
+                "z": 28.2
+              },
+              {
+                "x": 939.1,
+                "y": 691.1,
+                "z": 28.2
+              }
+            ]
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_moved_distance",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_distance": 400
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_count": 2
+            }
+          },
+          {
+            "endpoint": "/check/obstacle_within_drone_distance",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "obstacle_id": "e5b27520",
+              "max_distance": 150
+            },
+            "expect": false
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_along_path",
+        "take_photo",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "ea6b0bf4",
+      "name": "Grid Survey Coverage Sweep 19",
+      "content": "Have Bravo take off to 22.4 meters, then fly a rectangular survey grid over the south-west corner (269.3, 524.8), the south-east corner (752.4, 553.9), the north-east corner (793, 194) and back to the south-west corner, staying at 22.4 meters the whole time. Take a photo as it reaches every waypoint, including the return over the south-west corner, so four photographs in total, and finish hovering above that last waypoint. Fly the waypoints in the order listed and pass within 12 m of every one of them before returning home; do not cut the loop short.",
+      "content_aliases": [
+        "Send Bravo up to 22.4 m and run a four-corner survey grid: (269.3, 524.8) then (752.4, 553.9) then (793, 194) and close the loop, with a photo at each corner.",
+        "Bravo should climb to 22.4 m and sweep the survey rectangle starting at (269.3, 524.8), taking four photos, one per corner.",
+        "Coverage task: Bravo at 22.4 m, four waypoints (269.3, 524.8) / (752.4, 553.9) / (793, 194), four photos, then hover."
+      ],
+      "description": "One drone flies a four-corner survey grid at a fixed altitude and photographs the area. Use it when the scenario needs systematic area coverage rather than point inspection.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Grid Survey Coverage Sweep created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 22.4
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_along_path",
+          "parameters": {
+            "id": "e59e46d2",
+            "waypoints": [
+              {
+                "x": 269.3,
+                "y": 524.8,
+                "z": 22.4
+              },
+              {
+                "x": 752.4,
+                "y": 553.9,
+                "z": 22.4
+              },
+              {
+                "x": 793.0,
+                "y": 194.0,
+                "z": 22.4
+              },
+              {
+                "x": 269.3,
+                "y": 524.8,
+                "z": 22.4
+              }
+            ]
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_altitude": 22.4
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "x": 752.4,
+              "y": 553.9,
+              "z": 22.4,
+              "tolerance": 12.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_visited_position",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "x": 793.0,
+              "y": 194.0,
+              "z": 22.4,
+              "tolerance": 12.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_count": 4
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_along_path",
+        "take_photo",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    },
+    {
+      "id": "8477fe60",
+      "name": "Target Inspection Photo Pass 20",
+      "content": "Take Bravo off to 28.4 meters and fly it to the target Depot Yard A. Once the drone is over the target, point it at the target and take two photographs of Depot Yard A. The drone should finish hovering above the target. Position beacon: (512.0, 384.0) at 28.4 m. Fly there with a single move_to command rather than a sequence of short hops.",
+      "content_aliases": [
+        "Inspect Depot Yard A: Bravo climbs to 28.4 m, reaches the target and shoots two photos of it.",
+        "Bravo must reach Depot Yard A, point at it and capture two photographs from above 28.4 m.",
+        "Photo pass on Depot Yard A by Bravo, altitude 28.4 m, two images required."
+      ],
+      "description": "One drone reaches a ground target, faces it and photographs it. Targets must already exist in the scenario; this template never creates them.",
+      "creator": "Xie Qidong",
+      "originated_from": "Task Template Target Inspection Photo Pass created by custom template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e59e46d2",
+            "altitude": 28.4
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "e59e46d2",
+            "x": 512.0,
+            "y": 384.0,
+            "z": 28.4
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "e59e46d2"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "target_id": "856bff93"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "target_id": "856bff93"
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_photo",
+            "parameters": {
+              "drone_id": "e59e46d2",
+              "min_count": 2
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_photo",
+        "hover"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794123809.3518019,
+      "last_updated": 1794123809.3518019
+    }
+  ],
+  "history": {
+    "command_history": [],
+    "status_history": {},
+    "path_history": {},
+    "area_coverage": {},
+    "target_reaches": {
+      "by_drone": {},
+      "by_target": {}
+    },
+    "moving_target_tracking": {}
+  }
+}

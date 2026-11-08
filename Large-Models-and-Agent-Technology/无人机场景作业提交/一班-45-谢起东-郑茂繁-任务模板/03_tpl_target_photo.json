@@ -1,0 +1,90 @@
+{
+  "id": "tpl_target_photo",
+  "template": {
+    "name": "Target Inspection Photo Pass",
+    "description": "One drone reaches a ground target, faces it and photographs it. Targets must already exist in the scenario; this template never creates them.",
+    "content": "Take {drone_name} off to {random_alt:25:35:1} meters and fly it to the target {target_name}. Once the drone is over the target, point it at the target and take two photographs of {target_name}. The drone should finish hovering above the target.",
+    "content_aliases": [
+      "Inspect {target_name}: {drone_name} climbs to {random_alt:25:35:1} m, reaches the target and shoots two photos of it.",
+      "{drone_name} must reach {target_name}, point at it and capture two photographs from above {random_alt:25:35:1} m.",
+      "Photo pass on {target_name} by {drone_name}, altitude {random_alt:25:35:1} m, two images required."
+    ],
+    "category": "Inspection",
+    "difficulty": "medium",
+    "creator": "Xie Qidong",
+    "is_builtin": false,
+    "suitable_task": [
+      "target_assignment",
+      "target_tracking",
+      "area_search"
+    ],
+    "exclude_in_random_generation": false,
+    "related_apis": [
+      {
+        "endpoint": "/drones/{id}/command/take_off",
+        "parameters": {
+          "id": "{drone_id}",
+          "altitude": "{random_alt:25:35:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/move_to",
+        "parameters": {
+          "id": "{drone_id}",
+          "x": 512,
+          "y": 384,
+          "z": "{random_alt:25:35:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/take_photo",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/take_photo",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/hover",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      }
+    ],
+    "execution_check_apis": {
+      "logic": "and",
+      "checks": [
+        {
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "target_id": "{target_id}"
+          }
+        },
+        {
+          "endpoint": "/check/target_in_photo_taken_by_drone",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "target_id": "{target_id}"
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_taken_photo",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "min_count": 2
+          }
+        }
+      ]
+    },
+    "commands": [
+      "take_off",
+      "take_photo",
+      "hover"
+    ]
+  }
+}

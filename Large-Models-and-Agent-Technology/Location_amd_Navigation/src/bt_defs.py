@@ -376,6 +376,8 @@ def build_mission(world, spec: dict, altitude: float | None = None):
         params = dict(params)
         if params.get("drone_id"):
             params["drone_id"] = resolve_drone(params["drone_id"])
+        if params.get("target_drone_id"):
+            params["target_drone_id"] = resolve_drone(params["target_drone_id"])
         if kind == "take_off":
             nodes.append(TakeOffNode(float(params.get("altitude") or altitude),
                                      params.get("drone_id")))

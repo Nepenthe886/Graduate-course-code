@@ -1,0 +1,90 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-ea18d6ea-efdd-434d-80bb-1db0e2ade690",
+  "experiment": {
+    "run_id": "rid-ea18d6ea-efdd-434d-80bb-1db0e2ade690",
+    "experiment_id": "eid-5aab63bd-7039-5073-9bce-89eb09181644"
+  },
+  "service_instance_id": "20261108T155810-c10da8535679",
+  "batch_file": "../../batch.json",
+  "command_id": "48a6a4bc-9db0-4346-957f-9dc412f05ca3",
+  "job_id": null,
+  "command": "Command Volt to take off to 22.9 meters and hold that altitude, hovering in place while the sensor pod stabilises. The drone reaches its cruise height in the take-off itself; there is no second climb.",
+  "created_at": "2026-11-08 15:58:47",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-08 15:58:59",
+  "requested_run_id": null,
+  "started_at": "2026-11-08 15:58:48",
+  "runtime": {
+    "run_id": "rid-ea18d6ea-efdd-434d-80bb-1db0e2ade690",
+    "experiment": {
+      "run_id": "rid-ea18d6ea-efdd-434d-80bb-1db0e2ade690",
+      "experiment_id": "eid-5aab63bd-7039-5073-9bce-89eb09181644"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "61d16d75",
+    "task_type": null,
+    "task_description": "General purpose example session for testing and demonstration",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "f90b25da",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "98681c008c42534910ee761ee2b81caa64f2f63238dee6e90f8c47bd119dacfe",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "[TASK FAILED] 模板任务必须通过 nav_template_action(altitude_stage) 执行，本轮未调用正确模板，不能报告完成。\n[TASK FAILED]\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "afac1e55",
+            "altitude": 22.9
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"b77d42f4\",\n  \"drone_id\": \"afac1e55\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 22.9m (battery: -0.5%/-0mAh, remaining: 99.5%/98mAh)\",\n  \"timestamp\": 1794124739.3928602\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 12324,
+      "completion_tokens": 46,
+      "total_tokens": 12370,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "complete",
+    "recording_status": "complete",
+    "sha256": "2896380d35b2ba4644d15a443fb49d5ff87ebb6a27f9173d0bcaf5fbd53646ce",
+    "source_indices": [
+      4
+    ],
+    "issues": [],
+    "count": 1,
+    "replay_validation": "not_run"
+  }
+}

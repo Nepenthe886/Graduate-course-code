@@ -1,0 +1,295 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-1129dfb7-88ff-4938-9cd3-0940ca841aeb",
+  "experiment": {
+    "experiment_id": "eid-42e38918-e122-43a2-a94c-edd476080275",
+    "previous_experiment_id": "eid-808e48c2-7eec-46b7-b437-3c61e6174f0d",
+    "start_reason": "restart_after_stop",
+    "run_id": "rid-1129dfb7-88ff-4938-9cd3-0940ca841aeb",
+    "session_id": "43d03e9d",
+    "session_name": "City Depot Night Shift",
+    "task_id": "e386687d",
+    "task_name": "Perimeter Patrol With Return 4",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "d365ca1049814379188f74b9d5f066b6eb004ae7d91ea90d8e4c407211dcf9f3",
+    "session_snapshot_hash": "d1e1640656b005f29dba9bfdf6ec60229cbc7ca6052f09d9dca8d33398d067b1",
+    "checker_version": "0.4.6"
+  },
+  "service_instance_id": "20261108T130418-e27a38698c24",
+  "batch_file": "../../batch.json",
+  "command_id": "15ca39a7-9b21-4745-99e2-c0388260fe6f",
+  "job_id": "07025230-f6a3-48fb-b7bf-da3c3fcd9505",
+  "command": "Send Charlie on a perimeter patrol at 18.9 meters: start at corner A (141.3, 139.7), continue to corner B (843.5, 206.4), corner C (876.5, 555) and corner D (135.5, 585.9), then return home and land. The patrol is only complete when the drone is back on the ground at its home position.",
+  "created_at": "2026-11-08 13:09:15",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-08 13:10:06",
+  "requested_run_id": null,
+  "started_at": "2026-11-08 13:09:15",
+  "runtime": {
+    "run_id": "rid-1129dfb7-88ff-4938-9cd3-0940ca841aeb",
+    "experiment": {
+      "experiment_id": "eid-42e38918-e122-43a2-a94c-edd476080275",
+      "previous_experiment_id": "eid-808e48c2-7eec-46b7-b437-3c61e6174f0d",
+      "start_reason": "restart_after_stop",
+      "run_id": "rid-1129dfb7-88ff-4938-9cd3-0940ca841aeb",
+      "session_id": "43d03e9d",
+      "session_name": "City Depot Night Shift",
+      "task_id": "e386687d",
+      "task_name": "Perimeter Patrol With Return 4",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "d365ca1049814379188f74b9d5f066b6eb004ae7d91ea90d8e4c407211dcf9f3",
+      "session_snapshot_hash": "d1e1640656b005f29dba9bfdf6ec60229cbc7ca6052f09d9dca8d33398d067b1",
+      "checker_version": "0.4.6"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "43d03e9d",
+    "task_type": null,
+    "task_description": "A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 8,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "43d03e9d",
+  "requested_session_id": "43d03e9d",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "52d431b2d7e442d0c24e177e08f5614ce1791966eb6414a0e7661db9f2de6c84",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "[TASK FAILED] The drone's path to the first waypoint is repeatedly blocked by the \"Warehouse Block\" obstacle. The drone cannot proceed without a clear route. Please ensure the obstacle is either avoided or removed before continuing.\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "perimeter_patrol",
+            "params": {
+              "drone_id": "b147f6f4",
+              "altitude": 18.9,
+              "corners": [
+                {
+                  "x": 141.3,
+                  "y": 139.7
+                },
+                {
+                  "x": 843.5,
+                  "y": 206.4
+                },
+                {
+                  "x": 876.5,
+                  "y": 555
+                },
+                {
+                  "x": 135.5,
+                  "y": 585.9
+                }
+              ],
+              "return_home": true,
+              "land": true
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 18.9, \"error\": null}, {\"ok\": false, \"name\": \"move_along_path\", \"error\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Warehouse Block'\"}], \"failures\": [{\"ok\": false, \"name\": \"move_along_path\", \"error\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Warehouse Block'\"}]}"
+      ],
+      [
+        {
+          "tool": "nav_plan_route",
+          "tool_input": {
+            "goal": {
+              "x": 141.3,
+              "y": 139.7
+            },
+            "clearance": 25,
+            "z": 18.9
+          },
+          "log": "Preparing to call tool 'nav_plan_route'",
+          "message_log": null
+        },
+        "{\"start\": [879.0, 692.0], \"goal\": [141.3, 139.7], \"waypoints\": [[108.0, 252.0], [96.0, 168.0], [120.0, 132.0], [141.3, 139.7]], \"waypoints_xyz\": [[879.0, 692.0, 18.9], [108.0, 252.0, 18.9], [96.0, 168.0, 18.9], [120.0, 132.0, 18.9], [141.3, 139.7, 18.9]], \"length\": 1038.49, \"length_3d\": 1038.49, \"min_clearance\": 17.37, \"detoured\": true, \"avoided\": [\"Ellipse Obstacle 1\"], \"planning_dim\": \"2d\", \"altitude\": 18.9, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "b147f6f4",
+            "waypoints": [
+              {
+                "x": 108.0,
+                "y": 252.0
+              },
+              {
+                "x": 96.0,
+                "y": 168.0
+              },
+              {
+                "x": 120.0,
+                "y": 132.0
+              },
+              {
+                "x": 141.3,
+                "y": 139.7
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"8d800499\",\n  \"drone_id\": \"b147f6f4\",\n  \"command\": \"move_along_path\",\n  \"status\": \"error\",\n  \"message\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Warehouse Block'\",\n  \"successful_points_count\": null,\n  \"successful_points\": null,\n  \"unsuccessful_points_count\": null,\n  \"unsuccessful_points\": null,\n  \"timestamp\": 1794114581.5636075\n}"
+      ],
+      [
+        {
+          "tool": "nav_plan_route",
+          "tool_input": {
+            "goal": {
+              "x": 108.0,
+              "y": 252.0
+            },
+            "clearance": 25,
+            "z": 18.9
+          },
+          "log": "Preparing to call tool 'nav_plan_route'",
+          "message_log": null
+        },
+        "{\"start\": [879.0, 692.0], \"goal\": [108.0, 252.0], \"waypoints\": [[108.0, 252.0]], \"waypoints_xyz\": [[879.0, 692.0, 18.9], [108.0, 252.0, 18.9]], \"length\": 887.72, \"length_3d\": 887.72, \"min_clearance\": 26.47, \"detoured\": false, \"avoided\": [], \"planning_dim\": \"2d\", \"altitude\": 18.9, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "b147f6f4",
+            "waypoints": [
+              {
+                "x": 108.0,
+                "y": 252.0
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"197a9d99\",\n  \"drone_id\": \"b147f6f4\",\n  \"command\": \"move_along_path\",\n  \"status\": \"error\",\n  \"message\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Warehouse Block'\",\n  \"successful_points_count\": null,\n  \"successful_points\": null,\n  \"unsuccessful_points_count\": null,\n  \"unsuccessful_points\": null,\n  \"timestamp\": 1794114592.418323\n}"
+      ],
+      [
+        {
+          "tool": "nav_plan_route",
+          "tool_input": {
+            "goal": {
+              "x": 96.0,
+              "y": 168.0
+            },
+            "clearance": 25,
+            "z": 18.9
+          },
+          "log": "Preparing to call tool 'nav_plan_route'",
+          "message_log": null
+        },
+        "{\"start\": [879.0, 692.0], \"goal\": [96.0, 168.0], \"waypoints\": [[108.0, 252.0], [96.0, 168.0]], \"waypoints_xyz\": [[879.0, 692.0, 18.9], [108.0, 252.0, 18.9], [96.0, 168.0, 18.9]], \"length\": 972.57, \"length_3d\": 972.57, \"min_clearance\": 25.17, \"detoured\": true, \"avoided\": [\"Ellipse Obstacle 1\"], \"planning_dim\": \"2d\", \"altitude\": 18.9, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "b147f6f4",
+            "waypoints": [
+              {
+                "x": 108.0,
+                "y": 252.0
+              },
+              {
+                "x": 96.0,
+                "y": 168.0
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"77f360bf\",\n  \"drone_id\": \"b147f6f4\",\n  \"command\": \"move_along_path\",\n  \"status\": \"error\",\n  \"message\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Warehouse Block'\",\n  \"successful_points_count\": null,\n  \"successful_points\": null,\n  \"unsuccessful_points_count\": null,\n  \"unsuccessful_points\": null,\n  \"timestamp\": 1794114603.6524923\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 57443,
+      "completion_tokens": 667,
+      "total_tokens": 58110,
+      "llm_calls": 8
+    },
+    "token_usage_available": true,
+    "run_id": "rid-1129dfb7-88ff-4938-9cd3-0940ca841aeb",
+    "command_id": "15ca39a7-9b21-4745-99e2-c0388260fe6f",
+    "experiment": {
+      "experiment_id": "eid-42e38918-e122-43a2-a94c-edd476080275",
+      "previous_experiment_id": "eid-808e48c2-7eec-46b7-b437-3c61e6174f0d",
+      "start_reason": "restart_after_stop",
+      "run_id": "rid-1129dfb7-88ff-4938-9cd3-0940ca841aeb",
+      "session_id": "43d03e9d",
+      "session_name": "City Depot Night Shift",
+      "task_id": "e386687d",
+      "task_name": "Perimeter Patrol With Return 4",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "d365ca1049814379188f74b9d5f066b6eb004ae7d91ea90d8e4c407211dcf9f3",
+      "session_snapshot_hash": "d1e1640656b005f29dba9bfdf6ec60229cbc7ca6052f09d9dca8d33398d067b1",
+      "checker_version": "0.4.6"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-1129dfb7-88ff-4938-9cd3-0940ca841aeb",
+      "request_history": "/agent/runs/rid-1129dfb7-88ff-4938-9cd3-0940ca841aeb/artifacts/request_history",
+      "events": "/agent/runs/rid-1129dfb7-88ff-4938-9cd3-0940ca841aeb/artifacts/events",
+      "related_apis": "/agent/runs/rid-1129dfb7-88ff-4938-9cd3-0940ca841aeb/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-1129dfb7-88ff-4938-9cd3-0940ca841aeb/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "conversion_required",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [
+      {
+        "index": 5,
+        "path": "/drones/b147f6f4/command/move_along_path",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      },
+      {
+        "index": 7,
+        "path": "/drones/b147f6f4/command/move_along_path",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      },
+      {
+        "index": 9,
+        "path": "/drones/b147f6f4/command/move_along_path",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      }
+    ],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

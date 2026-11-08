@@ -1,0 +1,143 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-a5d92bf2-8c22-4af7-9460-4122e80e4edd",
+  "experiment": {
+    "run_id": "rid-a5d92bf2-8c22-4af7-9460-4122e80e4edd",
+    "experiment_id": "eid-9774e4ed-9354-55e2-81a7-f79ddc50b32d"
+  },
+  "service_instance_id": "20261108T162959-054b37a7514e",
+  "batch_file": "../../batch.json",
+  "command_id": "7879298f-3fed-48f7-b6e0-ce21b802c728",
+  "job_id": null,
+  "command": "Have Watt take off to 28.2 meters and fly to the target Array Row East. Hold position over the target and take two photographs of it, then stay hovering above the target. Position beacon: (512.0, 384.0) at 21.6 m. Fly there with a single move_to command rather than a sequence of short hops.",
+  "created_at": "2026-11-08 16:34:15",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-08 16:34:39",
+  "requested_run_id": null,
+  "started_at": "2026-11-08 16:34:15",
+  "runtime": {
+    "run_id": "rid-a5d92bf2-8c22-4af7-9460-4122e80e4edd",
+    "experiment": {
+      "run_id": "rid-a5d92bf2-8c22-4af7-9460-4122e80e4edd",
+      "experiment_id": "eid-9774e4ed-9354-55e2-81a7-f79ddc50b32d"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "98ccd1c7",
+    "task_type": null,
+    "task_description": "A grid of solar arrays surrounded by a fence line. Three drones patrol the fence, inspect two array rows and practise a battery turnaround at the service shed.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 7,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "98ccd1c7",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "9bc4f0f82073739831a28310efd875146d109054db6c73fbcd213d3f3cee8ce8",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"afac1e55\",\n    \"name\": \"Volt\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 280.0,\n      \"y\": 380.0,\n      \"z\": 0.0\n    },\n    \"heading\": 269.0122396003602,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 140.0,\n      \"y\": 660.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794123809.4043632,\n    \"last_updated\": 1794126852.0954533\n  },\n  {\n    \"id\": \"8bc17736\",\n    \"name\": \"Watt\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 250.0,\n      \"y\": 400.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 220.0,\n      \"y\": 660.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794123809.4043632,\n    \"last_updated\": 1794126852.0954807\n  },\n  {\n    \"id\": \"a70a1e52\",\n    \"name\": \"Ohm\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 600.0,\n      \"y\": 400.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 300.0,\n      \"y\": 660.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794123809.4043632,\n    \"last_updated\": 1794126852.0954933\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"98ccd1c7\",\n  \"name\": \"Solar Farm Perimeter\",\n  \"description\": \"A grid of solar arrays surrounded by a fence line. Three drones patrol the fence, inspect two array rows and practise a battery turnaround at the service shed.\",\n  \"status\": \"active\",\n  \"creator\": \"Xie Qidong\",\n  \"task_type\": \"area_assignment_and_patrol\",\n  \"task_description\": \"A grid of solar arrays surrounded by a fence line. Three drones patrol the fence, inspect two array rows and practise a battery turnaround at the service shed.\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1794123809.4043632,\n  \"last_updated\": 1794126866.0568402,\n  \"statistics\": {\n    \"drone_count\": 3,\n    \"target_count\": 4,\n    \"obstacle_count\": 2,\n    \"task_count\": 20,\n    \"environment_id\": \"86125945\",\n    \"total_commands_executed\": 154,\n    \"total_flight_time\": 1323.5057465659038,\n    \"total_distance_traveled\": 33087.643664147625,\n    \"total_target_reaches\": 97,\n    \"drones_with_target_reaches\": 3,\n    \"unique_targets_reached\": 4,\n    \"session_time\": 1372.6715240478516,\n    \"command_history_size\": 161,\n    \"task_progress\": {\n      \"task_type\": \"area_assignment_and_patrol\",\n      \"progress_percentage\": 61,\n      \"is_completed\": false,\n      \"status_message\": \"Task to be Done\",\n      \"details\": {\n        \"total_targets\": 3\n      },\n      \"target_reach_summary\": {\n        \"total_reaches\": 97,\n        \"drones_with_reaches\": 3,\n        \"unique_targets_reached\": 4\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 4,\n        \"average_coverage\": 71.21773412959311,\n        \"fully_covered_targets\": 1\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"86125945\",\n  \"name\": \"Solar Farm Perimeter Environment\",\n  \"weather\": \"clear\",\n  \"temperature\": 38.64468501234245,\n  \"humidity\": 38.0,\n  \"pressure\": 1015.0,\n  \"wind_speed\": 14.87553694332075,\n  \"wind_direction\": \"east\",\n  \"visibility\": 15000.0,\n  \"created_at\": 1794123809.4043632,\n  \"last_updated\": 1794126871.3931375\n}"
+      ],
+      [
+        {
+          "tool": "get_nearby_entities",
+          "tool_input": {
+            "drone_id": "8bc17736"
+          },
+          "log": "Preparing to call tool 'get_nearby_entities'",
+          "message_log": null
+        },
+        "{\n  \"drones\": [\n    {\n      \"id\": \"afac1e55\",\n      \"name\": \"Volt\",\n      \"model\": \"Model-X4\",\n      \"status\": \"idle\",\n      \"position\": {\n        \"x\": 280.0,\n        \"y\": 380.0,\n        \"z\": 0.0\n      },\n      \"heading\": 269.0122396003602,\n      \"speed\": 0.0,\n      \"battery_level\": 100.0,\n      \"max_speed\": 25.0,\n      \"max_altitude\": 494.0,\n      \"battery_capacity\": 98.1,\n      \"perceived_radius\": 50.0,\n      \"task_radius\": 20.0,\n      \"home_position\": {\n        \"x\": 140.0,\n        \"y\": 660.0,\n        \"z\": 0.0\n      },\n      \"created_at\": 1794123809.4043632,\n      \"last_updated\": 1794126852.0954533\n    }\n  ],\n  \"targets\": [\n    {\n      \"id\": \"093f7737\",\n      \"name\": \"Array Row West\",\n      \"type\": \"polygon\",\n      \"position\": {\n        \"x\": 240.0,\n        \"y\": 240.0,\n        \"z\": 0.0\n      },\n      \"description\": \"\",\n      \"velocity\": null,\n      \"radius\": 1.0,\n      \"created_at\": 1794123809.4043632,\n      \"last_updated\": 1794123809.4043632,\n      \"moving_path\": null,\n      \"moving_duration\": null,\n      \"current_path_index\": null,\n      \"path_direction\": null,\n      \"time_in_direction\": null,\n      \"calculated_speed\": null,\n      \"movement_mode\": null,\n      \"last_motion_update\": null,\n      \"charge_amount\": null,\n      \"vertices\": [\n        {\n          \"x\": 110.0,\n          \"y\": 110.0,\n          \"z\": 0.0\n        },\n        {\n          \"x\": 370.0,\n          \"y\": 110.0,\n          \"z\": 0.0\n        },\n        {\n          \"x\": 370.0,\n          \"y\": 370.0,\n          \"z\": 0.0\n        },\n        {\n          \"x\": 110.0,\n          \"y\": 370.0,\n          \"z\": 0.0\n        }\n      ],\n      \"tracking_status\": null,\n      \"last_tracked_at\": null,\n      \"is_reached\": false,\n      \"reached_by\": []\n    }\n  ],\n  \"obstacles\": []\n}"
+      ],
+      [
+        {
+          "tool": "nav_route_to_target",
+          "tool_input": {
+            "drone_id": "8bc17736",
+            "target": "Array Row East",
+            "z": 21.6
+          },
+          "log": "Preparing to call tool 'nav_route_to_target'",
+          "message_log": null
+        },
+        "{\"target\": {\"name\": \"Array Row East\", \"center\": [512.0, 384.0], \"radius\": 1.0}, \"route\": {\"start\": [250.0, 400.0], \"goal\": [512.0, 384.0], \"waypoints\": [[512.0, 384.0]], \"waypoints_xyz\": [[250.0, 400.0, 21.6], [512.0, 384.0, 21.6]], \"length\": 262.49, \"length_3d\": 262.49, \"min_clearance\": 94.0, \"detoured\": false, \"avoided\": [], \"planning_dim\": \"2d\", \"altitude\": 21.6, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}, \"move_along_path_waypoints\": [{\"x\": 512.0, \"y\": 384.0, \"z\": 21.6}]}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "target_photo",
+            "params": {
+              "altitude": 28.2,
+              "drone_id": "8bc17736",
+              "target": "Array Row East"
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 28.2, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [512.0, 384.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 54838,
+      "completion_tokens": 219,
+      "total_tokens": 55057,
+      "llm_calls": 7
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

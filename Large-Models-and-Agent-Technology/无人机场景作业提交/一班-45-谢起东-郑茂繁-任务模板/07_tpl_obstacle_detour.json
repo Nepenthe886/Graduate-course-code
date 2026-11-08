@@ -1,0 +1,101 @@
+{
+  "id": "tpl_obstacle_detour",
+  "template": {
+    "name": "Obstacle Corridor Detour Survey",
+    "description": "One drone crosses a corridor containing a no-entry block and photographs both ends. The avoided obstacle must be present in the scenario.",
+    "content": "Cover the corridor from ({randx_wp1:120:240:1}, {randy_wp1:120:240:1}) to ({randx_wp2:760:900:1}, {randy_wp2:520:660:1}) with {drone_name} flying at {random_alt:22:30:1} meters. A blocked structure ({obstacle_name}) sits between the two ends: stay at least {random_clear:40:60:0} meters away from it and take two photographs, one at each end, then hover at the far end when finished.",
+    "content_aliases": [
+      "{drone_name} flies the corridor from ({randx_wp1:120:240:1}, {randy_wp1:120:240:1}) to ({randx_wp2:760:900:1}, {randy_wp2:520:660:1}) at {random_alt:22:30:1} m, avoiding {obstacle_name} with a {random_clear:40:60:0} m margin, photo at both ends.",
+      "Detour survey: {drone_name} at {random_alt:22:30:1} m, does not enter the {obstacle_name} footprint, takes two photos and hovers at the far end.",
+      "Fly {drone_name} through the corridor while keeping clear of {obstacle_name}, altitude {random_alt:22:30:1} m."
+    ],
+    "category": "Navigation",
+    "difficulty": "hard",
+    "creator": "Xie Qidong",
+    "is_builtin": false,
+    "suitable_task": [
+      "area_search",
+      "others"
+    ],
+    "exclude_in_random_generation": false,
+    "related_apis": [
+      {
+        "endpoint": "/drones/{id}/command/take_off",
+        "parameters": {
+          "id": "{drone_id}",
+          "altitude": "{random_alt:22:30:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/take_photo",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/take_photo",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/move_along_path",
+        "parameters": {
+          "id": "{drone_id}",
+          "waypoints": [
+            {
+              "x": "{randx_wp1:120:240:1}",
+              "y": "{randy_wp1:120:240:1}",
+              "z": "{random_alt:22:30:1}"
+            },
+            {
+              "x": "{randx_wp2:760:900:1}",
+              "y": "{randy_wp2:520:660:1}",
+              "z": "{random_alt:22:30:1}"
+            }
+          ]
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/hover",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      }
+    ],
+    "execution_check_apis": {
+      "logic": "and",
+      "checks": [
+        {
+          "endpoint": "/check/drone_has_moved_distance",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "min_distance": 400
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_taken_photo",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "min_count": 2
+          }
+        },
+        {
+          "endpoint": "/check/obstacle_within_drone_distance",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "obstacle_id": "{obstacle_id}",
+            "max_distance": 150
+          },
+          "expect": false
+        }
+      ]
+    },
+    "commands": [
+      "take_off",
+      "move_along_path",
+      "take_photo",
+      "hover"
+    ]
+  }
+}

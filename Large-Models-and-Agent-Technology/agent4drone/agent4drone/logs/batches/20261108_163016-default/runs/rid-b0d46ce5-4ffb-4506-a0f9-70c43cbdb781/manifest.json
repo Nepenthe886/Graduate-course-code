@@ -1,0 +1,106 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-b0d46ce5-4ffb-4506-a0f9-70c43cbdb781",
+  "experiment": {
+    "run_id": "rid-b0d46ce5-4ffb-4506-a0f9-70c43cbdb781",
+    "experiment_id": "eid-9774e4ed-9354-55e2-81a7-f79ddc50b32d"
+  },
+  "service_instance_id": "20261108T162959-054b37a7514e",
+  "batch_file": "../../batch.json",
+  "command_id": "2949f487-8ee5-4a15-8221-2713a4080f98",
+  "job_id": null,
+  "command": "Have Ohm take off to 24.5 meters, then fly a rectangular survey grid over the south-west corner (292.3, 550.1), the south-east corner (756.8, 565.5), the north-east corner (628.4, 168.7) and back to the south-west corner, staying at 24.5 meters the whole time. Take a photo as it reaches every waypoint, including the return over the south-west corner, so four photographs in total, and finish hovering above that last waypoint. Fly the waypoints in the order listed and pass within 12 m of every one of them before returning home; do not cut the loop short.",
+  "created_at": "2026-11-08 16:35:50",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-08 16:36:05",
+  "requested_run_id": null,
+  "started_at": "2026-11-08 16:35:50",
+  "runtime": {
+    "run_id": "rid-b0d46ce5-4ffb-4506-a0f9-70c43cbdb781",
+    "experiment": {
+      "run_id": "rid-b0d46ce5-4ffb-4506-a0f9-70c43cbdb781",
+      "experiment_id": "eid-9774e4ed-9354-55e2-81a7-f79ddc50b32d"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "98ccd1c7",
+    "task_type": null,
+    "task_description": "A grid of solar arrays surrounded by a fence line. Three drones patrol the fence, inspect two array rows and practise a battery turnaround at the service shed.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "98ccd1c7",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "d852eb7a3373d52fffd0aa06c71c66ff1688f5217bdb3ed08a2b16a50d3054d4",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "grid_survey",
+            "params": {
+              "altitude": 24.5,
+              "drone_id": "a70a1e52",
+              "corners": [
+                [
+                  292.3,
+                  550.1
+                ],
+                [
+                  756.8,
+                  565.5
+                ],
+                [
+                  628.4,
+                  168.7
+                ]
+              ],
+              "photos": 4
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 10, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 24.5, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [292.3, 550.1], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 12716,
+      "completion_tokens": 347,
+      "total_tokens": 13063,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

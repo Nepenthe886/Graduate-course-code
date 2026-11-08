@@ -1,0 +1,59 @@
+{
+  "id": "tpl_altitude_corridor",
+  "template": {
+    "name": "Altitude Hold Checkpoint",
+    "description": "Take off directly to the working altitude, hold heading and hover while the sensor pod stabilises. Graded on reaching the altitude during the flight.",
+    "content": "Command {drone_name} to take off to {random_alt:22:30:1} meters and hold that altitude, hovering in place while the sensor pod stabilises. The drone reaches its cruise height in the take-off itself; there is no second climb.",
+    "content_aliases": [
+      "Command {drone_name} to take off to {random_alt:22:30:1} meters and hold that altitude, hovering in place while the sensor pod stabilises. The drone reaches its cruise height in the take-off itself; there is no second climb."
+    ],
+    "category": "Basics",
+    "difficulty": "easy",
+    "creator": "Xie Qidong",
+    "is_builtin": false,
+    "suitable_task": [
+      "all"
+    ],
+    "exclude_in_random_generation": false,
+    "related_apis": [
+      {
+        "endpoint": "/drones/{id}/command/take_off",
+        "parameters": {
+          "id": "{drone_id}",
+          "altitude": "{random_alt:22:30:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/hover",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      }
+    ],
+    "execution_check_apis": {
+      "logic": "and",
+      "checks": [
+        {
+          "endpoint": "/check/drone_altitude",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "expected_altitude": "{random_alt:22:30:1}",
+            "tolerance": 2.0
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_hovered",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "min_duration": 2.0
+          }
+        }
+      ]
+    },
+    "commands": [
+      "take_off",
+      "change_altitude",
+      "hover"
+    ]
+  }
+}

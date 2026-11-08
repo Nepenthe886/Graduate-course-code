@@ -1,0 +1,215 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-93e7f8e1-f61a-475d-a6e1-51b5ce0c1c68",
+  "experiment": {
+    "run_id": "rid-93e7f8e1-f61a-475d-a6e1-51b5ce0c1c68",
+    "experiment_id": "eid-9774e4ed-9354-55e2-81a7-f79ddc50b32d"
+  },
+  "service_instance_id": "20261108T162959-054b37a7514e",
+  "batch_file": "../../batch.json",
+  "command_id": "c0e88560-0814-4e0b-b5a3-5af67cdd9c97",
+  "job_id": null,
+  "command": "Fly Ohm up to 34.3 meters, cross to the charging pad at (150.0, 650.0), descend and land on the pad, stay on the ground long enough for the station to top the battery up, then take off again to 12 meters and hold position. Report when the drone is back in the air. Position beacon: (150.0, 650.0) at 34.3 m. Fly there with a single move_to command rather than a sequence of short hops.",
+  "created_at": "2026-11-08 16:36:59",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-08 16:37:35",
+  "requested_run_id": null,
+  "started_at": "2026-11-08 16:36:59",
+  "runtime": {
+    "run_id": "rid-93e7f8e1-f61a-475d-a6e1-51b5ce0c1c68",
+    "experiment": {
+      "run_id": "rid-93e7f8e1-f61a-475d-a6e1-51b5ce0c1c68",
+      "experiment_id": "eid-9774e4ed-9354-55e2-81a7-f79ddc50b32d"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "98ccd1c7",
+    "task_type": null,
+    "task_description": "A grid of solar arrays surrounded by a fence line. Three drones patrol the fence, inspect two array rows and practise a battery turnaround at the service shed.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 10,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "98ccd1c7",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "ed220859f4c50bb92dc920df19f2ef632b0e43fa37d192a1148a35aee556246f",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "battery_cycle",
+            "params": {
+              "altitude": 34.3,
+              "drone_id": "a70a1e52",
+              "charge_amount": 30.0
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 34.3, \"error\": null}, {\"ok\": true, \"name\": \"hover\", \"error\": null}, {\"ok\": true, \"name\": \"return_home\", \"error\": null}], \"failures\": [{\"ok\": false, \"name\": \"charge\", \"error\": \"Drone is not at a valid charging station\"}]}"
+      ],
+      [
+        {
+          "tool": "nav_route_to_target",
+          "tool_input": {
+            "drone_id": "a70a1e52",
+            "target": "charging pad",
+            "z": 34.3
+          },
+          "log": "Preparing to call tool 'nav_route_to_target'",
+          "message_log": null
+        },
+        "{\"target\": {\"name\": \"Charging Pad\", \"center\": [150.0, 650.0], \"radius\": 15.0}, \"route\": {\"start\": [300.0, 660.0], \"goal\": [150.0, 650.0], \"waypoints\": [[150.0, 650.0]], \"waypoints_xyz\": [[300.0, 660.0, 34.3], [150.0, 650.0, 34.3]], \"length\": 150.33, \"length_3d\": 150.33, \"min_clearance\": 380.79, \"detoured\": false, \"avoided\": [], \"planning_dim\": \"2d\", \"altitude\": 34.3, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}, \"move_along_path_waypoints\": [{\"x\": 150.0, \"y\": 650.0, \"z\": 34.3}]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "a70a1e52",
+            "waypoints": [
+              {
+                "x": 150.0,
+                "y": 650.0,
+                "z": 34.3
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"9e3268f6\",\n  \"drone_id\": \"a70a1e52\",\n  \"command\": \"move_along_path\",\n  \"status\": \"error\",\n  \"message\": \"Cannot move along path from current status: DroneStatus.IDLE\",\n  \"successful_points_count\": null,\n  \"successful_points\": null,\n  \"unsuccessful_points_count\": null,\n  \"unsuccessful_points\": null,\n  \"timestamp\": 1794127036.8751504\n}"
+      ],
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "a70a1e52",
+            "altitude": 34.3
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"613d74e5\",\n  \"drone_id\": \"a70a1e52\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 34.3m (battery: -0.5%/-0mAh, remaining: 88.0%/86mAh)\",\n  \"timestamp\": 1794127039.8901541\n}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "a70a1e52",
+            "waypoints": [
+              {
+                "x": 150.0,
+                "y": 650.0,
+                "z": 34.3
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"504b7f49\",\n  \"drone_id\": \"a70a1e52\",\n  \"command\": \"move_along_path\",\n  \"status\": \"success\",\n  \"message\": \"Drone completed path with 1 waypoints (total distance: 150.33m, battery: -1.3%/-1mAh, remaining: 86.7%/85mAh) - Reached target(s): Charging Pad\",\n  \"successful_points_count\": 1,\n  \"successful_points\": [\n    [\n      150.0,\n      650.0,\n      34.3\n    ]\n  ],\n  \"unsuccessful_points_count\": 0,\n  \"unsuccessful_points\": [],\n  \"timestamp\": 1794127043.4501631\n}"
+      ],
+      [
+        {
+          "tool": "change_altitude",
+          "tool_input": {
+            "drone_id": "a70a1e52",
+            "altitude": 0.0
+          },
+          "log": "Preparing to call tool 'change_altitude'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"131898f8\",\n  \"drone_id\": \"a70a1e52\",\n  \"command\": \"change_altitude\",\n  \"status\": \"success\",\n  \"message\": \"Drone altitude changed to 0.0m (battery: -0.2%/-0mAh, remaining: 86.5%/85mAh)\",\n  \"timestamp\": 1794127046.514817\n}"
+      ],
+      [
+        {
+          "tool": "land",
+          "tool_input": {
+            "drone_id": "a70a1e52"
+          },
+          "log": "Preparing to call tool 'land'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"4f3b450b\",\n  \"drone_id\": \"a70a1e52\",\n  \"command\": \"land\",\n  \"status\": \"success\",\n  \"message\": \"Drone landed successfully (battery: -0.0%/-0mAh, remaining: 86.5%/85mAh)\",\n  \"timestamp\": 1794127049.4227555\n}"
+      ],
+      [
+        {
+          "tool": "charge",
+          "tool_input": {
+            "drone_id": "a70a1e52",
+            "charge_amount": 30.0
+          },
+          "log": "Preparing to call tool 'charge'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"8e15498b\",\n  \"drone_id\": \"a70a1e52\",\n  \"command\": \"charge\",\n  \"status\": \"success\",\n  \"message\": \"Battery instantly charged by +13.5%/+13mAh (from 86.5%/85mAh to 100.0%/98mAh)\",\n  \"timestamp\": 1794127052.576071\n}"
+      ],
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "a70a1e52",
+            "altitude": 12.0
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"231d4caa\",\n  \"drone_id\": \"a70a1e52\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 12.0m (battery: -0.5%/-0mAh, remaining: 99.5%/98mAh)\",\n  \"timestamp\": 1794127055.5736723\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 71990,
+      "completion_tokens": 538,
+      "total_tokens": 72528,
+      "llm_calls": 10
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "conversion_required",
+    "recording_status": "complete",
+    "sha256": "db5950cf782f893a4f37fbbfcd0a9992e6bf1079db01a0c5d2778c6447677cc0",
+    "source_indices": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "issues": [
+      {
+        "index": 5,
+        "path": "/drones/a70a1e52/command/move_along_path",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      }
+    ],
+    "count": 6,
+    "replay_validation": "not_run"
+  }
+}

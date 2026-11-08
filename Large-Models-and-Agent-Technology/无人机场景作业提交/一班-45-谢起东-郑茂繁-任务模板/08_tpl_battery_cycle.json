@@ -1,0 +1,94 @@
+{
+  "id": "tpl_battery_cycle",
+  "template": {
+    "name": "Battery Cycle And Ground Readiness",
+    "description": "One drone flies to the charging pad, lands on it, lets the battery top up and then takes off again. Use it between flight legs to model a turnaround at a charging station.",
+    "content": "Fly {drone_name} up to {random_alt:28:36:1} meters, cross to the charging pad at (150.0, 650.0), descend and land on the pad, stay on the ground long enough for the station to top the battery up, then take off again to 12 meters and hold position. Report when the drone is back in the air.",
+    "content_aliases": [
+      "Turnaround at the charging station: {drone_name} climbs to 30 meters, lands on the pad at (150.0, 650.0), recharges on the ground, then lifts off to 12 meters.",
+      "{drone_name} flies to the charging pad (150.0, 650.0), lands, charges there and takes off again at 12 meters."
+    ],
+    "category": "Logistics",
+    "difficulty": "easy",
+    "creator": "Xie Qidong",
+    "is_builtin": false,
+    "suitable_task": [
+      "all",
+      "others"
+    ],
+    "exclude_in_random_generation": false,
+    "related_apis": [
+      {
+        "endpoint": "/drones/{id}/command/take_off",
+        "parameters": {
+          "id": "{drone_id}",
+          "altitude": "{random_alt:28:36:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/move_to",
+        "parameters": {
+          "id": "{drone_id}",
+          "x": 150.0,
+          "y": 650.0,
+          "z": "{random_alt:28:36:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/land",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/take_off",
+        "parameters": {
+          "id": "{drone_id}",
+          "altitude": 12.0
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/hover",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      }
+    ],
+    "execution_check_apis": {
+      "logic": "and",
+      "checks": [
+        {
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "x": 150.0,
+            "y": 650.0,
+            "z": "{random_alt:28:36:1}",
+            "tolerance": 20.0
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_landed",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "min_count": 1
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_taken_off",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "min_altitude": 10.0
+          }
+        }
+      ]
+    },
+    "commands": [
+      "take_off",
+      "move_to",
+      "land",
+      "take_off",
+      "hover"
+    ]
+  }
+}

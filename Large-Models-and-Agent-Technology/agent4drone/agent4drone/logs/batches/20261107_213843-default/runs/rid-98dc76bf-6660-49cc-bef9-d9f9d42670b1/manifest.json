@@ -1,0 +1,129 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-98dc76bf-6660-49cc-bef9-d9f9d42670b1",
+  "experiment": {
+    "run_id": "rid-98dc76bf-6660-49cc-bef9-d9f9d42670b1",
+    "experiment_id": "eid-3018bef2-003d-5c93-a415-dfcb1066bdbf"
+  },
+  "service_instance_id": "20261107T213757-bd4a342956da",
+  "batch_file": "../../batch.json",
+  "command_id": "612fdba0-dec6-4233-b5ac-ad559f828cf5",
+  "job_id": null,
+  "command": "Command Charlie to take off to 15.5 meters, hold heading for a moment, then climb to 33.4 meters and hover there. The drone must still be airborne when the task is checked.",
+  "created_at": "2026-11-07 21:38:43",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-07 21:39:03",
+  "requested_run_id": null,
+  "started_at": "2026-11-07 21:38:43",
+  "runtime": {
+    "run_id": "rid-98dc76bf-6660-49cc-bef9-d9f9d42670b1",
+    "experiment": {
+      "run_id": "rid-98dc76bf-6660-49cc-bef9-d9f9d42670b1",
+      "experiment_id": "eid-3018bef2-003d-5c93-a415-dfcb1066bdbf"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "70df8599",
+    "task_type": null,
+    "task_description": "General purpose example session for testing and demonstration",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 5,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "0a02097e",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "5de1d0db1c8db5567424ca3fbb37a9ec6c77ed0468228e1d2d539f40fdd9b25b",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "1aa0741a",
+            "altitude": 15.5
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"e682c7f2\",\n  \"drone_id\": \"1aa0741a\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 15.5m (battery: -0.5%/-0mAh, remaining: 99.5%/98mAh)\",\n  \"timestamp\": 1794058734.8453822\n}"
+      ],
+      [
+        {
+          "tool": "hover",
+          "tool_input": {
+            "drone_id": "1aa0741a",
+            "duration": 5.0
+          },
+          "log": "Preparing to call tool 'hover'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"1acb6c30\",\n  \"drone_id\": \"1aa0741a\",\n  \"command\": \"hover\",\n  \"status\": \"success\",\n  \"message\": \"Drone now hovering (battery: -0.1%/-0mAh, remaining: 99.4%/98mAh)\",\n  \"timestamp\": 1794058737.70097\n}"
+      ],
+      [
+        {
+          "tool": "change_altitude",
+          "tool_input": {
+            "drone_id": "1aa0741a",
+            "altitude": 33.4
+          },
+          "log": "Preparing to call tool 'change_altitude'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"52bf1e59\",\n  \"drone_id\": \"1aa0741a\",\n  \"command\": \"change_altitude\",\n  \"status\": \"success\",\n  \"message\": \"Drone altitude changed to 33.4m (battery: -0.1%/-0mAh, remaining: 99.3%/97mAh)\",\n  \"timestamp\": 1794058740.6805696\n}"
+      ],
+      [
+        {
+          "tool": "hover",
+          "tool_input": {
+            "drone_id": "1aa0741a",
+            "duration": 5.0
+          },
+          "log": "Preparing to call tool 'hover'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"fba126a6\",\n  \"drone_id\": \"1aa0741a\",\n  \"command\": \"hover\",\n  \"status\": \"success\",\n  \"message\": \"Drone now hovering (battery: -0.1%/-0mAh, remaining: 99.2%/97mAh)\",\n  \"timestamp\": 1794058743.5690765\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 32003,
+      "completion_tokens": 170,
+      "total_tokens": 32173,
+      "llm_calls": 5
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "complete",
+    "recording_status": "complete",
+    "sha256": "f3edf575f41947bbd27916285ad4f9de58ca6621f2e9d073dc0822fd07f4ab26",
+    "source_indices": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "issues": [],
+    "count": 4,
+    "replay_validation": "not_run"
+  }
+}

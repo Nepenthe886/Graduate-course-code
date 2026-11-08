@@ -14,6 +14,7 @@ from .paths import DEFAULT_CONFIG, find_map, list_maps, resolve
 class NavConfig:
     map_dir: str = "maps"
     external_map_dirs: list[str] = field(default_factory=list)
+    scenario_dirs: list[str] = field(default_factory=list)
     default_map: str | None = None
     clearance: float = 45.0
     grid_step: float = 10.0

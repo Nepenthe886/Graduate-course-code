@@ -1,0 +1,210 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-ed02c7fe-3345-4e6f-a9aa-f9cdf5b72cbf",
+  "experiment": {
+    "experiment_id": "eid-42e38918-e122-43a2-a94c-edd476080275",
+    "previous_experiment_id": "eid-808e48c2-7eec-46b7-b437-3c61e6174f0d",
+    "start_reason": "restart_after_stop",
+    "run_id": "rid-ed02c7fe-3345-4e6f-a9aa-f9cdf5b72cbf",
+    "session_id": "43d03e9d",
+    "session_name": "City Depot Night Shift",
+    "task_id": "d106adb5",
+    "task_name": "Battery Cycle And Ground Readiness 5",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "fc447ce5253f75a15d638a993ad0269c13a7603f0448bf882328765d985f7e62",
+    "session_snapshot_hash": "f4b298c044619ebf53b10a08d956b312ec2c7d0e2562135b86f20ac71d2276f5",
+    "checker_version": "0.4.6"
+  },
+  "service_instance_id": "20261108T130418-e27a38698c24",
+  "batch_file": "../../batch.json",
+  "command_id": "f52d6c78-d198-4655-85f5-965ebc7e06fa",
+  "job_id": "59af1362-ee1f-4b72-8b44-9f6c734ab91d",
+  "command": "Fly Bravo up to 17 meters and hover briefly, then land back on the pad and recharge by 38 percent. The task is complete when the drone is on the ground and the charge command has been accepted.",
+  "created_at": "2026-11-08 13:10:15",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-08 13:10:41",
+  "requested_run_id": null,
+  "started_at": "2026-11-08 13:10:15",
+  "runtime": {
+    "run_id": "rid-ed02c7fe-3345-4e6f-a9aa-f9cdf5b72cbf",
+    "experiment": {
+      "experiment_id": "eid-42e38918-e122-43a2-a94c-edd476080275",
+      "previous_experiment_id": "eid-808e48c2-7eec-46b7-b437-3c61e6174f0d",
+      "start_reason": "restart_after_stop",
+      "run_id": "rid-ed02c7fe-3345-4e6f-a9aa-f9cdf5b72cbf",
+      "session_id": "43d03e9d",
+      "session_name": "City Depot Night Shift",
+      "task_id": "d106adb5",
+      "task_name": "Battery Cycle And Ground Readiness 5",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "fc447ce5253f75a15d638a993ad0269c13a7603f0448bf882328765d985f7e62",
+      "session_snapshot_hash": "f4b298c044619ebf53b10a08d956b312ec2c7d0e2562135b86f20ac71d2276f5",
+      "checker_version": "0.4.6"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "43d03e9d",
+    "task_type": null,
+    "task_description": "A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 8,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "43d03e9d",
+  "requested_session_id": "43d03e9d",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "52d431b2d7e442d0c24e177e08f5614ce1791966eb6414a0e7661db9f2de6c84",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "The drone is not at a valid charging station, so the charge command cannot be executed. [TASK FAILED]\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"8470b5b6\",\n    \"name\": \"Alpha\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 768.9,\n      \"y\": 174.5,\n      \"z\": 0.0\n    },\n    \"heading\": 162.4285243014915,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 120.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794059108.9830196,\n    \"last_updated\": 1794114611.2504025\n  },\n  {\n    \"id\": \"efbff829\",\n    \"name\": \"Bravo\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 200.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 200.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794059108.9830196,\n    \"last_updated\": 1794114611.2504272\n  },\n  {\n    \"id\": \"b147f6f4\",\n    \"name\": \"Charlie\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 879.0,\n      \"y\": 692.0,\n      \"z\": 0.0\n    },\n    \"heading\": 85.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 280.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794059108.9830196,\n    \"last_updated\": 1794114611.2504382\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"43d03e9d\",\n  \"name\": \"City Depot Night Shift\",\n  \"description\": \"A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.\",\n  \"status\": \"active\",\n  \"creator\": \"Xie Qidong\",\n  \"task_type\": \"area_assignment_and_patrol\",\n  \"task_description\": \"A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1794059108.9830196,\n  \"last_updated\": 1794114624.502398,\n  \"statistics\": {\n    \"drone_count\": 3,\n    \"target_count\": 3,\n    \"obstacle_count\": 3,\n    \"task_count\": 20,\n    \"environment_id\": \"9773fa57\",\n    \"total_commands_executed\": 15,\n    \"total_flight_time\": 66.03854986532853,\n    \"total_distance_traveled\": 1650.9637466332133,\n    \"total_target_reaches\": 2,\n    \"drones_with_target_reaches\": 1,\n    \"unique_targets_reached\": 2,\n    \"session_time\": 156.483491897583,\n    \"command_history_size\": 19,\n    \"task_progress\": {\n      \"task_type\": \"area_assignment_and_patrol\",\n      \"progress_percentage\": 18,\n      \"is_completed\": false,\n      \"status_message\": \"Task to be Done\",\n      \"details\": {\n        \"total_targets\": 3\n      },\n      \"target_reach_summary\": {\n        \"total_reaches\": 2,\n        \"drones_with_reaches\": 1,\n        \"unique_targets_reached\": 2\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 3,\n        \"average_coverage\": 18.261267006802722,\n        \"fully_covered_targets\": 0\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"9773fa57\",\n  \"name\": \"City Depot Night Shift Environment\",\n  \"weather\": \"partly_cloudy\",\n  \"temperature\": 15.282555864982633,\n  \"humidity\": 62.0,\n  \"pressure\": 1013.2,\n  \"wind_speed\": 3.102593188443707,\n  \"wind_direction\": \"northeast\",\n  \"visibility\": 9000.0,\n  \"created_at\": 1794059108.9830196,\n  \"last_updated\": 1794114629.2807531\n}"
+      ],
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "efbff829",
+            "altitude": 17.0
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"a94c889b\",\n  \"drone_id\": \"efbff829\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 17.0m (battery: -0.5%/-0mAh, remaining: 99.5%/98mAh)\",\n  \"timestamp\": 1794114632.7932951\n}"
+      ],
+      [
+        {
+          "tool": "hover",
+          "tool_input": {
+            "drone_id": "efbff829",
+            "duration": 5.0
+          },
+          "log": "Preparing to call tool 'hover'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"9eda66bf\",\n  \"drone_id\": \"efbff829\",\n  \"command\": \"hover\",\n  \"status\": \"success\",\n  \"message\": \"Drone now hovering (battery: -0.1%/-0mAh, remaining: 99.4%/98mAh)\",\n  \"timestamp\": 1794114635.6527185\n}"
+      ],
+      [
+        {
+          "tool": "land",
+          "tool_input": {
+            "drone_id": "efbff829"
+          },
+          "log": "Preparing to call tool 'land'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"e358bb4a\",\n  \"drone_id\": \"efbff829\",\n  \"command\": \"land\",\n  \"status\": \"success\",\n  \"message\": \"Drone landed successfully (battery: -0.0%/-0mAh, remaining: 99.4%/98mAh)\",\n  \"timestamp\": 1794114638.4247692\n}"
+      ],
+      [
+        {
+          "tool": "charge",
+          "tool_input": {
+            "drone_id": "efbff829",
+            "charge_amount": 38.0
+          },
+          "log": "Preparing to call tool 'charge'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"af11525c\",\n  \"drone_id\": \"efbff829\",\n  \"command\": \"charge\",\n  \"status\": \"error\",\n  \"message\": \"Drone is not at a valid charging station\",\n  \"timestamp\": 1794114641.3069386\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 60373,
+      "completion_tokens": 222,
+      "total_tokens": 60595,
+      "llm_calls": 8
+    },
+    "token_usage_available": true,
+    "run_id": "rid-ed02c7fe-3345-4e6f-a9aa-f9cdf5b72cbf",
+    "command_id": "f52d6c78-d198-4655-85f5-965ebc7e06fa",
+    "experiment": {
+      "experiment_id": "eid-42e38918-e122-43a2-a94c-edd476080275",
+      "previous_experiment_id": "eid-808e48c2-7eec-46b7-b437-3c61e6174f0d",
+      "start_reason": "restart_after_stop",
+      "run_id": "rid-ed02c7fe-3345-4e6f-a9aa-f9cdf5b72cbf",
+      "session_id": "43d03e9d",
+      "session_name": "City Depot Night Shift",
+      "task_id": "d106adb5",
+      "task_name": "Battery Cycle And Ground Readiness 5",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "fc447ce5253f75a15d638a993ad0269c13a7603f0448bf882328765d985f7e62",
+      "session_snapshot_hash": "f4b298c044619ebf53b10a08d956b312ec2c7d0e2562135b86f20ac71d2276f5",
+      "checker_version": "0.4.6"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-ed02c7fe-3345-4e6f-a9aa-f9cdf5b72cbf",
+      "request_history": "/agent/runs/rid-ed02c7fe-3345-4e6f-a9aa-f9cdf5b72cbf/artifacts/request_history",
+      "events": "/agent/runs/rid-ed02c7fe-3345-4e6f-a9aa-f9cdf5b72cbf/artifacts/events",
+      "related_apis": "/agent/runs/rid-ed02c7fe-3345-4e6f-a9aa-f9cdf5b72cbf/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-ed02c7fe-3345-4e6f-a9aa-f9cdf5b72cbf/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "conversion_required",
+    "recording_status": "complete",
+    "sha256": "8483daac9088e18bc5c2ea5af7c5529ba921a813fc05f7088174f8640ec7a84f",
+    "source_indices": [
+      7,
+      8,
+      9
+    ],
+    "issues": [
+      {
+        "index": 10,
+        "path": "/drones/efbff829/command/charge",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      }
+    ],
+    "count": 3,
+    "replay_validation": "not_run"
+  }
+}

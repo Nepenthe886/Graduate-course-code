@@ -1,0 +1,142 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-5ad04c5a-6a75-4996-bd2f-1c750810aa43",
+  "experiment": {
+    "run_id": "rid-5ad04c5a-6a75-4996-bd2f-1c750810aa43",
+    "experiment_id": "eid-9774e4ed-9354-55e2-81a7-f79ddc50b32d"
+  },
+  "service_instance_id": "20261108T162959-054b37a7514e",
+  "batch_file": "../../batch.json",
+  "command_id": "2a6d121b-f8b4-4a90-b414-9afdd53eebef",
+  "job_id": null,
+  "command": "Cover the corridor from (217.7, 190.4) to (904.3, 540.4) with Ohm flying at 27.1 meters. A blocked structure (Inverter Block) sits between the two ends: stay at least 55 meters away from it and take two photographs, one at each end, then hover at the far end when finished. Fly the waypoints in the order listed and pass within 12 m of every one of them before returning home; do not cut the loop short.",
+  "created_at": "2026-11-08 16:34:54",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-08 16:35:12",
+  "requested_run_id": null,
+  "started_at": "2026-11-08 16:34:54",
+  "runtime": {
+    "run_id": "rid-5ad04c5a-6a75-4996-bd2f-1c750810aa43",
+    "experiment": {
+      "run_id": "rid-5ad04c5a-6a75-4996-bd2f-1c750810aa43",
+      "experiment_id": "eid-9774e4ed-9354-55e2-81a7-f79ddc50b32d"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "98ccd1c7",
+    "task_type": null,
+    "task_description": "A grid of solar arrays surrounded by a fence line. Three drones patrol the fence, inspect two array rows and practise a battery turnaround at the service shed.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 4,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "98ccd1c7",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "e78c40726ad32b4bb49ac4ad8db45b9ec45d846c8628f6b0dec900f506db0725",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "corridor_detour",
+            "params": {
+              "altitude": 27.1,
+              "drone_id": "a70a1e52",
+              "start": [
+                217.7,
+                190.4
+              ],
+              "end": [
+                904.3,
+                540.4
+              ],
+              "clearance": 55.0,
+              "photos": 2
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 6, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 27.1, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [217.7, 190.4], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Cover the corridor from (217.7, 190.4) to (904.3, 540.4) with Ohm flying at 27.1 meters. A blocked structure (Inverter Block) sits between the two ends: stay at least 55 meters away from it and take two photographs, one at each end, then hover at the far end when finished. Fly the waypoints in the order listed and pass within 12 m of every one of them before returning home; do not cut the loop short.",
+            "drones": [
+              "Ohm"
+            ],
+            "altitude": 27.1
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"error\": \"任务里没有可解析的航点，也不是可识别的覆盖/编队任务\"}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "corridor_detour",
+            "params": {
+              "altitude": 27.1,
+              "drone_id": "a70a1e52",
+              "start": [
+                217.7,
+                190.4
+              ],
+              "end": [
+                904.3,
+                540.4
+              ],
+              "clearance": 55.0,
+              "photos": 2,
+              "return_home": true
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 6, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 27.1, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [217.7, 190.4], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 26132,
+      "completion_tokens": 446,
+      "total_tokens": 26578,
+      "llm_calls": 4
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

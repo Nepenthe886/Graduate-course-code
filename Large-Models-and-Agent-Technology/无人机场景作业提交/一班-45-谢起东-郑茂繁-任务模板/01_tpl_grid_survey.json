@@ -1,0 +1,134 @@
+{
+  "id": "tpl_grid_survey",
+  "template": {
+    "name": "Grid Survey Coverage Sweep",
+    "description": "One drone flies a four-corner survey grid at a fixed altitude and photographs the area. Use it when the scenario needs systematic area coverage rather than point inspection.",
+    "content": "Have {drone_name} take off to {random_alt:22:30:1} meters, then fly a rectangular survey grid over the south-west corner ({randx_wp1:120:320:1}, {randy_wp1:420:620:1}), the south-east corner ({randx_wp2:620:820:1}, {randy_wp2:420:620:1}), the north-east corner ({randx_wp3:620:820:1}, {randy_wp3:120:320:1}) and back to the south-west corner, staying at {random_alt:22:30:1} meters the whole time. Take a photo as it reaches every waypoint, including the return over the south-west corner, so four photographs in total, and finish hovering above that last waypoint.",
+    "content_aliases": [
+      "Send {drone_name} up to {random_alt:22:30:1} m and run a four-corner survey grid: ({randx_wp1:120:320:1}, {randy_wp1:420:620:1}) then ({randx_wp2:620:820:1}, {randy_wp2:420:620:1}) then ({randx_wp3:620:820:1}, {randy_wp3:120:320:1}) and close the loop, with a photo at each corner.",
+      "{drone_name} should climb to {random_alt:22:30:1} m and sweep the survey rectangle starting at ({randx_wp1:120:320:1}, {randy_wp1:420:620:1}), taking four photos, one per corner.",
+      "Coverage task: {drone_name} at {random_alt:22:30:1} m, four waypoints ({randx_wp1:120:320:1}, {randy_wp1:420:620:1}) / ({randx_wp2:620:820:1}, {randy_wp2:420:620:1}) / ({randx_wp3:620:820:1}, {randy_wp3:120:320:1}), four photos, then hover."
+    ],
+    "category": "Survey",
+    "difficulty": "medium",
+    "creator": "Xie Qidong",
+    "is_builtin": false,
+    "suitable_task": [
+      "area_search",
+      "area_assignment_and_patrol"
+    ],
+    "exclude_in_random_generation": false,
+    "related_apis": [
+      {
+        "endpoint": "/drones/{id}/command/take_off",
+        "parameters": {
+          "id": "{drone_id}",
+          "altitude": "{random_alt:22:30:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/move_along_path",
+        "parameters": {
+          "id": "{drone_id}",
+          "waypoints": [
+            {
+              "x": "{randx_wp1:120:320:1}",
+              "y": "{randy_wp1:420:620:1}",
+              "z": "{random_alt:22:30:1}"
+            },
+            {
+              "x": "{randx_wp2:620:820:1}",
+              "y": "{randy_wp2:420:620:1}",
+              "z": "{random_alt:22:30:1}"
+            },
+            {
+              "x": "{randx_wp3:620:820:1}",
+              "y": "{randy_wp3:120:320:1}",
+              "z": "{random_alt:22:30:1}"
+            },
+            {
+              "x": "{randx_wp1:120:320:1}",
+              "y": "{randy_wp1:420:620:1}",
+              "z": "{random_alt:22:30:1}"
+            }
+          ]
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/take_photo",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/take_photo",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/take_photo",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/take_photo",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/hover",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      }
+    ],
+    "execution_check_apis": {
+      "logic": "and",
+      "checks": [
+        {
+          "endpoint": "/check/drone_has_taken_off",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "min_altitude": "{random_alt:22:30:1}"
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "x": "{randx_wp2:620:820:1}",
+            "y": "{randy_wp2:420:620:1}",
+            "z": "{random_alt:22:30:1}",
+            "tolerance": 12.0
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "x": "{randx_wp3:620:820:1}",
+            "y": "{randy_wp3:120:320:1}",
+            "z": "{random_alt:22:30:1}",
+            "tolerance": 12.0
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_taken_photo",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "min_count": 4
+          }
+        }
+      ]
+    },
+    "commands": [
+      "take_off",
+      "move_along_path",
+      "take_photo",
+      "hover"
+    ]
+  }
+}

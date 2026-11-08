@@ -60,6 +60,16 @@ ACTION_LIBRARY: dict[str, dict] = {
         "params": {"content": "str (required)"},
         "desc": "广播消息",
     },
+    "send_message": {
+        "endpoint": "POST /drones/{id}/command/send_message",
+        "params": {"target_drone_id": "str (required, query)", "message": "str (required, query)"},
+        "desc": "给指定无人机发消息（中继任务）",
+    },
+    "charge": {
+        "endpoint": "POST /drones/{id}/command/charge",
+        "params": {"charge_amount": "float percent (optional, query)"},
+        "desc": "充电",
+    },
     "return_home": {
         "endpoint": "POST /drones/{id}/command/return_home",
         "params": {},
@@ -108,6 +118,15 @@ def run_atomic(api, drone_id: str, name: str, params: dict | None = None) -> dic
         status, body = api.command(drone_id, "take_photo")
     elif name == "broadcast":
         status, body = api.command(drone_id, "broadcast", body={"content": params["content"]})
+    elif name == "send_message":
+        status, body = api.command(drone_id, "send_message",
+                                   params={"target_drone_id": params["target_drone_id"],
+                                           "message": params["message"]})
+    elif name == "charge":
+        query = {}
+        if params.get("charge_amount") is not None:
+            query["charge_amount"] = params["charge_amount"]
+        status, body = api.command(drone_id, "charge", params=query or None)
     elif name == "return_home":
         status, body = api.command(drone_id, "return_home")
     else:  # pragma: no cover

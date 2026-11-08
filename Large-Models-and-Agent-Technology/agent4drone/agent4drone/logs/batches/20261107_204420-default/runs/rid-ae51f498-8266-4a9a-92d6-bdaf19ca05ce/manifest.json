@@ -1,0 +1,104 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-ae51f498-8266-4a9a-92d6-bdaf19ca05ce",
+  "experiment": {
+    "run_id": "rid-ae51f498-8266-4a9a-92d6-bdaf19ca05ce",
+    "experiment_id": "eid-c37bafa0-1813-5eca-acc8-e89f7421f2a5"
+  },
+  "service_instance_id": "20261107T204321-244cc3883ffc",
+  "batch_file": "../../batch.json",
+  "command_id": "fa53deca-f369-4334-bb81-72f3b0a5301c",
+  "job_id": null,
+  "command": "Cover the corridor from (210.8, 163.9) to (853.3, 580.9) with Bravo flying at 28.6 meters. A blocked structure (Warehouse Block) sits between the two ends: stay at least 49 meters away from it, take a photo at each end and hover at the far end when finished.",
+  "created_at": "2026-11-07 20:44:20",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-07 20:44:31",
+  "requested_run_id": null,
+  "started_at": "2026-11-07 20:44:20",
+  "runtime": {
+    "run_id": "rid-ae51f498-8266-4a9a-92d6-bdaf19ca05ce",
+    "experiment": {
+      "run_id": "rid-ae51f498-8266-4a9a-92d6-bdaf19ca05ce",
+      "experiment_id": "eid-c37bafa0-1813-5eca-acc8-e89f7421f2a5"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": null,
+    "task_type": null,
+    "task_description": null,
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 1,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "f500762c",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "5de1d0db1c8db5567424ca3fbb37a9ec6c77ed0468228e1d2d539f40fdd9b25b",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "Error executing command: int() argument must be a string, a bytes-like object or a real number, not 'list'",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "corridor_detour",
+            "params": {
+              "drone_id": "ccf1d5e0",
+              "start": {
+                "x": 210.8,
+                "y": 163.9
+              },
+              "end": {
+                "x": 853.3,
+                "y": 580.9
+              },
+              "clearance": 49,
+              "altitude": 28.6,
+              "photos": [
+                "start",
+                "end"
+              ]
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        ""
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 6053,
+      "completion_tokens": 124,
+      "total_tokens": 6177,
+      "llm_calls": 1
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

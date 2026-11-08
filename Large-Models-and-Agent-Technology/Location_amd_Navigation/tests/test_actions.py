@@ -15,7 +15,8 @@ from src.worldmap import Target, WorldMap
 
 EXPECTED_ATOMIC = {
     "take_off", "land", "change_altitude", "rotate", "move_to", "move_towards",
-    "move_along_path", "hover", "take_photo", "broadcast", "return_home",
+    "move_along_path", "hover", "take_photo", "broadcast", "send_message",
+    "charge", "return_home",
 }
 
 

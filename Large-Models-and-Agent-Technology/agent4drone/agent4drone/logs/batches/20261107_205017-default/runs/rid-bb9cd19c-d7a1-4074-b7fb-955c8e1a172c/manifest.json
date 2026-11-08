@@ -1,0 +1,292 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-bb9cd19c-d7a1-4074-b7fb-955c8e1a172c",
+  "experiment": {
+    "run_id": "rid-bb9cd19c-d7a1-4074-b7fb-955c8e1a172c",
+    "experiment_id": "eid-903ce9c6-0adc-5739-b25b-e7700acf2715"
+  },
+  "service_instance_id": "20261107T204936-9bc8175c84ca",
+  "batch_file": "../../batch.json",
+  "command_id": "5353053d-d002-41b1-8637-b1269f48a31e",
+  "job_id": null,
+  "command": "Cover the corridor from (210.8, 163.9) to (853.3, 580.9) with Bravo flying at 28.6 meters. A blocked structure (Warehouse Block) sits between the two ends: stay at least 49 meters away from it, take a photo at each end and hover at the far end when finished.",
+  "created_at": "2026-11-07 20:50:17",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-07 20:51:08",
+  "requested_run_id": null,
+  "started_at": "2026-11-07 20:50:17",
+  "runtime": {
+    "run_id": "rid-bb9cd19c-d7a1-4074-b7fb-955c8e1a172c",
+    "experiment": {
+      "run_id": "rid-bb9cd19c-d7a1-4074-b7fb-955c8e1a172c",
+      "experiment_id": "eid-903ce9c6-0adc-5739-b25b-e7700acf2715"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "3b06cb7d",
+    "task_type": null,
+    "task_description": "General purpose example session for testing and demonstration",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 12,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "cc749291",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "5de1d0db1c8db5567424ca3fbb37a9ec6c77ed0468228e1d2d539f40fdd9b25b",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "Error executing command: list indices must be integers or slices, not str",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "corridor_detour",
+            "params": {
+              "drone_id": "ccf1d5e0",
+              "start": {
+                "x": 210.8,
+                "y": 163.9
+              },
+              "end": {
+                "x": 853.3,
+                "y": 580.9
+              },
+              "clearance": 49,
+              "altitude": 28.6,
+              "photos": [
+                "start",
+                "end"
+              ]
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 28.6, \"error\": null}, {\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [210.8, 163.9], \"error\": \"目标点位于障碍 Ellipse Obstacle 1 内部，物理不可达（地图不匹配）\"}], \"failures\": [{\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [210.8, 163.9], \"error\": \"目标点位于障碍 Ellipse Obstacle 1 内部，物理不可达（地图不匹配）\"}]}"
+      ],
+      [
+        {
+          "tool": "nav_route_to_target",
+          "tool_input": {
+            "drone_id": "ccf1d5e0",
+            "target": "Ellipse Obstacle 1",
+            "z": 28.6
+          },
+          "log": "Preparing to call tool 'nav_route_to_target'",
+          "message_log": null
+        },
+        "{\"error\": \"地图里没有目标 'Ellipse Obstacle 1'\", \"available\": [\"Circle Target 1\", \"Polygon Target 1\", \"Circle Target 2\"]}"
+      ],
+      [
+        {
+          "tool": "nav_pose",
+          "tool_input": {
+            "target": "Ellipse Obstacle 1"
+          },
+          "log": "Preparing to call tool 'nav_pose'",
+          "message_log": null
+        },
+        "{\"pose\": {\"x\": 200.0, \"y\": 640.0, \"z\": 28.6, \"yaw_deg\": 0.0}}"
+      ],
+      [
+        {
+          "tool": "nav_check_line",
+          "tool_input": {
+            "start": {
+              "x": 210.8,
+              "y": 163.9
+            },
+            "goal": {
+              "x": 853.3,
+              "y": 580.9
+            }
+          },
+          "log": "Preparing to call tool 'nav_check_line'",
+          "message_log": null
+        },
+        "{\"start\": [210.8, 163.9], \"goal\": [853.3, 580.9], \"clear\": false, \"clearance\": 0.0, \"blocker\": \"Ellipse Obstacle 1\", \"altitude\": 59.0}"
+      ],
+      [
+        {
+          "tool": "nav_plan_route",
+          "tool_input": {
+            "goal": {
+              "x": 853.3,
+              "y": 580.9
+            },
+            "clearance": 49,
+            "z": 28.6
+          },
+          "log": "Preparing to call tool 'nav_plan_route'",
+          "message_log": null
+        },
+        "{\"start\": [200.0, 640.0], \"goal\": [853.3, 580.9], \"waypoints\": [[853.3, 580.9]], \"waypoints_xyz\": [[200.0, 640.0, 28.6], [853.3, 580.9, 28.6]], \"length\": 655.97, \"length_3d\": 655.97, \"min_clearance\": 91.13, \"detoured\": false, \"avoided\": [], \"planning_dim\": \"2d\", \"altitude\": 28.6, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Cover the corridor from (210.8, 163.9) to (853.3, 580.9) with Bravo flying at 28.6 meters. A blocked structure (Warehouse Block) sits between the two ends: stay at least 49 meters away from it, take a photo at each end and hover at the far end when finished.",
+            "drones": [
+              "Bravo"
+            ],
+            "altitude": 28.6
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"error\": \"任务里没有可解析的航点，也不是可识别的覆盖/编队任务\"}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "corridor_detour",
+            "params": {
+              "drone_id": "ccf1d5e0",
+              "start": {
+                "x": 210.8,
+                "y": 163.9
+              },
+              "end": {
+                "x": 853.3,
+                "y": 580.9
+              },
+              "clearance": 49,
+              "altitude": 28.6,
+              "photos": [
+                "start",
+                "end"
+              ]
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 28.6, \"error\": null}, {\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [210.8, 163.9], \"error\": \"目标点位于障碍 Ellipse Obstacle 1 内部，物理不可达（地图不匹配）\"}], \"failures\": [{\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [210.8, 163.9], \"error\": \"目标点位于障碍 Ellipse Obstacle 1 内部，物理不可达（地图不匹配）\"}]}"
+      ],
+      [
+        {
+          "tool": "nav_route_to_target",
+          "tool_input": {
+            "drone_id": "ccf1d5e0",
+            "target": "Ellipse Obstacle 1",
+            "z": 28.6
+          },
+          "log": "Preparing to call tool 'nav_route_to_target'",
+          "message_log": null
+        },
+        "{\"error\": \"地图里没有目标 'Ellipse Obstacle 1'\", \"available\": [\"Circle Target 1\", \"Polygon Target 1\", \"Circle Target 2\"]}"
+      ],
+      [
+        {
+          "tool": "nav_pose",
+          "tool_input": {
+            "target": "Ellipse Obstacle 1"
+          },
+          "log": "Preparing to call tool 'nav_pose'",
+          "message_log": null
+        },
+        "{\"pose\": {\"x\": 200.0, \"y\": 640.0, \"z\": 28.6, \"yaw_deg\": 0.0}}"
+      ],
+      [
+        {
+          "tool": "nav_check_line",
+          "tool_input": {
+            "start": {
+              "x": 210.8,
+              "y": 163.9
+            },
+            "goal": {
+              "x": 853.3,
+              "y": 580.9
+            }
+          },
+          "log": "Preparing to call tool 'nav_check_line'",
+          "message_log": null
+        },
+        "{\"start\": [210.8, 163.9], \"goal\": [853.3, 580.9], \"clear\": false, \"clearance\": 0.0, \"blocker\": \"Ellipse Obstacle 1\", \"altitude\": 59.0}"
+      ],
+      [
+        {
+          "tool": "nav_plan_route",
+          "tool_input": {
+            "goal": {
+              "x": 853.3,
+              "y": 580.9
+            },
+            "clearance": 49,
+            "z": 28.6
+          },
+          "log": "Preparing to call tool 'nav_plan_route'",
+          "message_log": null
+        },
+        "{\"start\": [200.0, 640.0], \"goal\": [853.3, 580.9], \"waypoints\": [[853.3, 580.9]], \"waypoints_xyz\": [[200.0, 640.0, 28.6], [853.3, 580.9, 28.6]], \"length\": 655.97, \"length_3d\": 655.97, \"min_clearance\": 91.13, \"detoured\": false, \"avoided\": [], \"planning_dim\": \"2d\", \"altitude\": 28.6, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Cover the corridor from (210.8, 163.9) to (853.3, 580.9) with Bravo flying at 28.6 meters. A blocked structure (Warehouse Block) sits between the two ends: stay at least 49 meters away from it, take a photo at each end and hover at the far end when finished.",
+            "drones": [
+              "Bravo"
+            ],
+            "altitude": 28.6,
+            "waypoints": [
+              [
+                210.8,
+                163.9
+              ],
+              [
+                853.3,
+                580.9
+              ]
+            ],
+            "photos": [
+              "start",
+              "end"
+            ]
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        ""
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 84508,
+      "completion_tokens": 974,
+      "total_tokens": 85482,
+      "llm_calls": 12
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

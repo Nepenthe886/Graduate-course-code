@@ -1,0 +1,111 @@
+{
+  "id": "tpl_relay_message",
+  "template": {
+    "name": "Relay Link Message Handoff",
+    "description": "Two drones hold a relay geometry 350 m apart and exchange a status message. Verifies the message content and the spacing between the relay stations.",
+    "content": "Set up a two-station relay: {drone_1_name} climbs to {random_alt:25:32:1} meters and holds over (250, 400), {drone_2_name} climbs to {random_alt:25:32:1} meters and holds over (600, 400). {drone_1_name} then sends the message \"{message}\" to {drone_2_name}. The two stations are 350 meters apart and must stay within 380 meters of each other.",
+    "content_aliases": [
+      "Relay task: {drone_1_name} at (250, 400) and {drone_2_name} at (600, 400), both at {random_alt:25:32:1} m, then {drone_1_name} sends \"{message}\".",
+      "{drone_1_name} and {drone_2_name} hover at {random_alt:25:32:1} m and pass the report \"{message}\" along the 350 m link.",
+      "Build a link between the two drones and forward \"{message}\" from {drone_1_name} to {drone_2_name}."
+    ],
+    "category": "Communication",
+    "difficulty": "medium",
+    "creator": "Xie Qidong",
+    "is_builtin": false,
+    "suitable_task": [
+      "others",
+      "area_assignment_and_patrol"
+    ],
+    "exclude_in_random_generation": false,
+    "related_apis": [
+      {
+        "endpoint": "/drones/{id}/command/take_off",
+        "parameters": {
+          "id": "{drone_1_id}",
+          "altitude": "{random_alt:25:32:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/take_off",
+        "parameters": {
+          "id": "{drone_2_id}",
+          "altitude": "{random_alt:25:32:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/move_to",
+        "parameters": {
+          "id": "{drone_1_id}",
+          "x": 250,
+          "y": 400,
+          "z": "{random_alt:25:32:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/move_to",
+        "parameters": {
+          "id": "{drone_2_id}",
+          "x": 600,
+          "y": 400,
+          "z": "{random_alt:25:32:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/send_message",
+        "parameters": {
+          "id": "{drone_1_id}",
+          "target_drone_id": "{drone_2_id}",
+          "message": "{message}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/hover",
+        "parameters": {
+          "id": "{drone_1_id}"
+        }
+      }
+    ],
+    "execution_check_apis": {
+      "logic": "and",
+      "checks": [
+        {
+          "endpoint": "/check/two_drones_distance",
+          "parameters": {
+            "drone_1_id": "{drone_1_id}",
+            "drone_2_id": "{drone_2_id}",
+            "max_distance": 380
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_sent_message",
+          "parameters": {
+            "drone_id": "{drone_1_id}",
+            "min_count": 1
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_sent_message_content",
+          "parameters": {
+            "drone_id": "{drone_1_id}",
+            "content": "{message}"
+          }
+        },
+        {
+          "endpoint": "/check/drone_altitude",
+          "parameters": {
+            "drone_id": "{drone_2_id}",
+            "expected_altitude": "{random_alt:25:32:1}",
+            "tolerance": 2.5
+          }
+        }
+      ]
+    },
+    "commands": [
+      "take_off",
+      "move_to",
+      "send_message",
+      "hover"
+    ]
+  }
+}

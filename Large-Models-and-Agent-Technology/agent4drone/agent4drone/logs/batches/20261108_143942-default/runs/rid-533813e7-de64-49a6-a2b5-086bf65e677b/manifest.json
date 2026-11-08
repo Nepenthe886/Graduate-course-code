@@ -1,0 +1,119 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-533813e7-de64-49a6-a2b5-086bf65e677b",
+  "experiment": {
+    "run_id": "rid-533813e7-de64-49a6-a2b5-086bf65e677b",
+    "experiment_id": "eid-bcaae6a4-b6ee-5f35-86fb-fdb9207a2532"
+  },
+  "service_instance_id": "20261108T143918-e7b667a5455b",
+  "batch_file": "../../batch.json",
+  "command_id": "7feabd6e-f16d-4b4d-95f6-5c695d5542bf",
+  "job_id": null,
+  "command": "Fly Bravo up to 17.5 meters and hover briefly, then land back on the pad and recharge by 30 percent. The task is complete when the drone is on the ground and the charge command has been accepted.",
+  "created_at": "2026-11-08 14:48:19",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-08 14:48:36",
+  "requested_run_id": null,
+  "started_at": "2026-11-08 14:48:19",
+  "runtime": {
+    "run_id": "rid-533813e7-de64-49a6-a2b5-086bf65e677b",
+    "experiment": {
+      "run_id": "rid-533813e7-de64-49a6-a2b5-086bf65e677b",
+      "experiment_id": "eid-bcaae6a4-b6ee-5f35-86fb-fdb9207a2532"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "817cce2e",
+    "task_type": null,
+    "task_description": "A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 5,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "817cce2e",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "3f3573a8c28df52004f3f8ec260b25e037cf9977d657b53391277599e20fefce",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "The drone is not at a valid charging station, so the charge command cannot be executed. To complete the task, the drone must first return to the charging station and then the charge command can be issued. [TASK FAILED]\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"8470b5b6\",\n    \"name\": \"Alpha\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 250.0,\n      \"y\": 400.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 120.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794059108.9830196,\n    \"last_updated\": 1794120496.2704542\n  },\n  {\n    \"id\": \"efbff829\",\n    \"name\": \"Bravo\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 200.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"heading\": 268.37043489135726,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 200.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794059108.9830196,\n    \"last_updated\": 1794120496.2704837\n  },\n  {\n    \"id\": \"b147f6f4\",\n    \"name\": \"Charlie\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 300.9,\n      \"y\": 614.7,\n      \"z\": 0.0\n    },\n    \"heading\": 317.0451577008843,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 280.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794059108.9830196,\n    \"last_updated\": 1794120496.270501\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"817cce2e\",\n  \"name\": \"City Depot Night Shift\",\n  \"description\": \"A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.\",\n  \"status\": \"active\",\n  \"creator\": \"Xie Qidong\",\n  \"task_type\": \"area_assignment_and_patrol\",\n  \"task_description\": \"A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1794059108.9830196,\n  \"last_updated\": 1794120509.5463705,\n  \"statistics\": {\n    \"drone_count\": 3,\n    \"target_count\": 3,\n    \"obstacle_count\": 3,\n    \"task_count\": 20,\n    \"environment_id\": \"9773fa57\",\n    \"total_commands_executed\": 531,\n    \"total_flight_time\": 1046.5884688135347,\n    \"total_distance_traveled\": 26164.711720338368,\n    \"total_target_reaches\": 133,\n    \"drones_with_target_reaches\": 3,\n    \"unique_targets_reached\": 3,\n    \"session_time\": 5100.501273155212,\n    \"command_history_size\": 578,\n    \"task_progress\": {\n      \"task_type\": \"area_assignment_and_patrol\",\n      \"progress_percentage\": 77,\n      \"is_completed\": false,\n      \"status_message\": \"Task to be Done\",\n      \"details\": {\n        \"total_targets\": 3\n      },\n      \"target_reach_summary\": {\n        \"total_reaches\": 133,\n        \"drones_with_reaches\": 3,\n        \"unique_targets_reached\": 3\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 3,\n        \"average_coverage\": 77.77008928571429,\n        \"fully_covered_targets\": 1\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"9773fa57\",\n  \"name\": \"City Depot Night Shift Environment\",\n  \"weather\": \"heavy_rain\",\n  \"temperature\": 1.6039513711051474,\n  \"humidity\": 62.0,\n  \"pressure\": 1013.2,\n  \"wind_speed\": 5.3342854478380515,\n  \"wind_direction\": \"east\",\n  \"visibility\": 9000.0,\n  \"created_at\": 1794059108.9830196,\n  \"last_updated\": 1794120514.601795\n}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "battery_cycle",
+            "params": {
+              "altitude": 17.5,
+              "drone_id": "efbff829",
+              "charge_amount": 30.0
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 17.5, \"error\": null}, {\"ok\": true, \"name\": \"hover\", \"error\": null}, {\"ok\": true, \"name\": \"return_home\", \"error\": null}], \"failures\": [{\"ok\": false, \"name\": \"charge\", \"error\": \"Drone is not at a valid charging station\"}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 36074,
+      "completion_tokens": 136,
+      "total_tokens": 36210,
+      "llm_calls": 5
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

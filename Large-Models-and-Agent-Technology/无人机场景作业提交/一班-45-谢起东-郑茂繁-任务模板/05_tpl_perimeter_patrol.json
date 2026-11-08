@@ -1,0 +1,115 @@
+{
+  "id": "tpl_perimeter_patrol",
+  "template": {
+    "name": "Perimeter Patrol With Return",
+    "description": "One drone flies a closed four-corner patrol around a protected area and returns home. Checks both the visited corners and the final home position.",
+    "content": "Send {drone_name} on a perimeter patrol at {random_alt:22:30:1} meters: start at corner A ({randx_wp1:100:220:1}, {randy_wp1:100:220:1}), continue to corner B ({randx_wp2:800:920:1}, {randy_wp2:100:220:1}), corner C ({randx_wp3:800:920:1}, {randy_wp3:540:660:1}) and corner D ({randx_wp4:100:220:1}, {randy_wp4:540:660:1}), then return home and land. The patrol is only complete when the drone is back on the ground at its home position.",
+    "content_aliases": [
+      "{drone_name} patrols the four corners ({randx_wp1:100:220:1}, {randy_wp1:100:220:1}), ({randx_wp2:800:920:1}, {randy_wp2:100:220:1}), ({randx_wp3:800:920:1}, {randy_wp3:540:660:1}), ({randx_wp4:100:220:1}, {randy_wp4:540:660:1}) at {random_alt:22:30:1} m and comes home to land.",
+      "Round-the-compound patrol for {drone_name} at {random_alt:22:30:1} m, ending with return home and land.",
+      "Fly {drone_name} around the perimeter at {random_alt:22:30:1} m and bring it back to the home pad."
+    ],
+    "category": "Patrol",
+    "difficulty": "medium",
+    "creator": "Xie Qidong",
+    "is_builtin": false,
+    "suitable_task": [
+      "area_assignment_and_patrol"
+    ],
+    "exclude_in_random_generation": false,
+    "related_apis": [
+      {
+        "endpoint": "/drones/{id}/command/take_off",
+        "parameters": {
+          "id": "{drone_id}",
+          "altitude": "{random_alt:22:30:1}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/move_along_path",
+        "parameters": {
+          "id": "{drone_id}",
+          "waypoints": [
+            {
+              "x": "{randx_wp1:100:220:1}",
+              "y": "{randy_wp1:100:220:1}",
+              "z": "{random_alt:22:30:1}"
+            },
+            {
+              "x": "{randx_wp2:800:920:1}",
+              "y": "{randy_wp2:100:220:1}",
+              "z": "{random_alt:22:30:1}"
+            },
+            {
+              "x": "{randx_wp3:800:920:1}",
+              "y": "{randy_wp3:540:660:1}",
+              "z": "{random_alt:22:30:1}"
+            },
+            {
+              "x": "{randx_wp4:100:220:1}",
+              "y": "{randy_wp4:540:660:1}",
+              "z": "{random_alt:22:30:1}"
+            }
+          ]
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/return_home",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/land",
+        "parameters": {
+          "id": "{drone_id}"
+        }
+      }
+    ],
+    "execution_check_apis": {
+      "logic": "and",
+      "checks": [
+        {
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "x": "{randx_wp2:800:920:1}",
+            "y": "{randy_wp2:100:220:1}",
+            "z": "{random_alt:22:30:1}",
+            "tolerance": 12.0
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "x": "{randx_wp3:800:920:1}",
+            "y": "{randy_wp3:540:660:1}",
+            "z": "{random_alt:22:30:1}",
+            "tolerance": 12.0
+          }
+        },
+        {
+          "endpoint": "/check/drone_at_home",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "tolerance": 5.0
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_landed",
+          "parameters": {
+            "drone_id": "{drone_id}",
+            "min_count": 1
+          }
+        }
+      ]
+    },
+    "commands": [
+      "take_off",
+      "move_along_path",
+      "return_home",
+      "land"
+    ]
+  }
+}

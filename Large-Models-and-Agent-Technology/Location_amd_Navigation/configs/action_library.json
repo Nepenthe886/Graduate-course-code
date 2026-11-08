@@ -1,0 +1,322 @@
+{
+  "atomic_actions": {
+    "take_off": {
+      "endpoint": "POST /drones/{id}/command/take_off",
+      "params": {
+        "altitude": "float (optional, query)"
+      },
+      "desc": "起飞到指定高度"
+    },
+    "land": {
+      "endpoint": "POST /drones/{id}/command/land",
+      "params": {},
+      "desc": "降落"
+    },
+    "change_altitude": {
+      "endpoint": "POST /drones/{id}/command/change_altitude",
+      "params": {
+        "altitude": "float (required, query)"
+      },
+      "desc": "改变高度"
+    },
+    "rotate": {
+      "endpoint": "POST /drones/{id}/command/rotate",
+      "params": {
+        "heading": "float 0-359 (required, query)"
+      },
+      "desc": "旋转到指定朝向"
+    },
+    "move_to": {
+      "endpoint": "POST /drones/{id}/command/move_to",
+      "params": {
+        "x": "float",
+        "y": "float",
+        "z": "float (optional)"
+      },
+      "desc": "飞到一个点（参数放 query）"
+    },
+    "move_towards": {
+      "endpoint": "POST /drones/{id}/command/move_towards",
+      "params": {
+        "x": "float",
+        "y": "float",
+        "z": "float (optional)",
+        "distance": "float (optional)"
+      },
+      "desc": "朝一个点/方向持续推进"
+    },
+    "move_along_path": {
+      "endpoint": "POST /drones/{id}/command/move_along_path",
+      "params": {
+        "waypoints": "[{x,y,z}, ...]",
+        "allow_partial_move": "bool"
+      },
+      "desc": "沿航点序列飞行（body 传参）"
+    },
+    "hover": {
+      "endpoint": "POST /drones/{id}/command/hover",
+      "params": {
+        "duration": "float seconds (optional)"
+      },
+      "desc": "悬停"
+    },
+    "take_photo": {
+      "endpoint": "POST /drones/{id}/command/take_photo",
+      "params": {},
+      "desc": "拍照"
+    },
+    "broadcast": {
+      "endpoint": "POST /drones/{id}/command/broadcast",
+      "params": {
+        "content": "str (required)"
+      },
+      "desc": "广播消息"
+    },
+    "send_message": {
+      "endpoint": "POST /drones/{id}/command/send_message",
+      "params": {
+        "target_drone_id": "str (required, query)",
+        "message": "str (required, query)"
+      },
+      "desc": "给指定无人机发消息（中继任务）"
+    },
+    "charge": {
+      "endpoint": "POST /drones/{id}/command/charge",
+      "params": {
+        "charge_amount": "float percent (optional, query)"
+      },
+      "desc": "充电"
+    },
+    "return_home": {
+      "endpoint": "POST /drones/{id}/command/return_home",
+      "params": {},
+      "desc": "返航"
+    }
+  },
+  "composite_actions": [
+    {
+      "template_id": "altitude_stage",
+      "official_template_id": "",
+      "name": "Staged Altitude Change Corridor",
+      "category": "Basics",
+      "difficulty": "",
+      "composite_tool": "nav_template_action",
+      "params": {
+        "drone_id": "str",
+        "alt1": "float",
+        "alt2": "float"
+      },
+      "atomic_sequence": [
+        "take_off",
+        "hover",
+        "change_altitude",
+        "hover"
+      ],
+      "official_apis": [],
+      "note": "Staged Altitude Change Corridor"
+    },
+    {
+      "template_id": "grid_survey",
+      "official_template_id": "",
+      "name": "Grid Survey Coverage Sweep",
+      "category": "Survey",
+      "difficulty": "",
+      "composite_tool": "nav_template_action",
+      "params": {
+        "drone_id": "str",
+        "corners": "[[x,y] x4]",
+        "altitude": "float",
+        "photos": "int=4"
+      },
+      "atomic_sequence": [
+        "take_off",
+        "move_to",
+        "take_photo",
+        "...",
+        "hover"
+      ],
+      "official_apis": [],
+      "note": "Grid Survey Coverage Sweep"
+    },
+    {
+      "template_id": "target_photo",
+      "official_template_id": "",
+      "name": "Target Inspection Photo Pass",
+      "category": "Inspection",
+      "difficulty": "",
+      "composite_tool": "nav_template_action",
+      "params": {
+        "drone_id": "str",
+        "x": "float",
+        "y": "float",
+        "altitude": "float",
+        "photos": "int=2"
+      },
+      "atomic_sequence": [
+        "take_off",
+        "move_to",
+        "take_photo",
+        "take_photo",
+        "hover"
+      ],
+      "official_apis": [],
+      "note": "Target Inspection Photo Pass"
+    },
+    {
+      "template_id": "line_formation",
+      "official_template_id": "",
+      "name": "Two-Drone Line-Abreast Formation",
+      "category": "Formation",
+      "difficulty": "",
+      "composite_tool": "nav_template_action",
+      "params": {
+        "drones": "[{drone_id,x,y}]",
+        "altitude": "float"
+      },
+      "atomic_sequence": [
+        "take_off x2",
+        "move_to x2",
+        "hover x2"
+      ],
+      "official_apis": [],
+      "note": "Two-Drone Line-Abreast Formation"
+    },
+    {
+      "template_id": "perimeter_patrol",
+      "official_template_id": "",
+      "name": "Perimeter Patrol With Return",
+      "category": "Patrol",
+      "difficulty": "",
+      "composite_tool": "nav_template_action",
+      "params": {
+        "drone_id": "str",
+        "corners": "[[x,y] x4]",
+        "altitude": "float"
+      },
+      "atomic_sequence": [
+        "take_off",
+        "move_to x4",
+        "return_home",
+        "land"
+      ],
+      "official_apis": [],
+      "note": "Perimeter Patrol With Return"
+    },
+    {
+      "template_id": "relay_message",
+      "official_template_id": "",
+      "name": "Relay Link Message Handoff",
+      "category": "Communication",
+      "difficulty": "",
+      "composite_tool": "nav_template_action",
+      "params": {
+        "drone1": "{drone_id,x,y}",
+        "drone2": "{drone_id,x,y}",
+        "altitude": "float",
+        "message": "str"
+      },
+      "atomic_sequence": [
+        "take_off x2",
+        "move_to x2",
+        "send_message",
+        "hover x2"
+      ],
+      "official_apis": [],
+      "note": "Relay Link Message Handoff"
+    },
+    {
+      "template_id": "corridor_detour",
+      "official_template_id": "",
+      "name": "Obstacle Corridor Detour Survey",
+      "category": "Navigation",
+      "difficulty": "",
+      "composite_tool": "nav_template_action",
+      "params": {
+        "drone_id": "str",
+        "start": "[x,y]",
+        "end": "[x,y]",
+        "altitude": "float",
+        "clearance": "float=50",
+        "obstacle_center": "[x,y]?",
+        "photos": "int=2",
+        "end_hover": "bool=true"
+      },
+      "atomic_sequence": [
+        "take_off",
+        "move_to(start)",
+        "take_photo",
+        "move_along_path(detour)",
+        "take_photo",
+        "hover"
+      ],
+      "official_apis": [],
+      "note": "Obstacle Corridor Detour Survey"
+    },
+    {
+      "template_id": "battery_cycle",
+      "official_template_id": "",
+      "name": "Battery Cycle And Ground Readiness",
+      "category": "Logistics",
+      "difficulty": "",
+      "composite_tool": "nav_template_action",
+      "params": {
+        "drone_id": "str",
+        "altitude": "float",
+        "charge_amount": "float=30"
+      },
+      "atomic_sequence": [
+        "take_off",
+        "hover",
+        "land",
+        "charge"
+      ],
+      "official_apis": [],
+      "note": "Battery Cycle And Ground Readiness"
+    },
+    {
+      "template_id": "target_coverage",
+      "official_template_id": "",
+      "name": "Target Area Coverage Pass",
+      "category": "Search",
+      "difficulty": "",
+      "composite_tool": "nav_template_action",
+      "params": {
+        "drone_id": "str",
+        "center": "[x,y]",
+        "radius": "float",
+        "altitude": "float",
+        "sweep": "float=50",
+        "coverage": "float=0.7",
+        "photos": "int=1"
+      },
+      "atomic_sequence": [
+        "take_off",
+        "move_along_path(serpentine)",
+        "take_photo",
+        "hover"
+      ],
+      "official_apis": [],
+      "note": "Target Area Coverage Pass"
+    },
+    {
+      "template_id": "emergency_land",
+      "official_template_id": "",
+      "name": "Emergency Broadcast And Fleet Landing",
+      "category": "Safety",
+      "difficulty": "",
+      "composite_tool": "nav_template_action",
+      "params": {
+        "drone_id": "str",
+        "message": "str",
+        "drones": "[drone_id,...]"
+      },
+      "atomic_sequence": [
+        "broadcast",
+        "land xN"
+      ],
+      "official_apis": [],
+      "note": "Emergency Broadcast And Fleet Landing"
+    }
+  ],
+  "templates_source": "E:\\Code\\Graduate-course-code\\Large-Models-and-Agent-Technology\\无人机场景作业提交\\无人机场景作业提交\\班级-序号-谢起东-队员2-任务模板"
+}

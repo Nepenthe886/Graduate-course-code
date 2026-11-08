@@ -1,0 +1,268 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-b0dfbd2c-2256-47ac-8318-0a0b623de5af",
+  "experiment": {
+    "run_id": "rid-b0dfbd2c-2256-47ac-8318-0a0b623de5af",
+    "experiment_id": "eid-9135d783-85e1-5206-b0cc-2caa1b09c992"
+  },
+  "service_instance_id": "20261107T205556-193bbd2912b4",
+  "batch_file": "../../batch.json",
+  "command_id": "2d6dfbfc-9f6d-4dff-b7a0-d4997894b7eb",
+  "job_id": null,
+  "command": "Cover the corridor from (210.8, 163.9) to (853.3, 580.9) with Bravo flying at 28.6 meters. A blocked structure (Warehouse Block) sits between the two ends: stay at least 49 meters away from it, take a photo at each end and hover at the far end when finished.",
+  "created_at": "2026-11-07 20:56:28",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-07 20:57:04",
+  "requested_run_id": null,
+  "started_at": "2026-11-07 20:56:29",
+  "runtime": {
+    "run_id": "rid-b0dfbd2c-2256-47ac-8318-0a0b623de5af",
+    "experiment": {
+      "run_id": "rid-b0dfbd2c-2256-47ac-8318-0a0b623de5af",
+      "experiment_id": "eid-9135d783-85e1-5206-b0cc-2caa1b09c992"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "acfe07f6",
+    "task_type": null,
+    "task_description": "General purpose example session for testing and demonstration",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 7,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "f1be0a2e",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "5de1d0db1c8db5567424ca3fbb37a9ec6c77ed0468228e1d2d539f40fdd9b25b",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "[TASK FAILED] The drone's path to the first waypoint is blocked by the \"Warehouse Block\" obstacle. The drone cannot proceed along the planned route. Please adjust the mission plan to avoid this obstacle or check the current map for any updates.\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "corridor_detour",
+            "params": {
+              "drone_id": "ccf1d5e0",
+              "start": {
+                "x": 210.8,
+                "y": 163.9
+              },
+              "end": {
+                "x": 853.3,
+                "y": 580.9
+              },
+              "clearance": 49,
+              "altitude": 28.6,
+              "photos": [
+                "start",
+                "end"
+              ]
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"error\": \"模板参数 start=(210.8,163.9) 位于障碍物内部，物理不可达（可能是当前会话地图与默认地图不一致）\", \"nearest_free_point\": [210.8, 131.9], \"hint\": \"请确认当前会话地图，或改用 nearest_free_point 作为起终点\"}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "corridor_detour",
+            "params": {
+              "drone_id": "ccf1d5e0",
+              "start": {
+                "x": 210.8,
+                "y": 131.9
+              },
+              "end": {
+                "x": 853.3,
+                "y": 580.9
+              },
+              "clearance": 49,
+              "altitude": 28.6,
+              "photos": [
+                "start",
+                "end"
+              ]
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 28.6, \"error\": null}, {\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [210.8, 131.9], \"error\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Office Row'\"}], \"failures\": [{\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [210.8, 131.9], \"error\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Office Row'\"}]}"
+      ],
+      [
+        {
+          "tool": "nav_plan_route",
+          "tool_input": {
+            "goal": {
+              "x": 210.8,
+              "y": 131.9
+            },
+            "clearance": 49,
+            "z": 28.6
+          },
+          "log": "Preparing to call tool 'nav_plan_route'",
+          "message_log": null
+        },
+        "{\"start\": [879.0, 692.0], \"goal\": [210.8, 131.9], \"waypoints\": [[96.0, 276.0], [72.0, 204.0], [96.0, 120.0], [180.0, 84.0], [204.0, 84.0], [210.8, 131.9]], \"waypoints_xyz\": [[879.0, 692.0, 28.6], [96.0, 276.0, 28.6], [72.0, 204.0, 28.6], [96.0, 120.0, 28.6], [180.0, 84.0, 28.6], [204.0, 84.0, 28.6], [210.8, 131.9, 28.6]], \"length\": 1213.67, \"length_3d\": 1213.67, \"min_clearance\": 2.5, \"detoured\": true, \"avoided\": [\"Ellipse Obstacle 1\"], \"planning_dim\": \"2d\", \"altitude\": 28.6, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "ccf1d5e0",
+            "waypoints": [
+              {
+                "x": 879.0,
+                "y": 692.0,
+                "z": 28.6
+              },
+              {
+                "x": 96.0,
+                "y": 276.0,
+                "z": 28.6
+              },
+              {
+                "x": 72.0,
+                "y": 204.0,
+                "z": 28.6
+              },
+              {
+                "x": 96.0,
+                "y": 120.0,
+                "z": 28.6
+              },
+              {
+                "x": 180.0,
+                "y": 84.0,
+                "z": 28.6
+              },
+              {
+                "x": 204.0,
+                "y": 84.0,
+                "z": 28.6
+              },
+              {
+                "x": 210.8,
+                "y": 131.9,
+                "z": 28.6
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"c7246137\",\n  \"drone_id\": \"ccf1d5e0\",\n  \"command\": \"move_along_path\",\n  \"status\": \"error\",\n  \"message\": \"Path to waypoint 2 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Warehouse Block'\",\n  \"successful_points_count\": null,\n  \"successful_points\": null,\n  \"unsuccessful_points_count\": null,\n  \"unsuccessful_points\": null,\n  \"timestamp\": 1794056213.3870804\n}"
+      ],
+      [
+        {
+          "tool": "nav_plan_route",
+          "tool_input": {
+            "goal": {
+              "x": 204.0,
+              "y": 84.0
+            },
+            "clearance": 49,
+            "z": 28.6
+          },
+          "log": "Preparing to call tool 'nav_plan_route'",
+          "message_log": null
+        },
+        "{\"start\": [879.0, 692.0], \"goal\": [204.0, 84.0], \"waypoints\": [[96.0, 276.0], [72.0, 204.0], [96.0, 120.0], [180.0, 84.0], [204.0, 84.0]], \"waypoints_xyz\": [[879.0, 692.0, 28.6], [96.0, 276.0, 28.6], [72.0, 204.0, 28.6], [96.0, 120.0, 28.6], [180.0, 84.0, 28.6], [204.0, 84.0, 28.6]], \"length\": 1165.29, \"length_3d\": 1165.29, \"min_clearance\": 49.05, \"detoured\": true, \"avoided\": [\"Ellipse Obstacle 1\", \"Polygon Obstacle 1\"], \"planning_dim\": \"2d\", \"altitude\": 28.6, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "ccf1d5e0",
+            "waypoints": [
+              {
+                "x": 879.0,
+                "y": 692.0,
+                "z": 28.6
+              },
+              {
+                "x": 96.0,
+                "y": 276.0,
+                "z": 28.6
+              },
+              {
+                "x": 72.0,
+                "y": 204.0,
+                "z": 28.6
+              },
+              {
+                "x": 96.0,
+                "y": 120.0,
+                "z": 28.6
+              },
+              {
+                "x": 180.0,
+                "y": 84.0,
+                "z": 28.6
+              },
+              {
+                "x": 204.0,
+                "y": 84.0,
+                "z": 28.6
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"d8a236c5\",\n  \"drone_id\": \"ccf1d5e0\",\n  \"command\": \"move_along_path\",\n  \"status\": \"error\",\n  \"message\": \"Path to waypoint 2 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Warehouse Block'\",\n  \"successful_points_count\": null,\n  \"successful_points\": null,\n  \"unsuccessful_points_count\": null,\n  \"unsuccessful_points\": null,\n  \"timestamp\": 1794056223.2834797\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 49794,
+      "completion_tokens": 890,
+      "total_tokens": 50684,
+      "llm_calls": 7
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "conversion_required",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [
+      {
+        "index": 5,
+        "path": "/drones/ccf1d5e0/command/move_along_path",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      },
+      {
+        "index": 7,
+        "path": "/drones/ccf1d5e0/command/move_along_path",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      }
+    ],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-083b2d8e-c987-4a7a-9133-c9842b4c249c",
+  "experiment": {
+    "run_id": "rid-083b2d8e-c987-4a7a-9133-c9842b4c249c",
+    "experiment_id": "eid-8f6b5580-909c-5ab8-a672-618a9d36372b"
+  },
+  "service_instance_id": "20261108T133309-1c80ac5e0f11",
+  "batch_file": "../../batch.json",
+  "command_id": "52b1c6be-d285-4580-aa94-72f3207351a7",
+  "job_id": null,
+  "command": "Send Charlie on a perimeter patrol at 18.9 meters: start at corner A (141.3, 139.7), continue to corner B (843.5, 206.4), corner C (876.5, 555) and corner D (135.5, 585.9), then return home and land. The patrol is only complete when the drone is back on the ground at its home position.",
+  "created_at": "2026-11-08 13:33:32",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-08 13:33:48",
+  "requested_run_id": null,
+  "started_at": "2026-11-08 13:33:32",
+  "runtime": {
+    "run_id": "rid-083b2d8e-c987-4a7a-9133-c9842b4c249c",
+    "experiment": {
+      "run_id": "rid-083b2d8e-c987-4a7a-9133-c9842b4c249c",
+      "experiment_id": "eid-8f6b5580-909c-5ab8-a672-618a9d36372b"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "817cce2e",
+    "task_type": null,
+    "task_description": "A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "817cce2e",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "5d15833b19439fcb633e082708fae644f6a8ec54f864e850b7d539c8b43feb2b",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "[TASK FAILED] The third corner point (876.5, 555.0) is located inside an obstacle, making the task infeasible. Please adjust the task coordinates or use the nearest free point provided. [TASK FAILED] 工具返回 ok=false（0 项失败）\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "perimeter_patrol",
+            "params": {
+              "drone_id": "b147f6f4",
+              "altitude": 18.9,
+              "corners": [
+                {
+                  "x": 141.3,
+                  "y": 139.7
+                },
+                {
+                  "x": 843.5,
+                  "y": 206.4
+                },
+                {
+                  "x": 876.5,
+                  "y": 555
+                },
+                {
+                  "x": 135.5,
+                  "y": 585.9
+                }
+              ],
+              "return_home": true,
+              "land": true
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"error\": \"第 3 个角点 (876.5,555.0) 位于障碍物内部，该任务不可行\", \"nearest_free_point\": [876.5, 537.0], \"hint\": \"任务坐标落入障碍物，建议换任务实例或使用最近自由点\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 12527,
+      "completion_tokens": 207,
+      "total_tokens": 12734,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

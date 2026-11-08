@@ -7,6 +7,7 @@ from __future__ import annotations
 import json
 import re
 import urllib.request
+from pathlib import Path
 from typing import Any
 
 from src.config import NavConfig, load_config
@@ -94,8 +95,53 @@ class NavToolkit:
     def __init__(self, map_path: str | None = None, config: NavConfig | None = None,
                  drone_name: str | None = None, pose_provider=None):
         self.config = config or load_config()
+        self._pose_provider = pose_provider
+        self.drone_name = drone_name
+        self.session_id: str | None = None
+        self.session_name = ""
+        self._last_refresh = 0.0
         self.map_path = resolve(map_path) if map_path else resolve(self.config.default_map)
+        source = "file"
+        # 初始化时若 8000 可用，按会话名匹配作业场景文件
+        try:
+            info = self._current_session(timeout=5)
+        except Exception:  # noqa: BLE001
+            info = None
+        matched = self._scenario_for(info) if info else None
+        if matched is not None:
+            self.map_path, source = matched, "scenario"
+            self.session_id = str((info or {}).get("id") or "") or None
+            self.session_name = str((info or {}).get("name") or "")
+        self._setup_runtime(self.map_path, source)
+
+    # ---------- 地图与会话 ----------
+    def _current_session(self, timeout: float = 1.5) -> dict:
+        import urllib.request
+
+        base = str(getattr(self.config, "uav_api_base", "http://127.0.0.1:8000")).rstrip("/")
+        with urllib.request.urlopen(base + "/sessions/current", timeout=timeout) as response:
+            data = json.loads(response.read().decode("utf-8", "ignore"))
+        return data if isinstance(data, dict) else {}
+
+    def _scenario_for(self, info: dict) -> Path | None:
+        """仅当当前地图是默认回退地图时，才按会话名换成场景文件。"""
+        name = str((info or {}).get("name") or "").strip()
+        if not name or not getattr(self.config, "scenario_dirs", None):
+            return None
+        default_path = resolve(self.config.default_map) if self.config.default_map else None
+        is_fallback = default_path is not None and Path(self.map_path) == Path(default_path)
+        if not is_fallback:
+            return None
+        dirs = [resolve(d) for d in self.config.scenario_dirs]
+        return WorldMap.find_scenario(name, dirs)
+
+    def _setup_runtime(self, path, source: str) -> None:
+        self.map_path = Path(path)
+        self.map_source = source
         self.world = WorldMap.load(self.map_path)
+        self._map_signature = (str(self.map_path), str(getattr(self.world, "id", "")))
+        if not self.drone_name:
+            self.drone_name = self.world.drones[0].get("name") if self.world.drones else "Drone 1"
         self.planner = Planner(
             self.world,
             clearance=self.config.clearance,
@@ -112,11 +158,33 @@ class NavToolkit:
             max_waypoints=getattr(self.config, "max_waypoints", 40),
             max_turn_deg=getattr(self.config, "max_turn_deg", 60.0),
         )
-        self.drone_name = drone_name or (self.world.drones[0].get("name") if self.world.drones else "Drone 1")
-        self.localizer = localizer_from_world(self.world, self.drone_name, pose_provider)
+        self.localizer = localizer_from_world(self.world, self.drone_name, self._pose_provider)
         self.navigation = Navigation(self.world, self.localizer, self.planner,
                                      arrival_tolerance=self.config.arrival_tolerance,
                                      z_default=self.config.z_default)
+
+    def _refresh_session(self) -> None:
+        """运行期自动换图：8000 恢复或会话切换后，按会话名重新匹配场景文件。"""
+        import time
+
+        now = time.time()
+        if now - self._last_refresh < 5.0:
+            return
+        self._last_refresh = now
+        try:
+            info = self._current_session(timeout=1.5)
+        except Exception:  # noqa: BLE001
+            return
+        if not info:
+            return
+        sid = str(info.get("id") or "")
+        if sid and sid == self.session_id:
+            return
+        self.session_id = sid or self.session_id
+        self.session_name = str(info.get("name") or "")
+        matched = self._scenario_for(info)
+        if matched is not None:
+            self._setup_runtime(matched, "scenario")
 
     # ---------- 实时位姿同步 ----------
     def _live_pose(self, drone_ref: Any = None):
@@ -168,10 +236,12 @@ class NavToolkit:
 
     def _sync_pose(self, data: dict | None = None) -> None:
         payload = data or {}
+        self._refresh_session()
         self._live_pose(payload.get("drone_id") or payload.get("drone") or payload.get("drone_name"))
 
     # ---------- 1 地图信息 ----------
     def nav_map_info(self, input_json: Any = None) -> dict:
+        self._refresh_session()
         return {
             "map": self.world.name,
             "map_file": str(self.world.source),
@@ -352,8 +422,17 @@ class NavToolkit:
                                         bool(data.get("land_at_end", True)),
                                         world=self.world)
             if not spec.get("actions") and not spec.get("waypoints") and data.get("waypoints"):
-                spec = {"altitude": float(data.get("altitude", self.config.z_default)),
-                        "waypoints": data["waypoints"],
+                alt_default = float(data.get("altitude", self.config.z_default))
+                normalized = [dict(zip(("x", "y", "z"), _xyz_item(item, alt_default)))
+                              for item in data["waypoints"]]
+                for idx, point in enumerate(normalized, start=1):
+                    if self.world.clearance_to_obstacles((point["x"], point["y"])) <= 0.0:
+                        near = self.world.free_point_near((point["x"], point["y"]), 2.0, 120.0)
+                        return {"ok": False,
+                                "error": f"第 {idx} 个航点 ({point['x']:.1f},{point['y']:.1f}) 位于障碍物内部，任务不可行",
+                                "nearest_free_point": [round(near[0], 2), round(near[1], 2)] if near else None}
+                spec = {"altitude": alt_default,
+                        "waypoints": normalized,
                         "land_at_end": bool(data.get("land_at_end", True))}
         elif data.get("waypoints"):
             alt_default = float(data.get("altitude", self.config.z_default))
@@ -393,6 +472,12 @@ class NavToolkit:
                         "available": [t.name for t in self.world.targets]}
             center = target.center
             radius = radius or float(target.radius)
+        if center is not None and self.world.clearance_to_obstacles(center) <= 0.0:
+            near = self.world.free_point_near(center, 2.0, 120.0)
+            return {"ok": False,
+                    "error": f"目标中心 ({center[0]:.1f},{center[1]:.1f}) 位于障碍物内部，覆盖率任务不可行",
+                    "nearest_free_point": [round(near[0], 2), round(near[1], 2)] if near else None,
+                    "hint": "该目标被障碍物包围，无法进入其范围完成覆盖"}
         if center is None:
             raw = data.get("center") or {}
             center = (float(raw.get("x", 0.0)), float(raw.get("y", 0.0)))
@@ -427,6 +512,31 @@ class NavToolkit:
             for p in (route.waypoints_xyz or [(q[0], q[1], z) for q in route.waypoints]):
                 waypoints.append({"x": round(p[0], 2), "y": round(p[1], 2), "z": round(z, 2)})
             current = point
+        if data.get("execute"):
+            from src import mission_run as mr
+
+            drone_ref = data.get("drone_id") or self.drone_name
+            drone = self.world.drone_by_name(str(drone_ref))
+            drone_id = str((drone or {}).get("id") or drone_ref)
+            try:
+                photos = max(1, int(data.get("photos") or 1))
+            except (TypeError, ValueError):
+                photos = 1
+            actions = [{"kind": "take_off", "params": {"drone_id": drone_id, "altitude": z}}]
+            actions += [{"kind": "move_to", "params": {"drone_id": drone_id,
+                                                       "x": round(pt[0], 2), "y": round(pt[1], 2),
+                                                       "z": z, "tolerance": 5.0}}
+                        for pt in points]
+            actions += [{"kind": "take_photo", "params": {"drone_id": drone_id}}] * photos
+            actions.append({"kind": "hover", "params": {"drone_id": drone_id}})
+            result = mr.execute_actions(self.map_path, drone_id,
+                                        {"actions": actions, "altitude": z},
+                                        api_base=str(self.config.uav_api_base))
+            return {"ok": bool(result.get("ok")), "mode": "coverage_exec",
+                    "estimated_coverage": round(coverage, 4),
+                    "waypoint_count": len(points), "photos": photos,
+                    "steps": len(result.get("executed") or []),
+                    "failures": result.get("failures") or []}
         return {
             "center": [round(center[0], 2), round(center[1], 2)],
             "radius": radius, "spacing": spacing,
@@ -499,6 +609,171 @@ class NavToolkit:
             })
         return {"assignments": result}
 
+    # ---------- 13 官方模板组合动作 ----------
+    def nav_template_action(self, input_json: Any = None) -> dict:
+        """按官方 10 类任务模板执行组合动作（L1 一次调用完成整条任务）。
+
+        input_json = {"template": "corridor_detour",
+                      "params": {"drone_id": "Bravo", "start": [x, y], "end": [x, y],
+                                 "altitude": 28.2, "clearance": 59, "photos": 2}}
+        """
+        from src.template_actions import TEMPLATES, build_template_spec, execute_template
+
+        data = _payload(input_json)
+        self._sync_pose(data)
+        template = str(data.get("template") or data.get("template_id") or "").strip()
+        if not template:
+            return {"error": "需要 template", "templates": list(TEMPLATES)}
+        params = dict(data.get("params") or {})
+        for key in ("drone_id", "altitude", "clearance", "message", "photos"):
+            if data.get(key) is not None and key not in params:
+                params[key] = data[key]
+        drone_ref = params.get("drone_id") or data.get("drone_id")
+        if not drone_ref:
+            best = self._best_drone()
+            drone_ref = (best or {}).get("id") if isinstance(best, dict) else best
+        drone = self.world.drone_by_name(str(drone_ref)) if drone_ref else None
+        drone_id = str((drone or {}).get("id") or drone_ref or "")
+        if drone is None:
+            looks_like_id = len(drone_id) == 8 and all(c in "0123456789abcdefABCDEF" for c in drone_id)
+            if not looks_like_id:
+                return {"ok": False, "error": f"无法识别无人机 {drone_ref!r}",
+                        "available_drones": [d.get("name") for d in self.world.drones]}
+        if not drone_id:
+            return {"error": "无法确定无人机"}
+        params["drone_id"] = drone_id
+        # 编队：先归一化参数（兼容 drones=["Bravo","Charlie"] + positions=[{drone,position}]）
+        if template == "line_formation":
+            raw = params.get("drones") or []
+            positions = params.get("positions") or []
+            pos_map: dict[str, tuple[float, float]] = {}
+            aligned: list[tuple[float, float] | None] = []
+            for item in positions:
+                if not isinstance(item, dict):
+                    aligned.append(None)
+                    continue
+                pos = item.get("position") if isinstance(item.get("position"), dict) else item
+                xy = None
+                if isinstance(pos, dict) and "x" in pos and "y" in pos:
+                    xy = (float(pos["x"]), float(pos["y"]))
+                aligned.append(xy)
+                if xy is not None:
+                    key = str(item.get("drone") or item.get("drone_id") or "")
+                    if key:
+                        pos_map[key] = xy
+            normalized: list[dict] = []
+            for idx, item in enumerate(raw):
+                if isinstance(item, dict):
+                    normalized.append(dict(item))
+                    continue
+                key = str(item)
+                xy = pos_map.get(key) or (aligned[idx] if idx < len(aligned) else None)
+                if xy is not None:
+                    normalized.append({"drone_id": key, "x": xy[0], "y": xy[1]})
+            if normalized:
+                params["drones"] = normalized
+        # 编队：若某架机的悬停点在障碍内，保持与首机距离不变、绕首机旋转到自由位置
+        if template == "line_formation" and isinstance(params.get("drones"), list) and len(params["drones"]) >= 2:
+            import math
+
+            drones = [dict(item) if isinstance(item, dict) else item for item in params["drones"]]
+            try:
+                bx, by = _point(drones[0])
+            except Exception:  # noqa: BLE001
+                bx = by = None
+            if bx is not None:
+                for item in drones[1:]:
+                    try:
+                        x, y = _point(item)
+                    except Exception:  # noqa: BLE001
+                        continue
+                    if self.world.clearance_to_obstacles((x, y)) > 0.0:
+                        continue
+                    dist = math.hypot(x - bx, y - by)
+                    relocated = None
+                    for angle in (90, -90, 45, -45, 135, -135, 180):
+                        rad = math.radians(angle)
+                        cand = (bx + math.cos(rad) * dist, by + math.sin(rad) * dist)
+                        if self.world.clearance_to_obstacles(cand) > 2.0:
+                            relocated = cand
+                            break
+                    if relocated is None:
+                        return {"ok": False,
+                                "error": f"编队点 ({x:.1f},{y:.1f}) 在障碍内，且找不到保持 {dist:.0f} m 间距的自由位置"}
+                    if isinstance(item, dict):
+                        item["x"], item["y"] = round(relocated[0], 2), round(relocated[1], 2)
+                        for key in ("position", "target_position"):
+                            if isinstance(item.get(key), dict):
+                                item[key] = {"x": item["x"], "y": item["y"]}
+            params["drones"] = drones
+        # 覆盖率模板：允许传目标名，自动解析中心与半径
+        if template == "target_coverage" and params.get("target") and not params.get("center"):
+            coverage_target = self.world.target_by_name(str(params["target"]))
+            if coverage_target is None:
+                return {"ok": False, "error": f"地图里没有目标 {params['target']!r}",
+                        "targets": [t.name for t in self.world.targets]}
+            cx, cy = coverage_target.center
+            radius = float(getattr(coverage_target, "radius", 0.0) or 0.0)
+            if radius <= 1.0 and getattr(coverage_target, "vertices", None):
+                footprint = coverage_target.footprint()
+                xs = [pt[0] for pt in footprint]
+                ys = [pt[1] for pt in footprint]
+                radius = max(max(xs) - min(xs), max(ys) - min(ys)) / 2.0
+            params["center"] = {"x": cx, "y": cy}
+            params["radius"] = max(radius, 5.0)
+            if self.world.clearance_to_obstacles((cx, cy)) <= 0.0:
+                near = self.world.free_point_near((cx, cy), 2.0, 120.0)
+                return {"ok": False,
+                        "error": f"目标中心 ({cx:.1f},{cy:.1f}) 位于障碍物内部，覆盖率任务不可行",
+                        "nearest_free_point": [round(near[0], 2), round(near[1], 2)] if near else None}
+        # 拍照模板：允许传目标名，自动解析坐标；目标在障碍内时直接报不可达
+        if template == "target_photo" and params.get("target") and "x" not in params:
+            target = self.world.target_by_name(str(params["target"]))
+            if target is None:
+                return {"ok": False, "error": f"地图里没有目标 {params['target']!r}",
+                        "targets": [t.name for t in self.world.targets]}
+            params["x"], params["y"] = float(target.center[0]), float(target.center[1])
+        # 起终点预检：若落在障碍物内，直接给出明确失败与最近自由点，避免模型反复重试
+        for key in ("start", "end", "target_point"):
+            if key in params and params[key] is not None:
+                try:
+                    x, y = _point(params[key])
+                except Exception:  # noqa: BLE001
+                    continue
+                if self.world.clearance_to_obstacles((x, y)) <= 0.0:
+                    near = self.world.free_point_near((x, y), 2.0, 120.0)
+                    return {"ok": False,
+                            "error": f"模板参数 {key}=({x:.1f},{y:.1f}) 位于障碍物内部，物理不可达"
+                                     f"（可能是当前会话地图与默认地图不一致）",
+                            "nearest_free_point": [round(near[0], 2), round(near[1], 2)] if near else None,
+                            "hint": "请确认当前会话地图，或改用 nearest_free_point 作为起终点"}
+        if template == "target_photo" and "x" in params and "y" in params:
+            x, y = float(params["x"]), float(params["y"])
+            if self.world.clearance_to_obstacles((x, y)) <= 0.0:
+                near = self.world.free_point_near((x, y), 2.0, 80.0)
+                return {"ok": False,
+                        "error": f"目标 ({x:.1f},{y:.1f}) 位于障碍物内部，无法到达该目标",
+                        "nearest_free_point": [round(near[0], 2), round(near[1], 2)] if near else None,
+                        "hint": "该目标在当前场景中不可达，请换一个可达目标"}
+        if params.get("corners") or params.get("waypoints") or params.get("points"):
+            for idx, corner in enumerate(params.get("corners") or params.get("waypoints") or params.get("points"), start=1):
+                try:
+                    x, y = _point(corner)
+                except Exception:  # noqa: BLE001
+                    continue
+                if self.world.clearance_to_obstacles((x, y)) <= 0.0:
+                    near = self.world.free_point_near((x, y), 2.0, 80.0)
+                    return {"ok": False,
+                            "error": f"第 {idx} 个角点 ({x:.1f},{y:.1f}) 位于障碍物内部，该任务不可行",
+                            "nearest_free_point": [round(near[0], 2), round(near[1], 2)] if near else None,
+                            "hint": "任务坐标落入障碍物，建议换任务实例或使用最近自由点"}
+        spec = build_template_spec(template, params)
+        if spec.get("error"):
+            return {"error": spec["error"], "templates": list(TEMPLATES)}
+        result = execute_template(str(self.map_path), drone_id, template, params,
+                                  self.config.uav_api_base)
+        return _compact_result(result)
+
 
 NAV_TOOL_SPECS: list[tuple[str, str, str]] = [
     ("nav_map_info", "查看当前地图概况（障碍物/目标清单、世界边界）。", "nav_map_info"),
@@ -513,6 +788,7 @@ NAV_TOOL_SPECS: list[tuple[str, str, str]] = [
     ("nav_execute_mission", "【长任务唯一入口】把任务交给行为树执行（多机/编队/定向位移/覆盖/逐点避障）。参数 {\"task_text\":\"...\",\"drones\":[\"Drone 1\",\"Drone 2\"],\"altitude\":19}；也可直接传 {\"actions\":[{name,params},...]} 或 {\"drone_id\":\"...\",\"waypoints\":[...]}。", "nav_execute_mission"),
     ("nav_mission_plan", "【多段任务必用】用行为树把目标点/途径点/每点任务展开成可执行步骤，参数 {\"waypoints\":[...]}。", "nav_mission_plan"),
     ("nav_multi_drone_route", "【多机任务必用】按无人机分别生成航点，参数 {\"assignments\":[{\"drone\":\"Drone 1\",\"target_name\":\"...\"}]}。", "nav_multi_drone_route"),
+    ("nav_template_action", "【模板任务必用】按官方 10 类任务模板一次执行组合动作，参数 {\"template\":\"corridor_detour\",\"params\":{...}}；template 可选: altitude_stage / grid_survey / target_photo / line_formation / perimeter_patrol / relay_message / corridor_detour / battery_cycle / target_coverage / emergency_land。", "nav_template_action"),
 ]
 
 
@@ -527,9 +803,19 @@ def create_nav_tools(map_path: str | None = None, config: NavConfig | None = Non
     tools = []
     for name, description, attr in NAV_TOOL_SPECS:
         fn = getattr(toolkit, attr)
+
+        def _call(input_json=None, _fn=fn):
+            try:
+                result = _fn(input_json)
+            except Exception as exc:  # noqa: BLE001
+                result = {"error": f"{type(exc).__name__}: {exc}"}
+            if not isinstance(result, dict):
+                result = {"items": result}
+            return json.dumps(result, ensure_ascii=False)
+
         tools.append(
             StructuredTool.from_function(
-                func=lambda input_json=None, _fn=fn: json.dumps(_fn(input_json), ensure_ascii=False),
+                func=_call,
                 name=name,
                 description=description + " 参数为 input_json 字符串。",
             )

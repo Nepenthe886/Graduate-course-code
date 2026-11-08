@@ -1,0 +1,81 @@
+{
+  "id": "tpl_emergency_landing",
+  "template": {
+    "name": "Emergency Broadcast And Fleet Landing",
+    "description": "One drone broadcasts an emergency notice and the whole fleet lands. Use it as the closing task of a scenario; it touches every drone in the session.",
+    "content": "An emergency stop is declared. {drone_name} broadcasts the message \"{message}\" to the fleet, then every drone must land. The task is complete only when all drones are on the ground and the broadcast has been recorded.",
+    "content_aliases": [
+      "{drone_name} broadcasts \"{message}\" and the whole fleet lands.",
+      "Emergency: {drone_name} sends \"{message}\" to everyone and all drones return to the ground.",
+      "Send \"{message}\" from {drone_name} and finish with all drones landed."
+    ],
+    "category": "Safety",
+    "difficulty": "medium",
+    "creator": "Xie Qidong",
+    "is_builtin": false,
+    "suitable_task": [
+      "all",
+      "others"
+    ],
+    "exclude_in_random_generation": false,
+    "related_apis": [
+      {
+        "endpoint": "/drones/{id}/command/send_message",
+        "parameters": {
+          "id": "{drone_1_id}",
+          "target_drone_id": "{drone_2_id}",
+          "message": "{message}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/broadcast",
+        "parameters": {
+          "id": "{drone_1_id}",
+          "message": "{message}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/land",
+        "parameters": {
+          "id": "{drone_2_id}"
+        }
+      },
+      {
+        "endpoint": "/drones/{id}/command/land",
+        "parameters": {
+          "id": "{drone_1_id}"
+        }
+      }
+    ],
+    "execution_check_apis": {
+      "logic": "and",
+      "checks": [
+        {
+          "endpoint": "/check/drone_has_sent_message_content",
+          "parameters": {
+            "drone_id": "{drone_1_id}",
+            "content": "{message}"
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_landed",
+          "parameters": {
+            "drone_id": "{drone_1_id}",
+            "min_count": 1
+          }
+        },
+        {
+          "endpoint": "/check/drone_has_landed",
+          "parameters": {
+            "drone_id": "{drone_2_id}",
+            "min_count": 1
+          }
+        }
+      ]
+    },
+    "commands": [
+      "broadcast",
+      "land"
+    ]
+  }
+}

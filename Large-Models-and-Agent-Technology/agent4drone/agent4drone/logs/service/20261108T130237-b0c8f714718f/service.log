@@ -1,0 +1,15 @@
+2026-11-08 13:02:38 [INFO] agent_api_service: Attempting to initialize UAV Agent...
+2026-11-08 13:02:38 [INFO] agent_api_service: Initializing Agent with Provider: LocalQwen3, Model: Qwen3-8B
+2026-11-08 13:02:38 [INFO] agent_api_service: Agent tool-chain JSON recording: False
+2026-11-08 13:02:38 [INFO] uav_agent: Initializing UAVControlAgent provider=openai-compatible model=Qwen3-8B base_url=http://localhost:8000
+2026-11-08 13:02:38 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/sessions/current params=null json=null data=null
+2026-11-08 13:02:42 [WARNING] uav_agent: Could not connect to UAV API at http://localhost:8000: API request failed: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /sessions/current (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。"))
+2026-11-08 13:02:42 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/sessions/current params=null json=null data=null
+2026-11-08 13:02:46 [WARNING] uav_agent: 无法获取当前会话，导航地图退回默认值: API request failed: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /sessions/current (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。"))
+2026-11-08 13:02:49 [INFO] uav_agent: 已注入导航工具 13 个（模块 E:\Code\Graduate-course-code\Large-Models-and-Agent-Technology\Location_amd_Navigation）
+2026-11-08 13:02:49 [INFO] uav_agent: Created 35 UAV control tools
+2026-11-08 13:02:49 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/drones params=null json=null data=null
+2026-11-08 13:02:53 [INFO] uav_agent: Agent runtime created
+2026-11-08 13:02:53 [INFO] uav_api_client: MultiUAV-Plat request method=GET endpoint=/sessions/current params=null json=null data=null
+2026-11-08 13:02:55 [INFO] agent_api_service: UAV Agent initialized successfully.
+2026-11-08 13:04:15 [INFO] agent_api_service: UAV Agent Server shutting down.

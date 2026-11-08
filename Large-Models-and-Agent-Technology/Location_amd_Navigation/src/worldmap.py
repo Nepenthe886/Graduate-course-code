@@ -132,6 +132,28 @@ class WorldMap:
 
     # ---------- 加载 ----------
     @classmethod
+    def find_scenario(cls, session_name: str, dirs: list) -> Path | None:
+        """按会话名在场景目录中匹配 JSON（忽略大小写、空格与下划线）。"""
+        def norm(text: str) -> str:
+            return "".join(ch for ch in str(text).lower() if ch.isalnum())
+
+        needle = norm(session_name or "")
+        if not needle:
+            return None
+        for directory in dirs:
+            base = Path(directory)
+            if not base.is_dir():
+                continue
+            for path in sorted(base.glob("*.json")):
+                try:
+                    data = json.loads(path.read_text(encoding="utf-8"))
+                except Exception:  # noqa: BLE001
+                    continue
+                if norm(str(data.get("name") or "")) == needle:
+                    return path
+        return None
+
+    @classmethod
     def load(cls, path: str | Path) -> "WorldMap":
         source = Path(path)
         data = json.loads(source.read_text(encoding="utf-8"))

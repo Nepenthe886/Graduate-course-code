@@ -16,6 +16,7 @@ import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -65,7 +66,7 @@ class UavApi:
     def command(self, drone_id: str, command: str, *, params: dict | None = None,
                 body: dict | None = None):
         if params:
-            query = "&".join("{}={}".format(k, v) for k, v in params.items())
+            query = urllib.parse.urlencode({key: value for key, value in params.items()})
             return self._request("POST", "/drones/{}/command/{}?{}".format(drone_id, command, query), body)
         return self._request("POST", "/drones/{}/command/{}".format(drone_id, command), body)
 

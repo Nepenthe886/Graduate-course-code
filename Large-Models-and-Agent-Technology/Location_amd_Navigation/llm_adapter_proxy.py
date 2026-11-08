@@ -456,18 +456,23 @@ def _find_drone_in_text(task_text: str) -> str:
 
 
 def _resolve_drone_id(task_text: str, uav_base: str) -> str:
-    """把任务里的 Drone N 解析成真实 id（查 /drones）。"""
-    name_hint = _find_drone_in_text(task_text)
+    """把任务里的无人机（Bravo / Drone N）解析成真实 id（查 /drones）。"""
+    text = task_text or ""
+    name_hint = _find_drone_in_text(text)
     drones = _http_json(f"{uav_base.rstrip('/')}/drones", timeout=3.0)
     if not isinstance(drones, list):
         # UAV API 不可用时退回名字，由 nav_execute_mission 工具自己解析 id
         return ("Drone " + name_hint) if name_hint else ""
-    if not name_hint:
-        return str((drones[0] or {}).get("id", ""))
-    wanted = f"drone {name_hint}".lower()
+    lowered = text.lower()
     for drone in drones:
-        if str(drone.get("name", "")).strip().lower() == wanted:
-            return str(drone.get("id", ""))
+        name = str(drone.get("name") or "").strip()
+        if name and re.search(r"\b" + re.escape(name.lower()) + r"\b", lowered):
+            return str(drone.get("id") or "")
+    if name_hint:
+        wanted = f"drone {name_hint}".lower()
+        for drone in drones:
+            if str(drone.get("name", "")).strip().lower() == wanted:
+                return str(drone.get("id", ""))
     return str((drones[0] or {}).get("id", ""))
 
 
@@ -557,7 +562,7 @@ FAILURE_HINTS = ('"ok": false', '"ok":false', "out_of_bounds", "航点超出地�
 
 
 def failure_evidence(request_messages: list):
-    """从最近一轮工具结果中提取失败原因；没有失败证据返回 None。"""
+    """只看最近一条工具结果：成功则无失败证据，避免旧的失败掩盖新的成功。"""
     for message in reversed(request_messages or []):
         if not isinstance(message, dict):
             continue
@@ -575,16 +580,271 @@ def failure_evidence(request_messages: list):
         if isinstance(data, dict):
             failures = data.get("failures")
             ok = data.get("ok")
-            if ok is False or (isinstance(failures, list) and failures):
+            error = str(data.get("error") or "").strip()
+            if ok is False or (isinstance(failures, list) and failures) or error:
                 first = failures[0] if isinstance(failures, list) and failures else {}
                 reason = str((first or {}).get("error") or "").strip() if isinstance(first, dict) else ""
-                return reason or "工具返回 ok=false（%d 项失败）" % len(failures or [])
+                return reason or error or "工具返回 ok=false（%d 项失败）" % len(failures or [])
+            return None
         if any(hint in text for hint in FAILURE_HINTS):
             return "工具执行失败（详见工具输出）"
+        return None
     return None
 
 
 MAX_TOOL_CONTENT = 3000
+
+TEMPLATE_TOOL = "nav_template_action"
+ATOMIC_RAW = {"take_off", "land", "move_to", "move_towards", "move_along_path", "hover",
+              "take_photo", "change_altitude", "rotate", "broadcast", "send_message",
+              "charge", "return_home"}
+
+
+def _detect_template(task_text: str) -> str | None:
+    try:
+        from src.template_actions import detect_template
+        return detect_template(task_text)
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _template_called(messages: list) -> bool:
+    for message in messages or []:
+        if not isinstance(message, dict):
+            continue
+        for call in (message.get("tool_calls") or []):
+            function = call.get("function") or {}
+            if str(function.get("name") or "") == TEMPLATE_TOOL:
+                return True
+    return False
+
+
+def _coords_of(text: str) -> list[list[float]]:
+    return [[float(a), float(b)] for a, b in
+            re.findall(r"\(\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)", text or "")]
+
+
+def _first_float(pattern: str, text: str):
+    match = re.search(pattern, text or "", re.I)
+    return float(match.group(1)) if match else None
+
+
+def _quoted(text: str) -> str | None:
+    match = re.search(r'["“]([^"”]+)["”]', text or "")
+    return match.group(1) if match else None
+
+
+def parse_template_params(template: str, text: str, drone_id: str) -> dict | None:
+    """从任务文本粗解析模板参数；解析不完整返回 None（不强行改写）。"""
+    coords = _coords_of(text)
+    alt = _first_float(r"(?:to|at)\s+(\d+(?:\.\d+)?)\s*m(?:eters?)?\b", text) or 30.0
+    params: dict = {"altitude": alt}
+    if drone_id:
+        params["drone_id"] = drone_id
+    if template == "altitude_stage":
+        alts = [float(x) for x in re.findall(r"to\s+(\d+(?:\.\d+)?)\s*m", text or "", re.I)]
+        if not alts:
+            return None
+        # 单高度任务：起飞即巡航高度，alt1 == alt2（不再二次爬升）
+        params.update(alt1=alts[0], alt2=alts[1] if len(alts) > 1 else alts[0])
+    elif template == "grid_survey":
+        if len(coords) < 3:
+            return None
+        params.update(corners=coords, photos=max(len(coords), 4))
+    elif template == "perimeter_patrol":
+        if len(coords) < 4:
+            return None
+        params.update(corners=coords[:4])
+    elif template == "line_formation":
+        if len(coords) < 2:
+            return None
+        names = re.findall(r"([A-Z][a-zA-Z]+)\s+and\s+([A-Z][a-zA-Z]+)", text or "")
+        first, second = names[0] if names else ("Drone 1", "Drone 2")
+        params["drones"] = [
+            {"drone_id": first, "x": coords[0][0], "y": coords[0][1]},
+            {"drone_id": second, "x": coords[1][0], "y": coords[1][1]},
+        ]
+    elif template == "relay_message":
+        if len(coords) < 2:
+            return None
+        names = re.findall(r"([A-Z][a-zA-Z]+)\s+climbs", text or "")
+        first = names[0] if len(names) > 0 else "Drone 1"
+        second = names[1] if len(names) > 1 else "Drone 2"
+        params.update(drone1={"drone_id": first, "x": coords[0][0], "y": coords[0][1]},
+                      drone2={"drone_id": second, "x": coords[1][0], "y": coords[1][1]},
+                      message=_quoted(text) or "relay message")
+    elif template == "corridor_detour":
+        if len(coords) < 2:
+            return None
+        params.update(start=coords[0], end=coords[1],
+                      clearance=_first_float(r"(\d+(?:\.\d+)?)\s*m(?:eters?)?\s+away", text) or 40.0,
+                      photos=2)
+    elif template == "target_coverage":
+        match = re.search(r"(?:Search|Cover)\s+([A-Z][\w]*(?:\s+[A-Z][\w]*)*)\s+until", text or "")
+        if not match:
+            match = re.search(r"([A-Z][\w]*(?:\s+[A-Z][\w]*)*)\s+until at least", text or "")
+        if not match:
+            return None
+        params["target"] = match.group(1).strip()
+        params["sweep"] = _first_float(r"sweep of\s+(\d+(?:\.\d+)?)", text) or 50.0
+        percent = _first_float(r"(\d+(?:\.\d+)?)\s*percent", text) or 70.0
+        params["coverage"] = max(0.1, min(1.0, percent / 100.0))
+        params["photos"] = 1
+    elif template == "battery_cycle":
+        params["charge_amount"] = _first_float(r"(\d+(?:\.\d+)?)\s*percent", text) or 30.0
+    elif template == "target_photo":
+        match = re.search(r"target\s+([A-Z][\w-]*(?:\s+[A-Z][\w-]*)*)", text or "")
+        if not match:
+            return None
+        params["target"] = match.group(1).strip()
+    else:
+        return None
+    return params
+
+
+def _call_template_name(call: dict) -> str | None:
+    """从一次 nav_template_action 调用里取出 template 名。"""
+    function = call.get("function") or {}
+    raw = function.get("arguments")
+    try:
+        args = json.loads(raw) if isinstance(raw, str) else (raw or {})
+        if isinstance(args, dict) and isinstance(args.get("input_json"), str):
+            args = json.loads(args["input_json"])
+        if isinstance(args, dict):
+            return str(args.get("template") or args.get("template_id") or "") or None
+    except Exception:  # noqa: BLE001
+        return None
+    return None
+
+
+def _called_templates(messages: list) -> set[str]:
+    found: set[str] = set()
+    for message in messages or []:
+        if not isinstance(message, dict):
+            continue
+        for call in (message.get("tool_calls") or []):
+            if str((call.get("function") or {}).get("name") or "") == TEMPLATE_TOOL:
+                name = _call_template_name(call)
+                if name:
+                    found.add(name)
+    return found
+
+
+def _norm_text(text: str) -> str:
+    return "".join(ch for ch in str(text or "").lower() if ch.isalnum())
+
+
+def _call_args(call: dict) -> dict | None:
+    function = call.get("function") or {}
+    raw = function.get("arguments")
+    try:
+        args = json.loads(raw) if isinstance(raw, str) else (raw or {})
+        if isinstance(args, dict) and isinstance(args.get("input_json"), str):
+            args = json.loads(args["input_json"])
+        return args if isinstance(args, dict) else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _fix_template_message(payload: dict, task_text: str, template: str):
+    """模板已调用但消息内容被模型改坏时，按任务原文纠正。"""
+    if template != "relay_message":
+        return payload, None
+    expected = _quoted(task_text)
+    if not expected:
+        return payload, None
+    try:
+        result = json.loads(json.dumps(payload))
+    except Exception:  # noqa: BLE001
+        return payload, None
+    message = ((result.get("choices") or [{}])[0].setdefault("message", {}))
+    changed = False
+    for call in (message.get("tool_calls") or []):
+        if str((call.get("function") or {}).get("name") or "") != TEMPLATE_TOOL:
+            continue
+        if _call_template_name(call) != template:
+            continue
+        args = _call_args(call)
+        params = (args or {}).get("params") or {}
+        current = str(params.get("message") or "")
+        if current.strip() != expected:
+            params["message"] = expected
+            call["function"]["arguments"] = json.dumps(
+                {"input_json": json.dumps({**(args or {}), "params": params}, ensure_ascii=False)},
+                ensure_ascii=False)
+            changed = True
+    if changed:
+        return result, "template_message_fixed"
+    return payload, None
+
+
+def _coverage_executed(messages: list) -> bool:
+    for message in messages or []:
+        if not isinstance(message, dict):
+            continue
+        for call in (message.get("tool_calls") or []):
+            if str((call.get("function") or {}).get("name") or "") != "nav_coverage_route":
+                continue
+            if bool((_call_args(call) or {}).get("execute")):
+                return True
+    return False
+
+
+def enforce_template_delegation(payload: dict, request_messages: list, task_text: str,
+                                uav_base: str):
+    """模板任务禁用裸原子动作：把 take_off/hover/move_to 等改写为 nav_template_action。"""
+    if not isinstance(payload, dict):
+        return payload, None
+    template = _detect_template(task_text)
+    if not template:
+        return payload, None
+    if template in _called_templates(request_messages):
+        return _fix_template_message(payload, task_text, template)
+    try:
+        result = json.loads(json.dumps(payload))
+    except Exception:  # noqa: BLE001
+        return payload, None
+    choice = (result.get("choices") or [{}])[0]
+    message = choice.setdefault("message", {})
+    calls = message.get("tool_calls") or []
+    if not calls:
+        return payload, None
+    names = [str((c.get("function") or {}).get("name") or "") for c in calls]
+    raw_calls = [name for name in names if name in ATOMIC_RAW]
+    wrong_template = [
+        call for call in calls
+        if str((call.get("function") or {}).get("name") or "") == TEMPLATE_TOOL
+        and _call_template_name(call) not in (None, template)
+    ]
+    coverage_preview = [
+        call for call in calls
+        if str((call.get("function") or {}).get("name") or "") == "nav_coverage_route"
+        and not bool((_call_args(call) or {}).get("execute"))
+    ]
+    mission_calls = [
+        call for call in calls
+        if str((call.get("function") or {}).get("name") or "") == MISSION_TOOL
+    ]
+    if not raw_calls and not wrong_template and not coverage_preview and not mission_calls:
+        return payload, None
+    drone_id = _resolve_drone_id(task_text, uav_base) or ""
+    params = parse_template_params(template, task_text, drone_id)
+    if not params:
+        return payload, None
+    args = {"template": template, "params": params}
+    message["tool_calls"] = [{
+        "id": "call_proxy_template_1",
+        "type": "function",
+        "function": {
+            "name": TEMPLATE_TOOL,
+            "arguments": json.dumps({"input_json": json.dumps(args, ensure_ascii=False)},
+                                    ensure_ascii=False),
+        },
+    }]
+    message["content"] = None
+    choice["finish_reason"] = "tool_calls"
+    return result, f"template_enforced_replaced:{','.join(names)}"
+
 
 
 def trim_tool_messages(messages: list) -> list:
@@ -603,7 +863,56 @@ def trim_tool_messages(messages: list) -> list:
     return result
 
 
-def rewrite_completion(payload: dict, request_messages: list, guard_done: bool = True):
+def _recent_tool_errors(messages: list) -> tuple[int, str]:
+    """统计最近连续失败的 tool 结果数量与最后一条错误信息。"""
+    count = 0
+    last = ""
+    for message in reversed(messages or []):
+        if not isinstance(message, dict):
+            continue
+        role = str(message.get("role") or "")
+        if role == "user":
+            break
+        if role not in ("tool", "function"):
+            continue
+        content = message.get("content")
+        text = content if isinstance(content, str) else json.dumps(content, ensure_ascii=False)
+        try:
+            data = json.loads(text)
+        except Exception:  # noqa: BLE001
+            data = None
+        if not isinstance(data, dict):
+            continue
+        status = str(data.get("status") or "")
+        failed = data.get("ok") is False or status in ("error", "failed") or bool(data.get("error"))
+        if failed:
+            count += 1
+            last = str(data.get("message") or data.get("error") or last)
+        else:
+            break
+    return count, last
+
+
+def enforce_loop_breaker(payload: dict, request_messages: list):
+    """连续 3 次以上工具失败时停止重试，直接给出失败结论。"""
+    count, last = _recent_tool_errors(request_messages)
+    if count < 3:
+        return payload, None
+    try:
+        result = json.loads(json.dumps(payload))
+    except Exception:  # noqa: BLE001
+        return payload, None
+    choice = (result.get("choices") or [{}])[0]
+    message = choice.setdefault("message", {})
+    message["tool_calls"] = []
+    message["content"] = ("[TASK FAILED] 连续 %d 次工具调用失败，已停止重试。最后错误：%s"
+                          % (count, last[:160]))
+    choice["finish_reason"] = "stop"
+    return result, "loop_breaker:%d" % count
+
+
+def rewrite_completion(payload: dict, request_messages: list, guard_done: bool = True,
+                       task_text: str = ""):
     if not isinstance(payload, dict):
         return payload, None
     choices = payload.get("choices") or []
@@ -617,6 +926,9 @@ def rewrite_completion(payload: dict, request_messages: list, guard_done: bool =
     has_done = bool(DONE_RE.search(content))
     has_failed = bool(FAILED_RE.search(content))
     tool_calls = message.get("tool_calls") or []
+
+    # 模板只作为可选的加速路径：不强制“必须调用模板”才算完成。
+    # 完成是否成立交给工具结果与最终校验（失败证据/未执行工具仍会拦截）。
 
     reason = failure_evidence(request_messages)
     if has_done and reason:
@@ -750,7 +1062,8 @@ class Handler(BaseHTTPRequestHandler):
             except Exception:
                 parsed = None
             if parsed is not None:
-                fixed, note = rewrite_completion(parsed, request_messages, self.guard_done)
+                fixed, note = rewrite_completion(parsed, request_messages, self.guard_done,
+                                                 task_text)
                 if note:
                     sys.stderr.write(f"[llm-proxy] rewrite: {note}\n")
                 enforced, enforce_note = enforce_mission_delegation(
@@ -759,6 +1072,15 @@ class Handler(BaseHTTPRequestHandler):
                     sys.stderr.write(f"[llm-proxy] {enforce_note}\n")
                     fixed = enforced
                     payload = json.dumps(fixed, ensure_ascii=False).encode("utf-8")
+                templated, template_note = enforce_template_delegation(
+                    fixed, request_messages, task_text, self.uav_base)
+                if template_note:
+                    sys.stderr.write(f"[llm-proxy] {template_note}\n")
+                    fixed = templated
+                looped, loop_note = enforce_loop_breaker(fixed, request_messages)
+                if loop_note:
+                    sys.stderr.write(f"[llm-proxy] {loop_note}\n")
+                    fixed = looped
                 if self.rewrite_config.get("enabled", False):
                     world = load_world(self.map_path, self.uav_base)
                     fixed, notes = rewrite_tool_calls(fixed, task_text, world, self.rewrite_config)

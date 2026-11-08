@@ -1,0 +1,112 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-e96cd560-eee8-410b-b96b-4c0dad6d8b2c",
+  "experiment": {
+    "run_id": "rid-e96cd560-eee8-410b-b96b-4c0dad6d8b2c",
+    "experiment_id": "eid-9774e4ed-9354-55e2-81a7-f79ddc50b32d"
+  },
+  "service_instance_id": "20261108T162959-054b37a7514e",
+  "batch_file": "../../batch.json",
+  "command_id": "2d77ca0e-01e7-47d0-a284-5c4f6f4cee59",
+  "job_id": null,
+  "command": "Take Ohm off to 31.4 meters and fly it to the target Array Row East. Once the drone is over the target, point it at the target and take two photographs of Array Row East. The drone should finish hovering above the target. Position beacon: (512.0, 384.0) at 31.4 m. Fly there with a single move_to command rather than a sequence of short hops.",
+  "created_at": "2026-11-08 16:40:51",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-08 16:41:07",
+  "requested_run_id": null,
+  "started_at": "2026-11-08 16:40:51",
+  "runtime": {
+    "run_id": "rid-e96cd560-eee8-410b-b96b-4c0dad6d8b2c",
+    "experiment": {
+      "run_id": "rid-e96cd560-eee8-410b-b96b-4c0dad6d8b2c",
+      "experiment_id": "eid-9774e4ed-9354-55e2-81a7-f79ddc50b32d"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "98ccd1c7",
+    "task_type": null,
+    "task_description": "A grid of solar arrays surrounded by a fence line. Three drones patrol the fence, inspect two array rows and practise a battery turnaround at the service shed.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 4,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "98ccd1c7",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "fdf8e9f9856346cab776785e87a4c4b9b3c972096ef1581bea7256e54588ebcf",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"afac1e55\",\n    \"name\": \"Volt\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 280.0,\n      \"y\": 380.0,\n      \"z\": 0.0\n    },\n    \"heading\": 123.69006752597979,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 140.0,\n      \"y\": 660.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794123809.4043632,\n    \"last_updated\": 1794127246.0044792\n  },\n  {\n    \"id\": \"8bc17736\",\n    \"name\": \"Watt\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 480.0,\n      \"y\": 380.0,\n      \"z\": 0.0\n    },\n    \"heading\": 262.8749836510982,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 220.0,\n      \"y\": 660.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794123809.4043632,\n    \"last_updated\": 1794127246.004511\n  },\n  {\n    \"id\": \"a70a1e52\",\n    \"name\": \"Ohm\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 150.0,\n      \"y\": 650.0,\n      \"z\": 0.0\n    },\n    \"heading\": 266.18592516570965,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 300.0,\n      \"y\": 660.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794123809.4043632,\n    \"last_updated\": 1794127246.0045233\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_nearby_entities",
+          "tool_input": {
+            "drone_id": "a70a1e52"
+          },
+          "log": "Preparing to call tool 'get_nearby_entities'",
+          "message_log": null
+        },
+        "{\n  \"drones\": [],\n  \"targets\": [\n    {\n      \"id\": \"2aea9835\",\n      \"name\": \"Charging Pad\",\n      \"type\": \"waypoint\",\n      \"position\": {\n        \"x\": 150.0,\n        \"y\": 650.0,\n        \"z\": 0.0\n      },\n      \"description\": \"Automatic charging station: land inside its radius to recharge.\",\n      \"velocity\": null,\n      \"radius\": 15.0,\n      \"created_at\": 1794123809.4043632,\n      \"last_updated\": 1794126700.6264791,\n      \"moving_path\": null,\n      \"moving_duration\": null,\n      \"current_path_index\": null,\n      \"path_direction\": null,\n      \"time_in_direction\": null,\n      \"calculated_speed\": null,\n      \"movement_mode\": null,\n      \"last_motion_update\": null,\n      \"charge_amount\": 100.0,\n      \"vertices\": [],\n      \"tracking_status\": null,\n      \"last_tracked_at\": null,\n      \"is_reached\": true,\n      \"reached_by\": [\n        \"afac1e55\",\n        \"a70a1e52\"\n      ]\n    }\n  ],\n  \"obstacles\": []\n}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "target_photo",
+            "params": {
+              "altitude": 31.4,
+              "drone_id": "a70a1e52",
+              "target": "Array Row East"
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 31.4, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [512.0, 384.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 28139,
+      "completion_tokens": 102,
+      "total_tokens": 28241,
+      "llm_calls": 4
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

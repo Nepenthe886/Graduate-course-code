@@ -1,0 +1,226 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-ac08d8f0-3cf6-4fcd-b675-0e47e67bc57f",
+  "experiment": {
+    "run_id": "rid-ac08d8f0-3cf6-4fcd-b675-0e47e67bc57f",
+    "experiment_id": "eid-6b706e6d-16e8-50c4-9162-9e08f939bdec"
+  },
+  "service_instance_id": "20261108T132319-351321da435f",
+  "batch_file": "../../batch.json",
+  "command_id": "7a60b20a-b49a-43a1-b58a-b867263d7063",
+  "job_id": null,
+  "command": "Take Charlie off to 27.1 meters and fly it to the target Depot Yard A. Once the drone is over the target, point it at the target and take two photographs of Depot Yard A. The drone should finish hovering above the target.",
+  "created_at": "2026-11-08 13:28:19",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-08 13:29:15",
+  "requested_run_id": null,
+  "started_at": "2026-11-08 13:28:19",
+  "runtime": {
+    "run_id": "rid-ac08d8f0-3cf6-4fcd-b675-0e47e67bc57f",
+    "experiment": {
+      "run_id": "rid-ac08d8f0-3cf6-4fcd-b675-0e47e67bc57f",
+      "experiment_id": "eid-6b706e6d-16e8-50c4-9162-9e08f939bdec"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "817cce2e",
+    "task_type": null,
+    "task_description": "A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 13,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "817cce2e",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "5c5997c9bbf21a8f6df53fea1c55e1376d19ac762825e323181e592a45c55d6f",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"8470b5b6\",\n    \"name\": \"Alpha\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 768.9,\n      \"y\": 174.5,\n      \"z\": 0.0\n    },\n    \"heading\": 162.4285243014915,\n    \"speed\": 0.0,\n    \"battery_level\": 83.86749984536237,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 120.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794059108.9830196,\n    \"last_updated\": 1794115684.9050188\n  },\n  {\n    \"id\": \"efbff829\",\n    \"name\": \"Bravo\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 200.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 200.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794059108.9830196,\n    \"last_updated\": 1794059108.9830196\n  },\n  {\n    \"id\": \"b147f6f4\",\n    \"name\": \"Charlie\",\n    \"model\": \"Model-X4\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 280.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 99.194338345125,\n    \"max_speed\": 25.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 98.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 280.0,\n      \"y\": 640.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794059108.9830196,\n    \"last_updated\": 1794115438.3119383\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"817cce2e\",\n  \"name\": \"City Depot Night Shift\",\n  \"description\": \"A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.\",\n  \"status\": \"active\",\n  \"creator\": \"Xie Qidong\",\n  \"task_type\": \"area_assignment_and_patrol\",\n  \"task_description\": \"A logistics depot inside a city block. Three drones share takeoff, patrol, inspection and recovery work while a no-entry warehouse blocks the middle of the map.\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1794059108.9830196,\n  \"last_updated\": 1794115710.1064816,\n  \"statistics\": {\n    \"drone_count\": 3,\n    \"target_count\": 3,\n    \"obstacle_count\": 3,\n    \"task_count\": 20,\n    \"environment_id\": \"9773fa57\",\n    \"total_commands_executed\": 20,\n    \"total_flight_time\": 98.1155668366899,\n    \"total_distance_traveled\": 2452.889170917247,\n    \"total_target_reaches\": 6,\n    \"drones_with_target_reaches\": 1,\n    \"unique_targets_reached\": 2,\n    \"session_time\": 301.0740535259247,\n    \"command_history_size\": 21,\n    \"task_progress\": {\n      \"task_type\": \"area_assignment_and_patrol\",\n      \"progress_percentage\": 25,\n      \"is_completed\": false,\n      \"status_message\": \"Task to be Done\",\n      \"details\": {\n        \"total_targets\": 3\n      },\n      \"target_reach_summary\": {\n        \"total_reaches\": 6,\n        \"drones_with_reaches\": 1,\n        \"unique_targets_reached\": 2\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 3,\n        \"average_coverage\": 25.193558673469386,\n        \"fully_covered_targets\": 0\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"9773fa57\",\n  \"name\": \"City Depot Night Shift Environment\",\n  \"weather\": \"clear\",\n  \"temperature\": 16.69780823493859,\n  \"humidity\": 62.0,\n  \"pressure\": 1013.2,\n  \"wind_speed\": 4.358631247191848,\n  \"wind_direction\": \"east\",\n  \"visibility\": 9000.0,\n  \"created_at\": 1794059108.9830196,\n  \"last_updated\": 1794115715.0787773\n}"
+      ],
+      [
+        {
+          "tool": "get_nearby_entities",
+          "tool_input": {
+            "drone_id": "b147f6f4"
+          },
+          "log": "Preparing to call tool 'get_nearby_entities'",
+          "message_log": null
+        },
+        "{\n  \"drones\": [],\n  \"targets\": [],\n  \"obstacles\": []\n}"
+      ],
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "b147f6f4",
+            "altitude": 27.1
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"c80d4943\",\n  \"drone_id\": \"b147f6f4\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 27.1m (battery: -0.5%/-0mAh, remaining: 98.7%/97mAh)\",\n  \"timestamp\": 1794115721.3057268\n}"
+      ],
+      [
+        {
+          "tool": "nav_route_to_target",
+          "tool_input": {
+            "drone_id": "b147f6f4",
+            "target": "Depot Yard A",
+            "z": 27.1
+          },
+          "log": "Preparing to call tool 'nav_route_to_target'",
+          "message_log": null
+        },
+        "{\"target\": {\"name\": \"Depot Yard A\", \"center\": [640.9525987298183, 426.984199576602], \"radius\": 1.0}, \"route\": {\"start\": [280.0, 640.0], \"goal\": [640.9525987298183, 426.984199576602], \"waypoints\": [[612.0, 456.0], [640.9525987298183, 426.984199576602]], \"waypoints_xyz\": [[280.0, 640.0, 27.1], [612.0, 456.0, 27.1], [640.9525987298183, 426.984199576602, 27.1]], \"length\": 420.57, \"length_3d\": 420.57, \"min_clearance\": 3.63, \"detoured\": true, \"avoided\": [\"Warehouse Block\"], \"planning_dim\": \"2d\", \"altitude\": 27.1, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}, \"move_along_path_waypoints\": [{\"x\": 612.0, \"y\": 456.0, \"z\": 27.1}, {\"x\": 640.95, \"y\": 426.98, \"z\": 27.1}]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "b147f6f4",
+            "waypoints": [
+              {
+                "x": 612.0,
+                "y": 456.0,
+                "z": 27.1
+              },
+              {
+                "x": 640.95,
+                "y": 426.98,
+                "z": 27.1
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"8f77bcc0\",\n  \"drone_id\": \"b147f6f4\",\n  \"command\": \"move_along_path\",\n  \"status\": \"success\",\n  \"message\": \"Drone completed path with 2 waypoints (total distance: 420.57m, battery: -2.1%/-2mAh, remaining: 96.6%/95mAh) - Reached target(s): Depot Yard A, Loading Bay\",\n  \"successful_points_count\": 2,\n  \"successful_points\": [\n    [\n      612.0,\n      456.0,\n      27.1\n    ],\n    [\n      640.95,\n      426.98,\n      27.1\n    ]\n  ],\n  \"unsuccessful_points_count\": 0,\n  \"unsuccessful_points\": [],\n  \"timestamp\": 1794115728.6257331\n}"
+      ],
+      [
+        {
+          "tool": "nav_pose",
+          "tool_input": {
+            "target": "Depot Yard A"
+          },
+          "log": "Preparing to call tool 'nav_pose'",
+          "message_log": null
+        },
+        "{\"pose\": {\"x\": 280.0, \"y\": 640.0, \"z\": 27.1, \"yaw_deg\": 0.0}, \"target\": {\"bearing_deg\": -30.55, \"relative_bearing_deg\": -30.55, \"distance_m\": 419.12}}"
+      ],
+      [
+        {
+          "tool": "rotate",
+          "tool_input": {
+            "drone_id": "b147f6f4",
+            "heading": -30.55
+          },
+          "log": "Preparing to call tool 'rotate'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"f11ff672\",\n  \"drone_id\": \"b147f6f4\",\n  \"command\": \"rotate\",\n  \"status\": \"success\",\n  \"message\": \"Drone heading set to 329.4\\u00b0 (battery: -0.2%/-0mAh, remaining: 96.4%/95mAh)\",\n  \"timestamp\": 1794115746.4802616\n}"
+      ],
+      [
+        {
+          "tool": "take_photo",
+          "tool_input": {
+            "drone_id": "b147f6f4"
+          },
+          "log": "Preparing to call tool 'take_photo'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"1cbd131c\",\n  \"drone_id\": \"b147f6f4\",\n  \"command\": \"take_photo\",\n  \"status\": \"success\",\n  \"message\": \"Photo taken successfully. Photo ID: 2341d997 (battery: -0.3%/-0mAh, remaining: 96.1%/94mAh)\",\n  \"timestamp\": 1794115749.3821068\n}"
+      ],
+      [
+        {
+          "tool": "take_photo",
+          "tool_input": {
+            "drone_id": "b147f6f4"
+          },
+          "log": "Preparing to call tool 'take_photo'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"55ef2482\",\n  \"drone_id\": \"b147f6f4\",\n  \"command\": \"take_photo\",\n  \"status\": \"success\",\n  \"message\": \"Photo taken successfully. Photo ID: af7a50cf (battery: -0.3%/-0mAh, remaining: 95.8%/94mAh)\",\n  \"timestamp\": 1794115752.298442\n}"
+      ],
+      [
+        {
+          "tool": "hover",
+          "tool_input": {
+            "drone_id": "b147f6f4"
+          },
+          "log": "Preparing to call tool 'hover'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"c6886971\",\n  \"drone_id\": \"b147f6f4\",\n  \"command\": \"hover\",\n  \"status\": \"success\",\n  \"message\": \"Drone now hovering (battery: -0.1%/-0mAh, remaining: 95.7%/94mAh)\",\n  \"timestamp\": 1794115755.1188474\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 107581,
+      "completion_tokens": 474,
+      "total_tokens": 108055,
+      "llm_calls": 13
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "complete",
+    "recording_status": "complete",
+    "sha256": "5368b9e14697af847840f3420fe66e938460a152d5216286760784c5b6ae5554",
+    "source_indices": [
+      8,
+      10,
+      18,
+      19,
+      20,
+      21
+    ],
+    "issues": [],
+    "count": 6,
+    "replay_validation": "not_run"
+  }
+}
