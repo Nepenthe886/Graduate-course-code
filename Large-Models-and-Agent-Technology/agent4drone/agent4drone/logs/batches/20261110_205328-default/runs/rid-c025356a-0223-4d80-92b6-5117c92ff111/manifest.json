@@ -1,0 +1,127 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-c025356a-0223-4d80-92b6-5117c92ff111",
+  "experiment": {
+    "run_id": "rid-c025356a-0223-4d80-92b6-5117c92ff111",
+    "experiment_id": "eid-09f2938c-e731-507a-aaee-0c9aafd8f028"
+  },
+  "service_instance_id": "20261110T205309-65ff75bef314",
+  "batch_file": "../../batch.json",
+  "command_id": "276b1a2b-1057-476d-a872-fc62fd3f4aab",
+  "job_id": null,
+  "command": "Drone 7 stationary observation mission: take off to 58 meters, fly to observation point (506, 422, 58), hover at this position for at least 14 seconds while maintaining position.",
+  "created_at": "2026-11-10 20:56:21",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-10 20:56:47",
+  "requested_run_id": null,
+  "started_at": "2026-11-10 20:56:21",
+  "runtime": {
+    "run_id": "rid-c025356a-0223-4d80-92b6-5117c92ff111",
+    "experiment": {
+      "run_id": "rid-c025356a-0223-4d80-92b6-5117c92ff111",
+      "experiment_id": "eid-09f2938c-e731-507a-aaee-0c9aafd8f028"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "e34553f4",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 6,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "e34553f4",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "b970ad32b3f6b0df8f3e15b1d48d9faa10e8cc786da1a17667ed8d49a98fde7d",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"3399dfb4\",\n    \"name\": \"Drone 1\",\n    \"model\": \"Model-X3\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 52.0,\n      \"y\": 867.0,\n      \"z\": 0.0\n    },\n    \"heading\": 259.9456644000056,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 35.0,\n    \"max_altitude\": 359.0,\n    \"battery_capacity\": 75.9,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 83.0,\n      \"y\": 78.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1790403966.540939,\n    \"last_updated\": 1794315377.3731136\n  },\n  {\n    \"id\": \"a48b295f\",\n    \"name\": \"Drone 2\",\n    \"model\": \"Model-X2\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 165.0,\n      \"y\": 6.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 33.0,\n    \"max_altitude\": 414.0,\n    \"battery_capacity\": 62.3,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 165.0,\n      \"y\": 6.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1790403966.540946,\n    \"last_updated\": 1794315377.3731928\n  },\n  {\n    \"id\": \"37d19c77\",\n    \"name\": \"Drone 3\",\n    \"model\": \"Model-X1\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 555.0,\n      \"y\": 896.0,\n      \"z\": 0.0\n    },\n    \"heading\": 343.3007557660064,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 397.0,\n    \"battery_capacity\": 98.8,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 62.0,\n      \"y\": 27.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1790403966.54095,\n    \"last_updated\": 1794315377.3732328\n  },\n  {\n    \"id\": \"5e4dc3e8\",\n    \"name\": \"Drone 4\",\n    \"model\": \"Model-X1\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 278.0,\n      \"y\": 213.0,\n      \"z\": 0.0\n    },\n    \"heading\": 191.80988295702824,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 23.0,\n    \"max_altitude\": 494.0,\n    \"battery_capacity\": 90.4,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 186.0,\n      \"y\": 75.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1790403966.540954,\n    \"last_updated\": 1794315377.37327\n  },\n  {\n    \"id\": \"70e24a0b\",\n    \"name\": \"Drone 5\",\n    \"model\": \"Model-A\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 565.0,\n      \"y\": 561.0,\n      \"z\": 0.0\n    },\n    \"heading\": 125.46090814674129,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 28.0,\n    \"max_altitude\": 202.0,\n    \"battery_capacity\": 75.5,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 122.0,\n      \"y\": 12.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1790403966.541049,\n    \"last_updated\": 1794315377.3733056\n  },\n  {\n    \"id\": \"6389dd84\",\n    \"name\": \"Drone 6\",\n    \"model\": \"Model-X2\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 895.0,\n      \"y\": 929.0,\n      \"z\": 0.0\n    },\n    \"heading\": 69.81086854976319,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 17.0,\n    \"max_altitude\": 463.0,\n    \"battery_capacity\": 89.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 138.0,\n      \"y\": 49.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1790403966.5410628,\n    \"last_updated\": 1794315377.3733404\n  },\n  {\n    \"id\": \"e793ba29\",\n    \"name\": \"Drone 7\",\n    \"model\": \"Model-D\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 153.0,\n      \"y\": 580.0,\n      \"z\": 0.0\n    },\n    \"heading\": 275.81811499957644,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 35.0,\n    \"max_altitude\": 392.0,\n    \"battery_capacity\": 75.2,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 127.0,\n      \"y\": 66.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1790403966.541068,\n    \"last_updated\": 1794315377.3733757\n  },\n  {\n    \"id\": \"b68001a8\",\n    \"name\": \"Drone 8\",\n    \"model\": \"Model-X1\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 189.0,\n      \"y\": 34.0,\n      \"z\": 0.0\n    },\n    \"heading\": 307.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 35.0,\n    \"max_altitude\": 325.0,\n    \"battery_capacity\": 66.1,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 189.0,\n      \"y\": 34.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1790403966.541072,\n    \"last_updated\": 1794315377.373412\n  },\n  {\n    \"id\": \"e8a044c5\",\n    \"name\": \"Drone 9\",\n    \"model\": \"Model-E\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 80.0,\n      \"y\": 861.0,\n      \"z\": 0.0\n    },\n    \"heading\": 267.1612121589946,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 27.0,\n    \"max_altitude\": 419.0,\n    \"battery_capacity\": 69.9,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 45.0,\n      \"y\": 59.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1790403966.541076,\n    \"last_updated\": 1794315377.373447\n  },\n  {\n    \"id\": \"5518d687\",\n    \"name\": \"Drone 10\",\n    \"model\": \"Model-X1\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 881.0,\n      \"y\": 957.0,\n      \"z\": 0.0\n    },\n    \"heading\": 5.5805467940124,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 24.0,\n    \"max_altitude\": 295.0,\n    \"battery_capacity\": 97.2,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 20.0,\n    \"home_position\": {\n      \"x\": 115.0,\n      \"y\": 85.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1790403966.541079,\n    \"last_updated\": 1794315377.373482\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"e34553f4\",\n  \"name\": \"Path Planning Corner\",\n  \"description\": \"Path Planning Corner covers a 1024\\u00d7768 mission zone. It is configured for target assignment. Random seeding will create 10 drones, 30 targets, 50 obstacles.\",\n  \"status\": \"active\",\n  \"creator\": \"Victor Zhang\",\n  \"task_type\": \"target_assignment\",\n  \"task_description\": \"\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1790403966.527877,\n  \"last_updated\": 1794315393.5201538,\n  \"statistics\": {\n    \"drone_count\": 10,\n    \"target_count\": 30,\n    \"obstacle_count\": 50,\n    \"task_count\": 20,\n    \"environment_id\": \"be510912\",\n    \"total_commands_executed\": 229,\n    \"total_flight_time\": 2916.1154490071963,\n    \"total_distance_traveled\": 67266.05293792693,\n    \"total_target_reaches\": 334,\n    \"drones_with_target_reaches\": 8,\n    \"unique_targets_reached\": 24,\n    \"session_time\": 3797.4007749557495,\n    \"command_history_size\": 234,\n    \"task_progress\": {\n      \"task_type\": \"target_assignment\",\n      \"progress_percentage\": 80,\n      \"is_completed\": false,\n      \"status_message\": \"Task to be Done\",\n      \"details\": {\n        \"total_targets\": 30,\n        \"visited_targets\": 24,\n        \"unvisited_targets\": 6\n      },\n      \"target_reach_summary\": {\n        \"total_reaches\": 334,\n        \"drones_with_reaches\": 8,\n        \"unique_targets_reached\": 24\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 24,\n        \"average_coverage\": 80.0,\n        \"fully_covered_targets\": 24\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"be510912\",\n  \"name\": \"Path Planning Corner Environment\",\n  \"weather\": \"heavy_rain\",\n  \"temperature\": 14.903409088156174,\n  \"humidity\": 48.7,\n  \"pressure\": 1028.0,\n  \"wind_speed\": 5.4216518504454365,\n  \"wind_direction\": \"northeast\",\n  \"visibility\": 9125.3,\n  \"created_at\": 1790403966.540907,\n  \"last_updated\": 1794315398.2937984\n}"
+      ],
+      [
+        {
+          "tool": "get_drone_status",
+          "tool_input": {
+            "drone_id": "e793ba29"
+          },
+          "log": "Preparing to call tool 'get_drone_status'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"e793ba29\",\n  \"name\": \"Drone 7\",\n  \"model\": \"Model-D\",\n  \"status\": \"idle\",\n  \"position\": {\n    \"x\": 153.0,\n    \"y\": 580.0,\n    \"z\": 0.0\n  },\n  \"heading\": 275.81811499957644,\n  \"speed\": 0.0,\n  \"battery_level\": 100.0,\n  \"max_speed\": 35.0,\n  \"max_altitude\": 392.0,\n  \"battery_capacity\": 75.2,\n  \"perceived_radius\": 50.0,\n  \"task_radius\": 20.0,\n  \"home_position\": {\n    \"x\": 127.0,\n    \"y\": 66.0,\n    \"z\": 0.0\n  },\n  \"created_at\": 1790403966.541068,\n  \"last_updated\": 1794315377.3733757\n}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone 7 stationary observation mission: take off to 58 meters, fly to observation point (506, 422, 58), hover at this position for at least 14 seconds while maintaining position.",
+            "drone_id": "e793ba29",
+            "altitude": 58.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 58.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [506.0, 422.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 50137,
+      "completion_tokens": 133,
+      "total_tokens": 50270,
+      "llm_calls": 6
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

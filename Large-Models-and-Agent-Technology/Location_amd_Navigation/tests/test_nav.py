@@ -23,7 +23,8 @@ from src.planner import Planner  # noqa: E402
 from src.worldmap import WorldMap  # noqa: E402
 
 CONFIG = load_config()
-MAP_PATH = find_map("Area Search Easy 3", CONFIG.__dict__)
+FIXTURE_MAP = Path(__file__).resolve().parent / "data" / "area_search_easy_3.json"
+MAP_PATH = FIXTURE_MAP if FIXTURE_MAP.is_file() else find_map("Area Search Easy 3", CONFIG.__dict__)
 
 
 class GeometryTest(unittest.TestCase):

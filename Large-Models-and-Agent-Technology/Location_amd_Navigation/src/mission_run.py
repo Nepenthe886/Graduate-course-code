@@ -59,16 +59,24 @@ class UavApi:
         except urllib.error.HTTPError as exc:
             return exc.code, exc.read().decode("utf-8", "replace")
 
+    @staticmethod
+    def _ref(drone_id) -> str:
+        value = drone_id
+        if isinstance(value, dict):
+            value = value.get("drone_id") or value.get("id") or value.get("name") or ""
+        return urllib.parse.quote(str(value or "").strip(), safe="")
+
     def drone(self, drone_id: str) -> dict:
-        _, data = self._request("GET", "/drones/" + drone_id)
+        _, data = self._request("GET", "/drones/" + self._ref(drone_id))
         return data if isinstance(data, dict) else {}
 
     def command(self, drone_id: str, command: str, *, params: dict | None = None,
                 body: dict | None = None):
+        ref = self._ref(drone_id)
         if params:
             query = urllib.parse.urlencode({key: value for key, value in params.items()})
-            return self._request("POST", "/drones/{}/command/{}?{}".format(drone_id, command, query), body)
-        return self._request("POST", "/drones/{}/command/{}".format(drone_id, command), body)
+            return self._request("POST", "/drones/{}/command/{}?{}".format(ref, command, query), body)
+        return self._request("POST", "/drones/{}/command/{}".format(ref, command), body)
 
     def wait_arrival(self, drone_id: str, goal: tuple[float, float], tolerance: float = 30.0,
                      timeout: float = 60.0) -> bool:
@@ -181,8 +189,6 @@ def _formation_spec(task_text: str, altitude: float):
         return None
     directions = [(DIRECTION_HEADING[m.group(1).lower()], float(m.group(2)))
                   for m in DIRECTION_RE.finditer(text)]
-    if not directions:
-        return None
     alt_match = re.search(r"take\s+off[^.]*?to\s+(\d+(?:\.\d+)?)\s*m", text, re.I)
     alt = float(alt_match.group(1)) if alt_match else altitude
 
@@ -196,18 +202,74 @@ def _formation_spec(task_text: str, altitude: float):
         return None
 
     positions = parse_task_waypoints(text)
-    if len(positions) < 1:
-        return None
+    # 编队点优先按“Drone X ... at (x, y, z)”名字-坐标配对，避免把目标中心当成编队点
+    pair_re = re.compile(
+        r"(Drone\s+[A-Za-z0-9]+)\s*(?:positions?|flies?|flys?|goes?|moves?)?\s*"
+        r"(?:at|to)\s*\(([^)]*)\)", re.I)
+    paired: dict[str, dict] = {}
+    for match in pair_re.finditer(text):
+        drone = "Drone %s" % match.group(1).split()[-1]
+        values = [value for value in re.split(r"[,\s]+", match.group(2).strip()) if value]
+        if len(values) < 2:
+            continue
+        try:
+            paired[drone] = {"x": float(values[0]), "y": float(values[1]),
+                             "z": float(values[2]) if len(values) > 2 else alt}
+        except ValueError:
+            continue
+    # 目标中心坐标（around target at position (...)）不能当作编队点
+    center_points: set[tuple[float, float]] = set()
+    center_re = re.compile(r"target\s+(?:at\s+)?(?:position\s+)?\(([^)]*)\)", re.I)
+    for match in center_re.finditer(text):
+        values = [value for value in re.split(r"[,\s]+", match.group(1).strip()) if value]
+        if len(values) >= 2:
+            try:
+                center_points.add((round(float(values[0]), 2), round(float(values[1]), 2)))
+            except ValueError:
+                continue
+    used = {(round(p["x"], 2), round(p["y"], 2)) for p in paired.values()}
+    pool = [p for p in positions
+            if (round(float(p["x"]), 2), round(float(p["y"]), 2)) not in used
+            and (round(float(p["x"]), 2), round(float(p["y"]), 2)) not in center_points]
+    ordered: list[dict | None] = []
+    for drone in drone_names:
+        if drone in paired:
+            ordered.append(paired[drone])
+        elif pool:
+            ordered.append(pool.pop(0))
+        else:
+            ordered.append(None)
+    missing_count = sum(1 for point in ordered if point is None)
+    if missing_count or len(ordered) != len(drone_names):
+        return {"error": "编队解析失败：无人机 %d 架，但只找到 %d 个匹配的编队坐标；"
+                          "请检查文本中每架机的位置是否写清"
+                          % (len(drone_names), len(drone_names) - missing_count),
+                "altitude": alt, "land_at_end": False}
+    approach_target = None
+    approach_distance = None
+    approach_match = re.search(
+        r"move\s+(?:to\s+)?(?:within\s+|at\s+most\s+)*(\d+(?:\.\d+)?)\s*(?:m\b|meters?)"
+        r"[^.]*?\b(?:to|of|from)\s+(Drone\s+\w+)", text, re.I)
+    if approach_match:
+        approach_distance = float(approach_match.group(1))
+        approach_target = "Drone %s" % approach_match.group(2).split()[-1]
 
     actions: list[dict] = []
     for drone in drone_names:
         actions.append({"name": "take_off", "params": {"altitude": alt, "drone_id": drone}})
-    for index, drone in enumerate(drone_names):
-        if index >= len(positions):
-            break
-        point = positions[index]
+    for drone, point in zip(drone_names, ordered):
+        if point is None:
+            continue
         actions.append({"name": "move_to", "params": {"x": point["x"], "y": point["y"],
                                                       "z": alt, "drone_id": drone}})
+    if approach_target and len(drone_names) >= 2:
+        moving = next((d for d in drone_names if d.lower() != approach_target.lower()), None)
+        if moving:
+            actions.append({"name": "approach_drone",
+                            "params": {"drone_id": moving,
+                                       "target_drone_id": approach_target,
+                                       "max_distance": approach_distance,
+                                       "z": alt}})
     for heading, distance in directions:
         for drone in drone_names:
             actions.append({"name": "move_direction",
@@ -217,7 +279,7 @@ def _formation_spec(task_text: str, altitude: float):
         actions.append({"name": "hover", "params": {"drone_id": drone}})
     return {"actions": actions, "altitude": alt, "land_at_end": False,
             "formation": {"drones": drone_names,
-                          "positions": positions[:len(drone_names)],
+                          "positions": ordered,
                           "directions": directions}, "task_text": text}
 
 
@@ -238,8 +300,7 @@ def _multitarget_spec(task_text: str, world, altitude: float, land: bool):
         return None
     alt_match = re.search(r"take\s+off[^.]*?to\s+(\d+(?:\.\d+)?)\s*m", text, re.I)
     alt = float(alt_match.group(1)) if alt_match else altitude
-    hover_match = re.search(r"hover(?:\s+for)?\s+(\d+(?:\.\d+)?)\s*s", text, re.I)
-    hover_seconds = float(hover_match.group(1)) if hover_match else 5.0
+    hover_seconds = _hover_seconds(text)
 
     actions: list[dict] = []
     visits = []
@@ -288,9 +349,7 @@ def _misc_spec(task_text: str, world, altitude: float, land: bool):
 
     # 2) 拍照文档（每个航点：可选悬停 + 一张照片）
     if points and re.search(r"photo|photograph|image|camera", lower):
-        hover_match = re.search(r"hover(?:\s+for)?\s+(\d+(?:\.\d+)?)\s*(?:s\b|seconds?)",
-                                text, re.I)
-        hover_seconds = float(hover_match.group(1)) if hover_match else 0.0
+        hover_seconds = _hover_seconds(text, default=5.0)
         actions = []
         for point in points:
             actions.append({"name": "navigate_to_pose",
@@ -316,9 +375,7 @@ def _misc_spec(task_text: str, world, altitude: float, land: bool):
 
     # 4) 悬停观察（到点后按指定时长悬停）
     if points and re.search(r"hover", lower):
-        duration_match = re.search(r"hover(?:\s+for)?\s+(\d+(?:\.\d+)?)\s*(?:s\b|seconds?)",
-                                   text, re.I)
-        duration = float(duration_match.group(1)) if duration_match else 5.0
+        duration = _hover_seconds(text, default=5.0)
         actions = []
         for point in points:
             actions.append({"name": "navigate_to_pose",
@@ -465,11 +522,219 @@ def _fleet_spec(task_text: str, world, altitude: float, land: bool):
     return None
 
 
+ROUTE_HEADER_RE = re.compile(r"([A-Za-z][A-Za-z0-9 _-]*?)\s+route\s*:", re.I)
+
+
+def _dual_route_spec(task_text: str, world, altitude: float, land: bool) -> dict | None:
+    """解析“Drone A route: … Drone B route: …”式双机任务，生成逐机动作。"""
+    headers = list(ROUTE_HEADER_RE.finditer(task_text or ""))
+    if len(headers) < 2:
+        return None
+    actions: list[dict] = []
+    for index, match in enumerate(headers):
+        drone = re.sub(r"(?i)^(and|then|finally|the)\s+", "", match.group(1).strip())
+        start = match.end()
+        end = headers[index + 1].start() if index + 1 < len(headers) else len(task_text)
+        segment = task_text[start:end]
+        points = parse_task_waypoints(segment)
+        if not points:
+            continue
+        actions.append({"kind": "take_off",
+                        "params": {"drone_id": drone, "altitude": altitude}})
+        for point in points:
+            actions.append({"kind": "move_to",
+                            "params": {"drone_id": drone, "x": point["x"], "y": point["y"],
+                                       "z": point["z"]}})
+        wants_land = bool(re.search(r"\blands?\b|\blanded\b|touch\s*down", segment, re.I))
+        if wants_land or land:
+            actions.append({"kind": "land", "params": {"drone_id": drone}})
+    if not actions:
+        return None
+    return {"actions": actions, "altitude": altitude, "land_at_end": False,
+            "task_text": task_text, "multi_drone": True}
+
+
+def _hover_seconds(text: str, default: float = 5.0) -> float:
+    """解析“hover … 11 seconds”式要求；允许 hover 与数字之间还有其他描述。"""
+    match = re.search(r"hover[^.\n]{0,80}?(\d+(?:\.\d+)?)\s*(?:s\b|seconds?|sec\b)",
+                      text or "", re.I)
+    return float(match.group(1)) if match else default
+
+
+NAMED_TARGET_RE = re.compile(r"\btarget\s+([A-Za-z][A-Za-z0-9 _-]*?\b\d{1,3}\b)", re.I)
+
+
+def _target_spec(task_text: str, world, altitude: float, land: bool):
+    """按目标名（如 target Bay 036）生成“起飞→逐个到目标→悬停→拍照→降落”动作。"""
+    if world is None:
+        return None
+    text = task_text or ""
+    if re.search(r"inspect|visit|in sequence|sequential|multi-target|at each target|"
+                 r"sweep|coverage|search pattern|serpentine|\bgrid\b", text, re.I):
+        return None
+    photo = bool(re.search(r"photo|photograph|capture|image", text, re.I))
+    if not photo and not re.search(r"navigate|fly|go to|head to|reach", text, re.I):
+        return None
+    targets: list[tuple[str, object]] = []
+    seen: set[str] = set()
+    for match in NAMED_TARGET_RE.finditer(text):
+        candidate = match.group(1).strip()
+        found = world.target_by_name(candidate)
+        if found is None:
+            continue
+        key = str(getattr(found, "id", "") or getattr(found, "name", candidate))
+        if key in seen:
+            continue
+        seen.add(key)
+        targets.append((candidate, found))
+    if not targets:
+        return None
+    hover_seconds = _hover_seconds(text, default=5.0)
+    actions = [{"name": "take_off", "params": {"altitude": altitude}}]
+    names: list[str] = []
+    for candidate, target in targets:
+        name = str(getattr(target, "name", candidate))
+        center = getattr(target, "center", (0.0, 0.0))
+        x, y = float(center[0]), float(center[1])
+        try:
+            clearance = world.clearance_to_obstacles((x, y))
+        except Exception:  # noqa: BLE001
+            clearance = 99.0
+        if clearance <= 0.0:
+            free = world.free_point_near((x, y), 2.0, 60.0)
+            if free is None:
+                continue
+            x, y = float(free[0]), float(free[1])
+        names.append(name)
+        actions.append({"name": "navigate_to_pose",
+                        "params": {"x": round(x, 2), "y": round(y, 2), "z": altitude,
+                                   "tolerance": 2.0}})
+        if photo:
+            actions.append({"name": "hover", "params": {"duration": hover_seconds}})
+            actions.append({"name": "take_photo", "params": {}})
+    if not names:
+        return {"error": "文本中的目标都不可达（位于障碍物内部且附近无自由点）",
+                "altitude": altitude, "land_at_end": False}
+    wants_land = bool(re.search(r"\blands?\b|\blanded\b|touch\s*down", text, re.I)) or land
+    if wants_land:
+        actions.append({"name": "land", "params": {}})
+    return {"actions": actions, "altitude": altitude, "land_at_end": False,
+            "targets": names, "photo_count": len(names) if photo else 0,
+            "task_text": task_text}
+
+
+NAME_NUM_RE = re.compile(r"([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*)\s+(\d{1,4})\b")
+
+
+def _classify_named(world, token: str):
+    """把 “Yard 8 / Fixed Target 1” 分类成 drone 或 target；支持前缀冗余（如 Drone Yard 8）。"""
+    words = token.split()
+    for start in range(0, max(1, len(words) - 1)):
+        candidate = " ".join(words[start:])
+        drone = world.drone_by_name(candidate)
+        if isinstance(drone, dict) and drone.get("id"):
+            return "drone", candidate, drone
+        target = world.target_by_name(candidate)
+        if target is not None:
+            return "target", candidate, target
+    return None
+
+
+def _assignment_spec(task_text: str, world, altitude: float, land: bool):
+    """通用任务分配：解析“某机→某目标（可含交换/第二阶段）”，生成按机分组动作。"""
+    if world is None:
+        return None
+    text = task_text or ""
+    if not re.search(r"find|swap|assign|exchange|goes? to|navigate|visit|reach|search",
+                     text, re.I):
+        return None
+    alt_match = re.search(r"take\s+off\s+to\s+(\d+(?:\.\d+)?)\s*m", text, re.I)
+    alt = float(alt_match.group(1)) if alt_match else altitude
+    if not alt_match:
+        any_alt = re.search(r"(?:at|altitude\s+of)\s+(\d+(?:\.\d+)?)\s*(?:m\b|meters?)",
+                            text, re.I)
+        if any_alt:
+            alt = float(any_alt.group(1))
+    swap_pos = None
+    for marker in (r"\bswap\b", r"after the first discovery", r"afterwards",
+                   r"then exchange", r"第二阶段"):
+        found = re.search(marker, text, re.I)
+        if found:
+            swap_pos = found.start()
+            break
+    assignments: list[tuple[int, str, str]] = []
+    current_drone = None
+    for match in NAME_NUM_RE.finditer(text):
+        token = "%s %s" % (match.group(1).strip(), match.group(2))
+        classified = _classify_named(world, token)
+        if classified is None:
+            continue
+        kind, name, value = classified
+        if kind == "drone":
+            current_drone = name
+            continue
+        if current_drone:
+            phase = 2 if (swap_pos is not None and match.start() >= swap_pos) else 1
+            assignments.append((phase, current_drone, name))
+    if len(assignments) < 2:
+        return None
+    drones: list[str] = []
+    for _, drone, _ in assignments:
+        if drone not in drones:
+            drones.append(drone)
+    if len(drones) < 2:
+        return None
+    photo = bool(re.search(r"photo|photograph|capture|image", text, re.I))
+    hover_seconds = _hover_seconds(text, default=5.0)
+    actions: list[dict] = []
+    for drone in drones:
+        actions.append({"name": "take_off", "params": {"altitude": alt, "drone_id": drone}})
+    for phase in (1, 2):
+        for assign_phase, drone, target_name in assignments:
+            if assign_phase != phase:
+                continue
+            target = world.target_by_name(target_name)
+            if target is None:
+                continue
+            center = getattr(target, "center", (0.0, 0.0))
+            x, y = float(center[0]), float(center[1])
+            try:
+                clearance = world.clearance_to_obstacles((x, y))
+            except Exception:  # noqa: BLE001
+                clearance = 99.0
+            if clearance <= 0.0:
+                free = world.free_point_near((x, y), 2.0, 60.0)
+                if free is None:
+                    continue
+                x, y = float(free[0]), float(free[1])
+            actions.append({"name": "navigate_to_pose",
+                            "params": {"x": round(x, 2), "y": round(y, 2), "z": alt,
+                                       "tolerance": 2.0, "drone_id": drone}})
+            if photo:
+                actions.append({"name": "hover",
+                                "params": {"duration": hover_seconds, "drone_id": drone}})
+                actions.append({"name": "take_photo", "params": {"drone_id": drone}})
+    if len([item for item in actions if item.get("name") == "navigate_to_pose"]) < 2:
+        return None
+    wants_land = bool(re.search(r"\blands?\b|\blanded\b|touch\s*down", text, re.I)) or land
+    if wants_land:
+        for drone in drones:
+            actions.append({"name": "land", "params": {"drone_id": drone}})
+    return {"actions": actions, "altitude": alt, "land_at_end": False,
+            "assignment": True, "drones": drones, "task_text": task_text}
 def build_spec_from_task(task_text: str, altitude: float, land: bool = True,
                          world=None) -> dict:
+    # “Avoid obstacles X, Y”只是说明；导航动作已自动避障，解析前忽略该从句
+    task_text = re.sub(r"(?i)\bavoid\s+obstacles?\b[^.\n]*[.\n]?", " ", task_text or "")
+    dual = _dual_route_spec(task_text, world, altitude, land)
+    if dual is not None:
+        return dual
     formation = _formation_spec(task_text, altitude)
     if formation is not None:
         return formation
+    assignment = _assignment_spec(task_text, world, altitude, land)
+    if assignment is not None:
+        return assignment
     multitarget = _multitarget_spec(task_text, world, altitude, land)
     if multitarget is not None:
         return multitarget
@@ -479,6 +744,9 @@ def build_spec_from_task(task_text: str, altitude: float, land: bool = True,
     misc = _misc_spec(task_text, world, altitude, land)
     if misc is not None:
         return misc
+    target_spec = _target_spec(task_text, world, altitude, land)
+    if target_spec is not None:
+        return target_spec
     # 多目标覆盖搜索：Any Drone / Two-Target Area Coverage Search
     coverage_names: list[str] = []
     for match in COVERAGE_TARGET_RE.finditer(task_text or ""):
@@ -614,6 +882,9 @@ def execute_actions(map_path: str, drone_id: str, spec: dict,
     api = UavApi(api_base)
     config = load_config(config_path)
     altitude = float(spec.get("altitude") or 32.0)
+    if not spec.get("clearance"):
+        spec = dict(spec)
+        spec["clearance"] = float(config.clearance)
     tree, steps = build_mission(world, spec, altitude)
     if not steps:
         return {"ok": False, "mode": "actions", "steps": [], "executed": [],
@@ -623,11 +894,69 @@ def execute_actions(map_path: str, drone_id: str, spec: dict,
     status = tree.tick(blackboard)
     executed = blackboard.get("results") or []
     failures = [item for item in executed if not item.get("ok")]
+    failed = status != Status.SUCCESS or bool(failures)
+    if failed and spec.get("land_on_failure", True):
+        drone_ids: list[str] = []
+        for step in steps:
+            candidate = str((step.get("params") or {}).get("drone_id") or "")
+            if candidate and candidate not in drone_ids:
+                drone_ids.append(candidate)
+        if not drone_ids:
+            drone_ids = [drone_id]
+        for candidate in drone_ids:
+            try:
+                api.command(candidate, "land")
+                executed.append({"ok": True, "name": "land", "drone_id": candidate,
+                                 "cleanup": True})
+            except Exception:  # noqa: BLE001
+                continue
     if spec.get("land_at_end") and steps[-1].get("kind") != "land":
         api.command(drone_id, "land")
         executed.append({"ok": True, "name": "land"})
-    return {"ok": status == Status.SUCCESS and not failures, "mode": "actions",
-            "steps": steps, "executed": executed, "failures": failures}
+    unreachable: list[dict] = []
+    for step in steps:
+        if step.get("kind") not in ("move_to", "navigate_to_pose"):
+            continue
+        params = step.get("params") or {}
+        if "x" not in params:
+            continue
+        try:
+            point = (float(params["x"]), float(params["y"]))
+            if world.clearance_to_obstacles(point) > 0.0:
+                continue
+        except Exception:  # noqa: BLE001
+            continue
+        obstacle_name = None
+        for obstacle in getattr(world, "obstacles", []) or []:
+            try:
+                if obstacle.contains(point):
+                    obstacle_name = getattr(obstacle, "name", None)
+                    break
+            except Exception:  # noqa: BLE001
+                continue
+        unreachable.append({"goal": [round(point[0], 2), round(point[1], 2)],
+                            "obstacle": obstacle_name,
+                            "reason": "航点位于障碍物内部，无法到达"})
+    result = {"ok": status == Status.SUCCESS and not failures and not unreachable,
+              "mode": "actions", "steps": steps, "executed": executed, "failures": failures}
+    if unreachable:
+        result["unreachable_waypoints"] = unreachable
+        result["hint"] = "存在不可达航点（位于障碍物内部），请在最终回答中明确列出"
+    return result
+
+
+def _send_waypoints_from_route(route_points, current, z: float) -> list[dict]:
+    """从规划路线生成发送航点：规划起点被 clamp 过时，把它作为第一个航点。"""
+    points = [[round(float(p[0]), 2), round(float(p[1]), 2), round(float(p[2]), 2)]
+              for p in (route_points or [])]
+    if not points:
+        return []
+    first = points[0]
+    if math.hypot(first[0] - float(current[0]), first[1] - float(current[1])) > 0.5:
+        selected = points
+    else:
+        selected = points[1:]
+    return [{"x": p[0], "y": p[1], "z": p[2]} for p in selected]
 
 
 def execute_mission(map_path: str, drone_id: str, spec: dict | str,
@@ -687,37 +1016,54 @@ def execute_mission(map_path: str, drone_id: str, spec: dict | str,
         pass
 
     # 预检：障碍内航点投影到最近自由点后继续执行（不整单中止）
-    adjusted = []
+    adjusted = list(waypoints)
     problems = []
+    unreachable: list[dict] = []
+    skip_legs: set[int] = set()
     try:
-        probe = _Planner(world, clearance=config.clearance, grid_step=config.grid_step)
         for index, waypoint in enumerate(waypoints, 1):
             point = (float(waypoint["x"]), float(waypoint["y"]))
             z = float(waypoint.get("z", altitude))
-            # 仅当航点真正落在障碍内部（净空≈0）才需要调整；离障碍很近但仍在外面的点可以飞
-            clearance = world.clearance_to_obstacles(point)
-            if clearance > 1.0:
-                adjusted.append(waypoint)
+            try:
+                clearance = world.clearance_to_obstacles(point)
+            except Exception:  # noqa: BLE001
+                clearance = 99.0
+            if clearance > 0.0:
                 continue
-            free = world.free_point_near(point, 2.0, 40.0)
-            if free is None:
-                problems.append({"leg": index, "goal": list(point),
-                                 "error": "航点在障碍物内且无法投影到自由点"})
-                adjusted.append(waypoint)
-                continue
-            moved = math.hypot(free[0] - point[0], free[1] - point[1])
-            adjusted.append({"x": round(free[0], 2), "y": round(free[1], 2), "z": z})
-            if moved > 3.0:
-                problems.append({"leg": index, "goal": list(point),
-                                 "projected": [round(free[0], 2), round(free[1], 2)],
-                                 "error": "航点在障碍物内，已投影 %.1f m（原位置仍不可达）" % moved})
+            obstacle_name = None
+            for obstacle in getattr(world, "obstacles", []) or []:
+                try:
+                    if obstacle.contains(point):
+                        obstacle_name = getattr(obstacle, "name", None)
+                        break
+                except Exception:  # noqa: BLE001
+                    continue
+            record = {"leg": index,
+                      "goal": [round(point[0], 2), round(point[1], 2), round(z, 2)],
+                      "obstacle": obstacle_name,
+                      "reason": "航点位于障碍物内部，无法到达"}
+            try:
+                free = world.free_point_near(point, 2.0, 40.0)
+            except Exception:  # noqa: BLE001
+                free = None
+            if free is not None:
+                record["nearest_free"] = [round(free[0], 2), round(free[1], 2)]
+            unreachable.append(record)
+            problems.append({"leg": index, "goal": [round(point[0], 2), round(point[1], 2)],
+                             "error": "航点在障碍物内部（%s），已跳过该航点"
+                                      % (obstacle_name or "障碍")})
+            skip_legs.add(index)
     except Exception:  # noqa: BLE001
-        adjusted = list(waypoints)
+        unreachable = []
         problems = []
+        skip_legs = set()
     if problems:
         result["ok"] = False
         result["failures"].extend(problems)
-        result["projected_count"] = len(problems)
+    if unreachable:
+        result["unreachable_waypoints"] = unreachable
+        result["skipped_legs"] = sorted(skip_legs)
+        result["hint"] = "存在不可达航点（位于障碍物内部），已跳过，请在最终回答中明确列出"
     waypoints = adjusted
 
     planner = _Planner(
@@ -769,9 +1115,9 @@ def execute_mission(map_path: str, drone_id: str, spec: dict | str,
                                    "error": None if ok else str(body)[:100]})
         _log(f"[photo] taken={photos_taken}/{photo_total} ok={ok}")
         return ok
-    # 执行容差：优先 spec，其次无人机自己的 task_radius（Easy 5 = 20m），最后兜底 20m
-    default_tolerance = float(drone.get("task_radius") or 20.0)
-    tolerance = float(spec.get("arrival_tolerance", default_tolerance))
+    # 执行容差：优先 spec，其次统一收紧到 2m（检查容差通常是 3m）
+    default_tolerance = float(spec.get("arrival_tolerance") or 2.0)
+    tolerance = default_tolerance
 
     def _resolve_target(waypoint):
         """航点若绑定了目标（target/label 名字），取出该目标。"""
@@ -800,6 +1146,9 @@ def execute_mission(map_path: str, drone_id: str, spec: dict | str,
             result["ok"] = False
             _log(f"[budget] stop at leg {index}")
             break
+        if index in skip_legs:
+            _log(f"[skip] leg {index}: waypoint inside obstacle")
+            continue
         goal = (float(waypoint["x"]), float(waypoint["y"]))
         z = float(waypoint.get("z", altitude))
         # 画布外的点服务端允许飞（已实测），默认不拦截；需要夹边界时传 clamp_out_of_bounds
@@ -829,8 +1178,35 @@ def execute_mission(map_path: str, drone_id: str, spec: dict | str,
             result["ok"] = False
             continue
         plan_ms = int((time.time() - t0) * 1000)
-        leg_waypoints = [{"x": round(p[0], 2), "y": round(p[1], 2), "z": round(p[2], 2)}
-                         for p in (route.waypoints_xyz[1:] or [(goal[0], goal[1], z)])]
+        leg_waypoints = _send_waypoints_from_route(route.waypoints_xyz, current, z)
+        if not leg_waypoints:
+            leg_waypoints = [{"x": round(goal[0], 2), "y": round(goal[1], 2), "z": round(z, 2)}]
+        try:
+            from .bt_defs import _repair_route, _route_blocker
+
+            raw_leg = [(p["x"], p["y"]) for p in leg_waypoints]
+            blocker = _route_blocker(world, current, raw_leg)
+            if blocker is not None:
+                repaired = _repair_route(world, current, raw_leg)
+                if repaired is None:
+                    record = {"leg": index, "goal": list(goal), "plan_ms": plan_ms,
+                              "error": "路径自检未通过（%s），已放弃发送" % blocker}
+                    result["executed"].append(record)
+                    result["failures"].append(record)
+                    result["ok"] = False
+                    continue
+                leg_waypoints = [{"x": p["x"], "y": p["y"], "z": z} for p in repaired]
+                blocker = _route_blocker(world, current,
+                                         [(p["x"], p["y"]) for p in leg_waypoints])
+                if blocker is not None:
+                    record = {"leg": index, "goal": list(goal), "plan_ms": plan_ms,
+                              "error": "修复后仍穿障（%s），已放弃发送" % blocker}
+                    result["executed"].append(record)
+                    result["failures"].append(record)
+                    result["ok"] = False
+                    continue
+        except Exception:  # noqa: BLE001
+            pass
         status, body = api.command(drone_id, "move_along_path",
                                    body={"waypoints": leg_waypoints, "allow_partial_move": False})
         error = None
@@ -839,7 +1215,8 @@ def execute_mission(map_path: str, drone_id: str, spec: dict | str,
         if error and ("blocked" in error.lower() or "intersect" in error.lower()):
             # 被服务端拒绝：用更大净空重新规划后重试一次
             try:
-                retry_route = planner.plan(current, goal, clearance=min(config.clearance * 1.6, 90.0),
+                retry_route = planner.plan(current, goal,
+                                           clearance=min(max(config.clearance * 2.0, 0.3), 3.0),
                                            altitude=z)
                 retry_waypoints = [{"x": round(p[0], 2), "y": round(p[1], 2), "z": round(p[2], 2)}
                                    for p in (retry_route.waypoints_xyz[1:]

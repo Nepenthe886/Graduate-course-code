@@ -97,7 +97,7 @@ class Planner:
                  z_min: float = 5.0, grid_max_expansions: int = 4000,
                  plan_time_budget: float = 1.5):
         self.world = world
-        self.clearance = float(clearance)
+        self.clearance = min(float(clearance), 6.0)
         self.grid_step = float(grid_step)
         self.planning_dim = (planning_dim or "2d").lower()
         if self.planning_dim not in ("2d", "3d"):
@@ -193,6 +193,7 @@ class Planner:
     def plan(self, start: Point, goal: Point, clearance: float | None = None,
              altitude: float | None = None, target_altitude: float | None = None) -> Route:
         margin = self.clearance if clearance is None else float(clearance)
+        margin = min(margin, 6.0)
         start = self.world.clamp_to_bounds(tuple(float(v) for v in start), 0.0)
         # 目标不做边界夹取：实测仿真允许飞到画布外（如 y=900/937）
         goal = (float(goal[0]), float(goal[1]))
@@ -433,11 +434,25 @@ class Planner:
         key = (round(step, 3), round(clearance, 3), int(nx), int(ny))
         if key in cache:
             return cache[key]
-        mask = {}
-        for i in range(nx + 1):
-            x = i * step
-            for j in range(ny + 1):
-                mask[(i, j)] = self.point_clear((x, j * step), clearance, self.altitude)
+        # 先认为全部自由，再只检查每个障碍 bbox（外扩 clearance）覆盖的格子
+        mask = {(i, j): True for i in range(nx + 1) for j in range(ny + 1)}
+        for obstacle in getattr(self, "world", None).obstacles if getattr(self, "world", None) else []:
+            footprint = self._footprints.get(obstacle.name)
+            if not footprint:
+                continue
+            xs = [point[0] for point in footprint]
+            ys = [point[1] for point in footprint]
+            min_x, max_x = min(xs) - clearance, max(xs) + clearance
+            min_y, max_y = min(ys) - clearance, max(ys) + clearance
+            i0 = max(0, int(math.floor(min_x / step)))
+            i1 = min(nx, int(math.ceil(max_x / step)))
+            j0 = max(0, int(math.floor(min_y / step)))
+            j1 = min(ny, int(math.ceil(max_y / step)))
+            for i in range(i0, i1 + 1):
+                x = i * step
+                for j in range(j0, j1 + 1):
+                    if mask.get((i, j)) and not self.point_clear((x, j * step), clearance, self.altitude):
+                        mask[(i, j)] = False
         cache[key] = mask
         return mask
 
@@ -497,6 +512,10 @@ class Planner:
                 points[0] = start
                 points[-1] = goal
                 points = self._smooth_2d(points, clearance, altitude)
+                repaired = self._repair_points(points, clearance, altitude)
+                if repaired is None:
+                    return None
+                points = repaired
                 total = sum(_math.dist(points[i], points[i + 1]) for i in range(len(points) - 1))
                 min_clear = min(self.segment(points[i], points[i + 1], 0.0, altitude).clearance
                                 for i in range(len(points) - 1)) if len(points) > 1 else clearance
@@ -540,6 +559,10 @@ class Planner:
         else:
             points = [nodes[i] for i in index_path]
         points = self._smooth_2d(points, margin, alt)
+        repaired = self._repair_points(points, margin, alt)
+        if repaired is None:
+            raise RuntimeError(f"无法生成满足净空的路线（blocker={first_blocker}）")
+        points = repaired
         total = sum(math.dist(points[i], points[i + 1]) for i in range(len(points) - 1))
         min_clear = min(self.segment(points[i], points[i + 1], 0.0, alt).clearance
                         for i in range(len(points) - 1)) if len(points) > 1 else 0.0
@@ -616,8 +639,53 @@ class Planner:
             j = len(points) - 1
             while j > i + 1 and not self.segment(points[i], points[j], margin, alt).clear:
                 j -= 1
+            if not self.segment(points[i], points[j], margin, alt).clear:
+                # 连相邻段都不安全：保留原始路径的下一个点，避免输出穿障航段
+                result.append(points[i + 1])
+                i += 1
+                continue
             result.append(points[j])
             i = j
+        return result
+
+    def _repair_points(self, points: list[Point], margin: float,
+                       alt: float | None) -> list[Point] | None:
+        """逐段校验；不合格时插入一个绕行折点，找不到返回 None。"""
+        if not points:
+            return points
+        result: list[Point] = [points[0]]
+        for target in points[1:]:
+            prev = result[-1]
+            if self.segment(prev, target, margin, alt).clear:
+                result.append(target)
+                continue
+            dx = target[0] - prev[0]
+            dy = target[1] - prev[1]
+            norm = math.hypot(dx, dy) or 1.0
+            nx, ny = -dy / norm, dx / norm
+            fixed = False
+            for portion in (0.5, 0.33, 0.67):
+                base = (prev[0] + dx * portion, prev[1] + dy * portion)
+                for offset in (0.0, 0.8, 1.6, 2.4, 3.2, 4.5, 6.0):
+                    for sign in ((1,) if offset == 0 else (1, -1)):
+                        candidate = (base[0] + nx * offset * sign,
+                                     base[1] + ny * offset * sign)
+                        if not self.point_clear(candidate, margin, alt):
+                            continue
+                        if not self.segment(prev, candidate, margin, alt).clear:
+                            continue
+                        if not self.segment(candidate, target, margin, alt).clear:
+                            continue
+                        result.append(candidate)
+                        result.append(target)
+                        fixed = True
+                        break
+                    if fixed:
+                        break
+                if fixed:
+                    break
+            if not fixed:
+                return None
         return result
 
     def _grid_astar(self, start: Point, goal: Point, margin: float,

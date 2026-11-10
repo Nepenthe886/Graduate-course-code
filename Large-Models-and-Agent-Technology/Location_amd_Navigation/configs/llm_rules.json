@@ -8,6 +8,8 @@
     "调用 nav_template_action 时填 template 与 params：drone_id（名字或id）、altitude/alt1/alt2、start/end/corners/center/radius、clearance（净空，如 59）、message、photos、charge_amount；参数一律从任务原文读取，不要自己编造。",
     "模板调用返回错误时，先按返回的 hint/expected_params 修正一次；仍失败或该任务没有对应模板，改用 nav_execute_mission 或基础动作继续完成任务，不要无限重复相同调用。",
     "只有单点动作才直接调用 move_to / hover / take_photo / land / send_message / charge 等基础工具。",
+    "任务里出现 Avoid obstacles X, Y 时：这只是说明，导航动作（navigate_to_pose）已自动避障；不要查询、不要导航到这些障碍物名称，直接忽略这句话即可。",
+    "任务里出现具体目标名（例如 target Bay 036）时：直接调用 nav_execute_mission(task_text=完整任务) 或 nav_template_action(template=target_photo)；不要用 get_nearby_entities 搜索目标。",
     "不要重复发送相同的工具调用；如果工具返回 ok=false，读取 failures 说明原因并换方式或结束，不要循环重试同样参数。",
     "任务要求拍照/到达/悬停时，完成前确认：到点（≤3m）、照片数达标、状态 hovering；任一不满足不得报 [TASK DONE]。",
     "天气（雨/风/能见度）只是参考信息：除非电量低于 2%，否则执行任务。",

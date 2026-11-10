@@ -1,0 +1,246 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-2b197d38-d715-4881-a9f1-b3ee72f37aae",
+  "experiment": {
+    "run_id": "rid-2b197d38-d715-4881-a9f1-b3ee72f37aae",
+    "experiment_id": "eid-1232389a-3110-550f-819a-7498f7343885"
+  },
+  "service_instance_id": "20261110T203656-b3a81687ac26",
+  "batch_file": "../../batch.json",
+  "command_id": "10e8f31c-1dd9-4379-ad21-6e0b2d37e072",
+  "job_id": null,
+  "command": "Drone 10 performs an extreme marathon flight. Take off to 34 meters, fly to start point (112, 53, 34), then zigzag across the full map through 20 intermediate waypoints: (84, 178, 34), (889, 211, 34), (167, 285, 34), (821, 342, 34), (144, 399, 34), (919, 518, 34), (147, 580, 34), (782, 616, 34), (176, 774, 34), (844, 821, 34), (259, 910, 34), (849, 892, 34), (424, 764, 34), (980, 619, 34), (44, 583, 34), (914, 386, 34), (138, 380, 34), (800, 128, 34), (276, 869, 34), (725, 452, 34). Avoid obstacles Circle Obstacle 4, Polygon Obstacle 26, and Polygon Obstacle 20. Finally, fly to end point (881, 957, 34) and land.",
+  "created_at": "2026-11-10 20:37:25",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-10 20:38:29",
+  "requested_run_id": null,
+  "started_at": "2026-11-10 20:37:26",
+  "runtime": {
+    "run_id": "rid-2b197d38-d715-4881-a9f1-b3ee72f37aae",
+    "experiment": {
+      "run_id": "rid-2b197d38-d715-4881-a9f1-b3ee72f37aae",
+      "experiment_id": "eid-1232389a-3110-550f-819a-7498f7343885"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "e34553f4",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 6,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "e34553f4",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "d5b33dc95e99c87a3a5df49ce01fbcd472ab5fa9810bb96988ede131755d0467",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "[TASK FAILED] The drone's battery is insufficient to complete the mission. The task requires 2.21% battery, but only 0.37% is available. Please replace the drone or reset the session to restore battery levels. [TASK FAILED] 航点在障碍物内，已投影 20.0 m（原位置仍不可达）\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone 10 performs an extreme marathon flight. Take off to 34 meters, fly to start point (112, 53, 34), then zigzag across the full map through 20 intermediate waypoints: (84, 178, 34), (889, 211, 34), (167, 285, 34), (821, 342, 34), (144, 399, 34), (919, 518, 34), (147, 580, 34), (782, 616, 34), (176, 774, 34), (844, 821, 34), (259, 910, 34), (849, 892, 34), (424, 764, 34), (980, 619, 34), (44, 583, 34), (914, 386, 34), (138, 380, 34), (800, 128, 34), (276, 869, 34), (725, 452, 34). Avoid obstacles Circle Obstacle 4, Polygon Obstacle 26, and Polygon Obstacle 20. Finally, fly to end point (881, 957, 34) and land.",
+            "drones": [
+              "Drone 10"
+            ],
+            "altitude": 34
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"planned\": {\"waypoints\": 22, \"legs\": 22, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"615c63c3\", \"drone_id\": \"5518d687\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 34.0m (battery: -0.5%/-0mAh, remaining: 99.5%/97mAh)\", \"timestamp\": 1794314263.8371475}, \"steps\": 23, \"sample\": [{\"leg\": 1, \"goal\": [112.0, 53.0], \"waypoints\": 8, \"plan_ms\": 2268, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [84.0, 178.0], \"waypoints\": 2, \"plan_ms\": 26, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [167.0, 285.0], \"waypoints\": 6, \"plan_ms\": 209, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [{\"leg\": 20, \"goal\": [889.0, 211.0], \"projected\": [889.0, 231.0], \"error\": \"航点在障碍物内，已投影 20.0 m（原位置仍不可达）\"}], \"completed\": false}"
+      ],
+      [
+        {
+          "tool": "nav_route_to_target",
+          "tool_input": {
+            "target": "Circle Obstacle 4",
+            "z": 34
+          },
+          "log": "Preparing to call tool 'nav_route_to_target'",
+          "message_log": null
+        },
+        "{\"error\": \"地图里没有目标 'Circle Obstacle 4'\", \"available\": [\"Fixed Target 1\", \"Fixed Target 2\", \"Fixed Target 3\", \"Fixed Target 4\", \"Fixed Target 5\", \"Fixed Target 6\", \"Fixed Target 7\", \"Fixed Target 8\", \"Fixed Target 9\", \"Fixed Target 10\", \"Fixed Target 11\", \"Fixed Target 12\", \"Fixed Target 13\", \"Fixed Target 14\", \"Fixed Target 15\", \"Fixed Target 16\", \"Fixed Target 17\", \"Fixed Target 18\", \"Fixed Target 19\", \"Fixed Target 20\", \"Fixed Target 21\", \"Fixed Target 22\", \"Fixed Target 23\", \"Fixed Target 24\", \"Fixed Target 25\", \"Fixed Target 26\", \"Fixed Target 27\", \"Fixed Target 28\", \"Fixed Target 29\", \"Fixed Target 30\"]}"
+      ],
+      [
+        {
+          "tool": "get_nearby_entities",
+          "tool_input": {
+            "drone_id": "5518d687"
+          },
+          "log": "Preparing to call tool 'get_nearby_entities'",
+          "message_log": null
+        },
+        "{\n  \"drones\": [],\n  \"targets\": [],\n  \"obstacles\": []\n}"
+      ],
+      [
+        {
+          "tool": "nav_points_route",
+          "tool_input": {
+            "points": [
+              [
+                112,
+                53,
+                34
+              ],
+              [
+                84,
+                178,
+                34
+              ],
+              [
+                167,
+                285,
+                34
+              ],
+              [
+                821,
+                342,
+                34
+              ],
+              [
+                144,
+                399,
+                34
+              ],
+              [
+                919,
+                518,
+                34
+              ],
+              [
+                147,
+                580,
+                34
+              ],
+              [
+                782,
+                616,
+                34
+              ],
+              [
+                176,
+                774,
+                34
+              ],
+              [
+                844,
+                821,
+                34
+              ],
+              [
+                259,
+                910,
+                34
+              ],
+              [
+                849,
+                892,
+                34
+              ],
+              [
+                424,
+                764,
+                34
+              ],
+              [
+                980,
+                619,
+                34
+              ],
+              [
+                44,
+                583,
+                34
+              ],
+              [
+                914,
+                386,
+                34
+              ],
+              [
+                138,
+                380,
+                34
+              ],
+              [
+                800,
+                128,
+                34
+              ],
+              [
+                276,
+                869,
+                34
+              ],
+              [
+                725,
+                452,
+                34
+              ],
+              [
+                881,
+                957,
+                34
+              ]
+            ]
+          },
+          "log": "Preparing to call tool 'nav_points_route'",
+          "message_log": null
+        },
+        "{\"waypoint_count\": 114, \"total_length\": 15125.87, \"waypoints_sample\": [{\"x\": 165.0, \"y\": 6.0, \"z\": 34.0}, {\"x\": 112.0, \"y\": 53.0, \"z\": 34.0}, {\"x\": 112.0, \"y\": 53.0, \"z\": 34.0}, {\"x\": 72.0, \"y\": 156.0, \"z\": 34.0}, {\"x\": 84.0, \"y\": 178.0, \"z\": 34.0}], \"hint\": \"执行请用 nav_execute_mission(task_text=...)，不要自己传完整航点\"}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone 10 performs an extreme marathon flight. Take off to 34 meters, fly to start point (112, 53, 34), then zigzag across the full map through 20 intermediate waypoints: (84, 178, 34), (889, 211, 34), (167, 285, 34), (821, 342, 34), (144, 399, 34), (919, 518, 34), (147, 580, 34), (782, 616, 34), (176, 774, 34), (844, 821, 34), (259, 910, 34), (849, 892, 34), (424, 764, 34), (980, 619, 34), (44, 583, 34), (914, 386, 34), (138, 380, 34), (800, 128, 34), (276, 869, 34), (725, 452, 34). Avoid obstacles Circle Obstacle 4, Polygon Obstacle 26, and Polygon Obstacle 20. Finally, fly to end point (881, 957, 34) and land.",
+            "drones": [
+              "Drone 10"
+            ],
+            "altitude": 34
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"planned\": {\"waypoints\": 22, \"legs\": 17, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"0af485c8\", \"drone_id\": \"5518d687\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 34.0m (battery: -0.5%/-0mAh, remaining: 46.8%/45mAh)\", \"timestamp\": 1794314302.3434024}, \"steps\": 18, \"sample\": [{\"leg\": 1, \"goal\": [112.0, 53.0], \"waypoints\": 8, \"plan_ms\": 2207, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [84.0, 178.0], \"waypoints\": 2, \"plan_ms\": 30, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [167.0, 285.0], \"waypoints\": 6, \"plan_ms\": 191, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [{\"leg\": 20, \"goal\": [889.0, 211.0], \"projected\": [889.0, 231.0], \"error\": \"航点在障碍物内，已投影 20.0 m（原位置仍不可达）\"}, {\"leg\": 17, \"goal\": [725.0, 452.0], \"error\": \"Insufficient battery to complete path: requires 2.21%, available 0.37% (shortage: 1.84%)\", \"suggestion\": \"电量不足，任务提前终止；请换机或重置会话恢复电量\"}], \"completed\": false}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 48362,
+      "completion_tokens": 1261,
+      "total_tokens": 49623,
+      "llm_calls": 6
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

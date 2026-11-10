@@ -1,0 +1,94 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-96af4820-f0db-48e1-b1ef-69b848067676",
+  "experiment": {
+    "run_id": "rid-96af4820-f0db-48e1-b1ef-69b848067676",
+    "experiment_id": "eid-494b0c12-c3a8-5616-bc42-b02fcc887b51"
+  },
+  "service_instance_id": "20261110T182522-279d81ff1ef6",
+  "batch_file": "../../batch.json",
+  "command_id": "f4c92718-467a-48ca-8338-1ad3d5cd5036",
+  "job_id": null,
+  "command": "Deploy drones Drone 9, Drone 4, Drone 2, and Drone 8 for perimeter search. All take off to 28 meters altitude. Position Drone 9 at guard point (409,856,28), Drone 4 at guard point (696,611,28), Drone 2 at guard point (400,196,28), and Drone 8 at west guard point (363,533,28). All drones hover, take photos at their positions, and maintain search.",
+  "created_at": "2026-11-10 18:39:51",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-10 18:40:16",
+  "requested_run_id": null,
+  "started_at": "2026-11-10 18:39:51",
+  "runtime": {
+    "run_id": "rid-96af4820-f0db-48e1-b1ef-69b848067676",
+    "experiment": {
+      "run_id": "rid-96af4820-f0db-48e1-b1ef-69b848067676",
+      "experiment_id": "eid-494b0c12-c3a8-5616-bc42-b02fcc887b51"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "24fa30be",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "24fa30be",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "2623c17b6565dc90fadc1b97d270a4964473bf5a29846be4fd4213f172a22cdb",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Deploy drones Drone 9, Drone 4, Drone 2, and Drone 8 for perimeter search. All take off to 28 meters altitude. Position Drone 9 at guard point (409,856,28), Drone 4 at guard point (696,611,28), Drone 2 at guard point (400,196,28), and Drone 8 at west guard point (363,533,28). All drones hover, take photos at their positions, and maintain search.",
+            "drones": [
+              "Drone 9",
+              "Drone 4",
+              "Drone 2",
+              "Drone 8"
+            ],
+            "altitude": 28
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_actions\", \"drones\": [\"Drone 9\", \"Drone 4\", \"Drone 2\", \"Drone 8\"], \"steps\": 16, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 4, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 28.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [409.0, 856.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 4, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 28.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [696.0, 611.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 4, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 28.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [400.0, 196.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 4, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 28.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [363.0, 533.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 13801,
+      "completion_tokens": 185,
+      "total_tokens": 13986,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

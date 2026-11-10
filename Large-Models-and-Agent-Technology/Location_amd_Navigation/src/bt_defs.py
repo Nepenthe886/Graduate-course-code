@@ -78,30 +78,136 @@ def _coverage_waypoints(world, target_name: str, spacing: float, altitude: float
     return [{"x": round(p[0], 2), "y": round(p[1], 2), "z": altitude} for p in points]
 
 
+def _segment_blocker(world, a, b, margin: float = 0.2):
+    """检查单段是否与障碍相交，返回阻挡障碍名（通过返回 None）。"""
+    from .planner import Planner
+
+    if math.hypot(float(b[0]) - float(a[0]), float(b[1]) - float(a[1])) < 1e-6:
+        return None
+    check = Planner(world, clearance=margin).segment((float(a[0]), float(a[1])),
+                                                     (float(b[0]), float(b[1])),
+                                                     clearance=margin)
+    return None if check.clear else (check.blocker or "unknown")
+
+
+def _repair_route(world, start, points, margin: float = 0.2):
+    """对穿障航段插入一个绕角点（在目标点周围找可通过的中间点），失败返回 None。"""
+    from .planner import Planner
+
+    planner = Planner(world, clearance=margin)
+    repaired: list[dict] = []
+    previous = (float(start[0]), float(start[1]))
+    for point in points:
+        target = (float(point[0]), float(point[1]))
+        if _segment_blocker(world, previous, target, margin) is None:
+            repaired.append({"x": target[0], "y": target[1]})
+            previous = target
+            continue
+        inserted = False
+        for anchor in (previous, target):
+            for radius in (1.0, 1.5, 2.0, 3.0, 4.0):
+                for degree in range(0, 360, 30):
+                    angle = math.radians(degree)
+                    via = (anchor[0] + radius * math.cos(angle),
+                           anchor[1] + radius * math.sin(angle))
+                    try:
+                        if not planner.point_clear(via, margin):
+                            continue
+                    except Exception:  # noqa: BLE001
+                        continue
+                    if _segment_blocker(world, previous, via, margin) is not None:
+                        continue
+                    if _segment_blocker(world, via, target, margin) is not None:
+                        continue
+                    repaired.append({"x": round(via[0], 2), "y": round(via[1], 2)})
+                    repaired.append({"x": target[0], "y": target[1]})
+                    previous = target
+                    inserted = True
+                    break
+                if inserted:
+                    break
+            if inserted:
+                break
+        if not inserted:
+            return None
+    return repaired
+
+
+def _route_blocker(world, start, points, margin: float = 0.2):
+    """逐段检查折线是否与障碍相交（0 余量语义，贴近服务器），返回首个阻挡障碍名。"""
+    from .planner import Planner
+
+    planner = Planner(world, clearance=margin)
+    previous = (float(start[0]), float(start[1]))
+    for point in points:
+        px, py = float(point[0]), float(point[1])
+        if math.hypot(px - previous[0], py - previous[1]) < 1e-6:
+            previous = (px, py)
+            continue
+        check = planner.segment(previous, (px, py), clearance=margin)
+        if not check.clear:
+            return check.blocker or "unknown"
+        previous = (px, py)
+    return None
+
+
 def _move_to_smart(api, world, drone_id: str, x: float, y: float,
                    z: float | None = None, clearance: float = 1.5) -> dict:
-    """先直线 move_to；被障碍挡住则用规划器绕障后 move_along_path。"""
-    result = actions.run_atomic(api, drone_id, "move_to", {"x": x, "y": y, "z": z})
-    if result.get("ok") or world is None:
-        return result
+    """先自检：直线可通过才发 move_to；否则规划并自检路线后再发，避免服务器拒绝。"""
+    if world is None:
+        return actions.run_atomic(api, drone_id, "move_to", {"x": x, "y": y, "z": z})
+    try:
+        pose = sensors.read_pose(api, drone_id)
+        start = (float(pose["x"]), float(pose["y"]))
+        blocker = _route_blocker(world, start, [(x, y)])
+    except Exception:  # noqa: BLE001
+        blocker = None
+    if blocker is None:
+        result = actions.run_atomic(api, drone_id, "move_to", {"x": x, "y": y, "z": z})
+        if result.get("ok"):
+            return result
     try:
         from .planner import Planner
 
         pose = sensors.read_pose(api, drone_id)
         altitude = float(z if z is not None else (pose.get("z") or 20.0))
-        planner = Planner(world, clearance=clearance)
-        route = planner.plan((pose["x"], pose["y"]), (float(x), float(y)), altitude=altitude)
-        waypoints = [{"x": round(p[0], 2), "y": round(p[1], 2), "z": round(p[2], 2)}
-                     for p in (route.waypoints_xyz or [])[1:]]
-        if waypoints:
-            planned = actions.run_atomic(api, drone_id, "move_along_path",
-                                         {"waypoints": waypoints})
-            if planned.get("ok"):
-                return planned
+        start = (float(pose["x"]), float(pose["y"]))
+        blocked_by = None
+        planner = Planner(world, clearance=min(clearance, 4.0))
+        attempt_clearances = (min(clearance, 6.0), min(clearance * 2.0, 6.0))
+        for attempt_clearance in attempt_clearances:
+            route = planner.plan(start, (float(x), float(y)),
+                                 clearance=attempt_clearance, altitude=altitude)
+            route_points = [[round(float(p[0]), 2), round(float(p[1]), 2), round(float(p[2]), 2)]
+                            for p in (route.waypoints_xyz or [])]
+            if not route_points:
+                route_points = [[round(float(start[0]), 2), round(float(start[1]), 2),
+                                 round(float(altitude), 2)]]
+            first_point = route_points[0]
+            differs = math.hypot(first_point[0] - start[0],
+                                 first_point[1] - start[1]) > 0.5
+            selected = route_points if differs else route_points[1:]
+            waypoints = [{"x": p[0], "y": p[1], "z": p[2]} for p in selected]
+            if not waypoints:
+                waypoints = [{"x": float(x), "y": float(y), "z": altitude}]
+            raw = [(p["x"], p["y"]) for p in waypoints]
+            blocked_by = _route_blocker(world, start, raw)
+            if blocked_by is not None:
+                repaired = _repair_route(world, start, raw)
+                if repaired is None:
+                    continue
+                waypoints = [{"x": p["x"], "y": p["y"], "z": altitude} for p in repaired]
+                blocked_by = _route_blocker(world, start,
+                                            [(p["x"], p["y"]) for p in waypoints])
+                if blocked_by is not None:
+                    continue
+            return actions.run_atomic(api, drone_id, "move_along_path",
+                                      {"waypoints": waypoints})
+        if blocked_by is not None:
+            return {"ok": False, "error": "路径自检未通过（%s），已放弃发送" % blocked_by}
     except Exception as exc:  # noqa: BLE001
-        result = dict(result)
-        result["plan_error"] = str(exc)[:140]
-    return result
+        return {"ok": False, "error": "路径自检/规划失败: %s" % str(exc)[:120]}
+    return {"ok": False, "error": "无法生成通过自检的路径"}
 
 
 class InspectTarget(Node):
@@ -175,12 +281,12 @@ class InspectTarget(Node):
 class NavigateToPose(Node):
     """Nav2 风格 NavigateToPose：输入目标位姿，内部完成规划/避障/到达校验/恢复。
 
-    参数：x, y, z(可选), heading(可选), tolerance(默认 12m), drone_id(可选)
+    参数：x, y, z(可选), heading(可选), tolerance(默认 2m), drone_id(可选)
     恢复行为：清空净空重规划 -> 侧移 -> 重试一次。
     """
 
     def __init__(self, x: float, y: float, z: float | None = None,
-                 heading: float | None = None, tolerance: float = 12.0,
+                 heading: float | None = None, tolerance: float = 2.0,
                  drone_id: str | None = None, clearance: float = 1.5,
                  timeout: float = 60.0):
         self.x = float(x)
@@ -204,6 +310,34 @@ class NavigateToPose(Node):
             _time.sleep(1.0)
         return False
 
+    def _backoff(self, api, world, drone_id: str) -> None:
+        """被服务器拒绝时，先朝远离最近障碍的方向退 1.5~2.0 m，再让上层重试。"""
+        try:
+            pose = sensors.read_pose(api, drone_id)
+            start = (float(pose["x"]), float(pose["y"]))
+            obstacles = getattr(world, "obstacles", []) or []
+            if not obstacles:
+                return
+            nearest = min(obstacles, key=lambda o: math.hypot(start[0] - o.center[0],
+                                                              start[1] - o.center[1]))
+            dx = start[0] - float(nearest.center[0])
+            dy = start[1] - float(nearest.center[1])
+            norm = math.hypot(dx, dy) or 1.0
+            for step in (2.0, 1.5):
+                target = (start[0] + dx / norm * step, start[1] + dy / norm * step)
+                try:
+                    if world.clearance_to_obstacles(target) < 0.8:
+                        continue
+                except Exception:  # noqa: BLE001
+                    continue
+                moved = actions.run_atomic(api, drone_id, "move_to",
+                                           {"x": target[0], "y": target[1],
+                                            "z": pose.get("z")})
+                if moved.get("ok"):
+                    return
+        except Exception:  # noqa: BLE001
+            return
+
     def tick(self, blackboard: dict) -> Status:
         api = blackboard.get("api")
         drone_id = self.drone_id or blackboard.get("drone_id")
@@ -221,19 +355,82 @@ class NavigateToPose(Node):
                 except Exception:  # noqa: BLE001
                     continue
         result = {"ok": False, "name": "navigate_to_pose", "goal": [self.x, self.y]}
-        for attempt, clearance in enumerate((self.clearance, max(15.0, self.clearance * 0.6)), 1):
+        attempts = (self.clearance, min(self.clearance * 2.0, 3.5),
+                    min(self.clearance * 3.0, 4.0))
+        for attempt, clearance in enumerate(attempts, 1):
             move = _move_to_smart(api, world, drone_id, self.x, self.y, self.z, clearance)
             if move.get("ok") and self._wait_arrival(api, drone_id):
                 result["ok"] = True
                 result["attempts"] = attempt
                 break
-            result["error"] = move.get("error")
+            error = str(move.get("error") or "")
+            result["error"] = error or result.get("error")
+            if world is not None and ("block" in error.lower() or "intersect" in error.lower()):
+                self._backoff(api, world, drone_id)
         if result["ok"] and self.heading is not None:
             rotated = actions.run_atomic(api, drone_id, "rotate", {"heading": self.heading})
             if not rotated.get("ok"):
                 result["ok"] = False
                 result["error"] = rotated.get("error")
                 result["heading_failed"] = True
+        blackboard.setdefault("results", []).append(result)
+        return Status.SUCCESS if result["ok"] else Status.FAILURE
+
+
+class ApproachDrone(Node):
+    """飞到另一架无人机附近、进入指定最大距离内（编队/靠拢任务）。"""
+
+    def __init__(self, target_drone_id: str | None = None, max_distance: float = 15.0,
+                 z: float | None = None, tolerance: float = 2.0,
+                 drone_id: str | None = None, clearance: float = 1.5,
+                 timeout: float = 60.0):
+        self.target_drone_id = target_drone_id
+        self.max_distance = float(max_distance)
+        self.z = z
+        self.tolerance = float(tolerance)
+        self.drone_id = drone_id
+        self.clearance = float(clearance)
+        self.timeout = float(timeout)
+        self.name = "approach_drone"
+
+    def tick(self, blackboard: dict) -> Status:
+        api = blackboard.get("api")
+        drone_id = self.drone_id or blackboard.get("drone_id")
+        if api is None or not drone_id or not self.target_drone_id:
+            return Status.FAILURE
+        world = blackboard.get("world")
+        try:
+            me = sensors.read_pose(api, drone_id)
+            target = sensors.read_pose(api, self.target_drone_id)
+        except Exception:  # noqa: BLE001
+            return Status.FAILURE
+        distance = math.hypot(me["x"] - target["x"], me["y"] - target["y"])
+        result = {"ok": False, "name": "approach_drone", "drone_id": drone_id,
+                  "target_drone_id": self.target_drone_id,
+                  "distance": round(distance, 2)}
+        if distance <= self.max_distance - 0.5:
+            result.update(ok=True, moved=False)
+            blackboard.setdefault("results", []).append(result)
+            return Status.SUCCESS
+        keep = max(0.0, self.max_distance - 2.0)
+        ux = (me["x"] - target["x"]) / distance if distance > 1e-6 else 1.0
+        uy = (me["y"] - target["y"]) / distance if distance > 1e-6 else 0.0
+        z = self.z if self.z is not None else me.get("z")
+        move = _move_to_smart(api, world, drone_id,
+                              target["x"] + ux * keep, target["y"] + uy * keep,
+                              z, self.clearance)
+        if move.get("ok"):
+            import time as _time
+
+            started = _time.time()
+            while _time.time() - started < self.timeout:
+                pose = sensors.read_pose(api, drone_id)
+                now = math.hypot(pose["x"] - target["x"], pose["y"] - target["y"])
+                if now <= self.max_distance:
+                    result.update(ok=True, moved=True, final_distance=round(now, 2))
+                    break
+                _time.sleep(1.0)
+        result["error"] = None if result["ok"] else (move.get("error") or "未进入指定距离")
         blackboard.setdefault("results", []).append(result)
         return Status.SUCCESS if result["ok"] else Status.FAILURE
 
@@ -364,6 +561,8 @@ def build_mission(world, spec: dict, altitude: float | None = None):
 
     def resolve_drone(value):
         """把 "Drone 2" 这类名字解析成真实 id；已是 id 则原样返回。"""
+        if isinstance(value, dict):
+            value = value.get("drone_id") or value.get("id") or value.get("name") or ""
         text = str(value or "")
         if not text or world is None:
             return text
@@ -385,10 +584,17 @@ def build_mission(world, spec: dict, altitude: float | None = None):
             nodes.append(InspectTarget(str(params.get("target") or ""), params.get("z"),
                                        float(params.get("tolerance", 8.0)),
                                        params.get("drone_id"), clearance))
+        elif kind == "approach_drone":
+            nodes.append(ApproachDrone(params.get("target_drone_id")
+                                       or params.get("target_drone"),
+                                       float(params.get("max_distance", 15.0)),
+                                       params.get("z"),
+                                       float(params.get("tolerance", 2.0)),
+                                       params.get("drone_id"), clearance))
         elif kind in ("move_to", "navigate_to_pose"):
             nodes.append(NavigateToPose(float(params["x"]), float(params["y"]),
                                         params.get("z"), params.get("heading"),
-                                        float(params.get("tolerance", 12.0)),
+                                        float(params.get("tolerance", 2.0)),
                                         params.get("drone_id"), clearance))
         else:
             nodes.append(ActionLeaf(kind, params))
@@ -483,6 +689,8 @@ def build_mission(world, spec: dict, altitude: float | None = None):
             nodes.append(WaitLeaf(seconds))
             steps.append({"kind": "wait", "params": {"seconds": seconds}})
         elif name == "inspect_target":
+            add(name, params)
+        elif name == "approach_drone":
             add(name, params)
         elif name in ("move_to", "navigate_to_pose"):
             add(name, params)

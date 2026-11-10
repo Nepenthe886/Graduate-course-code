@@ -33,7 +33,7 @@ sys.path.insert(0, str(ROOT))
 
 RULES_FILE = ROOT / "configs" / "llm_rules.json"
 TOOL_REWRITE_FILE = ROOT / "configs" / "tool_rewrite.json"
-SESSIONS_DIR = ROOT.parent / "MultiUAV-Plat-v0.46_Windows" / "UAVSessions"
+SESSIONS_DIR = ROOT.parent / "MultiUAV-Plat-v0.49_Windows" / "UAVSessions"
 DEFAULT_UAV_BASE = "http://127.0.0.1:8000"
 
 DONE_RE = re.compile(r"\[\s*task\s*[-_ ]?done\s*\]", re.IGNORECASE)
@@ -473,7 +473,7 @@ def _resolve_drone_id(task_text: str, uav_base: str) -> str:
         for drone in drones:
             if str(drone.get("name", "")).strip().lower() == wanted:
                 return str(drone.get("id", ""))
-    return str((drones[0] or {}).get("id", ""))
+    return ""
 
 
 def _mission_already_called(messages: list) -> bool:
@@ -505,8 +505,18 @@ def enforce_mission_delegation(payload: dict, request_messages: list, task_text:
     relay_task = bool(re.search(r"relay|broadcast", task_text or "", re.I))
     fleet_task = bool(re.search(r"target sweep|guard point|perimeter|photographs?\s+targets?|"
                                 r"surveys?\s+target|assign|coordinated search sweep", task_text or "", re.I))
-    template_task = multitarget_task or inspection_task or photo_task or relay_task or fleet_task
-    if len(points) < 4 and not coverage_task and not formation_task and not template_task:
+    target_named_task = bool(re.search(
+        r"\btarget\s+[A-Za-z][A-Za-z0-9 _-]*?\b\d{1,3}\b", task_text or "", re.I)) \
+        and bool(re.search(r"navigate|fly|find|go\s*to|goes\s+to|photo|photograph|capture|"
+                           r"inspect|reach|assign|swap", task_text or "", re.I))
+    action_hits = len(re.findall(r"take\s*off|take-off|takeoff|move|fly|go to|head to|navigate|"
+                                 r"photo|photograph|capture|loiter|hover|rotate|turn|land",
+                                 task_text or "", re.I))
+    routine_task = bool(points) and action_hits >= 2
+    template_task = (multitarget_task or inspection_task or photo_task or relay_task
+                     or fleet_task or target_named_task)
+    if len(points) < 4 and not coverage_task and not formation_task and not template_task \
+            and not routine_task:
         return payload, None
     if _mission_already_called(request_messages):
         return payload, None
@@ -540,8 +550,8 @@ def enforce_mission_delegation(payload: dict, request_messages: list, task_text:
         message["content"] = None
         choice["finish_reason"] = "tool_calls"
         return result, "mission_enforced_replaced:" + ",".join(names)
-    # 覆盖/编队任务：除查询类工具外，一律改成行为树入口
-    if existing and (coverage_task or formation_task or template_task):
+    # 覆盖/编队/多步例行任务：除查询类工具外，一律改成行为树入口
+    if existing and (coverage_task or formation_task or template_task or routine_task):
         allowlist = {"nav_execute_mission", "list_drones", "get_session_info", "get_weather",
                      "get_drone_status", "nav_map_info", "nav_nearby_obstacles"}
         if any(name not in allowlist for name in names):
@@ -647,6 +657,9 @@ def parse_template_params(template: str, text: str, drone_id: str) -> dict | Non
             return None
         # 单高度任务：起飞即巡航高度，alt1 == alt2（不再二次爬升）
         params.update(alt1=alts[0], alt2=alts[1] if len(alts) > 1 else alts[0])
+        heading = _first_float(r"heading\s+(\d+(?:\.\d+)?)", text)
+        if heading is not None:
+            params["heading"] = heading
     elif template == "grid_survey":
         if len(coords) < 3:
             return None
@@ -790,6 +803,54 @@ def _coverage_executed(messages: list) -> bool:
     return False
 
 
+def enforce_mission_task_text(payload: dict, task_text: str, uav_base: str):
+    """把 nav_execute_mission 的 actions/waypoints 参数改写为 task_text（短参数，避免被截断）。"""
+    if not isinstance(payload, dict):
+        return payload, None
+    try:
+        result = json.loads(json.dumps(payload))
+    except Exception:  # noqa: BLE001
+        return payload, None
+    choice = (result.get("choices") or [{}])[0]
+    message = choice.setdefault("message", {})
+    rewritten = False
+    for call in (message.get("tool_calls") or []):
+        function = call.get("function") or {}
+        if str(function.get("name") or "") != MISSION_TOOL:
+            continue
+        raw_args = function.get("arguments")
+        inner = None
+        try:
+            args = json.loads(raw_args) if isinstance(raw_args, str) else (raw_args or {})
+            if isinstance(args, dict) and isinstance(args.get("input_json"), str):
+                inner = json.loads(args["input_json"])
+            elif isinstance(args, dict):
+                inner = args
+        except Exception:  # noqa: BLE001
+            inner = None
+        needs_rewrite = inner is None
+        if isinstance(inner, dict) and ("actions" in inner or "waypoints" in inner):
+            needs_rewrite = True
+        if not needs_rewrite:
+            continue
+        altitude = 20.0
+        drone_id = ""
+        if isinstance(inner, dict):
+            altitude = inner.get("altitude") or altitude
+            drone_id = str(inner.get("drone_id") or "")
+        if not drone_id:
+            drone_id = _resolve_drone_id(task_text, uav_base) or ""
+        clean = {"task_text": task_text, "altitude": altitude}
+        if drone_id:
+            clean["drone_id"] = drone_id
+        function["arguments"] = json.dumps(
+            {"input_json": json.dumps(clean, ensure_ascii=False)}, ensure_ascii=False)
+        rewritten = True
+    if rewritten:
+        return result, "mission_task_text_enforced"
+    return payload, None
+
+
 def enforce_template_delegation(payload: dict, request_messages: list, task_text: str,
                                 uav_base: str):
     """模板任务禁用裸原子动作：把 take_off/hover/move_to 等改写为 nav_template_action。"""
@@ -893,6 +954,55 @@ def _recent_tool_errors(messages: list) -> tuple[int, str]:
     return count, last
 
 
+def _mission_failure_count(messages: list) -> tuple[int, str]:
+    """统计本次对话里任务执行失败（ok=false）的次数与最后原因。"""
+    count = 0
+    last = ""
+    for message in messages or []:
+        if not isinstance(message, dict):
+            continue
+        role = str(message.get("role") or "")
+        if role == "user":
+            count, last = 0, ""
+            continue
+        if role not in ("tool", "function"):
+            continue
+        content = message.get("content")
+        text = content if isinstance(content, str) else json.dumps(content, ensure_ascii=False)
+        try:
+            data = json.loads(text)
+        except Exception:  # noqa: BLE001
+            continue
+        if not isinstance(data, dict):
+            continue
+        is_mission = data.get("mode") in ("actions", "per_leg_jit", "multi_drone_actions",
+                                          "multi_drone_parallel") or isinstance(
+            data.get("planned"), dict)
+        if is_mission and data.get("ok") is False:
+            count += 1
+            last = str(data.get("hint") or data.get("failures") or "任务执行失败")
+    return count, last
+
+
+def enforce_mission_failure_breaker(payload: dict, request_messages: list,
+                                    max_failures: int = 3):
+    """任务连续失败达到上限后直接结束，不再让模型反复重试。"""
+    count, last = _mission_failure_count(request_messages)
+    if count < max_failures:
+        return payload, None
+    try:
+        result = json.loads(json.dumps(payload))
+    except Exception:  # noqa: BLE001
+        return payload, None
+    choice = (result.get("choices") or [{}])[0]
+    message = choice.setdefault("message", {})
+    message["tool_calls"] = []
+    message["content"] = ("[TASK FAILED] 任务已连续 %d 次执行失败，停止重试。最后原因：%s"
+                          % (count, last[:200]))
+    choice["finish_reason"] = "stop"
+    return result, "mission_failure_breaker:%d" % count
+
+
 def enforce_loop_breaker(payload: dict, request_messages: list):
     """连续 3 次以上工具失败时停止重试，直接给出失败结论。"""
     count, last = _recent_tool_errors(request_messages)
@@ -909,6 +1019,41 @@ def enforce_loop_breaker(payload: dict, request_messages: list):
                           % (count, last[:160]))
     choice["finish_reason"] = "stop"
     return result, "loop_breaker:%d" % count
+
+
+def _latest_tool_result(request_messages: list):
+    for message in reversed(request_messages or []):
+        if not isinstance(message, dict):
+            continue
+        if str(message.get("role") or "") not in ("tool", "function"):
+            continue
+        content = message.get("content")
+        text = content if isinstance(content, str) else json.dumps(content, ensure_ascii=False)
+        try:
+            data = json.loads(text)
+        except Exception:  # noqa: BLE001
+            return None
+        return data if isinstance(data, dict) else None
+    return None
+
+
+def enforce_mission_completion(payload: dict, request_messages: list):
+    """上一次工具结果已标记 completed=true 时，禁止再调用工具（防止重复执行整条任务）。"""
+    latest = _latest_tool_result(request_messages)
+    if not latest or not latest.get("completed"):
+        return payload, None
+    try:
+        result = json.loads(json.dumps(payload))
+    except Exception:  # noqa: BLE001
+        return payload, None
+    choice = (result.get("choices") or [{}])[0]
+    message = choice.setdefault("message", {})
+    if not (message.get("tool_calls") or []):
+        return payload, None
+    message["tool_calls"] = []
+    message["content"] = "[TASK DONE] 行为树已执行完任务，停止额外工具调用。"
+    choice["finish_reason"] = "stop"
+    return result, "mission_completed_forced_done"
 
 
 def rewrite_completion(payload: dict, request_messages: list, guard_done: bool = True,
@@ -1027,13 +1172,14 @@ class Handler(BaseHTTPRequestHandler):
             except Exception:
                 data = None
             if isinstance(data, dict):
-                # 生成上限：没有 max_tokens 就补上，避免 llama-server 无限生成导致超时
+                # 生成上限：没有 max_tokens 就补上，避免 llama-server 无限生成导致超时；
+                # 长任务工具参数（如多机航点）需要更大的输出预算，否则 JSON 会被截断。
                 limit = data.get("max_tokens")
                 if limit is None:
-                    data["max_tokens"] = 768
+                    data["max_tokens"] = 2048
                     raw = json.dumps(data, ensure_ascii=False).encode("utf-8")
-                elif isinstance(limit, (int, float)) and limit > 1024:
-                    data["max_tokens"] = 1024
+                elif isinstance(limit, (int, float)) and limit > 4096:
+                    data["max_tokens"] = 4096
                     raw = json.dumps(data, ensure_ascii=False).encode("utf-8")
                 stream = bool(data.get("stream"))
                 messages = data.get("messages")
@@ -1071,6 +1217,10 @@ class Handler(BaseHTTPRequestHandler):
                 if enforce_note:
                     sys.stderr.write(f"[llm-proxy] {enforce_note}\n")
                     fixed = enforced
+                cleaned, clean_note = enforce_mission_task_text(fixed, task_text, self.uav_base)
+                if clean_note:
+                    sys.stderr.write(f"[llm-proxy] {clean_note}\n")
+                    fixed = cleaned
                     payload = json.dumps(fixed, ensure_ascii=False).encode("utf-8")
                 templated, template_note = enforce_template_delegation(
                     fixed, request_messages, task_text, self.uav_base)
@@ -1081,6 +1231,14 @@ class Handler(BaseHTTPRequestHandler):
                 if loop_note:
                     sys.stderr.write(f"[llm-proxy] {loop_note}\n")
                     fixed = looped
+                broken, break_note = enforce_mission_failure_breaker(fixed, request_messages)
+                if break_note:
+                    sys.stderr.write(f"[llm-proxy] {break_note}\n")
+                    fixed = broken
+                finished, finish_note = enforce_mission_completion(fixed, request_messages)
+                if finish_note:
+                    sys.stderr.write(f"[llm-proxy] {finish_note}\n")
+                    fixed = finished
                 if self.rewrite_config.get("enabled", False):
                     world = load_world(self.map_path, self.uav_base)
                     fixed, notes = rewrite_tool_calls(fixed, task_text, world, self.rewrite_config)

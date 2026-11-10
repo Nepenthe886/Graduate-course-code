@@ -207,7 +207,7 @@ class WorldMap:
             if str(drone.get("name", "")).strip().lower() == low:
                 return drone
         for drone in self.drones:
-            if low in str(drone.get("name", "")).strip().lower():
+            if str(drone.get("id", "")).strip().lower() == low:
                 return drone
         return None
 

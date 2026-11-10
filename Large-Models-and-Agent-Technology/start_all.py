@@ -29,9 +29,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 LOG_DIR = ROOT / "logs"
 
-UAV_DIR = ROOT / "MultiUAV-Plat-v0.46_Windows"
-UAV_EXE = UAV_DIR / "MultiUAV-Plat.Server.v0.46.exe"
-CONTROLLER_EXE = UAV_DIR / "MultiUAV-Plat.Controller.v0.46.exe"
+UAV_DIR = ROOT / "MultiUAV-Plat-v0.49_Windows"
+UAV_EXE = UAV_DIR / "MultiUAV-Plat.Server.v0.49.exe"
+CONTROLLER_EXE = UAV_DIR / "MultiUAV-Plat.Controller.v0.49.exe"
 CONTROLLER_IMAGE = CONTROLLER_EXE.name
 
 LLM_DIR = ROOT / "Qwen3-7B"
@@ -245,7 +245,7 @@ def preflight() -> list[str]:
 # ---------------------------------------------------------------- 启动
 def start_uav(server_port: int) -> subprocess.Popen:
     log(f"启动 UAV 后端（端口 {server_port}，UTF-8 控制台）...")
-    command = f'cmd.exe /c "chcp 65001>nul && MultiUAV-Plat.Server.v0.46.exe --port {server_port}"'
+    command = f'cmd.exe /c "chcp 65001>nul && MultiUAV-Plat.Server.v0.49.exe --port {server_port}"'
     return subprocess.Popen(command, cwd=str(UAV_DIR), creationflags=CREATE_NEW_CONSOLE)
 
 
@@ -382,8 +382,8 @@ WINDOW_PATTERNS = (
 
 SAFE_NAMES = (
     "python.exe", "py.exe", "pythonw.exe", "cmd.exe",
-    "llama-server.exe", "MultiUAV-Plat.Server.v0.46.exe",
-    "MultiUAV-Plat.Controller.v0.46.exe",
+    "llama-server.exe", "MultiUAV-Plat.Server.v0.49.exe",
+    "MultiUAV-Plat.Controller.v0.49.exe",
 )
 FORBIDDEN_HINTS = ("DeepSeek Harness", "dsh", "node_modules")
 
@@ -539,7 +539,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.dry_run:
         log("将执行：")
-        log(f'  UAV 后端: cmd /c "chcp 65001>nul && MultiUAV-Plat.Server.v0.46.exe --port {uav_server_port}"')
+        log(f'  UAV 后端: cmd /c "chcp 65001>nul && MultiUAV-Plat.Server.v0.49.exe --port {uav_server_port}"')
         log(f"  LM 服务 : .venv\\Scripts\\python.exe -m src.server --port {llm_server_port}")
         if proxy_mode:
             log(f"  UAV 代理: py -3.12 uav_adapter_proxy.py --port {UAV_PUBLIC_PORT} --upstream {uav_server_port}")

@@ -24,8 +24,16 @@ def _compact_result(result: Any) -> dict:
     if not isinstance(result, dict):
         return {"result": str(result)[:500]}
     compact = {key: result.get(key) for key in
-               ("ok", "mode", "planned", "photos_taken", "photos_required", "coverage", "take_off")
+               ("ok", "mode", "planned", "photos_taken", "photos_required", "coverage",
+                "take_off", "hint", "projected_count")
                if key in result}
+    unreachable = result.get("unreachable_waypoints") or []
+    if unreachable:
+        compact["unreachable_waypoints"] = unreachable[:10]
+        if len(unreachable) > 10:
+            compact["unreachable_total"] = len(unreachable)
+    if result.get("skipped_legs"):
+        compact["skipped_legs"] = result["skipped_legs"]
     executed = result.get("executed") or []
     compact["steps"] = len(executed)
     compact["sample"] = executed[:3]
@@ -124,15 +132,21 @@ class NavToolkit:
         return data if isinstance(data, dict) else {}
 
     def _scenario_for(self, info: dict) -> Path | None:
-        """仅当当前地图是默认回退地图时，才按会话名换成场景文件。"""
+        """按会话 id/名称在 external_map_dirs（UAVSessions）与 scenario_dirs 中匹配地图文件。"""
+        sid = str((info or {}).get("id") or "").strip()
         name = str((info or {}).get("name") or "").strip()
-        if not name or not getattr(self.config, "scenario_dirs", None):
+        dirs = [resolve(d) for d in list(getattr(self.config, "external_map_dirs", []) or [])
+                + list(getattr(self.config, "scenario_dirs", []) or [])]
+        if sid:
+            for base in dirs:
+                try:
+                    for path in Path(base).glob("*.json"):
+                        if sid in path.name:
+                            return path
+                except (OSError, ValueError):
+                    continue
+        if not name:
             return None
-        default_path = resolve(self.config.default_map) if self.config.default_map else None
-        is_fallback = default_path is not None and Path(self.map_path) == Path(default_path)
-        if not is_fallback:
-            return None
-        dirs = [resolve(d) for d in self.config.scenario_dirs]
         return WorldMap.find_scenario(name, dirs)
 
     def _setup_runtime(self, path, source: str) -> None:
@@ -183,8 +197,8 @@ class NavToolkit:
         self.session_id = sid or self.session_id
         self.session_name = str(info.get("name") or "")
         matched = self._scenario_for(info)
-        if matched is not None:
-            self._setup_runtime(matched, "scenario")
+        if matched is not None and Path(matched) != Path(self.map_path):
+            self._setup_runtime(matched, "session")
 
     # ---------- 实时位姿同步 ----------
     def _live_pose(self, drone_ref: Any = None):
@@ -311,6 +325,15 @@ class NavToolkit:
             return {"error": "缺少 target 参数"}
         target = self.world.target_by_name(str(name))
         if target is None:
+            obstacle = self.world.obstacle_by_name(str(name))
+            if obstacle is not None:
+                center = getattr(obstacle, "center", (0.0, 0.0))
+                return {"ok": True, "skipped": True,
+                        "obstacle": obstacle.name,
+                        "type": getattr(obstacle, "type", ""),
+                        "center": [round(float(center[0]), 2), round(float(center[1]), 2)],
+                        "hint": "这是障碍物，导航动作会自动避障，无需前往；"
+                                "请直接调用 nav_execute_mission 执行任务，不要查询障碍物名称"}
             return {"error": f"地图里没有目标 {name!r}",
                     "available": [t.name for t in self.world.targets]}
         altitude = float(data.get("z", self.config.z_default))
@@ -411,16 +434,25 @@ class NavToolkit:
             else:
                 resolved_ids.append(value)
         drone_id = resolved_ids[0]
+        # 规划/执行前同步到“实际执行的那架无人机”的实时位姿，避免按默认机的坐标规划
+        self._live_pose(drone_id)
         if data.get("actions"):
             spec = {"actions": data["actions"],
                     "altitude": float(data.get("altitude", self.config.z_default)),
                     "land_at_end": bool(data.get("land_at_end", True))}
         elif data.get("task_text"):
             from src.mission_run import build_spec_from_task
+            task_lower = str(data["task_text"]).lower()
+            wants_land = bool(re.search(r"\blands?\b|\blanded\b|touch\s*down|return\s+home",
+                                        task_lower))
+            land_at_end = bool(data.get("land_at_end", wants_land))
             spec = build_spec_from_task(str(data["task_text"]),
                                         float(data.get("altitude", self.config.z_default)),
-                                        bool(data.get("land_at_end", True)),
+                                        land_at_end,
                                         world=self.world)
+            spec.setdefault("land_at_end", land_at_end)
+            if spec.get("error"):
+                return {"ok": False, "error": str(spec["error"])}
             if not spec.get("actions") and not spec.get("waypoints") and data.get("waypoints"):
                 alt_default = float(data.get("altitude", self.config.z_default))
                 normalized = [dict(zip(("x", "y", "z"), _xyz_item(item, alt_default)))
@@ -433,30 +465,234 @@ class NavToolkit:
                                 "nearest_free_point": [round(near[0], 2), round(near[1], 2)] if near else None}
                 spec = {"altitude": alt_default,
                         "waypoints": normalized,
-                        "land_at_end": bool(data.get("land_at_end", True))}
+                        "land_at_end": land_at_end}
         elif data.get("waypoints"):
             alt_default = float(data.get("altitude", self.config.z_default))
             spec = {"altitude": alt_default,
                     "waypoints": [dict(zip(("x", "y", "z"), _xyz_item(item, alt_default)))
                                   for item in data["waypoints"]],
-                    "land_at_end": bool(data.get("land_at_end", True))}
+                    "land_at_end": bool(data.get("land_at_end", False))}
         else:
             return {"error": "需要 task_text 或 waypoints"}
         if spec.get("error"):
             return {"error": spec["error"]}
         if not spec.get("actions") and not spec.get("waypoints"):
             return {"error": "任务里没有可解析的航点，也不是可识别的覆盖/编队任务"}
+        task_text_value = str(data.get("task_text") or "")
+        from src.route_order import (order_required, parse_route_segments,
+                                     reorder_actions, reorder_segments_actions,
+                                     reorder_segments_waypoints, reorder_waypoints)
+        mode = str(data.get("point_order") or "auto").lower()
+        stats = None
+        action_drones = {str((action.get("params") or {}).get("drone_id") or "")
+                         for action in (spec.get("actions") or [])}
+        action_drones.discard("")
+        multi_drone_actions = len(action_drones) > 1
+        if (mode != "as_given" and not multi_drone_actions
+                and (spec.get("waypoints") or spec.get("actions"))):
+            start_xy = self.localizer.pose.xy
+            reorder_alt = float(spec.get("altitude") or data.get("altitude")
+                                or self.config.z_default)
+            explicitly_ordered = bool(task_text_value) and order_required(task_text_value)
+            segments = parse_route_segments(task_text_value) if task_text_value else []
+            has_unordered = any(segment["policy"] == "unordered"
+                                and len(segment["indices"]) >= 3 for segment in segments)
+            if segments and has_unordered and not explicitly_ordered:
+                # 分段：有序段原样，无序段多点最短路径，终点/收尾最后执行
+                if spec.get("waypoints"):
+                    spec["waypoints"], stats = reorder_segments_waypoints(
+                        self.planner, start_xy, spec["waypoints"], segments, reorder_alt)
+                else:
+                    spec["actions"], stats = reorder_segments_actions(
+                        self.planner, start_xy, spec["actions"], segments, reorder_alt)
+            elif mode == "shortest" or (mode == "auto" and not explicitly_ordered):
+                end_fixed = bool(spec.get("land_at_end")) or bool(
+                    segments and segments[-1]["policy"] == "ordered")
+                if spec.get("waypoints"):
+                    spec["waypoints"], stats = reorder_waypoints(
+                        self.planner, start_xy, spec["waypoints"], reorder_alt, end_fixed)
+                else:
+                    spec["actions"], stats = reorder_actions(
+                        self.planner, start_xy, spec["actions"], reorder_alt, end_fixed)
+            if stats is not None:
+                spec["order_optimized"] = bool(stats.get("optimized"))
+                spec["order_stats"] = stats
+        if data.get("task_text"):
+            spec = self._augment_spec_from_text(spec, str(data["task_text"]), drone_id)
         if spec.get("actions"):
-            # 动作规格内部已按 drone_id 指定每架机，执行一次即可
-            return _compact_result(execute_mission(str(self.map_path), drone_id, spec,
-                                                   self.config.uav_api_base))
-        results = [execute_mission(str(self.map_path), did, spec, self.config.uav_api_base)
-                   for did in resolved_ids]
+            # 多机：按 drone_id 拆成独立的子任务分别执行，互不中断
+            groups: list[tuple[str, list[dict]]] = []
+            for action in spec["actions"]:
+                did = str((action.get("params") or {}).get("drone_id") or "")
+                if groups and groups[-1][0] == did:
+                    groups[-1][1].append(action)
+                else:
+                    groups.append((did, [action]))
+            if len(groups) > 1:
+                from concurrent.futures import ThreadPoolExecutor, as_completed
+
+                per_drone: dict[str, list[dict]] = {}
+                drone_order: list[str] = []
+                for did, acts in groups:
+                    if did not in per_drone:
+                        per_drone[did] = []
+                        drone_order.append(did)
+                    per_drone[did].extend(acts)
+                pre_actions: dict[str, list[dict]] = {}
+                post_actions: dict[str, list[dict]] = {}
+                for did, acts in per_drone.items():
+                    pre_actions[did] = [a for a in acts
+                                        if str(a.get("name") or a.get("kind")) != "approach_drone"]
+                    post_actions[did] = [a for a in acts
+                                         if str(a.get("name") or a.get("kind")) == "approach_drone"]
+
+                def _run_one(did: str, acts: list[dict]) -> dict:
+                    if not acts:
+                        return {"ok": True, "mode": "actions", "executed": [], "failures": []}
+                    resolved = did
+                    drone = self.world.drone_by_name(did) if did else None
+                    if isinstance(drone, dict) and drone.get("id"):
+                        resolved = str(drone["id"])
+                    sub_spec = {"actions": acts, "altitude": spec.get("altitude"),
+                                "land_at_end": bool(spec.get("land_at_end", False)),
+                                "ensure_takeoff": False}
+                    return execute_mission(str(self.map_path), resolved or drone_id,
+                                           sub_spec, self.config.uav_api_base)
+
+                merged: dict[str, dict] = {}
+                workers = max(1, min(len(per_drone), 6))
+                with ThreadPoolExecutor(max_workers=workers) as pool:
+                    futures = {pool.submit(_run_one, did, pre_actions[did]): did
+                               for did in drone_order if pre_actions[did]}
+                    for future in as_completed(futures):
+                        did = futures[future]
+                        try:
+                            merged[did] = future.result()
+                        except Exception as exc:  # noqa: BLE001
+                            merged[did] = {"ok": False, "executed": [],
+                                           "failures": [{"error": str(exc)[:160]}]}
+                approach_drones = [did for did in drone_order if post_actions[did]]
+                if approach_drones:
+                    with ThreadPoolExecutor(max_workers=min(len(approach_drones), 6)) as pool:
+                        futures = {pool.submit(_run_one, did, post_actions[did]): did
+                                   for did in approach_drones}
+                        for future in as_completed(futures):
+                            did = futures[future]
+                            try:
+                                extra = future.result()
+                            except Exception as exc:  # noqa: BLE001
+                                extra = {"ok": False, "executed": [],
+                                         "failures": [{"error": str(exc)[:160]}]}
+                            base = merged.get(did) or {"ok": True, "executed": [], "failures": []}
+                            base["executed"] = list(base.get("executed") or []) + list(
+                                extra.get("executed") or [])
+                            base["failures"] = list(base.get("failures") or []) + list(
+                                extra.get("failures") or [])
+                            base["ok"] = bool(base.get("ok")) and bool(extra.get("ok"))
+                            merged[did] = base
+                results = [merged.get(did) or {"ok": False,
+                                               "failures": [{"error": "未执行"}]}
+                           for did in drone_order]
+                failures: list = []
+                for result in results:
+                    failures.extend(result.get("failures") or [])
+                completed = all(bool(r.get("ok")) for r in results)
+                return {"ok": completed, "completed": completed,
+                        "mode": "multi_drone_parallel",
+                        "drones": drone_order,
+                        "steps": sum(len(r.get("executed") or []) for r in results),
+                        "failures": failures[:5],
+                        "results": [_compact_result(r) for r in results]}
+            return self._mission_compact(execute_mission(str(self.map_path), drone_id, spec,
+                                                         self.config.uav_api_base))
+        if len(resolved_ids) == 1:
+            results = [execute_mission(str(self.map_path), resolved_ids[0], spec,
+                                       self.config.uav_api_base)]
+        else:
+            from concurrent.futures import ThreadPoolExecutor, as_completed
+
+            def _run_waypoints(did: str) -> dict:
+                return execute_mission(str(self.map_path), did, spec,
+                                       self.config.uav_api_base)
+
+            results_map: dict[str, dict] = {}
+            with ThreadPoolExecutor(max_workers=min(len(resolved_ids), 6)) as pool:
+                futures = {pool.submit(_run_waypoints, did): did for did in resolved_ids}
+                for future in as_completed(futures):
+                    did = futures[future]
+                    try:
+                        results_map[did] = future.result()
+                    except Exception as exc:  # noqa: BLE001
+                        results_map[did] = {"ok": False,
+                                            "failures": [{"error": str(exc)[:160]}]}
+            results = [results_map.get(did) or {"ok": False,
+                                                "failures": [{"error": "未执行"}]}
+                       for did in resolved_ids]
         if len(results) == 1:
-            return _compact_result(results[0])
+            return self._mission_compact(results[0])
         return {"ok": all(bool(r.get("ok")) for r in results),
+                "completed": all(bool(r.get("ok")) for r in results),
+                "mode": "waypoints_parallel",
+                "hint": "任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具",
                 "drones": resolved_ids,
                 "results": [_compact_result(r) for r in results]}
+
+    @staticmethod
+    def _mission_compact(result: dict) -> dict:
+        compact = _compact_result(result)
+        completed = bool(result.get("ok")) and not (result.get("failures") or [])
+        compact["completed"] = completed
+        if completed:
+            compact["hint"] = "任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具"
+        return compact
+
+    def _augment_spec_from_text(self, spec: dict, task_text: str, drone_id: str) -> dict:
+        """按任务文本补齐行为树规格里缺失的动作（悬停/拍照/降落），保持文本顺序。"""
+        actions = spec.get("actions") or []
+        if not actions:
+            return spec
+        text = (task_text or "").lower()
+
+        def kind_of(item: dict) -> str:
+            return str(item.get("kind") or item.get("name") or "")
+
+        def position(pattern: str) -> int:
+            match = re.search(pattern, text, re.I)
+            return match.start() if match else -1
+
+        kinds = [kind_of(item) for item in actions]
+        pending: list[tuple[int, dict]] = []
+        photo_pos = position(r"photo|photograph|capture|image")
+        if "take_photo" not in kinds and photo_pos >= 0:
+            pending.append((photo_pos, {"kind": "take_photo",
+                                        "params": {"drone_id": drone_id}}))
+        hover_match = re.search(r"(?:loiter|hover)\w*\s*(?:for|of)?\s*(\d+(?:\.\d+)?)\s*"
+                                r"(?:seconds?|secs?|s)\b", text)
+        hover_pos = position(r"hover|loiter")
+        if "hover" not in kinds and hover_pos >= 0:
+            duration = float(hover_match.group(1)) if hover_match else 5.0
+            pending.append((hover_pos, {"kind": "hover",
+                                        "params": {"drone_id": drone_id, "duration": duration}}))
+        elif hover_match:
+            for item in actions:
+                if kind_of(item) == "hover":
+                    item.setdefault("params", {}).setdefault("duration",
+                                                            float(hover_match.group(1)))
+        land_pos = position(r"\blands?\b|\blanded\b|touch\s*down")
+        if "land" not in kinds and land_pos >= 0:
+            pending.append((land_pos, {"kind": "land", "params": {"drone_id": drone_id}}))
+        pending.sort(key=lambda pair: pair[0])
+        for _, action in pending:
+            # 悬停发生在拍照之前时，插到拍照动作前面
+            if action["kind"] == "hover" and photo_pos >= 0 and _ < photo_pos:
+                index = next((i for i, item in enumerate(actions)
+                              if kind_of(item) == "take_photo"), -1)
+                if index >= 0:
+                    actions.insert(index, action)
+                    continue
+            actions.append(action)
+        spec["actions"] = actions
+        return spec
 
     # ---------- 8 覆盖航线 ----------
     def nav_coverage_route(self, input_json: Any = None) -> dict:

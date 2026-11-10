@@ -16,9 +16,9 @@ class NavConfig:
     external_map_dirs: list[str] = field(default_factory=list)
     scenario_dirs: list[str] = field(default_factory=list)
     default_map: str | None = None
-    clearance: float = 45.0
+    clearance: float = 0.3
     grid_step: float = 10.0
-    arrival_tolerance: float = 5.0
+    arrival_tolerance: float = 2.0
     z_default: float = 59.0
     max_detour_attempts: int = 3
     uav_api_base: str = "http://127.0.0.1:8000"

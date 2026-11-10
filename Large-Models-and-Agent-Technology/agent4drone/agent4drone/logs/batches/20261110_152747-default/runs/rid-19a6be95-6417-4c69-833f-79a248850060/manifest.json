@@ -1,0 +1,91 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-19a6be95-6417-4c69-833f-79a248850060",
+  "experiment": {
+    "run_id": "rid-19a6be95-6417-4c69-833f-79a248850060",
+    "experiment_id": "eid-20017177-8a38-57af-8b07-ac4e8958af31"
+  },
+  "service_instance_id": "20261110T152727-b2f22cfba7f5",
+  "batch_file": "../../batch.json",
+  "command_id": "08814994-7bd4-4785-867f-05e88c66d3c2",
+  "job_id": null,
+  "command": "Drone 9 performs an extreme marathon flight. Take off to 30 meters, fly to start point (57, 93, 30), then zigzag across the full map through 20 intermediate waypoints: (107, 139, 30), (897, 194, 30), (203, 293, 30), (803, 265, 30), (178, 451, 30), (838, 491, 30), (190, 581, 30), (791, 677, 30), (170, 717, 30), (907, 759, 30), (175, 864, 30), (826, 907, 30), (464, 846, 30), (973, 540, 30), (87, 586, 30), (938, 436, 30), (77, 303, 30), (771, 115, 30), (310, 905, 30), (678, 533, 30). Avoid obstacles Polygon Obstacle 5, Circle Obstacle 1, and Circle Obstacle 3. Finally, fly to end point (904, 892, 30) and land.",
+  "created_at": "2026-11-10 15:27:47",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-10 15:28:16",
+  "requested_run_id": null,
+  "started_at": "2026-11-10 15:27:47",
+  "runtime": {
+    "run_id": "rid-19a6be95-6417-4c69-833f-79a248850060",
+    "experiment": {
+      "run_id": "rid-19a6be95-6417-4c69-833f-79a248850060",
+      "experiment_id": "eid-20017177-8a38-57af-8b07-ac4e8958af31"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "24fa30be",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "24fa30be",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "d76904d6cadf850a7d5bf3994fbb90ebd6ddb42691682e1637f131a8d57ec26d",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone 9 performs an extreme marathon flight. Take off to 30 meters, fly to start point (57, 93, 30), then zigzag across the full map through 20 intermediate waypoints: (107, 139, 30), (897, 194, 30), (203, 293, 30), (803, 265, 30), (178, 451, 30), (838, 491, 30), (190, 581, 30), (791, 677, 30), (170, 717, 30), (907, 759, 30), (175, 864, 30), (826, 907, 30), (464, 846, 30), (973, 540, 30), (87, 586, 30), (938, 436, 30), (77, 303, 30), (771, 115, 30), (310, 905, 30), (678, 533, 30). Avoid obstacles Polygon Obstacle 5, Circle Obstacle 1, and Circle Obstacle 3. Finally, fly to end point (904, 892, 30) and land.",
+            "drones": [
+              "Drone 9"
+            ],
+            "altitude": 30
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 22, \"legs\": 22, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"7b100a3d\", \"drone_id\": \"ab81720f\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 30.0m (battery: -0.5%/-0mAh, remaining: 99.5%/63mAh)\", \"timestamp\": 1794295685.3205557}, \"steps\": 23, \"sample\": [{\"leg\": 1, \"goal\": [57.0, 93.0], \"waypoints\": 6, \"plan_ms\": 3150, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [107.0, 139.0], \"waypoints\": 1, \"plan_ms\": 17, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [77.0, 303.0], \"waypoints\": 2, \"plan_ms\": 39, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14395,
+      "completion_tokens": 419,
+      "total_tokens": 14814,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

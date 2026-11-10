@@ -1,0 +1,111 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-7d3578cd-40a9-4aff-9f04-e658c796ae88",
+  "experiment": {
+    "experiment_id": "eid-c7ca354b-d009-4976-984d-33f0186f52ab",
+    "start_reason": "start",
+    "run_id": "rid-7d3578cd-40a9-4aff-9f04-e658c796ae88",
+    "session_id": "24fa30be",
+    "session_name": "Path Planning Moderate",
+    "task_id": "8d6e1a51",
+    "task_name": "Quick Checkpoint Visit 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "88f25c7d508d47ad805a84d09bf370e41d30ac4f31fe54124e6c2aa0f28d3331",
+    "session_snapshot_hash": "b841208562d912234ae925bb9ed56596bdf0bb1ed0af1d393f77ad7cf3f2e6c7",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261110T142136-7ff20119ab6e",
+  "batch_file": "../../batch.json",
+  "command_id": "1bee6e1c-f34c-45ad-8015-6f6e367391b4",
+  "job_id": "ab68e4d5-085d-42cc-abf9-9acce042b5b8",
+  "command": "Drone 10 takes off to 14 meters, flies to checkpoint at (490, 382, 14), and hovers briefly.",
+  "created_at": "2026-11-10 14:24:00",
+  "execution_status": "cancelled",
+  "execution_finished_at": "2026-11-10 14:25:11",
+  "requested_run_id": null,
+  "started_at": "2026-11-10 14:24:00",
+  "runtime": {
+    "run_id": "rid-7d3578cd-40a9-4aff-9f04-e658c796ae88",
+    "experiment": {
+      "experiment_id": "eid-c7ca354b-d009-4976-984d-33f0186f52ab",
+      "start_reason": "start",
+      "run_id": "rid-7d3578cd-40a9-4aff-9f04-e658c796ae88",
+      "session_id": "24fa30be",
+      "session_name": "Path Planning Moderate",
+      "task_id": "8d6e1a51",
+      "task_name": "Quick Checkpoint Visit 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "88f25c7d508d47ad805a84d09bf370e41d30ac4f31fe54124e6c2aa0f28d3331",
+      "session_snapshot_hash": "b841208562d912234ae925bb9ed56596bdf0bb1ed0af1d393f77ad7cf3f2e6c7",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "24fa30be",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 19,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 1,
+  "llm_recording_status": "partial",
+  "observed_session_id": "24fa30be",
+  "requested_session_id": "24fa30be",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "ecbac189fb591884811579fb04f023729526a7be48117be684de15f26cfc8b3f",
+  "recording_status": "partial",
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "conversion_required",
+    "recording_status": "complete",
+    "sha256": "ee8e48a91fc7c83c6ae70e81f1e816930e4bf950ef87931a12b16bb39846abd6",
+    "source_indices": [
+      4
+    ],
+    "issues": [
+      {
+        "index": 5,
+        "path": "/drones/fe7ff43b/command/move_to",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      },
+      {
+        "index": 7,
+        "path": "/drones/fe7ff43b/command/move_to",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      },
+      {
+        "index": 9,
+        "path": "/drones/fe7ff43b/command/move_to",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      },
+      {
+        "index": 10,
+        "path": "/drones/fe7ff43b/command/move_to",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      },
+      {
+        "reason": "Run interrupted/failed or recording incomplete; review required"
+      }
+    ],
+    "count": 1,
+    "replay_validation": "not_run"
+  }
+}

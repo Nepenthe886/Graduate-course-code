@@ -1,0 +1,254 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-e22118f0-bff7-4d45-b62c-bb5f09bd0cde",
+  "experiment": {
+    "run_id": "rid-e22118f0-bff7-4d45-b62c-bb5f09bd0cde",
+    "experiment_id": "eid-dbdc308d-d4d1-54b8-a647-0c0df345b378"
+  },
+  "service_instance_id": "20261110T142924-22078c6ef7fd",
+  "batch_file": "../../batch.json",
+  "command_id": "e35aa3f5-6748-47cd-ad3e-fa5e072680f4",
+  "job_id": null,
+  "command": "Drone 3 takes off to 73 meters, flies to (318, 395, 73), loiters for 5 seconds, and captures a photo.",
+  "created_at": "2026-11-10 14:31:10",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-10 14:32:02",
+  "requested_run_id": null,
+  "started_at": "2026-11-10 14:31:10",
+  "runtime": {
+    "run_id": "rid-e22118f0-bff7-4d45-b62c-bb5f09bd0cde",
+    "experiment": {
+      "run_id": "rid-e22118f0-bff7-4d45-b62c-bb5f09bd0cde",
+      "experiment_id": "eid-dbdc308d-d4d1-54b8-a647-0c0df345b378"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "24fa30be",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 9,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "24fa30be",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "ecbac189fb591884811579fb04f023729526a7be48117be684de15f26cfc8b3f",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "[TASK FAILED] The drone's path to the first waypoint is repeatedly blocked by the Circle Obstacle 4. It seems the obstacle is in the way of the planned route. Please consider an alternative route or check if the obstacle can be avoided.\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "ad8fbae5",
+            "altitude": 73.0
+          },
+          "log": "Preparing to call tool 'take_off'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"e8302308\",\n  \"drone_id\": \"ad8fbae5\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 73.0m (battery: -0.5%/-0mAh, remaining: 99.5%/73mAh)\",\n  \"timestamp\": 1794292279.8834138\n}"
+      ],
+      [
+        {
+          "tool": "move_to",
+          "tool_input": {
+            "drone_id": "ad8fbae5",
+            "x": 318.0,
+            "y": 395.0,
+            "z": 73.0
+          },
+          "log": "Preparing to call tool 'move_to'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"404ed78b\",\n  \"drone_id\": \"ad8fbae5\",\n  \"command\": \"move_to\",\n  \"status\": \"error\",\n  \"message\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Polygon Obstacle 17'\",\n  \"timestamp\": 1794292283.092038\n}"
+      ],
+      [
+        {
+          "tool": "nav_nearby_obstacles",
+          "tool_input": {
+            "x": 478.0,
+            "y": 500.0
+          },
+          "log": "Preparing to call tool 'nav_nearby_obstacles'",
+          "message_log": null
+        },
+        "{\"origin\": [478.0, 500.0], \"radius_m\": 150.0, \"obstacles\": [{\"name\": \"Polygon Obstacle 23\", \"type\": \"polygon\", \"center\": [430.0, 557.0], \"distance_m\": 39.41, \"height\": 0.0, \"footprint_bbox\": {\"min\": [405.0, 532.0], \"max\": [455.0, 582.0]}}, {\"name\": \"Polygon Obstacle 17\", \"type\": \"polygon\", \"center\": [401.0, 417.0], \"distance_m\": 44.05, \"height\": 0.0, \"footprint_bbox\": {\"min\": [352.0, 368.0], \"max\": [450.0, 466.0]}}, {\"name\": \"Polygon Obstacle 14\", \"type\": \"polygon\", \"center\": [471.0, 423.0], \"distance_m\": 60.0, \"height\": 0.0, \"footprint_bbox\": {\"min\": [454.0, 406.0], \"max\": [488.0, 440.0]}}, {\"name\": \"Polygon Obstacle 25\", \"type\": \"polygon\", \"center\": [577.0, 468.0], \"distance_m\": 69.03, \"height\": 0.0, \"footprint_bbox\": {\"min\": [547.0, 438.0], \"max\": [607.0, 498.0]}}, {\"name\": \"Polygon Obstacle 7\", \"type\": \"polygon\", \"center\": [611.0, 653.0], \"distance_m\": 95.8, \"height\": 0.0, \"footprint_bbox\": {\"min\": [535.0, 577.0], \"max\": [687.0, 729.0]}}, {\"name\": \"Polygon Obstacle 22\", \"type\": \"polygon\", \"center\": [494.0, 633.0], \"distance_m\": 96.0, \"height\": 0.0, \"footprint_bbox\": {\"min\": [457.0, 596.0], \"max\": [531.0, 670.0]}}, {\"name\": \"Polygon Obstacle 3\", \"type\": \"polygon\", \"center\": [367.0, 643.0], \"distance_m\": 98.79, \"height\": 0.0, \"footprint_bbox\": {\"min\": [308.0, 584.0], \"max\": [426.0, 702.0]}}, {\"name\": \"Circle Obstacle 4\", \"type\": \"circle\", \"center\": [622.0, 356.0], \"distance_m\": 126.65, \"height\": 0.0, \"footprint_bbox\": {\"min\": [545.0, 279.0], \"max\": [699.0, 433.0]}}, {\"name\": \"Polygon Obstacle 15\", \"type\": \"polygon\", \"center\": [648.0, 491.0], \"distance_m\": 141.0, \"height\": 0.0, \"footprint_bbox\": {\"min\": [619.0, 462.0], \"max\": [677.0, 520.0]}}, {\"name\": \"Point Obstacle 1\", \"type\": \"point\", \"center\": [329.0, 548.0], \"distance_m\": 146.55, \"height\": 0.0, \"footprint_bbox\": {\"min\": [319.0, 538.0], \"max\": [339.0, 558.0]}}]}"
+      ],
+      [
+        {
+          "tool": "nav_plan_route",
+          "tool_input": {
+            "goal": {
+              "x": 318.0,
+              "y": 395.0,
+              "z": 73.0
+            },
+            "clearance": 25.0,
+            "z": 73.0
+          },
+          "log": "Preparing to call tool 'nav_plan_route'",
+          "message_log": null
+        },
+        "{\"start\": [701.0, 280.0], \"goal\": [318.0, 395.0], \"waypoints\": [[720.0, 360.0], [696.0, 468.0], [696.0, 540.0], [600.0, 540.0], [324.0, 480.0], [318.0, 395.0]], \"waypoints_xyz\": [[701.0, 280.0, 73.0], [720.0, 360.0, 73.0], [696.0, 468.0, 73.0], [696.0, 540.0, 73.0], [600.0, 540.0, 73.0], [324.0, 480.0, 73.0], [318.0, 395.0, 73.0]], \"length\": 728.52, \"length_3d\": 728.52, \"min_clearance\": 17.46, \"detoured\": true, \"avoided\": [\"Circle Obstacle 4\", \"Polygon Obstacle 17\"], \"planning_dim\": \"2d\", \"altitude\": 73.0, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "ad8fbae5",
+            "waypoints": [
+              {
+                "x": 720.0,
+                "y": 360.0
+              },
+              {
+                "x": 696.0,
+                "y": 468.0
+              },
+              {
+                "x": 696.0,
+                "y": 540.0
+              },
+              {
+                "x": 600.0,
+                "y": 540.0
+              },
+              {
+                "x": 324.0,
+                "y": 480.0
+              },
+              {
+                "x": 318.0,
+                "y": 395.0
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"8940538c\",\n  \"drone_id\": \"ad8fbae5\",\n  \"command\": \"move_along_path\",\n  \"status\": \"error\",\n  \"message\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.CIRCLE obstacle 'Circle Obstacle 4'\",\n  \"successful_points_count\": null,\n  \"successful_points\": null,\n  \"unsuccessful_points_count\": null,\n  \"unsuccessful_points\": null,\n  \"timestamp\": 1794292304.6712801\n}"
+      ],
+      [
+        {
+          "tool": "nav_nearby_obstacles",
+          "tool_input": {
+            "x": 701.0,
+            "y": 280.0
+          },
+          "log": "Preparing to call tool 'nav_nearby_obstacles'",
+          "message_log": null
+        },
+        "{\"origin\": [701.0, 280.0], \"radius_m\": 150.0, \"obstacles\": [{\"name\": \"Polygon Obstacle 6\", \"type\": \"polygon\", \"center\": [659.0, 202.0], \"distance_m\": 30.0, \"height\": 0.0, \"footprint_bbox\": {\"min\": [611.0, 154.0], \"max\": [707.0, 250.0]}}, {\"name\": \"Circle Obstacle 4\", \"type\": \"circle\", \"center\": [622.0, 356.0], \"distance_m\": 32.67, \"height\": 0.0, \"footprint_bbox\": {\"min\": [545.0, 279.0], \"max\": [699.0, 433.0]}}, {\"name\": \"Polygon Obstacle 10\", \"type\": \"polygon\", \"center\": [804.0, 335.0], \"distance_m\": 40.5, \"height\": 0.0, \"footprint_bbox\": {\"min\": [741.5, 272.5], \"max\": [866.5, 397.5]}}, {\"name\": \"Circle Obstacle 16\", \"type\": \"circle\", \"center\": [801.0, 215.0], \"distance_m\": 88.33, \"height\": 0.0, \"footprint_bbox\": {\"min\": [770.0, 184.0], \"max\": [832.0, 246.0]}}, {\"name\": \"Polygon Obstacle 4\", \"type\": \"polygon\", \"center\": [568.0, 258.0], \"distance_m\": 117.15, \"height\": 0.0, \"footprint_bbox\": {\"min\": [552.0, 242.0], \"max\": [584.0, 274.0]}}]}"
+      ],
+      [
+        {
+          "tool": "nav_plan_route",
+          "tool_input": {
+            "goal": {
+              "x": 318.0,
+              "y": 395.0,
+              "z": 73.0
+            },
+            "clearance": 25.0,
+            "z": 73.0
+          },
+          "log": "Preparing to call tool 'nav_plan_route'",
+          "message_log": null
+        },
+        "{\"start\": [701.0, 280.0], \"goal\": [318.0, 395.0], \"waypoints\": [[720.0, 360.0], [696.0, 468.0], [696.0, 540.0], [600.0, 540.0], [324.0, 480.0], [318.0, 395.0]], \"waypoints_xyz\": [[701.0, 280.0, 73.0], [720.0, 360.0, 73.0], [696.0, 468.0, 73.0], [696.0, 540.0, 73.0], [600.0, 540.0, 73.0], [324.0, 480.0, 73.0], [318.0, 395.0, 73.0]], \"length\": 728.52, \"length_3d\": 728.52, \"min_clearance\": 17.46, \"detoured\": true, \"avoided\": [\"Circle Obstacle 4\", \"Polygon Obstacle 17\"], \"planning_dim\": \"2d\", \"altitude\": 73.0, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "ad8fbae5",
+            "waypoints": [
+              {
+                "x": 720.0,
+                "y": 360.0
+              },
+              {
+                "x": 696.0,
+                "y": 468.0
+              },
+              {
+                "x": 696.0,
+                "y": 540.0
+              },
+              {
+                "x": 600.0,
+                "y": 540.0
+              },
+              {
+                "x": 324.0,
+                "y": 480.0
+              },
+              {
+                "x": 318.0,
+                "y": 395.0
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"df4ce2b0\",\n  \"drone_id\": \"ad8fbae5\",\n  \"command\": \"move_along_path\",\n  \"status\": \"error\",\n  \"message\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.CIRCLE obstacle 'Circle Obstacle 4'\",\n  \"successful_points_count\": null,\n  \"successful_points\": null,\n  \"unsuccessful_points_count\": null,\n  \"unsuccessful_points\": null,\n  \"timestamp\": 1794292321.5079272\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 73167,
+      "completion_tokens": 723,
+      "total_tokens": 73890,
+      "llm_calls": 9
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "conversion_required",
+    "recording_status": "complete",
+    "sha256": "826d67f057f9cf53e72e30f10afa75b28e27de070401c9bb3f0c596ee18e587f",
+    "source_indices": [
+      4
+    ],
+    "issues": [
+      {
+        "index": 5,
+        "path": "/drones/ad8fbae5/command/move_to",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      },
+      {
+        "index": 7,
+        "path": "/drones/ad8fbae5/command/move_along_path",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      },
+      {
+        "index": 9,
+        "path": "/drones/ad8fbae5/command/move_along_path",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      }
+    ],
+    "count": 1,
+    "replay_validation": "not_run"
+  }
+}

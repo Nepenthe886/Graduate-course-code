@@ -1,0 +1,246 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-781fe118-946c-4afa-88ab-1b54a2962d58",
+  "experiment": {
+    "run_id": "rid-781fe118-946c-4afa-88ab-1b54a2962d58",
+    "experiment_id": "eid-b3da83f7-7211-5f1d-9d0d-7353d06e660e"
+  },
+  "service_instance_id": "20261110T144318-4c5349856ffd",
+  "batch_file": "../../batch.json",
+  "command_id": "94329f0f-e931-439b-9fac-8c58a3f3b8e7",
+  "job_id": null,
+  "command": "Drone 10 performs extended distance flight test: take off to 19 meters, fly a route that covers at least 1433 meters total distance. The route should include waypoints at (312, 236, 19), (729, 230, 19), (657, 841, 19), and (375, 828, 19). After completing the distance requirement, the mission concludes.",
+  "created_at": "2026-11-10 14:45:56",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-10 14:47:03",
+  "requested_run_id": null,
+  "started_at": "2026-11-10 14:45:56",
+  "runtime": {
+    "run_id": "rid-781fe118-946c-4afa-88ab-1b54a2962d58",
+    "experiment": {
+      "run_id": "rid-781fe118-946c-4afa-88ab-1b54a2962d58",
+      "experiment_id": "eid-b3da83f7-7211-5f1d-9d0d-7353d06e660e"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "24fa30be",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 9,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "24fa30be",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "128b3bd97308fdf84bf7eb4e76c058cc7ee378d55f54786135d1635e7d1a5664",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone 10 performs extended distance flight test: take off to 19 meters, fly a route that covers at least 1433 meters total distance. The route should include waypoints at (312, 236, 19), (729, 230, 19), (657, 841, 19), and (375, 828, 19). After completing the distance requirement, the mission concludes.",
+            "drones": [
+              "Drone 10"
+            ],
+            "altitude": 19,
+            "waypoints": [
+              [
+                312,
+                236,
+                19
+              ],
+              [
+                729,
+                230,
+                19
+              ],
+              [
+                657,
+                841,
+                19
+              ],
+              [
+                375,
+                828,
+                19
+              ]
+            ]
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 4, \"legs\": 4, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"ce78d8f5\", \"drone_id\": \"fe7ff43b\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 19.0m (battery: -0.5%/-0mAh, remaining: 99.5%/96mAh)\", \"timestamp\": 1794293168.7841523}, \"steps\": 4, \"sample\": [{\"leg\": 1, \"goal\": [312.0, 236.0], \"waypoints\": 4, \"plan_ms\": 2688, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [729.0, 230.0], \"waypoints\": 7, \"plan_ms\": 243, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [657.0, 841.0], \"waypoints\": 2, \"plan_ms\": 3004, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_verify_arrival",
+          "tool_input": {
+            "goal": {
+              "x": 375.0,
+              "y": 828.0,
+              "z": 19.0
+            },
+            "tolerance": 5.0
+          },
+          "log": "Preparing to call tool 'nav_verify_arrival'",
+          "message_log": null
+        },
+        "{\"arrived\": false, \"distance_m\": 637.64, \"tolerance_m\": 5.0, \"pose\": {\"x\": 701.0, \"y\": 280.0, \"z\": 0.0}}"
+      ],
+      [
+        {
+          "tool": "nav_route_to_target",
+          "tool_input": {
+            "target": "Waypoint 4",
+            "z": 19.0
+          },
+          "log": "Preparing to call tool 'nav_route_to_target'",
+          "message_log": null
+        },
+        "{\"error\": \"地图里没有目标 'Waypoint 4'\", \"available\": [\"Fixed Target 1\", \"Fixed Target 2\", \"Fixed Target 3\", \"Fixed Target 4\", \"Fixed Target 5\", \"Fixed Target 6\", \"Fixed Target 7\", \"Fixed Target 8\", \"Fixed Target 9\", \"Fixed Target 10\", \"Fixed Target 11\", \"Fixed Target 12\", \"Fixed Target 13\", \"Fixed Target 14\", \"Fixed Target 15\", \"Fixed Target 16\", \"Fixed Target 17\", \"Fixed Target 18\", \"Fixed Target 19\", \"Fixed Target 20\", \"Fixed Target 21\", \"Fixed Target 22\", \"Fixed Target 23\", \"Fixed Target 24\", \"Fixed Target 25\", \"Fixed Target 26\", \"Fixed Target 27\", \"Fixed Target 28\", \"Fixed Target 29\", \"Fixed Target 30\"]}"
+      ],
+      [
+        {
+          "tool": "nav_pose",
+          "tool_input": {
+            "target": "Waypoint 4"
+          },
+          "log": "Preparing to call tool 'nav_pose'",
+          "message_log": null
+        },
+        "{\"pose\": {\"x\": 701.0, \"y\": 280.0, \"z\": 0.0, \"yaw_deg\": 277.0}}"
+      ],
+      [
+        {
+          "tool": "nav_route_to_target",
+          "tool_input": {
+            "target": "Waypoint 4",
+            "z": 19.0
+          },
+          "log": "Preparing to call tool 'nav_route_to_target'",
+          "message_log": null
+        },
+        "{\"error\": \"地图里没有目标 'Waypoint 4'\", \"available\": [\"Fixed Target 1\", \"Fixed Target 2\", \"Fixed Target 3\", \"Fixed Target 4\", \"Fixed Target 5\", \"Fixed Target 6\", \"Fixed Target 7\", \"Fixed Target 8\", \"Fixed Target 9\", \"Fixed Target 10\", \"Fixed Target 11\", \"Fixed Target 12\", \"Fixed Target 13\", \"Fixed Target 14\", \"Fixed Target 15\", \"Fixed Target 16\", \"Fixed Target 17\", \"Fixed Target 18\", \"Fixed Target 19\", \"Fixed Target 20\", \"Fixed Target 21\", \"Fixed Target 22\", \"Fixed Target 23\", \"Fixed Target 24\", \"Fixed Target 25\", \"Fixed Target 26\", \"Fixed Target 27\", \"Fixed Target 28\", \"Fixed Target 29\", \"Fixed Target 30\"]}"
+      ],
+      [
+        {
+          "tool": "nav_points_route",
+          "tool_input": {
+            "points": [
+              [
+                312.0,
+                236.0,
+                19.0
+              ],
+              [
+                729.0,
+                230.0,
+                19.0
+              ],
+              [
+                657.0,
+                841.0,
+                19.0
+              ],
+              [
+                375.0,
+                828.0,
+                19.0
+              ]
+            ]
+          },
+          "log": "Preparing to call tool 'nav_points_route'",
+          "message_log": null
+        },
+        "{\"waypoint_count\": 19, \"total_length\": 1757.83, \"waypoints_sample\": [{\"x\": 701.0, \"y\": 280.0, \"z\": 19.0}, {\"x\": 576.0, \"y\": 276.0, \"z\": 19.0}, {\"x\": 468.0, \"y\": 276.0, \"z\": 19.0}, {\"x\": 408.0, \"y\": 228.0, \"z\": 19.0}, {\"x\": 324.0, \"y\": 228.0, \"z\": 19.0}], \"hint\": \"执行请用 nav_execute_mission(task_text=...)，不要自己传完整航点\"}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone 10 performs extended distance flight test: take off to 19 meters, fly a route that covers at least 1433 meters total distance. The route should include waypoints at (312, 236, 19), (729, 230, 19), (657, 841, 19), and (375, 828, 19). After completing the distance requirement, the mission concludes.",
+            "drones": [
+              "Drone 10"
+            ],
+            "altitude": 19,
+            "waypoints": [
+              [
+                312,
+                236,
+                19
+              ],
+              [
+                729,
+                230,
+                19
+              ],
+              [
+                657,
+                841,
+                19
+              ],
+              [
+                375,
+                828,
+                19
+              ]
+            ]
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 4, \"legs\": 4, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"aaf4e7bd\", \"drone_id\": \"fe7ff43b\", \"command\": \"take_off\", \"status\": \"error\", \"message\": \"Cannot take off from current status: DroneStatus.HOVERING\", \"timestamp\": 1794293211.8003724}, \"steps\": 4, \"sample\": [{\"leg\": 1, \"goal\": [312.0, 236.0], \"waypoints\": 3, \"plan_ms\": 2728, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [729.0, 230.0], \"waypoints\": 7, \"plan_ms\": 229, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [657.0, 841.0], \"waypoints\": 2, \"plan_ms\": 2922, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "land",
+          "tool_input": {
+            "drone_id": "fe7ff43b"
+          },
+          "log": "Preparing to call tool 'land'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"620364d3\",\n  \"drone_id\": \"fe7ff43b\",\n  \"command\": \"land\",\n  \"status\": \"success\",\n  \"message\": \"Drone landed successfully (battery: -0.0%/-0mAh, remaining: 64.9%/63mAh)\",\n  \"timestamp\": 1794293223.1501083\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 69707,
+      "completion_tokens": 726,
+      "total_tokens": 70433,
+      "llm_calls": 9
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "complete",
+    "recording_status": "complete",
+    "sha256": "72f197096a4bd18b14a6e40e4c00af864bbc2f370d65fd2f72f44e945ac67a14",
+    "source_indices": [
+      13
+    ],
+    "issues": [],
+    "count": 1,
+    "replay_validation": "not_run"
+  }
+}

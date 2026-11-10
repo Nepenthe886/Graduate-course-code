@@ -1,0 +1,89 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-7bf1088a-1bec-41a4-8a7f-7ac84706f2a9",
+  "experiment": {
+    "run_id": "rid-7bf1088a-1bec-41a4-8a7f-7ac84706f2a9",
+    "experiment_id": "eid-e5bb15b5-1351-503b-84b3-53bbdf6c9ef3"
+  },
+  "service_instance_id": "20261110T221726-27060af0d90b",
+  "batch_file": "../../batch.json",
+  "command_id": "0de4bfcd-af65-48b9-bcc4-86d2af84b681",
+  "job_id": null,
+  "command": "Drones Yard 1, Yard 14, and Yard 5 perform a triple marathon flight at 28 meters. Yard 1 route: fly to and start at  (78, 129, 28), then waypoints (137, 191, 28), (888, 223, 28), (149, 313, 28), (877, 397, 28), (138, 448, 28), (895, 547, 28), (248, 610, 28), (887, 739, 28), (294, 746, 28), (643, 852, 28), then end (924, 932, 28) and land. Yard 14 route: fly to and start at  (511, 124, 28), then waypoints (520, 150, 28), (863, 241, 28), (123, 370, 28), (945, 423, 28), (193, 471, 28), (841, 542, 28), (175, 697, 28), (846, 761, 28), (352, 787, 28), (585, 889, 28), then end (478, 948, 28) and land. Yard 5 route: fly to and start at  (947, 91, 28), then waypoints (837, 209, 28), (198, 257, 28), (799, 330, 28), (192, 345, 28), (782, 477, 28), (117, 542, 28), (900, 639, 28), (123, 724, 28), (747, 759, 28), (296, 940, 28), then end (56, 901, 28) and land.",
+  "created_at": "2026-11-10 22:21:48",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-10 22:22:53",
+  "requested_run_id": null,
+  "started_at": "2026-11-10 22:21:48",
+  "runtime": {
+    "run_id": "rid-7bf1088a-1bec-41a4-8a7f-7ac84706f2a9",
+    "experiment": {
+      "run_id": "rid-7bf1088a-1bec-41a4-8a7f-7ac84706f2a9",
+      "experiment_id": "eid-e5bb15b5-1351-503b-84b3-53bbdf6c9ef3"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "1520a780",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "1520a780",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "6fd947b86ac1a9c794835ba49a79c0aaedca346e60ebe92e4d0b89842f84930e",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Yard 1, Yard 14, and Yard 5 perform a triple marathon flight at 28 meters. Yard 1 route: fly to and start at  (78, 129, 28), then waypoints (137, 191, 28), (888, 223, 28), (149, 313, 28), (877, 397, 28), (138, 448, 28), (895, 547, 28), (248, 610, 28), (887, 739, 28), (294, 746, 28), (643, 852, 28), then end (924, 932, 28) and land. Yard 14 route: fly to and start at  (511, 124, 28), then waypoints (520, 150, 28), (863, 241, 28), (123, 370, 28), (945, 423, 28), (193, 471, 28), (841, 542, 28), (175, 697, 28), (846, 761, 28), (352, 787, 28), (585, 889, 28), then end (478, 948, 28) and land. Yard 5 route: fly to and start at  (947, 91, 28), then waypoints (837, 209, 28), (198, 257, 28), (799, 330, 28), (192, 345, 28), (782, 477, 28), (117, 542, 28), (900, 639, 28), (123, 724, 28), (747, 759, 28), (296, 940, 28), then end (56, 901, 28) and land.",
+            "altitude": 20.0,
+            "drone_id": "31f97671"
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Yard 1\", \"Yard 14\", \"Yard 5\"], \"steps\": 42, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 20.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [78.0, 129.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [137.0, 191.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 20.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [511.0, 124.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [520.0, 150.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 20.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [947.0, 91.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [837.0, 209.0], \"attempts\": 1}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 16095,
+      "completion_tokens": 1165,
+      "total_tokens": 17260,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

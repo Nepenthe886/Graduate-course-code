@@ -1,0 +1,147 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-b80ed275-12b8-4e34-a030-54d242027940",
+  "experiment": {
+    "run_id": "rid-b80ed275-12b8-4e34-a030-54d242027940",
+    "experiment_id": "eid-a7248e08-874d-5cfa-b817-d66a699cf200"
+  },
+  "service_instance_id": "20261110T180159-267368bbc599",
+  "batch_file": "../../batch.json",
+  "command_id": "bf76b072-d12a-4d01-8129-28b66fb55ba6",
+  "job_id": null,
+  "command": "Drones Drone 2 and Drone 1 form a line formation: both take off to 17 meters. Drone 2 positions at (454, 490, 17) and Drone 1 flys to (483, 549, 17) first, and then move to 15 meters at most to Drone 2. Both maintain formation for monitoring.",
+  "created_at": "2026-11-10 18:02:27",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-10 18:02:45",
+  "requested_run_id": null,
+  "started_at": "2026-11-10 18:02:27",
+  "runtime": {
+    "run_id": "rid-b80ed275-12b8-4e34-a030-54d242027940",
+    "experiment": {
+      "run_id": "rid-b80ed275-12b8-4e34-a030-54d242027940",
+      "experiment_id": "eid-a7248e08-874d-5cfa-b817-d66a699cf200"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "24fa30be",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 4,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "24fa30be",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "e0f13d9098b2115144c8d52b70d24bd166021f76b79333df8dac019ff649adcc",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "[TASK FAILED] 连续 3 次工具调用失败，已停止重试。最后错误：InvalidURL: URL can't contain control characters. '/drones/Drone 2' (found at least ' ')\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Drone 2 and Drone 1 form a line formation: both take off to 17 meters. Drone 2 positions at (454, 490, 17) and Drone 1 flys to (483, 549, 17) first, and then move to 15 meters at most to Drone 2. Both maintain formation for monitoring.",
+            "drone_id": "712aca20",
+            "altitude": 17.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"error\": \"InvalidURL: URL can't contain control characters. '/drones/Drone 2' (found at least ' ')\"}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "line_formation",
+            "params": {
+              "drones": [
+                "Drone 1",
+                "Drone 2"
+              ],
+              "positions": [
+                {
+                  "drone": "Drone 2",
+                  "position": "(454, 490, 17)"
+                },
+                {
+                  "drone": "Drone 1",
+                  "position": "(483, 549, 17)"
+                }
+              ],
+              "altitude": 17.0,
+              "formation_distance": 15.0
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"error\": \"ValueError: could not convert string to float: 'D'\"}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "line_formation",
+            "params": {
+              "drones": [
+                "Drone 1",
+                "Drone 2"
+              ],
+              "positions": [
+                {
+                  "drone": "Drone 2",
+                  "position": "454, 490, 17"
+                },
+                {
+                  "drone": "Drone 1",
+                  "position": "483, 549, 17"
+                }
+              ],
+              "altitude": 17.0,
+              "formation_distance": 15.0
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"error\": \"ValueError: could not convert string to float: 'D'\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 27034,
+      "completion_tokens": 563,
+      "total_tokens": 27597,
+      "llm_calls": 4
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

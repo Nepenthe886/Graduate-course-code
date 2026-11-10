@@ -99,10 +99,13 @@ def segment_circle_distance(a: Point, b: Point, center: Point, radius: float) ->
 
 
 def circle_to_polygon(center: Point, radius: float, segments: int = 24) -> Polygon:
+    """圆 → 外接多边形（比真实圆略大），避免内接近似低估障碍。"""
     cx, cy = center
+    scale = 1.0 / math.cos(math.pi / segments)
+    scaled = float(radius) * scale
     return [
-        (cx + radius * math.cos(2 * math.pi * i / segments),
-         cy + radius * math.sin(2 * math.pi * i / segments))
+        (cx + scaled * math.cos(2 * math.pi * i / segments),
+         cy + scaled * math.sin(2 * math.pi * i / segments))
         for i in range(segments)
     ]
 
@@ -115,7 +118,8 @@ def ellipse_to_polygon(center: Point, width: float, length: float, segments: int
     早期按全长(w/2)计算会把椭圆算小一半，导致规划出的绕行点落进真实障碍内。
     """
     cx, cy = center
-    rx, ry = float(width), float(length)
+    scale = 1.0 / math.cos(math.pi / segments)
+    rx, ry = float(width) * scale, float(length) * scale
     return [
         (cx + rx * math.cos(2 * math.pi * i / segments),
          cy + ry * math.sin(2 * math.pi * i / segments))

@@ -30,7 +30,7 @@ class NavStep:
 
 class Navigation:
     def __init__(self, world: WorldMap, localizer: Localizer, planner: Planner | None = None,
-                 arrival_tolerance: float = 5.0, z_default: float = 59.0):
+                 arrival_tolerance: float = 2.0, z_default: float = 59.0):
         self.world = world
         self.localizer = localizer
         self.planner = planner or Planner(world)

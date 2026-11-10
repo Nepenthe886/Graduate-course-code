@@ -1,0 +1,5330 @@
+{
+  "id": "54bee0bc2ff92761c5ae48370cf7e284",
+  "export_timestamp": "2026-11-10 21:11:29",
+  "tool": "MultiUAV-Plat GUI Controller",
+  "version": "0.4.9",
+  "server_version": "0.4.9",
+  "statistics": {
+    "total_tasks": 20,
+    "passed_tasks_count": 18,
+    "failed_tasks_count": 2,
+    "total_failed_task_count": 0,
+    "task_pass_rate": 0.9,
+    "total_failed_task_rate": 0.0,
+    "average_check_pass_rate": 0.9812,
+    "total_checks": 166,
+    "passed_checks": 164,
+    "failed_checks": 2,
+    "check_pass_rate": 0.988
+  },
+  "results": [
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "8b4cfd47",
+      "task_name": "Simple Rotation Test 1",
+      "check_attempts_used": 2,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 19:53:42",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 2,
+        "passed_checks_apis": 2,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 2
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_heading",
+          "parameters": {
+            "drone_id": "5518d687",
+            "expected_heading": 154.0,
+            "tolerance": 5.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 154.0,
+            "note": null,
+            "drone_id": "5518d687",
+            "expected_heading": 154.0,
+            "heading_delta": 0.0,
+            "tolerance": 5.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_altitude",
+          "parameters": {
+            "drone_id": "5518d687",
+            "expected_altitude": 15.0,
+            "tolerance": 2.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 15.0,
+            "note": null,
+            "drone_id": "5518d687",
+            "expected_altitude": 15.0,
+            "difference": 0.0,
+            "tolerance": 2.0
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "f048c662",
+      "task_name": "Simple Rotation Test 2",
+      "check_attempts_used": 2,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 19:53:59",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 2,
+        "passed_checks_apis": 2,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 2
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_heading",
+          "parameters": {
+            "drone_id": "b68001a8",
+            "expected_heading": 307.0,
+            "tolerance": 5.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 307.0,
+            "note": null,
+            "drone_id": "b68001a8",
+            "expected_heading": 307.0,
+            "heading_delta": 0.0,
+            "tolerance": 5.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_altitude",
+          "parameters": {
+            "drone_id": "b68001a8",
+            "expected_altitude": 12.0,
+            "tolerance": 2.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 12.0,
+            "note": null,
+            "drone_id": "b68001a8",
+            "expected_altitude": 12.0,
+            "difference": 0.0,
+            "tolerance": 2.0
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "b70c97a9",
+      "task_name": "Randomized Loiter with Photo 1",
+      "check_attempts_used": 2,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:08:21",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 3,
+        "passed_checks_apis": 3,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 3
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 738.0,
+            "y": 702.0,
+            "z": 30.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 738.0,
+              "y": 702.0,
+              "z": 30.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794312493.9818652,
+            "last_visit_time": 1794312493.9818652
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_taken_photo",
+          "parameters": {
+            "drone_id": "5518d687",
+            "min_count": 1
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "5518d687",
+            "min_count": 1,
+            "photo_ids": [
+              "4844156e"
+            ],
+            "first_photo_time": 1794312494.0087209,
+            "last_photo_time": 1794312494.0087209,
+            "positions": [
+              {
+                "x": 738.0,
+                "y": 702.0,
+                "z": 30.0
+              }
+            ]
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_hovering",
+          "parameters": {
+            "drone_id": "5518d687",
+            "tolerance": 1
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": "hovering",
+            "note": null,
+            "drone_id": "5518d687",
+            "altitude": 30.0,
+            "tolerance": 1.0
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "263391d0",
+      "task_name": "Quick Checkpoint Visit 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:08:50",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 1,
+        "passed_checks_apis": 1,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 555.0,
+            "y": 477.0,
+            "z": 17.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 555.0,
+              "y": 477.0,
+              "z": 17.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794312525.74987,
+            "last_visit_time": 1794312525.74987
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "be03447a",
+      "task_name": "Fly Several Waypoints 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:21:09",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 5,
+        "passed_checks_apis": 5,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 5
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e793ba29",
+            "x": 114.0,
+            "y": 212.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e793ba29",
+            "target_position": {
+              "x": 114.0,
+              "y": 212.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313041.3202913,
+            "last_visit_time": 1794313041.3202913
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e793ba29",
+            "x": 436.0,
+            "y": 149.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e793ba29",
+            "target_position": {
+              "x": 436.0,
+              "y": 149.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313177.7300165,
+            "last_visit_time": 1794313177.7300165
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e793ba29",
+            "x": 787.0,
+            "y": 427.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e793ba29",
+            "target_position": {
+              "x": 787.0,
+              "y": 427.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313177.9064913,
+            "last_visit_time": 1794313177.9064913
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e793ba29",
+            "x": 575.0,
+            "y": 537.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e793ba29",
+            "target_position": {
+              "x": 575.0,
+              "y": 537.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313177.9636426,
+            "last_visit_time": 1794313177.9636426
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e793ba29",
+            "x": 153.0,
+            "y": 580.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e793ba29",
+            "target_position": {
+              "x": 153.0,
+              "y": 580.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313178.4401217,
+            "last_visit_time": 1794313178.4401217
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "22c2a49f",
+      "task_name": "Fly Several Waypoints 2",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:22:05",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 5,
+        "passed_checks_apis": 5,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 5
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 236.0,
+            "y": 137.0,
+            "z": 18.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 236.0,
+              "y": 137.0,
+              "z": 18.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313300.63976,
+            "last_visit_time": 1794313300.63976
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 489.0,
+            "y": 171.0,
+            "z": 18.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 489.0,
+              "y": 171.0,
+              "z": 18.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313302.178164,
+            "last_visit_time": 1794313302.178164
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 849.0,
+            "y": 363.0,
+            "z": 18.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 849.0,
+              "y": 363.0,
+              "z": 18.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313302.3265457,
+            "last_visit_time": 1794313302.3265457
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 536.0,
+            "y": 645.0,
+            "z": 18.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 536.0,
+              "y": 645.0,
+              "z": 18.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313302.4926145,
+            "last_visit_time": 1794313302.4926145
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 225.0,
+            "y": 578.0,
+            "z": 18.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 225.0,
+              "y": 578.0,
+              "z": 18.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313302.7104714,
+            "last_visit_time": 1794313302.7104714
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "36f5cb96",
+      "task_name": "Patrol Mission - Quadrangle 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:22:42",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 4,
+        "passed_checks_apis": 4,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 4
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5e4dc3e8",
+            "x": 278.0,
+            "y": 213.0,
+            "z": 15.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 2,
+            "note": null,
+            "drone_id": "5e4dc3e8",
+            "target_position": {
+              "x": 278.0,
+              "y": 213.0,
+              "z": 15.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313356.8242643,
+            "last_visit_time": 1794313357.9782374
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5e4dc3e8",
+            "x": 791.0,
+            "y": 215.0,
+            "z": 15.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "5e4dc3e8",
+            "target_position": {
+              "x": 791.0,
+              "y": 215.0,
+              "z": 15.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313356.9970348,
+            "last_visit_time": 1794313356.9970348
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5e4dc3e8",
+            "x": 897.0,
+            "y": 714.0,
+            "z": 15.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "5e4dc3e8",
+            "target_position": {
+              "x": 897.0,
+              "y": 714.0,
+              "z": 15.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313357.0959957,
+            "last_visit_time": 1794313357.0959957
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5e4dc3e8",
+            "x": 370.0,
+            "y": 653.0,
+            "z": 15.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "5e4dc3e8",
+            "target_position": {
+              "x": 370.0,
+              "y": 653.0,
+              "z": 15.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313357.3332734,
+            "last_visit_time": 1794313357.3332734
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "63ab6a89",
+      "task_name": "Extended Distance Flight Test 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:23:36",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 5,
+        "passed_checks_apis": 5,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 5
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_moved_distance",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "min_distance": 1159.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 3566.25,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "min_distance": 1159.0,
+            "movement_count": 25,
+            "average_distance_per_move": 142.65
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 156.0,
+            "y": 303.0,
+            "z": 17.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 156.0,
+              "y": 303.0,
+              "z": 17.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313392.769594,
+            "last_visit_time": 1794313392.769594
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 731.0,
+            "y": 192.0,
+            "z": 17.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 731.0,
+              "y": 192.0,
+              "z": 17.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313393.0023582,
+            "last_visit_time": 1794313393.0023582
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 763.0,
+            "y": 718.0,
+            "z": 17.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 763.0,
+              "y": 718.0,
+              "z": 17.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313393.031828,
+            "last_visit_time": 1794313393.031828
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 395.0,
+            "y": 788.0,
+            "z": 17.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 395.0,
+              "y": 788.0,
+              "z": 17.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313394.5489314,
+            "last_visit_time": 1794313394.5489314
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "75ad9477",
+      "task_name": "Flight Marathon Navigation 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:24:39",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 13,
+        "passed_checks_apis": 13,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 13
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 187.0,
+            "y": 133.0,
+            "z": 29.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 187.0,
+              "y": 133.0,
+              "z": 29.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313468.944012,
+            "last_visit_time": 1794313468.944012
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 250.0,
+            "y": 111.0,
+            "z": 29.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 250.0,
+              "y": 111.0,
+              "z": 29.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313468.981754,
+            "last_visit_time": 1794313468.981754
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 341.0,
+            "y": 287.0,
+            "z": 29.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 341.0,
+              "y": 287.0,
+              "z": 29.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313469.029235,
+            "last_visit_time": 1794313469.029235
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 426.0,
+            "y": 383.0,
+            "z": 29.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 426.0,
+              "y": 383.0,
+              "z": 29.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313469.1856368,
+            "last_visit_time": 1794313469.1856368
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 513.0,
+            "y": 480.0,
+            "z": 29.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 513.0,
+              "y": 480.0,
+              "z": 29.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313471.8695614,
+            "last_visit_time": 1794313471.8695614
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 688.0,
+            "y": 503.0,
+            "z": 29.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 688.0,
+              "y": 503.0,
+              "z": 29.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313471.8058817,
+            "last_visit_time": 1794313471.8058817
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 786.0,
+            "y": 673.0,
+            "z": 29.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 786.0,
+              "y": 673.0,
+              "z": 29.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313471.7370446,
+            "last_visit_time": 1794313471.7370446
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 891.0,
+            "y": 766.0,
+            "z": 29.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 891.0,
+              "y": 766.0,
+              "z": 29.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313471.6767552,
+            "last_visit_time": 1794313471.6767552
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 953.0,
+            "y": 871.0,
+            "z": 29.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 953.0,
+              "y": 871.0,
+              "z": 29.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313471.6383657,
+            "last_visit_time": 1794313471.6383657
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 824.0,
+            "y": 117.0,
+            "z": 29.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 824.0,
+              "y": 117.0,
+              "z": 29.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313469.7012708,
+            "last_visit_time": 1794313469.7012708
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 186.0,
+            "y": 855.0,
+            "z": 29.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 186.0,
+              "y": 855.0,
+              "z": 29.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313473.8309124,
+            "last_visit_time": 1794313473.8309124
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 521.0,
+            "y": 557.0,
+            "z": 0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "current_position": {
+              "x": 521.0,
+              "y": 557.0,
+              "z": 0.0
+            },
+            "expected_position": {
+              "x": 521.0,
+              "y": 557.0,
+              "z": 0.0
+            },
+            "tolerance": 3.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_on_ground",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "tolerance": 0.5
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "status": "idle",
+            "tolerance": 0.5
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "4ec47cd2",
+      "task_name": "Flight Marathon Navigation 2",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:25:41",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 13,
+        "passed_checks_apis": 13,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 13
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 189.0,
+            "y": 188.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 189.0,
+              "y": 188.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313532.056706,
+            "last_visit_time": 1794313532.056706
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 276.0,
+            "y": 104.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 276.0,
+              "y": 104.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313532.114433,
+            "last_visit_time": 1794313532.114433
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 366.0,
+            "y": 237.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 366.0,
+              "y": 237.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313532.5178092,
+            "last_visit_time": 1794313532.5178092
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 441.0,
+            "y": 397.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 441.0,
+              "y": 397.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313532.389476,
+            "last_visit_time": 1794313532.389476
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 538.0,
+            "y": 483.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 538.0,
+              "y": 483.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313535.3717413,
+            "last_visit_time": 1794313535.3717413
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 641.0,
+            "y": 503.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 641.0,
+              "y": 503.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313535.3323689,
+            "last_visit_time": 1794313535.3323689
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 763.0,
+            "y": 669.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 763.0,
+              "y": 669.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313535.2488666,
+            "last_visit_time": 1794313535.2488666
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 889.0,
+            "y": 746.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 889.0,
+              "y": 746.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313535.1949794,
+            "last_visit_time": 1794313535.1949794
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 976.0,
+            "y": 819.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 976.0,
+              "y": 819.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313535.117714,
+            "last_visit_time": 1794313535.117714
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 825.0,
+            "y": 187.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 825.0,
+              "y": 187.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313532.6506093,
+            "last_visit_time": 1794313532.6506093
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 141.0,
+            "y": 863.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 141.0,
+              "y": 863.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313537.5176587,
+            "last_visit_time": 1794313537.5176587
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 565.0,
+            "y": 561.0,
+            "z": 0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "current_position": {
+              "x": 565.0,
+              "y": 561.0,
+              "z": 0.0
+            },
+            "expected_position": {
+              "x": 565.0,
+              "y": 561.0,
+              "z": 0.0
+            },
+            "tolerance": 3.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_on_ground",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "tolerance": 0.5
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "status": "idle",
+            "tolerance": 0.5
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "4d7cf1a7",
+      "task_name": "Extreme Flight Marathon Navigation 1",
+      "check_attempts_used": 2,
+      "note": "",
+      "status": "failed",
+      "timestamp": "2026-11-10 20:43:57",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 23,
+        "passed_checks_apis": 22,
+        "failed_checks_apis": 1,
+        "pass_rate": 0.9565
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 23
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 112.0,
+            "y": 53.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 112.0,
+              "y": 53.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313570.286716,
+            "last_visit_time": 1794314342.6129727
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 84.0,
+            "y": 178.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 84.0,
+              "y": 178.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313610.068489,
+            "last_visit_time": 1794314342.6690323
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 889.0,
+            "y": 211.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": false,
+          "result": false,
+          "response": {
+            "result": false,
+            "value": 0,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 889.0,
+              "y": 211.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": null,
+            "first_visit_time": null,
+            "last_visit_time": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 167.0,
+            "y": 285.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 167.0,
+              "y": 285.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313661.4011884,
+            "last_visit_time": 1794314342.9121933
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 821.0,
+            "y": 342.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 3,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 821.0,
+              "y": 342.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313662.4482248,
+            "last_visit_time": 1794314343.8142283
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 144.0,
+            "y": 399.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 144.0,
+              "y": 399.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 1.99,
+            "first_visit_time": 1794313661.5001984,
+            "last_visit_time": 1794314342.9812243
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 919.0,
+            "y": 518.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 6,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 919.0,
+              "y": 518.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313662.22871,
+            "last_visit_time": 1794314343.6436458
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 147.0,
+            "y": 580.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 147.0,
+              "y": 580.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313661.6416512,
+            "last_visit_time": 1794314343.1124225
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 782.0,
+            "y": 616.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 782.0,
+              "y": 616.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313662.0408158,
+            "last_visit_time": 1794314343.482245
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 176.0,
+            "y": 774.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 176.0,
+              "y": 774.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313661.7669017,
+            "last_visit_time": 1794314343.2355878
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 844.0,
+            "y": 821.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 844.0,
+              "y": 821.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313661.9591498,
+            "last_visit_time": 1794314343.417827
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 259.0,
+            "y": 910.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 259.0,
+              "y": 910.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313661.813203,
+            "last_visit_time": 1794314343.2934535
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 849.0,
+            "y": 892.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 849.0,
+              "y": 892.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313661.906628,
+            "last_visit_time": 1794314343.3796191
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 424.0,
+            "y": 764.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 424.0,
+              "y": 764.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313661.876144,
+            "last_visit_time": 1794314343.325131
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 980.0,
+            "y": 619.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 980.0,
+              "y": 619.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313662.1614113,
+            "last_visit_time": 1794314343.583263
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 44.0,
+            "y": 583.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 44.0,
+              "y": 583.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313661.6075335,
+            "last_visit_time": 1794314343.0934505
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 914.0,
+            "y": 386.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 3,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 914.0,
+              "y": 386.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313662.483787,
+            "last_visit_time": 1794314343.859411
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 138.0,
+            "y": 380.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 138.0,
+              "y": 380.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313661.4588888,
+            "last_visit_time": 1794314342.964591
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 800.0,
+            "y": 128.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 3,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 800.0,
+              "y": 128.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313662.6838474,
+            "last_visit_time": 1794314344.04819
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 276.0,
+            "y": 869.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 276.0,
+              "y": 869.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313661.8463597,
+            "last_visit_time": 1794314343.3116405
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 725.0,
+            "y": 452.0,
+            "z": 34.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 3,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 725.0,
+              "y": 452.0,
+              "z": 34.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794313662.338346,
+            "last_visit_time": 1794314343.70182
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 881.0,
+            "y": 957.0,
+            "z": 0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "5518d687",
+            "current_position": {
+              "x": 881.0,
+              "y": 957.0,
+              "z": 0.0
+            },
+            "expected_position": {
+              "x": 881.0,
+              "y": 957.0,
+              "z": 0.0
+            },
+            "tolerance": 3.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_on_ground",
+          "parameters": {
+            "drone_id": "5518d687",
+            "tolerance": 0.5
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "5518d687",
+            "status": "idle",
+            "tolerance": 0.5
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "f18820be",
+      "task_name": "Dual Flight Marathon Navigation 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:54:28",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 26,
+        "passed_checks_apis": 26,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 26
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 82.0,
+            "y": 58.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 82.0,
+              "y": 58.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315229.0124083,
+            "last_visit_time": 1794315229.0124083
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 183.0,
+            "y": 123.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 183.0,
+              "y": 123.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315230.5616832,
+            "last_visit_time": 1794315230.5616832
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 810.0,
+            "y": 258.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 810.0,
+              "y": 258.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315232.2715542,
+            "last_visit_time": 1794315232.2715542
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 131.0,
+            "y": 290.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 131.0,
+              "y": 290.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315234.0096827,
+            "last_visit_time": 1794315234.0096827
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 770.0,
+            "y": 394.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 770.0,
+              "y": 394.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315235.7294881,
+            "last_visit_time": 1794315235.7294881
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 194.0,
+            "y": 469.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 194.0,
+              "y": 469.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315237.600825,
+            "last_visit_time": 1794315237.600825
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 944.0,
+            "y": 543.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 944.0,
+              "y": 543.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315239.6643288,
+            "last_visit_time": 1794315239.6643288
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 215.0,
+            "y": 696.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 215.0,
+              "y": 696.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315241.656632,
+            "last_visit_time": 1794315241.656632
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 890.0,
+            "y": 718.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 890.0,
+              "y": 718.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315243.368072,
+            "last_visit_time": 1794315243.368072
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 249.0,
+            "y": 806.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 249.0,
+              "y": 806.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315245.0044599,
+            "last_visit_time": 1794315245.0044599
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 731.0,
+            "y": 937.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 731.0,
+              "y": 937.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315245.0604422,
+            "last_visit_time": 1794315245.0604422
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 937.0,
+            "y": 955.0,
+            "z": 0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "current_position": {
+              "x": 937.0,
+              "y": 955.0,
+              "z": 0.0
+            },
+            "expected_position": {
+              "x": 937.0,
+              "y": 955.0,
+              "z": 0.0
+            },
+            "tolerance": 3.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_on_ground",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "tolerance": 0.5
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "status": "idle",
+            "tolerance": 0.5
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 910.0,
+            "y": 77.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 910.0,
+              "y": 77.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315246.7955337,
+            "last_visit_time": 1794315246.7955337
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 820.0,
+            "y": 127.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 820.0,
+              "y": 127.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315248.3644335,
+            "last_visit_time": 1794315248.3644335
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 188.0,
+            "y": 257.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 188.0,
+              "y": 257.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315250.0185509,
+            "last_visit_time": 1794315250.0185509
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 896.0,
+            "y": 296.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 896.0,
+              "y": 296.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315251.7855155,
+            "last_visit_time": 1794315251.7855155
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 185.0,
+            "y": 366.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 185.0,
+              "y": 366.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315253.52571,
+            "last_visit_time": 1794315253.52571
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 834.0,
+            "y": 514.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 834.0,
+              "y": 514.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315255.4779055,
+            "last_visit_time": 1794315255.4779055
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 151.0,
+            "y": 544.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 151.0,
+              "y": 544.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315257.8329194,
+            "last_visit_time": 1794315257.8329194
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 849.0,
+            "y": 627.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 849.0,
+              "y": 627.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315259.666868,
+            "last_visit_time": 1794315259.666868
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 181.0,
+            "y": 708.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 181.0,
+              "y": 708.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315261.3077352,
+            "last_visit_time": 1794315261.3077352
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 742.0,
+            "y": 805.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 742.0,
+              "y": 805.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315262.9064906,
+            "last_visit_time": 1794315262.9064906
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 334.0,
+            "y": 917.0,
+            "z": 25.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 334.0,
+              "y": 917.0,
+              "z": 25.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315262.942222,
+            "last_visit_time": 1794315262.942222
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 52.0,
+            "y": 867.0,
+            "z": 0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "current_position": {
+              "x": 52.0,
+              "y": 867.0,
+              "z": 0.0
+            },
+            "expected_position": {
+              "x": 52.0,
+              "y": 867.0,
+              "z": 0.0
+            },
+            "tolerance": 3.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_on_ground",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "tolerance": 0.5
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "status": "idle",
+            "tolerance": 0.5
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "a7ea5a55",
+      "task_name": "Triple Flight Marathon Navigation 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:56:12",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 39,
+        "passed_checks_apis": 39,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 39
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_moved_distance",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "min_distance": 1500
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 7444.88,
+            "note": null,
+            "drone_id": "6389dd84",
+            "min_distance": 1500.0,
+            "movement_count": 54,
+            "average_distance_per_move": 137.87
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_moved_distance",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "min_distance": 1500
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 9903.18,
+            "note": null,
+            "drone_id": "37d19c77",
+            "min_distance": 1500.0,
+            "movement_count": 68,
+            "average_distance_per_move": 145.63
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_moved_distance",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "min_distance": 1500
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 15908.52,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "min_distance": 1500.0,
+            "movement_count": 99,
+            "average_distance_per_move": 160.69
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 186.0,
+            "y": 179.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 186.0,
+              "y": 179.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315310.370076,
+            "last_visit_time": 1794315310.370076
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 790.0,
+            "y": 252.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 790.0,
+              "y": 252.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315312.0138714,
+            "last_visit_time": 1794315312.0138714
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 145.0,
+            "y": 284.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 2,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 145.0,
+              "y": 284.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315313.7362714,
+            "last_visit_time": 1794315315.4862485
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 822.0,
+            "y": 419.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 822.0,
+              "y": 419.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315317.1821597,
+            "last_visit_time": 1794315317.1821597
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 181.0,
+            "y": 432.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 181.0,
+              "y": 432.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315319.2373579,
+            "last_visit_time": 1794315319.2373579
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 808.0,
+            "y": 520.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 808.0,
+              "y": 520.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315321.4632683,
+            "last_visit_time": 1794315321.4632683
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 245.0,
+            "y": 627.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 245.0,
+              "y": 627.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315323.4769897,
+            "last_visit_time": 1794315323.4769897
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 878.0,
+            "y": 711.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 878.0,
+              "y": 711.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315325.3467715,
+            "last_visit_time": 1794315325.3467715
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 198.0,
+            "y": 822.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 198.0,
+              "y": 822.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315326.9786108,
+            "last_visit_time": 1794315326.9786108
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 672.0,
+            "y": 847.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 672.0,
+              "y": 847.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315327.011502,
+            "last_visit_time": 1794315327.011502
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 895.0,
+            "y": 929.0,
+            "z": 0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "6389dd84",
+            "current_position": {
+              "x": 895.0,
+              "y": 929.0,
+              "z": 0.0
+            },
+            "expected_position": {
+              "x": 895.0,
+              "y": 929.0,
+              "z": 0.0
+            },
+            "tolerance": 3.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_on_ground",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "tolerance": 0.5
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "6389dd84",
+            "status": "idle",
+            "tolerance": 0.5
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 458.0,
+            "y": 161.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 458.0,
+              "y": 161.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315330.5106478,
+            "last_visit_time": 1794315330.5106478
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 901.0,
+            "y": 253.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 901.0,
+              "y": 253.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315332.053497,
+            "last_visit_time": 1794315332.053497
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 156.0,
+            "y": 301.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 156.0,
+              "y": 301.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315333.678064,
+            "last_visit_time": 1794315333.678064
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 865.0,
+            "y": 428.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 865.0,
+              "y": 428.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315335.5332096,
+            "last_visit_time": 1794315335.5332096
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 175.0,
+            "y": 506.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 175.0,
+              "y": 506.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315337.8735702,
+            "last_visit_time": 1794315337.8735702
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 860.0,
+            "y": 609.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 860.0,
+              "y": 609.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315339.7487037,
+            "last_visit_time": 1794315339.7487037
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 123.0,
+            "y": 660.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 123.0,
+              "y": 660.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315341.408786,
+            "last_visit_time": 1794315341.408786
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 867.0,
+            "y": 726.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 867.0,
+              "y": 726.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315343.1979723,
+            "last_visit_time": 1794315343.1979723
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 265.0,
+            "y": 868.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 265.0,
+              "y": 868.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315344.7081459,
+            "last_visit_time": 1794315344.7081459
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 564.0,
+            "y": 866.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 564.0,
+              "y": 866.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315344.7645676,
+            "last_visit_time": 1794315344.7645676
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 555.0,
+            "y": 896.0,
+            "z": 0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "37d19c77",
+            "current_position": {
+              "x": 555.0,
+              "y": 896.0,
+              "z": 0.0
+            },
+            "expected_position": {
+              "x": 555.0,
+              "y": 896.0,
+              "z": 0.0
+            },
+            "tolerance": 3.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_on_ground",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "tolerance": 0.5
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "37d19c77",
+            "status": "idle",
+            "tolerance": 0.5
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 806.0,
+            "y": 192.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 806.0,
+              "y": 192.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315347.982393,
+            "last_visit_time": 1794315347.982393
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 141.0,
+            "y": 226.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 141.0,
+              "y": 226.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315349.5883422,
+            "last_visit_time": 1794315349.5883422
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 838.0,
+            "y": 328.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 838.0,
+              "y": 328.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315351.3595045,
+            "last_visit_time": 1794315351.3595045
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 249.0,
+            "y": 420.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 249.0,
+              "y": 420.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315353.2241116,
+            "last_visit_time": 1794315353.2241116
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 782.0,
+            "y": 432.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 782.0,
+              "y": 432.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315355.2399518,
+            "last_visit_time": 1794315355.2399518
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 138.0,
+            "y": 549.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 138.0,
+              "y": 549.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315357.4437473,
+            "last_visit_time": 1794315357.4437473
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 862.0,
+            "y": 632.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 862.0,
+              "y": 632.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315359.3025324,
+            "last_visit_time": 1794315359.3025324
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 221.0,
+            "y": 733.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 221.0,
+              "y": 733.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315361.1463556,
+            "last_visit_time": 1794315361.1463556
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 734.0,
+            "y": 762.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 734.0,
+              "y": 762.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315362.776496,
+            "last_visit_time": 1794315362.776496
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 322.0,
+            "y": 873.0,
+            "z": 21.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 322.0,
+              "y": 873.0,
+              "z": 21.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315362.806339,
+            "last_visit_time": 1794315362.806339
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 80.0,
+            "y": 861.0,
+            "z": 0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "current_position": {
+              "x": 80.0,
+              "y": 861.0,
+              "z": 0.0
+            },
+            "expected_position": {
+              "x": 80.0,
+              "y": 861.0,
+              "z": 0.0
+            },
+            "tolerance": 3.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_on_ground",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "tolerance": 0.5
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "status": "idle",
+            "tolerance": 0.5
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "91f09879",
+      "task_name": "Extended Hover Observation 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:56:55",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 2,
+        "passed_checks_apis": 2,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 2
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_hovered",
+          "parameters": {
+            "drone_id": "e793ba29",
+            "min_duration": 14.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e793ba29",
+            "min_duration": 14.0,
+            "min_count": 1,
+            "total_hover_duration": 14.0,
+            "average_duration": 14.0,
+            "last_hover_time": 1794315406.5796983
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e793ba29",
+            "x": 506.0,
+            "y": 422.0,
+            "z": 58.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e793ba29",
+            "target_position": {
+              "x": 506.0,
+              "y": 422.0,
+              "z": 58.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315406.5417569,
+            "last_visit_time": 1794315406.5417569
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "032e3631",
+      "task_name": "Delivery to Specific Location 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:57:25",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 3,
+        "passed_checks_apis": 3,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 3
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 386.0,
+            "y": 231.0,
+            "z": 0,
+            "tolerance": 1.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 386.0,
+              "y": 231.0,
+              "z": 0.0
+            },
+            "tolerance": 1.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315442.2548954,
+            "last_visit_time": 1794315442.2548954
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5518d687",
+            "x": 639.0,
+            "y": 472.0,
+            "z": 0,
+            "tolerance": 1.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 2,
+            "note": null,
+            "drone_id": "5518d687",
+            "target_position": {
+              "x": 639.0,
+              "y": 472.0,
+              "z": 0.0
+            },
+            "tolerance": 1.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315442.4886901,
+            "last_visit_time": 1794315442.496439
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_on_ground",
+          "parameters": {
+            "drone_id": "5518d687",
+            "tolerance": 0.5
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "5518d687",
+            "status": "idle",
+            "tolerance": 0.5
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "7d7d5a4c",
+      "task_name": "Delivery to Specific Location 2",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:58:01",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 3,
+        "passed_checks_apis": 3,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 3
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "a48b295f",
+            "x": 362.0,
+            "y": 273.0,
+            "z": 0,
+            "tolerance": 1.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "a48b295f",
+            "target_position": {
+              "x": 362.0,
+              "y": 273.0,
+              "z": 0.0
+            },
+            "tolerance": 1.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315472.0313158,
+            "last_visit_time": 1794315472.0313158
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "a48b295f",
+            "x": 782.0,
+            "y": 568.0,
+            "z": 0,
+            "tolerance": 1.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 2,
+            "note": null,
+            "drone_id": "a48b295f",
+            "target_position": {
+              "x": 782.0,
+              "y": 568.0,
+              "z": 0.0
+            },
+            "tolerance": 1.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315472.397254,
+            "last_visit_time": 1794315472.4049737
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_on_ground",
+          "parameters": {
+            "drone_id": "a48b295f",
+            "tolerance": 0.5
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.0,
+            "note": null,
+            "drone_id": "a48b295f",
+            "status": "idle",
+            "tolerance": 0.5
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "d06f9c57",
+      "task_name": "Multi-Waypoint Delivery Route 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:58:31",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 3,
+        "passed_checks_apis": 3,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 3
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 379.0,
+            "y": 233.0,
+            "z": 0,
+            "tolerance": 1.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 379.0,
+              "y": 233.0,
+              "z": 0.0
+            },
+            "tolerance": 1.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315508.15692,
+            "last_visit_time": 1794315508.15692
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 577.0,
+            "y": 283.0,
+            "z": 0,
+            "tolerance": 1.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 577.0,
+              "y": 283.0,
+              "z": 0.0
+            },
+            "tolerance": 1.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315508.106983,
+            "last_visit_time": 1794315508.106983
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "70e24a0b",
+            "x": 572.0,
+            "y": 536.0,
+            "z": 0,
+            "tolerance": 1.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 2,
+            "note": null,
+            "drone_id": "70e24a0b",
+            "target_position": {
+              "x": 572.0,
+              "y": 536.0,
+              "z": 0.0
+            },
+            "tolerance": 1.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315508.548072,
+            "last_visit_time": 1794315508.570215
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "be18060b",
+      "task_name": "Line Formation - 2 Drones 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 20:58:58",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 3,
+        "passed_checks_apis": 3,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 3
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 591.0,
+            "y": 466.0,
+            "z": 17.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 591.0,
+              "y": 466.0,
+              "z": 17.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315533.1487083,
+            "last_visit_time": 1794315533.1487083
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 602.0,
+            "y": 468.0,
+            "z": 17.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 602.0,
+              "y": 468.0,
+              "z": 17.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794315534.9357293,
+            "last_visit_time": 1794315534.9357293
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/two_drones_distance",
+          "parameters": {
+            "drone_1_id": "3399dfb4",
+            "drone_2_id": "e8a044c5",
+            "max_distance": 21.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 11.18,
+            "note": null,
+            "drone_1_id": "3399dfb4",
+            "drone_2_id": "e8a044c5",
+            "max_distance": 21.0,
+            "min_distance": 0.0
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "b5dc98a5",
+      "task_name": "Triangle Formation - 3 Drones 1",
+      "check_attempts_used": 3,
+      "note": "",
+      "status": "failed",
+      "timestamp": "2026-11-10 21:10:11",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 3,
+        "passed_checks_apis": 2,
+        "failed_checks_apis": 1,
+        "pass_rate": 0.6667
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 3
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 591.0,
+            "y": 482.0,
+            "z": 20.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 3,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 591.0,
+              "y": 482.0,
+              "z": 20.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794316097.7365687,
+            "last_visit_time": 1794316123.8669841
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5e4dc3e8",
+            "x": 522.0,
+            "y": 497.0,
+            "z": 20.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 3,
+            "note": null,
+            "drone_id": "5e4dc3e8",
+            "target_position": {
+              "x": 522.0,
+              "y": 497.0,
+              "z": 20.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794316097.7964752,
+            "last_visit_time": 1794316123.9020581
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "3399dfb4",
+            "x": 443.0,
+            "y": 515.0,
+            "z": 20.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": false,
+          "result": false,
+          "response": {
+            "result": false,
+            "value": 0,
+            "note": null,
+            "drone_id": "3399dfb4",
+            "target_position": {
+              "x": 443.0,
+              "y": 515.0,
+              "z": 20.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": null,
+            "first_visit_time": null,
+            "last_visit_time": null
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "05b02d86",
+      "task_name": "Perimeter Search - 4 Drones 1",
+      "check_attempts_used": 1,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-10 21:11:07",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 8,
+        "passed_checks_apis": 8,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 8
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "x": 553.0,
+            "y": 669.0,
+            "z": 22.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "target_position": {
+              "x": 553.0,
+              "y": 669.0,
+              "z": 22.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794316233.67201,
+            "last_visit_time": 1794316233.67201
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "x": 783.0,
+            "y": 547.0,
+            "z": 22.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "6389dd84",
+            "target_position": {
+              "x": 783.0,
+              "y": 547.0,
+              "z": 22.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794316235.2178695,
+            "last_visit_time": 1794316235.2178695
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "x": 514.0,
+            "y": 280.0,
+            "z": 22.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "target_position": {
+              "x": 514.0,
+              "y": 280.0,
+              "z": 22.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794316237.4837923,
+            "last_visit_time": 1794316237.4837923
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_visited_position",
+          "parameters": {
+            "drone_id": "5e4dc3e8",
+            "x": 203.0,
+            "y": 451.0,
+            "z": 22.0,
+            "tolerance": 3.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "5e4dc3e8",
+            "target_position": {
+              "x": 203.0,
+              "y": 451.0,
+              "z": 22.0
+            },
+            "tolerance": 3.0,
+            "closest_distance": 0.0,
+            "first_visit_time": 1794316239.3868933,
+            "last_visit_time": 1794316239.3868933
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_taken_photo",
+          "parameters": {
+            "drone_id": "e8a044c5",
+            "min_count": 1
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e8a044c5",
+            "min_count": 1,
+            "photo_ids": [
+              "fb72764a"
+            ],
+            "first_photo_time": 1794316233.69379,
+            "last_photo_time": 1794316233.69379,
+            "positions": [
+              {
+                "x": 553.0,
+                "y": 669.0,
+                "z": 22.0
+              }
+            ]
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_taken_photo",
+          "parameters": {
+            "drone_id": "6389dd84",
+            "min_count": 1
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "6389dd84",
+            "min_count": 1,
+            "photo_ids": [
+              "dfc77c10"
+            ],
+            "first_photo_time": 1794316235.2729394,
+            "last_photo_time": 1794316235.2729394,
+            "positions": [
+              {
+                "x": 783.0,
+                "y": 547.0,
+                "z": 22.0
+              }
+            ]
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_taken_photo",
+          "parameters": {
+            "drone_id": "37d19c77",
+            "min_count": 1
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "37d19c77",
+            "min_count": 1,
+            "photo_ids": [
+              "7cd7cc10"
+            ],
+            "first_photo_time": 1794316237.5020654,
+            "last_photo_time": 1794316237.5020654,
+            "positions": [
+              {
+                "x": 514.0,
+                "y": 280.0,
+                "z": 22.0
+              }
+            ]
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_taken_photo",
+          "parameters": {
+            "drone_id": "5e4dc3e8",
+            "min_count": 1
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "5e4dc3e8",
+            "min_count": 1,
+            "photo_ids": [
+              "22993dea"
+            ],
+            "first_photo_time": 1794316239.4108841,
+            "last_photo_time": 1794316239.4108841,
+            "positions": [
+              {
+                "x": 203.0,
+                "y": 451.0,
+                "z": 22.0
+              }
+            ]
+          },
+          "depth": 1
+        }
+      ]
+    }
+  ]
+}

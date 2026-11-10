@@ -1,0 +1,372 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-64e1e3fd-249d-46a8-b6f6-48f3e9da276a",
+  "experiment": {
+    "experiment_id": "eid-bf14f219-d14b-4a34-b22e-3bcef34ec003",
+    "start_reason": "start",
+    "run_id": "rid-64e1e3fd-249d-46a8-b6f6-48f3e9da276a",
+    "session_id": "1520a780",
+    "session_name": "Port Container Inventory",
+    "task_id": "5b40be9a",
+    "task_name": "Triple Flight Marathon Navigation 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "9a27b9a5aec7b414a2ae2b1f62f5453614b9711d48703bbbdc761f7192c54766",
+    "session_snapshot_hash": "71464ea70eaea31394409bf13fa04fc0144a2709910c56d83d6efbd0c010f17a",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261110T211339-4653f796181a",
+  "batch_file": "../../batch.json",
+  "command_id": "9f4248c6-50ca-4a28-a4cb-8a302931a108",
+  "job_id": "89d8e02e-9fe4-431e-9930-e54637423c8b",
+  "command": "Drones Yard 1, Yard 14, and Yard 5 perform a triple marathon flight at 28 meters. Yard 1 route: fly to and start at  (78, 129, 28), then waypoints (137, 191, 28), (888, 223, 28), (149, 313, 28), (877, 397, 28), (138, 448, 28), (895, 547, 28), (248, 610, 28), (887, 739, 28), (294, 746, 28), (643, 852, 28), then end (924, 932, 28) and land. Yard 14 route: fly to and start at  (511, 124, 28), then waypoints (520, 150, 28), (863, 241, 28), (123, 370, 28), (945, 423, 28), (193, 471, 28), (841, 542, 28), (175, 697, 28), (846, 761, 28), (352, 787, 28), (585, 889, 28), then end (478, 948, 28) and land. Yard 5 route: fly to and start at  (947, 91, 28), then waypoints (837, 209, 28), (198, 257, 28), (799, 330, 28), (192, 345, 28), (782, 477, 28), (117, 542, 28), (900, 639, 28), (123, 724, 28), (747, 759, 28), (296, 940, 28), then end (56, 901, 28) and land.",
+  "created_at": "2026-11-10 21:18:54",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-10 21:22:16",
+  "requested_run_id": null,
+  "started_at": "2026-11-10 21:18:54",
+  "runtime": {
+    "run_id": "rid-64e1e3fd-249d-46a8-b6f6-48f3e9da276a",
+    "experiment": {
+      "experiment_id": "eid-bf14f219-d14b-4a34-b22e-3bcef34ec003",
+      "start_reason": "start",
+      "run_id": "rid-64e1e3fd-249d-46a8-b6f6-48f3e9da276a",
+      "session_id": "1520a780",
+      "session_name": "Port Container Inventory",
+      "task_id": "5b40be9a",
+      "task_name": "Triple Flight Marathon Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "9a27b9a5aec7b414a2ae2b1f62f5453614b9711d48703bbbdc761f7192c54766",
+      "session_snapshot_hash": "71464ea70eaea31394409bf13fa04fc0144a2709910c56d83d6efbd0c010f17a",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "1520a780",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 5,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "1520a780",
+  "requested_session_id": "1520a780",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "07b7f8b3fe780fad2b3b79d474e2093e860655a720c98796caecf31ea93b3770",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "[TASK FAILED] 工具返回 ok=false（0 项失败）\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Yard 1, Yard 14, and Yard 5 perform a triple marathon flight at 28 meters. Yard 1 route: fly to and start at  (78, 129, 28), then waypoints (137, 191, 28), (888, 223, 28), (149, 313, 28), (877, 397, 28), (138, 448, 28), (895, 547, 28), (248, 610, 28), (887, 739, 28), (294, 746, 28), (643, 852, 28), then end (924, 932, 28) and land. Yard 14 route: fly to and start at  (511, 124, 28), then waypoints (520, 150, 28), (863, 241, 28), (123, 370, 28), (945, 423, 28), (193, 471, 28), (841, 542, 28), (175, 697, 28), (846, 761, 28), (352, 787, 28), (585, 889, 28), then end (478, 948, 28) and land. Yard 5 route: fly to and start at  (947, 91, 28), then waypoints (837, 209, 28), (198, 257, 28), (799, 330, 28), (192, 345, 28), (782, 477, 28), (117, 542, 28), (900, 639, 28), (123, 724, 28), (747, 759, 28), (296, 940, 28), then end (56, 901, 28) and land.",
+            "altitude": 20.0,
+            "drone_id": "31f97671"
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"planned\": {\"waypoints\": 36, \"legs\": 36, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"d90294c6\", \"drone_id\": \"31f97671\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 20.0m (battery: -0.5%/-0mAh, remaining: 99.5%/60mAh)\", \"timestamp\": 1794316815.533438}, \"steps\": 37, \"sample\": [{\"leg\": 1, \"goal\": [78.0, 129.0], \"waypoints\": 3, \"plan_ms\": 1460, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [137.0, 191.0], \"waypoints\": 2, \"plan_ms\": 42, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [149.0, 313.0], \"waypoints\": 1, \"plan_ms\": 17, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [{\"leg\": 13, \"goal\": [511.0, 124.0], \"waypoints\": 7, \"plan_ms\": 462, \"arrived\": false, \"distance_m\": 907.4, \"target\": null, \"target_reached\": null, \"error\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Container Stack 55'\"}, {\"leg\": 14, \"goal\": [520.0, 150.0], \"waypoints\": 7, \"plan_ms\": 422, \"arrived\": false, \"distance_m\": 880.2, \"target\": null, \"target_reached\": null, \"error\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Container Stack 55'\"}], \"completed\": false}"
+      ],
+      [
+        {
+          "tool": "nav_multi_drone_route",
+          "tool_input": {
+            "assignments": [
+              {
+                "drone": "Yard 1",
+                "target_name": "(78, 129, 28)",
+                "z": 28
+              },
+              {
+                "drone": "Yard 14",
+                "target_name": "(511, 124, 28)",
+                "z": 28
+              },
+              {
+                "drone": "Yard 5",
+                "target_name": "(947, 91, 28)",
+                "z": 28
+              }
+            ]
+          },
+          "log": "Preparing to call tool 'nav_multi_drone_route'",
+          "message_log": null
+        },
+        "{\"assignments\": [{\"drone\": \"Yard 1\", \"error\": \"没有目标 '(78, 129, 28)'\"}, {\"drone\": \"Yard 14\", \"error\": \"没有目标 '(511, 124, 28)'\"}, {\"drone\": \"Yard 5\", \"error\": \"没有目标 '(947, 91, 28)'\"}]}"
+      ],
+      [
+        {
+          "tool": "nav_points_route",
+          "tool_input": {
+            "points": [
+              [
+                78,
+                129,
+                28
+              ],
+              [
+                137,
+                191,
+                28
+              ],
+              [
+                888,
+                223,
+                28
+              ],
+              [
+                149,
+                313,
+                28
+              ],
+              [
+                877,
+                397,
+                28
+              ],
+              [
+                138,
+                448,
+                28
+              ],
+              [
+                895,
+                547,
+                28
+              ],
+              [
+                248,
+                610,
+                28
+              ],
+              [
+                887,
+                739,
+                28
+              ],
+              [
+                294,
+                746,
+                28
+              ],
+              [
+                643,
+                852,
+                28
+              ],
+              [
+                924,
+                932,
+                28
+              ],
+              [
+                511,
+                124,
+                28
+              ],
+              [
+                520,
+                150,
+                28
+              ],
+              [
+                863,
+                241,
+                28
+              ],
+              [
+                123,
+                370,
+                28
+              ],
+              [
+                945,
+                423,
+                28
+              ],
+              [
+                193,
+                471,
+                28
+              ],
+              [
+                841,
+                542,
+                28
+              ],
+              [
+                175,
+                697,
+                28
+              ],
+              [
+                846,
+                761,
+                28
+              ],
+              [
+                352,
+                787,
+                28
+              ],
+              [
+                585,
+                889,
+                28
+              ],
+              [
+                478,
+                948,
+                28
+              ],
+              [
+                947,
+                91,
+                28
+              ],
+              [
+                837,
+                209,
+                28
+              ],
+              [
+                198,
+                257,
+                28
+              ],
+              [
+                799,
+                330,
+                28
+              ],
+              [
+                192,
+                345,
+                28
+              ],
+              [
+                782,
+                477,
+                28
+              ],
+              [
+                117,
+                542,
+                28
+              ],
+              [
+                900,
+                639,
+                28
+              ],
+              [
+                123,
+                724,
+                28
+              ],
+              [
+                747,
+                759,
+                28
+              ],
+              [
+                296,
+                940,
+                28
+              ],
+              [
+                56,
+                901,
+                28
+              ]
+            ]
+          },
+          "log": "Preparing to call tool 'nav_points_route'",
+          "message_log": null
+        },
+        "{\"waypoint_count\": 122, \"total_length\": 20869.02, \"waypoints_sample\": [{\"x\": 100.0, \"y\": 715.0, \"z\": 28.0}, {\"x\": 48.0, \"y\": 684.0, \"z\": 28.0}, {\"x\": 48.0, \"y\": 144.0, \"z\": 28.0}, {\"x\": 78.0, \"y\": 129.0, \"z\": 28.0}, {\"x\": 78.0, \"y\": 129.0, \"z\": 28.0}], \"hint\": \"执行请用 nav_execute_mission(task_text=...)，不要自己传完整航点\"}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Yard 1, Yard 14, and Yard 5 perform a triple marathon flight at 28 meters. Yard 1 route: fly to and start at  (78, 129, 28), then waypoints (137, 191, 28), (888, 223, 28), (149, 313, 28), (877, 397, 28), (138, 448, 28), (895, 547, 28), (248, 610, 28), (887, 739, 28), (294, 746, 28), (643, 852, 28), then end (924, 932, 28) and land. Yard 14 route: fly to and start at  (511, 124, 28), then waypoints (520, 150, 28), (863, 241, 28), (123, 370, 28), (945, 423, 28), (193, 471, 28), (841, 542, 28), (175, 697, 28), (846, 761, 28), (352, 787, 28), (585, 889, 28), then end (478, 948, 28) and land. Yard 5 route: fly to and start at  (947, 91, 28), then waypoints (837, 209, 28), (198, 257, 28), (799, 330, 28), (192, 345, 28), (782, 477, 28), (117, 542, 28), (900, 639, 28), (123, 724, 28), (747, 759, 28), (296, 940, 28), then end (56, 901, 28) and land.",
+            "altitude": 28.0,
+            "drones": [
+              "Yard 1",
+              "Yard 14",
+              "Yard 5"
+            ]
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"completed\": false, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\", \"drones\": [\"31f97671\", \"6df13419\", \"60f23347\"], \"results\": [{\"ok\": false, \"mode\": \"battery_preflight\", \"planned\": {\"waypoints\": 36, \"legs\": 0, \"mode\": \"per_leg_jit\"}, \"steps\": 0, \"sample\": [], \"failures\": [{\"error\": \"电量不足：预计需要 59.9%（航程 9893 m），当前 20.6%\", \"suggestion\": \"换电量更高的无人机，或重置会话恢复电量\"}]}, {\"ok\": false, \"planned\": {\"waypoints\": 36, \"legs\": 36, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"4d02ece9\", \"drone_id\": \"6df13419\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 28.0m (battery: -0.5%/-0mAh, remaining: 99.5%/60mAh)\", \"timestamp\": 1794316903.135804}, \"steps\": 37, \"sample\": [{\"leg\": 1, \"goal\": [78.0, 129.0], \"waypoints\": 6, \"plan_ms\": 1768, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [137.0, 191.0], \"waypoints\": 2, \"plan_ms\": 55, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [149.0, 313.0], \"waypoints\": 1, \"plan_ms\": 6, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [{\"leg\": 13, \"goal\": [511.0, 124.0], \"waypoints\": 7, \"plan_ms\": 561, \"arrived\": false, \"distance_m\": 907.4, \"target\": null, \"target_reached\": null, \"error\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Container Stack 55'\"}, {\"leg\": 14, \"goal\": [520.0, 150.0], \"waypoints\": 7, \"plan_ms\": 561, \"arrived\": false, \"distance_m\": 880.2, \"target\": null, \"target_reached\": null, \"error\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Container Stack 55'\"}]}, {\"ok\": false, \"planned\": {\"waypoints\": 36, \"legs\": 36, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"c5f2ddcd\", \"drone_id\": \"60f23347\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 28.0m (battery: -0.5%/-0mAh, remaining: 99.5%/60mAh)\", \"timestamp\": 1794316920.1186874}, \"steps\": 37, \"sample\": [{\"leg\": 1, \"goal\": [78.0, 129.0], \"waypoints\": 5, \"plan_ms\": 1741, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [137.0, 191.0], \"waypoints\": 2, \"plan_ms\": 40, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [149.0, 313.0], \"waypoints\": 1, \"plan_ms\": 22, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [{\"leg\": 13, \"goal\": [511.0, 124.0], \"waypoints\": 7, \"plan_ms\": 484, \"arrived\": false, \"distance_m\": 907.4, \"target\": null, \"target_reached\": null, \"error\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Container Stack 55'\"}, {\"leg\": 14, \"goal\": [520.0, 150.0], \"waypoints\": 7, \"plan_ms\": 432, \"arrived\": false, \"distance_m\": 880.2, \"target\": null, \"target_reached\": null, \"error\": \"Path to waypoint 1 blocked: Flight path intersects with ObstacleType.POLYGON obstacle 'Container Stack 55'\"}]}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 46258,
+      "completion_tokens": 2416,
+      "total_tokens": 48674,
+      "llm_calls": 5
+    },
+    "token_usage_available": true,
+    "run_id": "rid-64e1e3fd-249d-46a8-b6f6-48f3e9da276a",
+    "command_id": "9f4248c6-50ca-4a28-a4cb-8a302931a108",
+    "experiment": {
+      "experiment_id": "eid-bf14f219-d14b-4a34-b22e-3bcef34ec003",
+      "start_reason": "start",
+      "run_id": "rid-64e1e3fd-249d-46a8-b6f6-48f3e9da276a",
+      "session_id": "1520a780",
+      "session_name": "Port Container Inventory",
+      "task_id": "5b40be9a",
+      "task_name": "Triple Flight Marathon Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "9a27b9a5aec7b414a2ae2b1f62f5453614b9711d48703bbbdc761f7192c54766",
+      "session_snapshot_hash": "71464ea70eaea31394409bf13fa04fc0144a2709910c56d83d6efbd0c010f17a",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-64e1e3fd-249d-46a8-b6f6-48f3e9da276a",
+      "request_history": "/agent/runs/rid-64e1e3fd-249d-46a8-b6f6-48f3e9da276a/artifacts/request_history",
+      "events": "/agent/runs/rid-64e1e3fd-249d-46a8-b6f6-48f3e9da276a/artifacts/events",
+      "related_apis": "/agent/runs/rid-64e1e3fd-249d-46a8-b6f6-48f3e9da276a/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-64e1e3fd-249d-46a8-b6f6-48f3e9da276a/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-d61777bd-d5b0-40b4-8d81-256cd88f82c0",
+  "experiment": {
+    "run_id": "rid-d61777bd-d5b0-40b4-8d81-256cd88f82c0",
+    "experiment_id": "eid-b3da83f7-7211-5f1d-9d0d-7353d06e660e"
+  },
+  "service_instance_id": "20261110T144318-4c5349856ffd",
+  "batch_file": "../../batch.json",
+  "command_id": "ddedb313-799b-458a-9578-7cc8a3d9cc5f",
+  "job_id": null,
+  "command": "Drone 10 performs a marathon flight. Take off to 28 meters, fly to start point (118, 147, 28), then navigate through 10 waypoints: (219, 176, 28), (313, 266, 28), (465, 370, 28), (545, 418, 28), (614, 554, 28), (717, 614, 28), (869, 767, 28), (917, 887, 28), (810, 137, 28), (129, 833, 28). Avoid obstacles Polygon Obstacle 7, Circle Obstacle 5. Finally, fly to end point (541, 564, 28) and land.",
+  "created_at": "2026-11-10 14:47:47",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-10 14:48:10",
+  "requested_run_id": null,
+  "started_at": "2026-11-10 14:47:47",
+  "runtime": {
+    "run_id": "rid-d61777bd-d5b0-40b4-8d81-256cd88f82c0",
+    "experiment": {
+      "run_id": "rid-d61777bd-d5b0-40b4-8d81-256cd88f82c0",
+      "experiment_id": "eid-b3da83f7-7211-5f1d-9d0d-7353d06e660e"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "24fa30be",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "24fa30be",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "34dd23928755e9a28fda3ffc8d8a80ce40742e998d3a6ccd860ea59fe17854f5",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone 10 performs a marathon flight. Take off to 28 meters, fly to start point (118, 147, 28), then navigate through 10 waypoints: (219, 176, 28), (313, 266, 28), (465, 370, 28), (545, 418, 28), (614, 554, 28), (717, 614, 28), (869, 767, 28), (917, 887, 28), (810, 137, 28), (129, 833, 28). Avoid obstacles Polygon Obstacle 7, Circle Obstacle 5. Finally, fly to end point (541, 564, 28) and land.",
+            "drones": [
+              "Drone 10"
+            ],
+            "altitude": 28
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 12, \"legs\": 12, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"6e6c0eba\", \"drone_id\": \"fe7ff43b\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 28.0m (battery: -0.5%/-0mAh, remaining: 99.5%/96mAh)\", \"timestamp\": 1794293280.9300811}, \"steps\": 13, \"sample\": [{\"leg\": 1, \"goal\": [118.0, 147.0], \"waypoints\": 6, \"plan_ms\": 2678, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [219.0, 176.0], \"waypoints\": 4, \"plan_ms\": 78, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [313.0, 266.0], \"waypoints\": 3, \"plan_ms\": 48, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": []}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 13923,
+      "completion_tokens": 271,
+      "total_tokens": 14194,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

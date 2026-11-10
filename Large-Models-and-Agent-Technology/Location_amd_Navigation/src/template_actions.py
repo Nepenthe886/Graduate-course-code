@@ -114,10 +114,36 @@ def _spec(actions: list[dict], altitude: float, land_at_end: bool = False) -> di
     return {"actions": actions, "altitude": float(altitude), "land_at_end": bool(land_at_end)}
 
 
+def _point_xy(value):
+    """把 {x,y} / [x,y] / "(x, y, z)" / "x, y, z" 统一解析成 (x, y)。"""
+    if isinstance(value, dict):
+        if "x" in value and "y" in value:
+            try:
+                return float(value["x"]), float(value["y"])
+            except (TypeError, ValueError):
+                return None
+        return None
+    if isinstance(value, (list, tuple)) and len(value) >= 2:
+        try:
+            return float(value[0]), float(value[1])
+        except (TypeError, ValueError):
+            return None
+    if isinstance(value, str):
+        text = value.strip().strip("()[]{}")
+        parts = [part.strip() for part in text.replace(";", ",").split(",") if part.strip()]
+        if len(parts) >= 2:
+            try:
+                return float(parts[0]), float(parts[1])
+            except ValueError:
+                return None
+    return None
+
+
 def _xy(point) -> tuple[float, float]:
-    if isinstance(point, dict):
-        return float(point["x"]), float(point["y"])
-    return float(point[0]), float(point[1])
+    parsed = _point_xy(point)
+    if parsed is None:
+        raise ValueError("无法解析坐标: %r" % (point,))
+    return parsed
 
 
 def _drone(value, default: str = "") -> str:
@@ -173,18 +199,15 @@ def build_template_spec(template_id: str, params: dict | None = None) -> dict:
 
 def _altitude_stage(p: dict) -> dict:
     d, alt1, alt2 = _drone(p.get("drone_id")), float(p["alt1"]), float(p["alt2"])
-    if abs(alt2 - alt1) < 1e-6:
-        # 单高度任务：起飞即巡航高度，悬停即可，不做二次爬升
-        return _spec([
-            _act("take_off", drone_id=d, altitude=alt1),
-            _act("hover", drone_id=d),
-        ], alt2)
-    return _spec([
-        _act("take_off", drone_id=d, altitude=alt1),
-        _act("hover", drone_id=d),
-        _act("change_altitude", drone_id=d, altitude=alt2),
-        _act("hover", drone_id=d),
-    ], alt2)
+    heading = p.get("heading")
+    actions = [_act("take_off", drone_id=d, altitude=alt1)]
+    if abs(alt2 - alt1) >= 1e-6:
+        actions += [_act("hover", drone_id=d),
+                    _act("change_altitude", drone_id=d, altitude=alt2)]
+    if heading is not None:
+        actions.append(_act("rotate", drone_id=d, heading=float(heading)))
+    actions.append(_act("hover", drone_id=d))
+    return _spec(actions, alt2)
 
 
 def _grid_survey(p: dict) -> dict:
@@ -224,13 +247,36 @@ def _target_photo(p: dict) -> dict:
 
 def _line_formation(p: dict) -> dict:
     alt = float(p["altitude"])
+    raw_drones = p.get("drones") or []
+    names = [str(_drone(item)) for item in raw_drones if not isinstance(item, dict)]
+    entries: list[tuple[str, tuple[float, float] | None]] = []
+    for item in raw_drones:
+        if not isinstance(item, dict):
+            continue
+        name = str(_drone(item))
+        xy = _point_xy(item)
+        if name and xy is not None:
+            entries.append((name, xy))
+    if not entries:
+        positions = p.get("positions") or []
+        for index, item in enumerate(positions):
+            name = ""
+            xy = None
+            if isinstance(item, dict):
+                name = str(item.get("drone") or item.get("drone_id") or item.get("name") or "")
+                xy = _point_xy(item.get("position") or item.get("point") or item)
+            else:
+                xy = _point_xy(item)
+            if not name and index < len(names):
+                name = names[index]
+            entries.append((name, xy))
     actions = []
-    for item in p["drones"]:
-        d = _drone(item)
-        x, y = _xy(item)
-        actions += [_act("take_off", drone_id=d, altitude=alt),
-                    _act("move_to", drone_id=d, x=x, y=y, z=alt, tolerance=3.0),
-                    _act("hover", drone_id=d)]
+    for name, xy in entries:
+        if not name or xy is None:
+            continue
+        actions += [_act("take_off", drone_id=name, altitude=alt),
+                    _act("move_to", drone_id=name, x=xy[0], y=xy[1], z=alt, tolerance=2.0),
+                    _act("hover", drone_id=name)]
     return _spec(actions, alt)
 
 
@@ -273,7 +319,7 @@ def _relay_message(p: dict) -> dict:
     actions = []
     for d, x, y in ((d1, x1, y1), (d2, x2, y2)):
         actions += [_act("take_off", drone_id=d, altitude=alt),
-                    _act("move_to", drone_id=d, x=x, y=y, z=alt, tolerance=3.0)]
+                    _act("move_to", drone_id=d, x=x, y=y, z=alt, tolerance=2.0)]
     actions.append(_act("send_message", drone_id=d1, target_drone_id=d2, message=message))
     actions += [_act("hover", drone_id=d1), _act("hover", drone_id=d2)]
     return _spec(actions, alt)
@@ -352,7 +398,7 @@ def _target_coverage(p: dict) -> dict:
     # 逐点 move_to：由行为树一段一段规划/执行，单段受阻不会导致整条覆盖失败
     for point in waypoints:
         actions.append(_act("move_to", drone_id=d, x=point["x"], y=point["y"], z=alt,
-                            tolerance=5.0))
+                            tolerance=2.0))
     actions += [_act("take_photo", drone_id=d) for _ in range(photos)]
     actions.append(_act("hover", drone_id=d))
     spec = _spec(actions, alt)
