@@ -1,0 +1,91 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-2f7cb1c0-0cdc-42c1-891a-7644b9013e79",
+  "experiment": {
+    "run_id": "rid-2f7cb1c0-0cdc-42c1-891a-7644b9013e79",
+    "experiment_id": "eid-1465e8da-19a4-5848-83a1-e6e428b6f730"
+  },
+  "service_instance_id": "20261111T152220-0a56eafc26b0",
+  "batch_file": "../../batch.json",
+  "command_id": "2e111fbf-e4df-440a-bbcd-39d572f627c5",
+  "job_id": null,
+  "command": "Drone Relief UAV 02 performs an extreme marathon flight. Take off to 24 meters, fly to start point (108, 51, 24), then zigzag across the full map through 20 intermediate waypoints: (143, 151, 24), (918, 173, 24), (210, 227, 24), (884, 322, 24), (166, 453, 24), (898, 429, 24), (168, 569, 24), (855, 652, 24), (127, 757, 24), (889, 810, 24), (229, 847, 24), (848, 925, 24), (469, 765, 24), (915, 599, 24), (129, 624, 24), (952, 344, 24), (66, 360, 24), (768, 102, 24), (305, 938, 24), (628, 530, 24). Avoid obstacles S01 Civil building 41, S01 Civil building 15, and S01 Round civil structure 10. Finally, fly to end point (895, 938, 24) and land.",
+  "created_at": "2026-11-11 15:28:09",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-11 15:28:35",
+  "requested_run_id": null,
+  "started_at": "2026-11-11 15:28:10",
+  "runtime": {
+    "run_id": "rid-2f7cb1c0-0cdc-42c1-891a-7644b9013e79",
+    "experiment": {
+      "run_id": "rid-2f7cb1c0-0cdc-42c1-891a-7644b9013e79",
+      "experiment_id": "eid-1465e8da-19a4-5848-83a1-e6e428b6f730"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "0775fd84c87ad912",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "0775fd84c87ad912",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "7d8f8aa2221fe6a8a1fe56552aa40e4c1339271c6596fb9b45c5354a3b3496be",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Relief UAV 02 performs an extreme marathon flight. Take off to 24 meters, fly to start point (108, 51, 24), then zigzag across the full map through 20 intermediate waypoints: (143, 151, 24), (918, 173, 24), (210, 227, 24), (884, 322, 24), (166, 453, 24), (898, 429, 24), (168, 569, 24), (855, 652, 24), (127, 757, 24), (889, 810, 24), (229, 847, 24), (848, 925, 24), (469, 765, 24), (915, 599, 24), (129, 624, 24), (952, 344, 24), (66, 360, 24), (768, 102, 24), (305, 938, 24), (628, 530, 24). Avoid obstacles S01 Civil building 41, S01 Civil building 15, and S01 Round civil structure 10. Finally, fly to end point (895, 938, 24) and land.",
+            "drones": [
+              "Relief UAV 02"
+            ],
+            "altitude": 24
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 22, \"legs\": 22, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"97512fa5\", \"drone_id\": \"f0eb962a\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 24.0m (battery: -0.5%/-0mAh, remaining: 99.5%/100mAh)\", \"timestamp\": 1794382108.7570865}, \"steps\": 23, \"sample\": [{\"leg\": 1, \"goal\": [108.0, 51.0], \"waypoints\": 6, \"plan_ms\": 1535, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [143.0, 151.0], \"waypoints\": 2, \"plan_ms\": 39, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [210.0, 227.0], \"waypoints\": 1, \"plan_ms\": 11, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14762,
+      "completion_tokens": 436,
+      "total_tokens": 15198,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

@@ -20,6 +20,23 @@ def read_pose(api, drone_id: str) -> dict:
     }
 
 
+def target_pose(api, target_id: str) -> dict:
+    """读取目标当前位置（移动目标每次 tick 重新读取）。"""
+    getter = getattr(api, "target", None)
+    if getter is None or not target_id:
+        return {}
+    data = getter(target_id) or {}
+    position = data.get("position") or {}
+    if not position:
+        return {}
+    return {
+        "x": float(position.get("x", 0.0)),
+        "y": float(position.get("y", 0.0)),
+        "z": float(position.get("z", 0.0)),
+        "radius": float(data.get("radius") or 0.0),
+    }
+
+
 def distance_to(api, drone_id: str, goal) -> float:
     pose = read_pose(api, drone_id)
     return math.hypot(pose["x"] - float(goal[0]), pose["y"] - float(goal[1]))

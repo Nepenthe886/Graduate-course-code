@@ -1,0 +1,336 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-ff6d657f-9527-4dd7-8e7c-e85b1dbc5869",
+  "experiment": {
+    "run_id": "rid-ff6d657f-9527-4dd7-8e7c-e85b1dbc5869",
+    "experiment_id": "eid-67e25971-e356-506d-8616-d5abf366ff90"
+  },
+  "service_instance_id": "20261111T171353-bf528b855368",
+  "batch_file": "../../batch.json",
+  "command_id": "83e27963-6f04-4213-b3b3-b41d97c6c25e",
+  "job_id": null,
+  "command": "Drone Delta must take off to 22 meters, navigate to target Protected Reserve Beacon, take a photo, then navigate to target Foxtrot Home Charger and take another photo.",
+  "created_at": "2026-11-11 17:15:42",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-11 17:16:38",
+  "requested_run_id": null,
+  "started_at": "2026-11-11 17:15:43",
+  "runtime": {
+    "run_id": "rid-ff6d657f-9527-4dd7-8e7c-e85b1dbc5869",
+    "experiment": {
+      "run_id": "rid-ff6d657f-9527-4dd7-8e7c-e85b1dbc5869",
+      "experiment_id": "eid-67e25971-e356-506d-8616-d5abf366ff90"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "76fdf8f96380",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 10,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "76fdf8f96380",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "60a21dfab0c1cc585ad488f21dd9d13c523281b633df7779c6c1786fa8aa501e",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "The drone has successfully completed the mission: it took off to 22 meters, navigated to the Protected Reserve Beacon, took a photo, then navigated to the Foxtrot Home Charger, and took another photo. [TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "battery_cycle",
+            "params": {
+              "altitude": 22.0,
+              "drone_id": "0f63aa7bea9f",
+              "charge_amount": 30.0
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 22.0, \"error\": null}, {\"ok\": true, \"name\": \"hover\", \"error\": null}, {\"ok\": true, \"name\": \"return_home\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_route_to_target",
+          "tool_input": {
+            "drone_id": "0f63aa7bea9f",
+            "target": "Protected Reserve Beacon",
+            "z": 22.0
+          },
+          "log": "Preparing to call tool 'nav_route_to_target'",
+          "message_log": null
+        },
+        "{\"target\": {\"name\": \"Protected Reserve Beacon\", \"center\": [94.0, 690.0], \"radius\": 4.0}, \"route\": {\"start\": [944.0, 380.0], \"goal\": [94.0, 690.0], \"waypoints\": [[648.0, 564.0], [624.0, 564.0], [564.0, 204.0], [540.0, 204.0], [492.0, 564.0], [456.0, 564.0], [408.0, 204.0], [384.0, 204.0], [94.0, 690.0]], \"waypoints_xyz\": [[944.0, 380.0, 22.0], [648.0, 564.0, 22.0], [624.0, 564.0, 22.0], [564.0, 204.0, 22.0], [540.0, 204.0, 22.0], [492.0, 564.0, 22.0], [456.0, 564.0, 22.0], [408.0, 204.0, 22.0], [384.0, 204.0, 22.0], [94.0, 690.0, 22.0]], \"length\": 2113.81, \"length_3d\": 2113.81, \"min_clearance\": 1.64, \"detoured\": true, \"avoided\": [\"Barrier 1\", \"Barrier 2\", \"Barrier 3\", \"Barrier 4\"], \"planning_dim\": \"2d\", \"altitude\": 22.0, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}, \"move_along_path_waypoints\": [{\"x\": 648.0, \"y\": 564.0, \"z\": 22.0}, {\"x\": 624.0, \"y\": 564.0, \"z\": 22.0}, {\"x\": 564.0, \"y\": 204.0, \"z\": 22.0}, {\"x\": 540.0, \"y\": 204.0, \"z\": 22.0}, {\"x\": 492.0, \"y\": 564.0, \"z\": 22.0}, {\"x\": 456.0, \"y\": 564.0, \"z\": 22.0}, {\"x\": 408.0, \"y\": 204.0, \"z\": 22.0}, {\"x\": 384.0, \"y\": 204.0, \"z\": 22.0}, {\"x\": 94.0, \"y\": 690.0, \"z\": 22.0}]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "0f63aa7bea9f",
+            "waypoints": [
+              {
+                "x": 648.0,
+                "y": 564.0,
+                "z": 22.0
+              },
+              {
+                "x": 624.0,
+                "y": 564.0,
+                "z": 22.0
+              },
+              {
+                "x": 564.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 540.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 492.0,
+                "y": 564.0,
+                "z": 22.0
+              },
+              {
+                "x": 456.0,
+                "y": 564.0,
+                "z": 22.0
+              },
+              {
+                "x": 408.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 384.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 94.0,
+                "y": 690.0,
+                "z": 22.0
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"3ecdd77b\",\n  \"drone_id\": \"0f63aa7bea9f\",\n  \"command\": \"move_along_path\",\n  \"status\": \"error\",\n  \"message\": \"Cannot move along path from current status: DroneStatus.IDLE\",\n  \"successful_points_count\": null,\n  \"successful_points\": null,\n  \"unsuccessful_points_count\": null,\n  \"unsuccessful_points\": null,\n  \"timestamp\": 1794388566.870809\n}"
+      ],
+      [
+        {
+          "tool": "take_off",
+          "tool_input": {
+            "drone_id": "0f63aa7bea9f",
+            "altitude": 22.0
+          },
+          "log": "The drone is currently in an idle status, which means it cannot execute the move_along_path command. To proceed, we need to first take off the drone to the specified altitude. Let's take off the drone to 22 meters and then attempt the move_along_path command again. \n\n",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"70bc0c69\",\n  \"drone_id\": \"0f63aa7bea9f\",\n  \"command\": \"take_off\",\n  \"status\": \"success\",\n  \"message\": \"Drone taking off to altitude 22.0m (battery: -0.5%/-32mAh, remaining: 99.5%/6468mAh)\",\n  \"timestamp\": 1794388571.139564\n}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "0f63aa7bea9f",
+            "waypoints": [
+              {
+                "x": 648.0,
+                "y": 564.0,
+                "z": 22.0
+              },
+              {
+                "x": 624.0,
+                "y": 564.0,
+                "z": 22.0
+              },
+              {
+                "x": 564.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 540.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 492.0,
+                "y": 564.0,
+                "z": 22.0
+              },
+              {
+                "x": 456.0,
+                "y": 564.0,
+                "z": 22.0
+              },
+              {
+                "x": 408.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 384.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 94.0,
+                "y": 690.0,
+                "z": 22.0
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"1912b9e7\",\n  \"drone_id\": \"0f63aa7bea9f\",\n  \"command\": \"move_along_path\",\n  \"status\": \"success\",\n  \"message\": \"Drone completed path with 9 waypoints (total distance: 2113.81m, battery: -14.4%/-936mAh, remaining: 85.1%/5532mAh) - Reached target(s): Delta Home Charger, Recovery Outpost One, Protected Reserve Beacon\",\n  \"successful_points_count\": 9,\n  \"successful_points\": [\n    [\n      648.0,\n      564.0,\n      22.0\n    ],\n    [\n      624.0,\n      564.0,\n      22.0\n    ],\n    [\n      564.0,\n      204.0,\n      22.0\n    ],\n    [\n      540.0,\n      204.0,\n      22.0\n    ],\n    [\n      492.0,\n      564.0,\n      22.0\n    ],\n    [\n      456.0,\n      564.0,\n      22.0\n    ],\n    [\n      408.0,\n      204.0,\n      22.0\n    ],\n    [\n      384.0,\n      204.0,\n      22.0\n    ],\n    [\n      94.0,\n      690.0,\n      22.0\n    ]\n  ],\n  \"unsuccessful_points_count\": 0,\n  \"unsuccessful_points\": [],\n  \"timestamp\": 1794388578.9170334\n}"
+      ],
+      [
+        {
+          "tool": "take_photo",
+          "tool_input": {
+            "drone_id": "0f63aa7bea9f"
+          },
+          "log": "Preparing to call tool 'take_photo'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"1418b9ae\",\n  \"drone_id\": \"0f63aa7bea9f\",\n  \"command\": \"take_photo\",\n  \"status\": \"success\",\n  \"message\": \"Photo taken successfully. Photo ID: 88a22a94 (battery: -0.3%/-20mAh, remaining: 84.8%/5512mAh)\",\n  \"timestamp\": 1794388582.205153\n}"
+      ],
+      [
+        {
+          "tool": "nav_route_to_target",
+          "tool_input": {
+            "drone_id": "0f63aa7bea9f",
+            "target": "Foxtrot Home Charger",
+            "z": 22.0
+          },
+          "log": "Preparing to call tool 'nav_route_to_target'",
+          "message_log": null
+        },
+        "{\"target\": {\"name\": \"Foxtrot Home Charger\", \"center\": [944.0, 580.0], \"radius\": 12.0}, \"route\": {\"start\": [94.0, 690.0], \"goal\": [944.0, 580.0], \"waypoints\": [[384.0, 204.0], [408.0, 204.0], [456.0, 564.0], [492.0, 564.0], [540.0, 204.0], [564.0, 204.0], [624.0, 564.0], [944.0, 580.0]], \"waypoints_xyz\": [[94.0, 690.0, 22.0], [384.0, 204.0, 22.0], [408.0, 204.0, 22.0], [456.0, 564.0, 22.0], [492.0, 564.0, 22.0], [540.0, 204.0, 22.0], [564.0, 204.0, 22.0], [624.0, 564.0, 22.0], [944.0, 580.0, 22.0]], \"length\": 2061.68, \"length_3d\": 2061.68, \"min_clearance\": 1.64, \"detoured\": true, \"avoided\": [\"Barrier 2\", \"Barrier 4\"], \"planning_dim\": \"2d\", \"altitude\": 22.0, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}, \"move_along_path_waypoints\": [{\"x\": 384.0, \"y\": 204.0, \"z\": 22.0}, {\"x\": 408.0, \"y\": 204.0, \"z\": 22.0}, {\"x\": 456.0, \"y\": 564.0, \"z\": 22.0}, {\"x\": 492.0, \"y\": 564.0, \"z\": 22.0}, {\"x\": 540.0, \"y\": 204.0, \"z\": 22.0}, {\"x\": 564.0, \"y\": 204.0, \"z\": 22.0}, {\"x\": 624.0, \"y\": 564.0, \"z\": 22.0}, {\"x\": 944.0, \"y\": 580.0, \"z\": 22.0}]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "0f63aa7bea9f",
+            "waypoints": [
+              {
+                "x": 384.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 408.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 456.0,
+                "y": 564.0,
+                "z": 22.0
+              },
+              {
+                "x": 492.0,
+                "y": 564.0,
+                "z": 22.0
+              },
+              {
+                "x": 540.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 564.0,
+                "y": 204.0,
+                "z": 22.0
+              },
+              {
+                "x": 624.0,
+                "y": 564.0,
+                "z": 22.0
+              },
+              {
+                "x": 944.0,
+                "y": 580.0,
+                "z": 22.0
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"4d734eb5\",\n  \"drone_id\": \"0f63aa7bea9f\",\n  \"command\": \"move_along_path\",\n  \"status\": \"success\",\n  \"message\": \"Drone completed path with 8 waypoints (total distance: 2061.68m, battery: -14.0%/-913mAh, remaining: 70.8%/4599mAh) - Reached target(s): Protected Reserve Beacon, Foxtrot Home Charger, Recovery Outpost Two\",\n  \"successful_points_count\": 8,\n  \"successful_points\": [\n    [\n      384.0,\n      204.0,\n      22.0\n    ],\n    [\n      408.0,\n      204.0,\n      22.0\n    ],\n    [\n      456.0,\n      564.0,\n      22.0\n    ],\n    [\n      492.0,\n      564.0,\n      22.0\n    ],\n    [\n      540.0,\n      204.0,\n      22.0\n    ],\n    [\n      564.0,\n      204.0,\n      22.0\n    ],\n    [\n      624.0,\n      564.0,\n      22.0\n    ],\n    [\n      944.0,\n      580.0,\n      22.0\n    ]\n  ],\n  \"unsuccessful_points_count\": 0,\n  \"unsuccessful_points\": [],\n  \"timestamp\": 1794388593.798299\n}"
+      ],
+      [
+        {
+          "tool": "take_photo",
+          "tool_input": {
+            "drone_id": "0f63aa7bea9f"
+          },
+          "log": "Preparing to call tool 'take_photo'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"58dc80a5\",\n  \"drone_id\": \"0f63aa7bea9f\",\n  \"command\": \"take_photo\",\n  \"status\": \"success\",\n  \"message\": \"Photo taken successfully. Photo ID: 0c8a5dbe (battery: -0.3%/-20mAh, remaining: 70.5%/4580mAh)\",\n  \"timestamp\": 1794388597.0642984\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 85650,
+      "completion_tokens": 1334,
+      "total_tokens": 86984,
+      "llm_calls": 10
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "conversion_required",
+    "recording_status": "complete",
+    "sha256": "11ccb8cc7bdb3d7e0ea60c90a8bc2af26c7c962d679bdb3273403340a6d7a03f",
+    "source_indices": [
+      7,
+      8,
+      9,
+      11,
+      12
+    ],
+    "issues": [
+      {
+        "index": 6,
+        "path": "/drones/0f63aa7bea9f/command/move_along_path",
+        "reason": "Failed/partial request excluded from the plan; review required"
+      }
+    ],
+    "count": 5,
+    "replay_validation": "not_run"
+  }
+}

@@ -1,0 +1,61 @@
+
+ProcessId    : 33472
+CreationDate : 2026/11/11 17:53:08
+CommandLine  : "E:\Code\Graduate-course-code\Large-Models-and-Agent-Technology\Qwen3-7B\.venv\Scripts\python.exe"  -m src.server --port 8012
+
+ProcessId    : 40608
+CreationDate : 2026/11/11 17:53:09
+CommandLine  : "E:\python install manager Data\runtimes\pythoncore-3.12-64\python.exe" -m src.server --port 8012
+
+ProcessId    : 39080
+CreationDate : 2026/11/11 17:53:09
+CommandLine  : E:\Code\Graduate-course-code\Large-Models-and-Agent-Technology\Qwen3-7B\runtime\llama\llama-server.exe -m E:\Code\Graduate-course-code\Large-Models-and-Agent-Technology\Qwen3-7B\models\Qwen3-8B-Q4_K_M.gguf --host 127.0.0.1 --port 8012 -c 32768 -ngl 99 -t 8 -b 1024 -ub 256 --metrics --jinja --reasoning off
+
+ProcessId    : 26960
+CreationDate : 2026/11/11 17:53:13
+CommandLine  : py  -3.12 llm_adapter_proxy.py --port 8010 --upstream http://127.0.0.1:8012 --uav-base http://127.0.0.1:8001
+
+ProcessId    : 14636
+CreationDate : 2026/11/11 17:53:13
+CommandLine  : "E:\python install manager Data\runtimes\pythoncore-3.12-64\python.exe" llm_adapter_proxy.py --port 8010 --upstream http://127.0.0.1:8012 --uav-base http://127.0.0.1:8001
+
+ProcessId    : 34340
+CreationDate : 2026/11/11 18:19:26
+CommandLine  : "D:\DeepSeek Harness\install\DeepSeek Harness.exe" "D:\DeepSeek Harness\install\resources\app.asar\dsh\node_modules\@deepseek-ai\dsh-subprocess-local\lib\runner.js" -- C:\Users\zmf20\.dsh\profiles\desktop\node_modules\@dsh-ops\pwsh-win32-x64\bin\pwsh.exe -NoLogo -NoProfile -NonInteractive -Command "[Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false); $OutputEncoding = [System.Text.UTF8Encoding]::new($false); $dest='E:\Code\Graduate-course-code\Large-Models-and-Agent-Technology\打榜赛和擂台赛\一班-45-郑茂繁-谢启东-轻量模型证明'
+               $agent='E:\Code\Graduate-course-code\Large-Models-and-Agent-Technology\agent4drone\agent4drone'
+               $svc=Get-ChildItem (Join-Path $agent 'logs\service') -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+               $batch=Get-ChildItem (Join-Path $agent 'logs\batches') -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+               $run=Get-ChildItem (Join-Path $batch.FullName 'runs') -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+               New-Item -ItemType Directory -Force -Path (Join-Path $dest 'config'),(Join-Path $dest ('agent_service\'+$svc.Name)),(Join-Path $dest ('llm_calls\'+$run.Name)),(Join-Path $dest 'process') | Out-Null
+               Copy-Item (Join-Path $agent 'llm_settings.json') (Join-Path $dest 'config\llm_settings.json') -Force
+               Copy-Item (Join-Path $svc.FullName 'service.log') (Join-Path $dest ('agent_service\'+$svc.Name+'\service.log')) -Force
+               Copy-Item (Join-Path $svc.FullName 'service.json') (Join-Path $dest ('agent_service\'+$svc.Name+'\service.json')) -Force
+               foreach ($f in 'llm_calls.jsonl','events.jsonl','requests.jsonl','related_apis.jsonl','manifest.json') {
+                 $p=Join-Path $run.FullName $f
+                 if (Test-Path $p) { Copy-Item $p (Join-Path $dest ('llm_calls\'+$run.Name+'\'+$f)) -Force }
+               }
+               Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'llama-server|llm_adapter_proxy|src.server --port 8012' } | Select-Object ProcessId,CreationDate,CommandLine | Format-List | Out-File -Encoding utf8 (Join-Path $dest 'process\llm_processes.txt')
+               Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object { $_.LocalPort -in 8010,8012,8000,8001 } | Select-Object LocalAddress,LocalPort,OwningProcess | Format-Table -AutoSize | Out-File -Encoding utf8 (Join-Path $dest 'process\listening_ports.txt')
+               Get-ChildItem $dest -Recurse -File | Get-FileHash -Algorithm SHA256 | ForEach-Object { ($_.Hash + '  ' + ($_.Path.Replace($dest+'\',''))) } | Out-File -Encoding utf8 (Join-Path $dest 'checksums_sha256.txt')
+               Get-ChildItem $dest -Recurse -File | Select-Object FullName,Length | Format-Table -AutoSize -Wrap"
+
+ProcessId    : 26904
+CreationDate : 2026/11/11 18:19:26
+CommandLine  : C:\Users\zmf20\.dsh\profiles\desktop\node_modules\@dsh-ops\pwsh-win32-x64\bin\pwsh.exe -NoLogo -NoProfile -NonInteractive -Command "[Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false); $OutputEncoding = [System.Text.UTF8Encoding]::new($false); $dest='E:\Code\Graduate-course-code\Large-Models-and-Agent-Technology\打榜赛和擂台赛\一班-45-郑茂繁-谢启东-轻量模型证明'
+               $agent='E:\Code\Graduate-course-code\Large-Models-and-Agent-Technology\agent4drone\agent4drone'
+               $svc=Get-ChildItem (Join-Path $agent 'logs\service') -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+               $batch=Get-ChildItem (Join-Path $agent 'logs\batches') -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+               $run=Get-ChildItem (Join-Path $batch.FullName 'runs') -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+               New-Item -ItemType Directory -Force -Path (Join-Path $dest 'config'),(Join-Path $dest ('agent_service\'+$svc.Name)),(Join-Path $dest ('llm_calls\'+$run.Name)),(Join-Path $dest 'process') | Out-Null
+               Copy-Item (Join-Path $agent 'llm_settings.json') (Join-Path $dest 'config\llm_settings.json') -Force
+               Copy-Item (Join-Path $svc.FullName 'service.log') (Join-Path $dest ('agent_service\'+$svc.Name+'\service.log')) -Force
+               Copy-Item (Join-Path $svc.FullName 'service.json') (Join-Path $dest ('agent_service\'+$svc.Name+'\service.json')) -Force
+               foreach ($f in 'llm_calls.jsonl','events.jsonl','requests.jsonl','related_apis.jsonl','manifest.json') {
+                 $p=Join-Path $run.FullName $f
+                 if (Test-Path $p) { Copy-Item $p (Join-Path $dest ('llm_calls\'+$run.Name+'\'+$f)) -Force }
+               }
+               Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'llama-server|llm_adapter_proxy|src.server --port 8012' } | Select-Object ProcessId,CreationDate,CommandLine | Format-List | Out-File -Encoding utf8 (Join-Path $dest 'process\llm_processes.txt')
+               Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object { $_.LocalPort -in 8010,8012,8000,8001 } | Select-Object LocalAddress,LocalPort,OwningProcess | Format-Table -AutoSize | Out-File -Encoding utf8 (Join-Path $dest 'process\listening_ports.txt')
+               Get-ChildItem $dest -Recurse -File | Get-FileHash -Algorithm SHA256 | ForEach-Object { ($_.Hash + '  ' + ($_.Path.Replace($dest+'\',''))) } | Out-File -Encoding utf8 (Join-Path $dest 'checksums_sha256.txt')
+               Get-ChildItem $dest -Recurse -File | Select-Object FullName,Length | Format-Table -AutoSize -Wrap"
+

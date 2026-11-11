@@ -1,0 +1,291 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-45e8f890-5cd7-4582-bbad-b06f967f9d39",
+  "experiment": {
+    "run_id": "rid-45e8f890-5cd7-4582-bbad-b06f967f9d39",
+    "experiment_id": "eid-1465e8da-19a4-5848-83a1-e6e428b6f730"
+  },
+  "service_instance_id": "20261111T152220-0a56eafc26b0",
+  "batch_file": "../../batch.json",
+  "command_id": "7d6d859a-df38-42b6-9c7f-3b6a737a435b",
+  "job_id": null,
+  "command": "Send drones Relief UAV 08 and Relief UAV 05 to target Relief depot inspection 06. Both drones should take off to 19 meters and reach the same target.",
+  "created_at": "2026-11-11 15:35:26",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-11 15:36:13",
+  "requested_run_id": null,
+  "started_at": "2026-11-11 15:35:26",
+  "runtime": {
+    "run_id": "rid-45e8f890-5cd7-4582-bbad-b06f967f9d39",
+    "experiment": {
+      "run_id": "rid-45e8f890-5cd7-4582-bbad-b06f967f9d39",
+      "experiment_id": "eid-1465e8da-19a4-5848-83a1-e6e428b6f730"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "0775fd84c87ad912",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 15,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "0775fd84c87ad912",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "0723ebf64bbd9c835100affde7b69a4cf92b9e009b4ee11e2d549cfa25e7d136",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "Both drones, Relief UAV 08 and Relief UAV 05, have successfully reached the target \"Relief depot inspection 06\" at the specified altitude of 19 meters. The mission is complete.\n\n[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "target_photo",
+            "params": {
+              "altitude": 19.0,
+              "drone_id": "fc06d0a4",
+              "target": "Relief"
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 19.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [936.53625, 521.54324], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Send drones Relief UAV 08 and Relief UAV 05 to target Relief depot inspection 06. Both drones should take off to 19 meters and reach the same target.",
+            "drone_id": "fc06d0a4",
+            "altitude": 19.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"error\": \"任务里没有可解析的航点，也不是可识别的覆盖/编队任务\"}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "target_photo",
+            "params": {
+              "altitude": 19.0,
+              "drone_id": "1dbe4e83",
+              "target": "Relief depot inspection 06"
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 19.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [936.53625, 521.54324], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Send drones Relief UAV 08 and Relief UAV 05 to target Relief depot inspection 06. Both drones should take off to 19 meters and reach the same target.",
+            "drones": [
+              "Relief UAV 08",
+              "Relief UAV 05"
+            ],
+            "altitude": 19.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"error\": \"任务里没有可解析的航点，也不是可识别的覆盖/编队任务\"}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "target_photo",
+            "params": {
+              "altitude": 19.0,
+              "drone_id": "1dbe4e83",
+              "target": "Relief depot inspection 06"
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 19.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [936.53625, 521.54324], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Send drones Relief UAV 08 and Relief UAV 05 to target Relief depot inspection 06. Both drones should take off to 19 meters and reach the same target.",
+            "drones": [
+              "Relief UAV 08",
+              "Relief UAV 05"
+            ],
+            "altitude": 19.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"error\": \"任务里没有可解析的航点，也不是可识别的覆盖/编队任务\"}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "target_photo",
+            "params": {
+              "altitude": 19.0,
+              "drone_id": "fc06d0a4",
+              "target": "Relief depot inspection 06"
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 19.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [936.53625, 521.54324], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Send drones Relief UAV 08 and Relief UAV 05 to target Relief depot inspection 06. Both drones should take off to 19 meters and reach the same target.",
+            "drones": [
+              "Relief UAV 08",
+              "Relief UAV 05"
+            ],
+            "altitude": 19.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"error\": \"任务里没有可解析的航点，也不是可识别的覆盖/编队任务\"}"
+      ],
+      [
+        {
+          "tool": "get_drone_status",
+          "tool_input": {
+            "drone_id": "1dbe4e83"
+          },
+          "log": "The task is not being recognized as a valid template or mission with defined waypoints. I will now attempt to manually control the drones to reach the target.\n\nFirst, I will check the current status of the drones and the target location. Then, I will plan a safe route for both drones to reach the target while avoiding obstacles. Let's start by checking the status of the drones and the target.\n\n",
+          "message_log": null
+        },
+        "{\n  \"id\": \"1dbe4e83\",\n  \"name\": \"Relief UAV 08\",\n  \"model\": \"Mapper\",\n  \"status\": \"hovering\",\n  \"position\": {\n    \"x\": 936.53625,\n    \"y\": 521.54324,\n    \"z\": 19.0\n  },\n  \"heading\": 0.0,\n  \"speed\": 0.0,\n  \"battery_level\": 97.02095992331022,\n  \"max_speed\": 28.0,\n  \"max_altitude\": 150.0,\n  \"battery_capacity\": 100.0,\n  \"perceived_radius\": 80.0,\n  \"task_radius\": 22.0,\n  \"home_position\": {\n    \"x\": 143.26126,\n    \"y\": 622.08147,\n    \"z\": 0.0\n  },\n  \"created_at\": 1793577600.0,\n  \"last_updated\": 1794382544.5508165\n}"
+      ],
+      [
+        {
+          "tool": "get_drone_status",
+          "tool_input": {
+            "drone_id": "fc06d0a4"
+          },
+          "log": "Preparing to call tool 'get_drone_status'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"fc06d0a4\",\n  \"name\": \"Relief UAV 05\",\n  \"model\": \"Mapper\",\n  \"status\": \"hovering\",\n  \"position\": {\n    \"x\": 936.53625,\n    \"y\": 521.54324,\n    \"z\": 19.0\n  },\n  \"heading\": 310.8270155242069,\n  \"speed\": 0.0,\n  \"battery_level\": 96.67852763336494,\n  \"max_speed\": 16.0,\n  \"max_altitude\": 150.0,\n  \"battery_capacity\": 100.0,\n  \"perceived_radius\": 80.0,\n  \"task_radius\": 22.0,\n  \"home_position\": {\n    \"x\": 151.12944,\n    \"y\": 654.4366,\n    \"z\": 0.0\n  },\n  \"created_at\": 1793577600.0,\n  \"last_updated\": 1794382547.9529388\n}"
+      ],
+      [
+        {
+          "tool": "get_nearby_entities",
+          "tool_input": {
+            "drone_id": "1dbe4e83"
+          },
+          "log": "Preparing to call tool 'get_nearby_entities'",
+          "message_log": null
+        },
+        "{\n  \"drones\": [\n    {\n      \"id\": \"fc06d0a4\",\n      \"name\": \"Relief UAV 05\",\n      \"model\": \"Mapper\",\n      \"status\": \"hovering\",\n      \"position\": {\n        \"x\": 936.53625,\n        \"y\": 521.54324,\n        \"z\": 19.0\n      },\n      \"heading\": 310.8270155242069,\n      \"speed\": 0.0,\n      \"battery_level\": 96.67852763336494,\n      \"max_speed\": 16.0,\n      \"max_altitude\": 150.0,\n      \"battery_capacity\": 100.0,\n      \"perceived_radius\": 80.0,\n      \"task_radius\": 22.0,\n      \"home_position\": {\n        \"x\": 151.12944,\n        \"y\": 654.4366,\n        \"z\": 0.0\n      },\n      \"created_at\": 1793577600.0,\n      \"last_updated\": 1794382547.9529388\n    }\n  ],\n  \"targets\": [\n    {\n      \"id\": \"1598a5b7\",\n      \"name\": \"Relief depot inspection 06\",\n      \"type\": \"fixed\",\n      \"position\": {\n        \"x\": 936.53625,\n        \"y\": 521.54324,\n        \"z\": 0.0\n      },\n      \"description\": \"Fictional civilian observation point outside structures\",\n      \"velocity\": null,\n      \"radius\": 7.0,\n      \"created_at\": 1794239074.2434251,\n      \"last_updated\": 1794382547.9270842,\n      \"moving_path\": null,\n      \"moving_duration\": null,\n      \"current_path_index\": null,\n      \"path_direction\": null,\n      \"time_in_direction\": null,\n      \"calculated_speed\": null,\n      \"movement_mode\": null,\n      \"last_motion_update\": null,\n      \"charge_amount\": null,\n      \"vertices\": null,\n      \"tracking_status\": null,\n      \"last_tracked_at\": null,\n      \"is_reached\": true,\n      \"reached_by\": [\n        \"1dbe4e83\",\n        \"fc06d0a4\"\n      ]\n    }\n  ],\n  \"obstacles\": [\n    {\n      \"id\": \"b71421d2\",\n      \"name\": \"S01 Round civil structure 13\",\n      \"type\": \"circle\",\n      \"position\": {\n        \"x\": 903.10714,\n        \"y\": 476.48083,\n        \"z\": 0.0\n      },\n      \"description\": \"Civilian structure or debris, top at 18 m\",\n      \"radius\": 22.4134254788664,\n      \"vertices\": [],\n      \"width\": null,\n      \"length\": null,\n      \"height\": 0.0,\n      \"area\": 1578.215642999653,\n      \"created_at\": 1793577600.0,\n      \"last_updated\": 1793577600.0\n    },\n    {\n      \"id\": \"cf8af4e5\",\n      \"name\": \"S01 Uneven debris mound 23\",\n      \"type\": \"ellipse\",\n      \"position\": {\n        \"x\": 884.08835,\n        \"y\": 551.84567,\n        \"z\": 0.0\n      },\n      \"description\": \"Civilian structure or debris, top at 12 m\",\n      \"radius\": null,\n      \"vertices\": [],\n      \"width\": 17.959568062139663,\n      \"length\": 25.120677541146243,\n      \"height\": 0.0,\n      \"area\": 1417.350002779315,\n      \"created_at\": 1793577600.0,\n      \"last_updated\": 1793577600.0\n    },\n    {\n      \"id\": \"cb23dec8\",\n      \"name\": \"S01 Round civil structure 27\",\n      \"type\": \"circle\",\n      \"position\": {\n        \"x\": 971.97875,\n        \"y\": 454.71453,\n        \"z\": 0.0\n      },\n      \"description\": \"Civilian structure or debris, top at 18 m\",\n      \"radius\": 18.930512162553896,\n      \"vertices\": [],\n      \"width\": null,\n      \"length\": null,\n      \"height\": 0.0,\n      \"area\": 1125.8346230870225,\n      \"created_at\": 1793577600.0,\n      \"last_updated\": 1793577600.0\n    }\n  ]\n}"
+      ],
+      [
+        {
+          "tool": "nav_plan_route",
+          "tool_input": {
+            "goal": {
+              "x": 936.53625,
+              "y": 521.54324,
+              "z": 19.0
+            },
+            "clearance": 25.0
+          },
+          "log": "Preparing to call tool 'nav_plan_route'",
+          "message_log": null
+        },
+        "{\"start\": [936.53625, 521.54324], \"goal\": [936.53625, 521.54324], \"waypoints\": [[936.53625, 521.54324]], \"waypoints_xyz\": [[936.53625, 521.54324, 59.0], [936.53625, 521.54324, 59.0]], \"length\": 0.0, \"length_3d\": 0.0, \"min_clearance\": 33.69, \"detoured\": false, \"avoided\": [], \"planning_dim\": \"2d\", \"altitude\": 59.0, \"overfly\": [], \"smoothed\": false, \"max_turn_deg\": 0.0, \"z_range\": [0.0, 0.0]}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "1dbe4e83",
+            "waypoints": [
+              {
+                "x": 936.53625,
+                "y": 521.54324,
+                "z": 19.0
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"5355cc29\",\n  \"drone_id\": \"1dbe4e83\",\n  \"command\": \"move_along_path\",\n  \"status\": \"success\",\n  \"message\": \"Drone completed path with 1 waypoints (total distance: 0.00m, battery: -0.0%/-0mAh, remaining: 97.0%/97mAh) - Reached target(s): Relief depot inspection 06\",\n  \"successful_points_count\": 1,\n  \"successful_points\": [\n    [\n      936.53625,\n      521.54324,\n      19.0\n    ]\n  ],\n  \"unsuccessful_points_count\": 0,\n  \"unsuccessful_points\": [],\n  \"timestamp\": 1794382568.4443843\n}"
+      ],
+      [
+        {
+          "tool": "move_along_path",
+          "tool_input": {
+            "drone_id": "fc06d0a4",
+            "waypoints": [
+              {
+                "x": 936.53625,
+                "y": 521.54324,
+                "z": 19.0
+              }
+            ],
+            "allow_partial_move": false
+          },
+          "log": "Preparing to call tool 'move_along_path'",
+          "message_log": null
+        },
+        "{\n  \"command_id\": \"bd7abba8\",\n  \"drone_id\": \"fc06d0a4\",\n  \"command\": \"move_along_path\",\n  \"status\": \"success\",\n  \"message\": \"Drone completed path with 1 waypoints (total distance: 0.00m, battery: -0.0%/-0mAh, remaining: 96.7%/97mAh) - Reached target(s): Relief depot inspection 06\",\n  \"successful_points_count\": 1,\n  \"successful_points\": [\n    [\n      936.53625,\n      521.54324,\n      19.0\n    ]\n  ],\n  \"unsuccessful_points_count\": 0,\n  \"unsuccessful_points\": [],\n  \"timestamp\": 1794382572.4468236\n}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 123949,
+      "completion_tokens": 1114,
+      "total_tokens": 125063,
+      "llm_calls": 15
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "complete",
+    "recording_status": "complete",
+    "sha256": "984a39f5dfed645930bf425114575714e95a973f919b0420de40ae032344eadb",
+    "source_indices": [
+      8,
+      9
+    ],
+    "issues": [],
+    "count": 2,
+    "replay_validation": "not_run"
+  }
+}

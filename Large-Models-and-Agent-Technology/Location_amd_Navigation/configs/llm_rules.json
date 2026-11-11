@@ -11,6 +11,7 @@
     "任务里出现 Avoid obstacles X, Y 时：这只是说明，导航动作（navigate_to_pose）已自动避障；不要查询、不要导航到这些障碍物名称，直接忽略这句话即可。",
     "任务里出现具体目标名（例如 target Bay 036）时：直接调用 nav_execute_mission(task_text=完整任务) 或 nav_template_action(template=target_photo)；不要用 get_nearby_entities 搜索目标。",
     "不要重复发送相同的工具调用；如果工具返回 ok=false，读取 failures 说明原因并换方式或结束，不要循环重试同样参数。",
+    "多机任务（返回 mode=multi_drone_parallel）失败时：只针对 failures 里列出的无人机/方向重试（用该 drone_id 重发任务），不要重跑整套多机任务；无法修复则直接报 [TASK FAILED]。",
     "任务要求拍照/到达/悬停时，完成前确认：到点（≤3m）、照片数达标、状态 hovering；任一不满足不得报 [TASK DONE]。",
     "天气（雨/风/能见度）只是参考信息：除非电量低于 2%，否则执行任务。",
     "最终回答必须有终态标记：成功 [TASK DONE]，失败 [TASK FAILED] + 一句原因，两者不要同时出现。"

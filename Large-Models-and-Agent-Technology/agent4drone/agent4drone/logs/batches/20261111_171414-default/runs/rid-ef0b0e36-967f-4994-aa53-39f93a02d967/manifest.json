@@ -1,0 +1,116 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-ef0b0e36-967f-4994-aa53-39f93a02d967",
+  "experiment": {
+    "run_id": "rid-ef0b0e36-967f-4994-aa53-39f93a02d967",
+    "experiment_id": "eid-67e25971-e356-506d-8616-d5abf366ff90"
+  },
+  "service_instance_id": "20261111T171353-bf528b855368",
+  "batch_file": "../../batch.json",
+  "command_id": "a083b2e9-8b58-4a2c-8609-492da5bfafb6",
+  "job_id": null,
+  "command": "Take off necessary drones and assign them to reach required targets Inspection West, Inspection East, and Far-Side Depot North; if those targets alone do not exceed 50% session task progress, continue reaching additional assigned targets until progress exceeds 50%.",
+  "created_at": "2026-11-11 17:17:43",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-11 17:18:06",
+  "requested_run_id": null,
+  "started_at": "2026-11-11 17:17:43",
+  "runtime": {
+    "run_id": "rid-ef0b0e36-967f-4994-aa53-39f93a02d967",
+    "experiment": {
+      "run_id": "rid-ef0b0e36-967f-4994-aa53-39f93a02d967",
+      "experiment_id": "eid-67e25971-e356-506d-8616-d5abf366ff90"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "76fdf8f96380",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 5,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "76fdf8f96380",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "506b8ecdf4795bbd4e51eb991c795d3ec1a8889dfe69ec1708af80620a23f9d9",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"2592c9873dff\",\n    \"name\": \"Alpha\",\n    \"model\": \"Scout\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 80.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 22.0,\n    \"max_altitude\": 90.0,\n    \"battery_capacity\": 5000.0,\n    \"perceived_radius\": 60.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 80.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388659.1967547\n  },\n  {\n    \"id\": \"1cc16c1f84b1\",\n    \"name\": \"Bravo\",\n    \"model\": \"Surveyor\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 180.0,\n      \"z\": 0.0\n    },\n    \"heading\": 84.8055710922652,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 16.0,\n    \"max_altitude\": 80.0,\n    \"battery_capacity\": 5500.0,\n    \"perceived_radius\": 42.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 180.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388659.1967895\n  },\n  {\n    \"id\": \"6964955cd21c\",\n    \"name\": \"Charlie\",\n    \"model\": \"Relay\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 244.0,\n      \"y\": 530.0,\n      \"z\": 0.0\n    },\n    \"heading\": 296.565051177078,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 18.0,\n    \"max_altitude\": 85.0,\n    \"battery_capacity\": 6000.0,\n    \"perceived_radius\": 75.0,\n    \"task_radius\": 12.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 280.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388659.1968038\n  },\n  {\n    \"id\": \"0f63aa7bea9f\",\n    \"name\": \"Delta\",\n    \"model\": \"Reserve\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 580.0,\n      \"z\": 0.0\n    },\n    \"heading\": 97.37376636133021,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 75.0,\n    \"battery_capacity\": 6500.0,\n    \"perceived_radius\": 45.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 380.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388659.1968143\n  },\n  {\n    \"id\": \"9b20818ac06f\",\n    \"name\": \"Echo\",\n    \"model\": \"Recovery\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 94.0,\n      \"y\": 630.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 12.0,\n    \"max_altitude\": 65.0,\n    \"battery_capacity\": 7000.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 6.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 480.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388659.1968246\n  },\n  {\n    \"id\": \"e3c13154f845\",\n    \"name\": \"Foxtrot\",\n    \"model\": \"Recovery\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 94.0,\n      \"y\": 80.0,\n      \"z\": 0.0\n    },\n    \"heading\": 180.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 12.0,\n    \"max_altitude\": 65.0,\n    \"battery_capacity\": 7500.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 6.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 580.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388659.196835\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"76fdf8f96380\",\n  \"name\": \"Canyon Switchback Coordination\",\n  \"description\": \"Multiple alternating barriers produce long switchback routes for multi-drone rendezvous and recovery. All 20 tasks are generated from the 10 submitted templates. Six heterogeneous drones, two genuinely moving couriers, four search cells, and ten charging stations are included. A full-height physical perimeter prevents shortcuts outside the mission boundary.\",\n  \"status\": \"active\",\n  \"creator\": \"LLM & Agent Course - \\u4e00\\u8d77\\u73a9\\u539f\\u795e\\u5427\\u961f\",\n  \"task_type\": \"others\",\n  \"task_description\": \"20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1794013200.0,\n  \"last_updated\": 1794388676.1232,\n  \"statistics\": {\n    \"drone_count\": 6,\n    \"target_count\": 19,\n    \"obstacle_count\": 8,\n    \"task_count\": 10,\n    \"environment_id\": \"ae2fb95d4494\",\n    \"total_commands_executed\": 92,\n    \"total_flight_time\": 692.6354033737737,\n    \"total_distance_traveled\": 9532.667432957398,\n    \"total_target_reaches\": 83,\n    \"drones_with_target_reaches\": 6,\n    \"unique_targets_reached\": 16,\n    \"session_time\": 1126.7193253040314,\n    \"command_history_size\": 94,\n    \"task_progress\": {\n      \"task_type\": \"others\",\n      \"progress_percentage\": 0,\n      \"is_completed\": false,\n      \"status_message\": \"No progress tracking for this task type\",\n      \"details\": {},\n      \"target_reach_summary\": {\n        \"total_reaches\": 83,\n        \"drones_with_reaches\": 6,\n        \"unique_targets_reached\": 16\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 16,\n        \"average_coverage\": 73.9857456140351,\n        \"fully_covered_targets\": 12\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"ae2fb95d4494\",\n  \"name\": \"Canyon Switchback Coordination Environment\",\n  \"weather\": \"partly_cloudy\",\n  \"temperature\": 11.354848618821471,\n  \"humidity\": 50.0,\n  \"pressure\": 920.0,\n  \"wind_speed\": 1.4306554118684978,\n  \"wind_direction\": \"east\",\n  \"visibility\": 8000.0,\n  \"created_at\": 1794013200.0,\n  \"last_updated\": 1794388680.6940632\n}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Take off necessary drones and assign them to reach required targets Inspection West, Inspection East, and Far-Side Depot North; if those targets alone do not exceed 50% session task progress, continue reaching additional assigned targets until progress exceeds 50%.",
+            "drone_id": "2592c9873dff",
+            "altitude": 32.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 4, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 32.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [724.0, 160.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [94.0, 80.0], \"attempts\": 1}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 40713,
+      "completion_tokens": 163,
+      "total_tokens": 40876,
+      "llm_calls": 5
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

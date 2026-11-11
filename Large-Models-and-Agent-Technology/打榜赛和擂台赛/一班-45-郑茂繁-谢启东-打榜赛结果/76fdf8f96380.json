@@ -1,0 +1,1090 @@
+{
+  "id": "b264a2af22dfb3de621de45191d43bde",
+  "export_timestamp": "2026-11-11 18:09:40",
+  "tool": "MultiUAV-Plat GUI Controller",
+  "version": "0.4.9",
+  "server_version": "0.4.9",
+  "statistics": {
+    "total_tasks": 10,
+    "passed_tasks_count": 10,
+    "failed_tasks_count": 0,
+    "total_failed_task_count": 0,
+    "task_pass_rate": 1.0,
+    "total_failed_task_rate": 0.0,
+    "average_check_pass_rate": 1.0,
+    "total_checks": 32,
+    "passed_checks": 32,
+    "failed_checks": 0,
+    "check_pass_rate": 1.0
+  },
+  "results": [
+    {
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "b1cf0b57",
+      "task_name": "Target Inspection 1",
+      "check_attempts_used": 2,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-11 17:41:01",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 2,
+        "passed_checks_apis": 2,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 2
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "2e8e6b195bc0",
+            "drone_id": "6964955cd21c"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "2e8e6b195bc0",
+            "drone_id": "6964955cd21c",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_in_photo_taken_by_drone",
+          "parameters": {
+            "target_id": "2e8e6b195bc0",
+            "drone_id": "6964955cd21c"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "note": null,
+            "drone_id": "6964955cd21c",
+            "target_id": "2e8e6b195bc0",
+            "perceived_radius": 75.0,
+            "matching_photos": [
+              {
+                "photo_id": "1f30c9c7",
+                "timestamp": 1794390054.8252182,
+                "drone_position": {
+                  "x": 244.0,
+                  "y": 530.0,
+                  "z": 16.0
+                },
+                "distance": 0.0
+              }
+            ]
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "edfcc479",
+      "task_name": "Target Inspection 2",
+      "check_attempts_used": 2,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-11 17:41:23",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 2,
+        "passed_checks_apis": 2,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 2
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "0459de2566b6",
+            "drone_id": "9b20818ac06f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "0459de2566b6",
+            "drone_id": "9b20818ac06f",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_in_photo_taken_by_drone",
+          "parameters": {
+            "target_id": "0459de2566b6",
+            "drone_id": "9b20818ac06f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "note": null,
+            "drone_id": "9b20818ac06f",
+            "target_id": "0459de2566b6",
+            "perceived_radius": 35.0,
+            "matching_photos": [
+              {
+                "photo_id": "b36bd185",
+                "timestamp": 1794390077.989917,
+                "drone_position": {
+                  "x": 764.0,
+                  "y": 480.0,
+                  "z": 18.0
+                },
+                "distance": 0.0
+              },
+              {
+                "photo_id": "db6401f6",
+                "timestamp": 1794390077.9916503,
+                "drone_position": {
+                  "x": 764.0,
+                  "y": 480.0,
+                  "z": 18.0
+                },
+                "distance": 0.0
+              }
+            ]
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "742aaaed",
+      "task_name": "Target Inspection 3",
+      "check_attempts_used": 2,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-11 17:41:59",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 2,
+        "passed_checks_apis": 2,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 2
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "d80456bd9503",
+            "drone_id": "0f63aa7bea9f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "d80456bd9503",
+            "drone_id": "0f63aa7bea9f",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_in_photo_taken_by_drone",
+          "parameters": {
+            "target_id": "d80456bd9503",
+            "drone_id": "0f63aa7bea9f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "note": null,
+            "drone_id": "0f63aa7bea9f",
+            "target_id": "d80456bd9503",
+            "perceived_radius": 45.0,
+            "matching_photos": [
+              {
+                "photo_id": "90fb64a9",
+                "timestamp": 1794390104.9061902,
+                "drone_position": {
+                  "x": 244.0,
+                  "y": 260.0,
+                  "z": 19.0
+                },
+                "distance": 0.0
+              }
+            ]
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "82d525ba",
+      "task_name": "Cross Target Swap After Discovery",
+      "check_attempts_used": 3,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-11 17:42:26",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 6,
+        "passed_checks_apis": 6,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 6
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_taken_off",
+          "parameters": {
+            "drone_id": "e3c13154f845",
+            "min_altitude": 22.0,
+            "max_altitude": 22.0,
+            "tolerance": 1.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "e3c13154f845",
+            "takeoff_count": 1,
+            "last_takeoff_time": 1794390142.6147978,
+            "max_altitude_reached": 22.0,
+            "min_altitude_threshold": 22.0,
+            "max_altitude_threshold": 22.0,
+            "tolerance": 1.0,
+            "matched_altitude_min": 21.0,
+            "matched_altitude_max": 23.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/drone_has_taken_off",
+          "parameters": {
+            "drone_id": "9b20818ac06f",
+            "min_altitude": 22.0,
+            "max_altitude": 22.0,
+            "tolerance": 1.0
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "drone_id": "9b20818ac06f",
+            "takeoff_count": 2,
+            "last_takeoff_time": 1794390142.6279964,
+            "max_altitude_reached": 22.0,
+            "min_altitude_threshold": 22.0,
+            "max_altitude_threshold": 22.0,
+            "tolerance": 1.0,
+            "matched_altitude_min": 21.0,
+            "matched_altitude_max": 23.0
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "df0c5316cbf1",
+            "drone_id": "e3c13154f845"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 2,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "df0c5316cbf1",
+            "drone_id": "e3c13154f845",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "5b2e38a6de34",
+            "drone_id": "9b20818ac06f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 2,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "5b2e38a6de34",
+            "drone_id": "9b20818ac06f",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "5b2e38a6de34",
+            "drone_id": "e3c13154f845"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "5b2e38a6de34",
+            "drone_id": "e3c13154f845",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "df0c5316cbf1",
+            "drone_id": "9b20818ac06f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "df0c5316cbf1",
+            "drone_id": "9b20818ac06f",
+            "since_timestamp": null
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "78a2a141",
+      "task_name": "Multiple Target Inspection 1",
+      "check_attempts_used": 3,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-11 17:43:03",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 4,
+        "passed_checks_apis": 4,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 4
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "34b721bebc7a",
+            "drone_id": "0f63aa7bea9f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 5,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "34b721bebc7a",
+            "drone_id": "0f63aa7bea9f",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_in_photo_taken_by_drone",
+          "parameters": {
+            "target_id": "34b721bebc7a",
+            "drone_id": "0f63aa7bea9f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "note": null,
+            "drone_id": "0f63aa7bea9f",
+            "target_id": "34b721bebc7a",
+            "perceived_radius": 45.0,
+            "matching_photos": [
+              {
+                "photo_id": "891d51bf",
+                "timestamp": 1794390102.2430336,
+                "drone_position": {
+                  "x": 784.0,
+                  "y": 260.0,
+                  "z": 19.0
+                },
+                "distance": 0.0
+              },
+              {
+                "photo_id": "3e7e36b2",
+                "timestamp": 1794390102.2479434,
+                "drone_position": {
+                  "x": 784.0,
+                  "y": 260.0,
+                  "z": 19.0
+                },
+                "distance": 0.0
+              },
+              {
+                "photo_id": "425dd5d0",
+                "timestamp": 1794390176.6953316,
+                "drone_position": {
+                  "x": 784.0,
+                  "y": 260.0,
+                  "z": 16.0
+                },
+                "distance": 0.0
+              }
+            ]
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "ca247944ad8f",
+            "drone_id": "0f63aa7bea9f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "ca247944ad8f",
+            "drone_id": "0f63aa7bea9f",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_in_photo_taken_by_drone",
+          "parameters": {
+            "target_id": "ca247944ad8f",
+            "drone_id": "0f63aa7bea9f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "note": null,
+            "drone_id": "0f63aa7bea9f",
+            "target_id": "ca247944ad8f",
+            "perceived_radius": 45.0,
+            "matching_photos": [
+              {
+                "photo_id": "58140d93",
+                "timestamp": 1794390176.7275121,
+                "drone_position": {
+                  "x": 944.0,
+                  "y": 80.0,
+                  "z": 16.0
+                },
+                "distance": 0.0
+              }
+            ]
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "cc6431ae",
+      "task_name": "Multiple Target Inspection 2",
+      "check_attempts_used": 2,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-11 17:44:08",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 4,
+        "passed_checks_apis": 4,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 4
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "843cbdc8bae2",
+            "drone_id": "1cc16c1f84b1"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 2,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "843cbdc8bae2",
+            "drone_id": "1cc16c1f84b1",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_in_photo_taken_by_drone",
+          "parameters": {
+            "target_id": "843cbdc8bae2",
+            "drone_id": "1cc16c1f84b1"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "note": null,
+            "drone_id": "1cc16c1f84b1",
+            "target_id": "843cbdc8bae2",
+            "perceived_radius": 42.0,
+            "matching_photos": [
+              {
+                "photo_id": "482e9a49",
+                "timestamp": 1794390233.9153771,
+                "drone_position": {
+                  "x": 764.0,
+                  "y": 580.0,
+                  "z": 16.0
+                },
+                "distance": 0.0
+              }
+            ]
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "d856db47dbc1",
+            "drone_id": "1cc16c1f84b1"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "d856db47dbc1",
+            "drone_id": "1cc16c1f84b1",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_in_photo_taken_by_drone",
+          "parameters": {
+            "target_id": "d856db47dbc1",
+            "drone_id": "1cc16c1f84b1"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "note": null,
+            "drone_id": "1cc16c1f84b1",
+            "target_id": "d856db47dbc1",
+            "perceived_radius": 42.0,
+            "matching_photos": [
+              {
+                "photo_id": "e4a04b76",
+                "timestamp": 1794390244.7534692,
+                "drone_position": {
+                  "x": 944.0,
+                  "y": 380.0,
+                  "z": 16.0
+                },
+                "distance": 0.0
+              }
+            ]
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "fca574b9",
+      "task_name": "Multiple Target Inspection 3",
+      "check_attempts_used": 3,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-11 17:54:28",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 4,
+        "passed_checks_apis": 4,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 4
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "9a06b8bfa395",
+            "drone_id": "0f63aa7bea9f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 2,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "9a06b8bfa395",
+            "drone_id": "0f63aa7bea9f",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_in_photo_taken_by_drone",
+          "parameters": {
+            "target_id": "9a06b8bfa395",
+            "drone_id": "0f63aa7bea9f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "note": null,
+            "drone_id": "0f63aa7bea9f",
+            "target_id": "9a06b8bfa395",
+            "perceived_radius": 45.0,
+            "matching_photos": [
+              {
+                "photo_id": "c2f70672",
+                "timestamp": 1794390834.0482025,
+                "drone_position": {
+                  "x": 94.0,
+                  "y": 690.0,
+                  "z": 22.0
+                },
+                "distance": 0.0
+              }
+            ]
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached_by_drone",
+          "parameters": {
+            "target_id": "8cce386a301e",
+            "drone_id": "0f63aa7bea9f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "8cce386a301e",
+            "drone_id": "0f63aa7bea9f",
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_in_photo_taken_by_drone",
+          "parameters": {
+            "target_id": "8cce386a301e",
+            "drone_id": "0f63aa7bea9f"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "note": null,
+            "drone_id": "0f63aa7bea9f",
+            "target_id": "8cce386a301e",
+            "perceived_radius": 45.0,
+            "matching_photos": [
+              {
+                "photo_id": "b01994e0",
+                "timestamp": 1794390834.2118106,
+                "drone_position": {
+                  "x": 944.0,
+                  "y": 580.0,
+                  "z": 22.0
+                },
+                "distance": 0.0
+              }
+            ]
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "0266a63a",
+      "task_name": "Sequential Multi-Target Visit",
+      "check_attempts_used": 2,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-11 17:54:56",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 3,
+        "passed_checks_apis": 3,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 3
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached",
+          "parameters": {
+            "target_id": "78504df00da3"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "78504df00da3",
+            "reached_by": [
+              "9b20818ac06f"
+            ],
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached",
+          "parameters": {
+            "target_id": "f8a40e136add"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "f8a40e136add",
+            "reached_by": [
+              "9b20818ac06f"
+            ],
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached",
+          "parameters": {
+            "target_id": "78e643dee733"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 3,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "78e643dee733",
+            "reached_by": [
+              "9b20818ac06f",
+              "0f63aa7bea9f",
+              "1cc16c1f84b1"
+            ],
+            "since_timestamp": null
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "0412dbcd",
+      "task_name": "Target Assignment 50% Progress With 3 Targets",
+      "check_attempts_used": 3,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-11 17:55:31",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 4,
+        "passed_checks_apis": 4,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 4
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/task_progress",
+          "parameters": {
+            "expected_progress": 0.5
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 0.77,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "expected_progress": 0.5,
+            "task_type": "target_assignment",
+            "progress_percentage": 77,
+            "is_completed": false
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached",
+          "parameters": {
+            "target_id": "f8a40e136add"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 2,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "f8a40e136add",
+            "reached_by": [
+              "2592c9873dff",
+              "9b20818ac06f"
+            ],
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached",
+          "parameters": {
+            "target_id": "e964d4dd6b5e"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "e964d4dd6b5e",
+            "reached_by": [
+              "2592c9873dff"
+            ],
+            "since_timestamp": null
+          },
+          "depth": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/target_is_reached",
+          "parameters": {
+            "target_id": "5b2e38a6de34"
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 4,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "target_id": "5b2e38a6de34",
+            "reached_by": [
+              "2592c9873dff",
+              "9b20818ac06f",
+              "0f63aa7bea9f",
+              "e3c13154f845"
+            ],
+            "since_timestamp": null
+          },
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "6eae0e64",
+      "task_name": "Target Assignment Task Completion",
+      "check_attempts_used": 2,
+      "note": "",
+      "status": "passed",
+      "timestamp": "2026-11-11 18:09:33",
+      "error": null,
+      "statistics": {
+        "total_checks_apis": 1,
+        "passed_checks_apis": 1,
+        "failed_checks_apis": 0,
+        "pass_rate": 1.0
+      },
+      "details": [
+        {
+          "type": "group",
+          "logic": "AND",
+          "depth": 0,
+          "count": 1
+        },
+        {
+          "type": "leaf",
+          "endpoint": "/check/task_progress",
+          "parameters": {
+            "expected_progress": 0.95
+          },
+          "expect": true,
+          "actual": true,
+          "result": true,
+          "response": {
+            "result": true,
+            "value": 1.0,
+            "note": null,
+            "session_id": "76fdf8f96380",
+            "expected_progress": 0.95,
+            "task_type": "target_assignment",
+            "progress_percentage": 100,
+            "is_completed": true
+          },
+          "depth": 1
+        }
+      ]
+    }
+  ]
+}

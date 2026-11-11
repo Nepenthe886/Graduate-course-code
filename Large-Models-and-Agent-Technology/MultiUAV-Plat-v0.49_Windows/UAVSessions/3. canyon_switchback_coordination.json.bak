@@ -1,0 +1,2005 @@
+{
+  "id": "76fdf8f96380",
+  "name": "Canyon Switchback Coordination",
+  "description": "Multiple alternating barriers produce long switchback routes for multi-drone rendezvous and recovery. All 20 tasks are generated from the 10 submitted templates. Six heterogeneous drones, two genuinely moving couriers, four search cells, and ten charging stations are included. A full-height physical perimeter prevents shortcuts outside the mission boundary.",
+  "status": "active",
+  "creator": "LLM & Agent Course - 一起玩原神吧队",
+  "task_type": "others",
+  "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+  "is_distance_3d": false,
+  "canvas_width": 1024.0,
+  "canvas_height": 768.0,
+  "created_at": 1794013200.0,
+  "last_updated": 1794239021.393685,
+  "statistics": {
+    "drone_count": 6,
+    "target_count": 19,
+    "obstacle_count": 8,
+    "task_count": 10,
+    "environment_id": "ae2fb95d4494",
+    "total_commands_executed": 0,
+    "total_flight_time": 0.0,
+    "total_distance_traveled": 0.0,
+    "total_target_reaches": 0,
+    "drones_with_target_reaches": 0,
+    "unique_targets_reached": 0,
+    "session_time": 844.8257777690887,
+    "command_history_size": 0,
+    "task_progress": {
+      "task_type": "others",
+      "progress_percentage": 0,
+      "is_completed": false,
+      "status_message": "No progress tracking for this task type",
+      "details": {},
+      "target_reach_summary": {
+        "total_reaches": 0,
+        "drones_with_reaches": 0,
+        "unique_targets_reached": 0
+      },
+      "area_coverage_summary": {
+        "total_targets_tracked": 0,
+        "average_coverage": 0.0,
+        "fully_covered_targets": 0
+      }
+    }
+  },
+  "drones": [
+    {
+      "id": "2592c9873dff",
+      "name": "Alpha",
+      "model": "Scout",
+      "status": "idle",
+      "position": {
+        "x": 944.0,
+        "y": 80.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 60.0,
+      "task_radius": 8.0,
+      "battery_level": 100.0,
+      "battery_volume": 5000.0,
+      "battery_capacity": 5000.0,
+      "max_speed": 22.0,
+      "max_altitude": 90.0,
+      "home_position": {
+        "x": 944.0,
+        "y": 80.0,
+        "z": 0.0
+      },
+      "created_at": 1794013200.0,
+      "last_updated": 1794238206.1789298
+    },
+    {
+      "id": "1cc16c1f84b1",
+      "name": "Bravo",
+      "model": "Surveyor",
+      "status": "idle",
+      "position": {
+        "x": 944.0,
+        "y": 180.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 42.0,
+      "task_radius": 10.0,
+      "battery_level": 100.0,
+      "battery_volume": 5500.0,
+      "battery_capacity": 5500.0,
+      "max_speed": 16.0,
+      "max_altitude": 80.0,
+      "home_position": {
+        "x": 944.0,
+        "y": 180.0,
+        "z": 0.0
+      },
+      "created_at": 1794013200.0,
+      "last_updated": 1794238206.178965
+    },
+    {
+      "id": "6964955cd21c",
+      "name": "Charlie",
+      "model": "Relay",
+      "status": "idle",
+      "position": {
+        "x": 944.0,
+        "y": 280.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 75.0,
+      "task_radius": 12.0,
+      "battery_level": 100.0,
+      "battery_volume": 6000.0,
+      "battery_capacity": 6000.0,
+      "max_speed": 18.0,
+      "max_altitude": 85.0,
+      "home_position": {
+        "x": 944.0,
+        "y": 280.0,
+        "z": 0.0
+      },
+      "created_at": 1794013200.0,
+      "last_updated": 1794238206.178976
+    },
+    {
+      "id": "0f63aa7bea9f",
+      "name": "Delta",
+      "model": "Reserve",
+      "status": "idle",
+      "position": {
+        "x": 944.0,
+        "y": 380.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 45.0,
+      "task_radius": 8.0,
+      "battery_level": 100.0,
+      "battery_volume": 6500.0,
+      "battery_capacity": 6500.0,
+      "max_speed": 14.0,
+      "max_altitude": 75.0,
+      "home_position": {
+        "x": 944.0,
+        "y": 380.0,
+        "z": 0.0
+      },
+      "created_at": 1794013200.0,
+      "last_updated": 1794238206.178983
+    },
+    {
+      "id": "9b20818ac06f",
+      "name": "Echo",
+      "model": "Recovery",
+      "status": "idle",
+      "position": {
+        "x": 944.0,
+        "y": 480.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 35.0,
+      "task_radius": 6.0,
+      "battery_level": 100.0,
+      "battery_volume": 7000.0,
+      "battery_capacity": 7000.0,
+      "max_speed": 12.0,
+      "max_altitude": 65.0,
+      "home_position": {
+        "x": 944.0,
+        "y": 480.0,
+        "z": 0.0
+      },
+      "created_at": 1794013200.0,
+      "last_updated": 1794238206.178988
+    },
+    {
+      "id": "e3c13154f845",
+      "name": "Foxtrot",
+      "model": "Recovery",
+      "status": "idle",
+      "position": {
+        "x": 944.0,
+        "y": 580.0,
+        "z": 0.0
+      },
+      "heading": 0.0,
+      "speed": 0.0,
+      "perceived_radius": 35.0,
+      "task_radius": 6.0,
+      "battery_level": 100.0,
+      "battery_volume": 7500.0,
+      "battery_capacity": 7500.0,
+      "max_speed": 12.0,
+      "max_altitude": 65.0,
+      "home_position": {
+        "x": 944.0,
+        "y": 580.0,
+        "z": 0.0
+      },
+      "created_at": 1794013200.0,
+      "last_updated": 1794238206.178993
+    }
+  ],
+  "targets": [
+    {
+      "id": "ca247944ad8f",
+      "name": "Alpha Home Charger",
+      "type": "waypoint",
+      "position": {
+        "x": 944.0,
+        "y": 80.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 12,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": 30,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "78e643dee733",
+      "name": "Bravo Home Charger",
+      "type": "waypoint",
+      "position": {
+        "x": 944.0,
+        "y": 180.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 12,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": 30,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "6f782e71983e",
+      "name": "Charlie Home Charger",
+      "type": "waypoint",
+      "position": {
+        "x": 944.0,
+        "y": 280.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 12,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": 30,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "d856db47dbc1",
+      "name": "Delta Home Charger",
+      "type": "waypoint",
+      "position": {
+        "x": 944.0,
+        "y": 380.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 12,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": 30,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "78504df00da3",
+      "name": "Echo Home Charger",
+      "type": "waypoint",
+      "position": {
+        "x": 944.0,
+        "y": 480.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 12,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": 30,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "8cce386a301e",
+      "name": "Foxtrot Home Charger",
+      "type": "waypoint",
+      "position": {
+        "x": 944.0,
+        "y": 580.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 12,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": 30,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "f8a40e136add",
+      "name": "Inspection West",
+      "type": "fixed",
+      "position": {
+        "x": 724.0,
+        "y": 160.0,
+        "z": 18.0
+      },
+      "description": "",
+      "radius": 2,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "e964d4dd6b5e",
+      "name": "Inspection East",
+      "type": "fixed",
+      "position": {
+        "x": 204.0,
+        "y": 600.0,
+        "z": 22.0
+      },
+      "description": "",
+      "radius": 2,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "0459de2566b6",
+      "name": "Recovery Outpost One",
+      "type": "waypoint",
+      "position": {
+        "x": 764.0,
+        "y": 480.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 12,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": 40,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "843cbdc8bae2",
+      "name": "Recovery Outpost Two",
+      "type": "waypoint",
+      "position": {
+        "x": 764.0,
+        "y": 580.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 12,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": 40,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "5b2e38a6de34",
+      "name": "Far-Side Depot North",
+      "type": "waypoint",
+      "position": {
+        "x": 94.0,
+        "y": 80.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 12,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": 40,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "df0c5316cbf1",
+      "name": "Far-Side Depot South",
+      "type": "waypoint",
+      "position": {
+        "x": 94.0,
+        "y": 630.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 12,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": 40,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    },
+    {
+      "id": "34b721bebc7a",
+      "name": "Search Cell 1",
+      "type": "polygon",
+      "position": {
+        "x": 784.0,
+        "y": 260.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 24,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 808.0,
+          "y": 236.0,
+          "z": 0.0
+        },
+        {
+          "x": 760.0,
+          "y": 236.0,
+          "z": 0.0
+        },
+        {
+          "x": 760.0,
+          "y": 284.0,
+          "z": 0.0
+        },
+        {
+          "x": 808.0,
+          "y": 284.0,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "d80456bd9503",
+      "name": "Search Cell 2",
+      "type": "polygon",
+      "position": {
+        "x": 244.0,
+        "y": 260.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 24,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 268.0,
+          "y": 236.0,
+          "z": 0.0
+        },
+        {
+          "x": 220.0,
+          "y": 236.0,
+          "z": 0.0
+        },
+        {
+          "x": 220.0,
+          "y": 284.0,
+          "z": 0.0
+        },
+        {
+          "x": 268.0,
+          "y": 284.0,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "da0b5e4c1106",
+      "name": "Search Cell 3",
+      "type": "polygon",
+      "position": {
+        "x": 784.0,
+        "y": 530.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 24,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 808.0,
+          "y": 506.0,
+          "z": 0.0
+        },
+        {
+          "x": 760.0,
+          "y": 506.0,
+          "z": 0.0
+        },
+        {
+          "x": 760.0,
+          "y": 554.0,
+          "z": 0.0
+        },
+        {
+          "x": 808.0,
+          "y": 554.0,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "2e8e6b195bc0",
+      "name": "Search Cell 4",
+      "type": "polygon",
+      "position": {
+        "x": 244.0,
+        "y": 530.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 24,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "vertices": [
+        {
+          "x": 268.0,
+          "y": 506.0,
+          "z": 0.0
+        },
+        {
+          "x": 220.0,
+          "y": 506.0,
+          "z": 0.0
+        },
+        {
+          "x": 220.0,
+          "y": 554.0,
+          "z": 0.0
+        },
+        {
+          "x": 268.0,
+          "y": 554.0,
+          "z": 0.0
+        }
+      ],
+      "tracking_status": null
+    },
+    {
+      "id": "8e377557fdb2",
+      "name": "Mobile Courier 1",
+      "type": "moving",
+      "position": {
+        "x": 134.0,
+        "y": 215.63014209270477,
+        "z": 18.0
+      },
+      "description": "",
+      "radius": 3,
+      "created_at": 1794013200.0,
+      "last_updated": 1794239024.7915142,
+      "velocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "moving_path": [
+        {
+          "x": 214.0,
+          "y": 180.0,
+          "z": 18.0
+        },
+        {
+          "x": 134.0,
+          "y": 180.0,
+          "z": 18.0
+        },
+        {
+          "x": 134.0,
+          "y": 220.0,
+          "z": 18.0
+        },
+        {
+          "x": 214.0,
+          "y": 220.0,
+          "z": 18.0
+        }
+      ],
+      "moving_duration": 80,
+      "current_path_index": 2,
+      "path_direction": 1,
+      "time_in_direction": 0.0,
+      "movement_mode": "path",
+      "calculated_speed": 2.5,
+      "last_motion_update": 1794239024.7915142,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": "never_tracked"
+    },
+    {
+      "id": "bcf43a0d6d42",
+      "name": "Mobile Courier 2",
+      "type": "moving",
+      "position": {
+        "x": 134.0,
+        "y": 485.6301420927048,
+        "z": 18.0
+      },
+      "description": "",
+      "radius": 3,
+      "created_at": 1794013200.0,
+      "last_updated": 1794239024.7917771,
+      "velocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "moving_path": [
+        {
+          "x": 214.0,
+          "y": 450.0,
+          "z": 18.0
+        },
+        {
+          "x": 134.0,
+          "y": 450.0,
+          "z": 18.0
+        },
+        {
+          "x": 134.0,
+          "y": 490.0,
+          "z": 18.0
+        },
+        {
+          "x": 214.0,
+          "y": 490.0,
+          "z": 18.0
+        }
+      ],
+      "moving_duration": 80,
+      "current_path_index": 2,
+      "path_direction": 1,
+      "time_in_direction": 0.0,
+      "movement_mode": "path",
+      "calculated_speed": 2.5,
+      "last_motion_update": 1794239024.7917771,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": "never_tracked"
+    },
+    {
+      "id": "9a06b8bfa395",
+      "name": "Protected Reserve Beacon",
+      "type": "fixed",
+      "position": {
+        "x": 94.0,
+        "y": 690.0,
+        "z": 0.0
+      },
+      "description": "",
+      "radius": 4,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0,
+      "velocity": null,
+      "moving_path": null,
+      "moving_duration": null,
+      "current_path_index": null,
+      "path_direction": null,
+      "time_in_direction": null,
+      "movement_mode": null,
+      "calculated_speed": null,
+      "last_motion_update": null,
+      "last_tracked_at": null,
+      "charge_amount": null,
+      "is_reached": false,
+      "reached_by": [],
+      "tracking_status": null
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "27f47b968506",
+      "name": "Barrier 1",
+      "type": "polygon",
+      "position": {
+        "x": 634,
+        "y": 286,
+        "z": 0.0
+      },
+      "description": "Height 0 is impassable at every altitude.",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 643.0,
+          "y": 12.0,
+          "z": 0.0
+        },
+        {
+          "x": 625.0,
+          "y": 12.0,
+          "z": 0.0
+        },
+        {
+          "x": 625.0,
+          "y": 560.0,
+          "z": 0.0
+        },
+        {
+          "x": 643.0,
+          "y": 560.0,
+          "z": 0.0
+        }
+      ],
+      "height": 0,
+      "area": 9864.0,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0
+    },
+    {
+      "id": "d459dd5a8997",
+      "name": "Barrier 2",
+      "type": "polygon",
+      "position": {
+        "x": 554,
+        "y": 482,
+        "z": 0.0
+      },
+      "description": "Height 0 is impassable at every altitude.",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 563.0,
+          "y": 208.0,
+          "z": 0.0
+        },
+        {
+          "x": 545.0,
+          "y": 208.0,
+          "z": 0.0
+        },
+        {
+          "x": 545.0,
+          "y": 756.0,
+          "z": 0.0
+        },
+        {
+          "x": 563.0,
+          "y": 756.0,
+          "z": 0.0
+        }
+      ],
+      "height": 0,
+      "area": 9864.0,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0
+    },
+    {
+      "id": "7f971d25700a",
+      "name": "Barrier 3",
+      "type": "polygon",
+      "position": {
+        "x": 474,
+        "y": 286,
+        "z": 0.0
+      },
+      "description": "Height 0 is impassable at every altitude.",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 483.0,
+          "y": 12.0,
+          "z": 0.0
+        },
+        {
+          "x": 465.0,
+          "y": 12.0,
+          "z": 0.0
+        },
+        {
+          "x": 465.0,
+          "y": 560.0,
+          "z": 0.0
+        },
+        {
+          "x": 483.0,
+          "y": 560.0,
+          "z": 0.0
+        }
+      ],
+      "height": 0,
+      "area": 9864.0,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0
+    },
+    {
+      "id": "a4b3d9da7f4e",
+      "name": "Barrier 4",
+      "type": "polygon",
+      "position": {
+        "x": 394,
+        "y": 482,
+        "z": 0.0
+      },
+      "description": "Height 0 is impassable at every altitude.",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 403.0,
+          "y": 208.0,
+          "z": 0.0
+        },
+        {
+          "x": 385.0,
+          "y": 208.0,
+          "z": 0.0
+        },
+        {
+          "x": 385.0,
+          "y": 756.0,
+          "z": 0.0
+        },
+        {
+          "x": 403.0,
+          "y": 756.0,
+          "z": 0.0
+        }
+      ],
+      "height": 0,
+      "area": 9864.0,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0
+    },
+    {
+      "id": "832562f6f696",
+      "name": "Boundary West",
+      "type": "polygon",
+      "position": {
+        "x": 1018,
+        "y": 384,
+        "z": 0.0
+      },
+      "description": "Height 0 is impassable at every altitude.",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 1024.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        {
+          "x": 1012.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        {
+          "x": 1012.0,
+          "y": 768.0,
+          "z": 0.0
+        },
+        {
+          "x": 1024.0,
+          "y": 768.0,
+          "z": 0.0
+        }
+      ],
+      "height": 0,
+      "area": 9216.0,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0
+    },
+    {
+      "id": "02de99d9b9a0",
+      "name": "Boundary East",
+      "type": "polygon",
+      "position": {
+        "x": 6,
+        "y": 384,
+        "z": 0.0
+      },
+      "description": "Height 0 is impassable at every altitude.",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 12.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        {
+          "x": 0.0,
+          "y": 768.0,
+          "z": 0.0
+        },
+        {
+          "x": 12.0,
+          "y": 768.0,
+          "z": 0.0
+        }
+      ],
+      "height": 0,
+      "area": 9216.0,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0
+    },
+    {
+      "id": "24ea1334eaa1",
+      "name": "Boundary North",
+      "type": "polygon",
+      "position": {
+        "x": 512,
+        "y": 6,
+        "z": 0.0
+      },
+      "description": "Height 0 is impassable at every altitude.",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 1024.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        {
+          "x": 0.0,
+          "y": 12.0,
+          "z": 0.0
+        },
+        {
+          "x": 1024.0,
+          "y": 12.0,
+          "z": 0.0
+        }
+      ],
+      "height": 0,
+      "area": 12288.0,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0
+    },
+    {
+      "id": "e20e130facb9",
+      "name": "Boundary South",
+      "type": "polygon",
+      "position": {
+        "x": 512,
+        "y": 762,
+        "z": 0.0
+      },
+      "description": "Height 0 is impassable at every altitude.",
+      "radius": null,
+      "width": null,
+      "length": null,
+      "vertices": [
+        {
+          "x": 1024.0,
+          "y": 756.0,
+          "z": 0.0
+        },
+        {
+          "x": 0.0,
+          "y": 756.0,
+          "z": 0.0
+        },
+        {
+          "x": 0.0,
+          "y": 768.0,
+          "z": 0.0
+        },
+        {
+          "x": 1024.0,
+          "y": 768.0,
+          "z": 0.0
+        }
+      ],
+      "height": 0,
+      "area": 12288.0,
+      "created_at": 1794013200.0,
+      "last_updated": 1794013200.0
+    }
+  ],
+  "environment": {
+    "id": "ae2fb95d4494",
+    "name": "Canyon Switchback Coordination Environment",
+    "weather": "windy",
+    "temperature": 21.366695689963294,
+    "humidity": 50,
+    "pressure": 920,
+    "wind_speed": 2.372514509635011,
+    "wind_direction": "south",
+    "visibility": 8000,
+    "created_at": 1794013200.0,
+    "last_updated": 1794239024.7919621
+  },
+  "tasks": [
+    {
+      "id": "b1cf0b57",
+      "name": "Target Inspection 1",
+      "content": "Drone Charlie must take off to 16 meters, navigate to target Search Cell 4, and take a photo.",
+      "content_aliases": [
+        "Send Charlie to locate Search Cell 4 at 16m altitude and capture photograph",
+        "Deploy drone Charlie for target Search Cell 4 photography mission at elevation 16 meters",
+        "Charlie reconnaissance task: take off to 16m, find and photograph Search Cell 4",
+        "Assign Charlie to survey Search Cell 4 at 16 meters and document with photo"
+      ],
+      "description": "Drone finds and photographs a target",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Target Inspection created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "6964955cd21c",
+            "altitude": 16.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "6964955cd21c"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "2e8e6b195bc0",
+              "drone_id": "6964955cd21c"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "2e8e6b195bc0",
+              "drone_id": "6964955cd21c"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794238354.5836291,
+      "last_updated": 1794238354.5836291
+    },
+    {
+      "id": "edfcc479",
+      "name": "Target Inspection 2",
+      "content": "Drone Echo must take off to 18 meters, navigate to target Recovery Outpost One, and take a photo.",
+      "content_aliases": [
+        "Send Echo to locate Recovery Outpost One at 18m altitude and capture photograph",
+        "Deploy drone Echo for target Recovery Outpost One photography mission at elevation 18 meters",
+        "Echo reconnaissance task: take off to 18m, find and photograph Recovery Outpost One",
+        "Assign Echo to survey Recovery Outpost One at 18 meters and document with photo"
+      ],
+      "description": "Drone finds and photographs a target",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Target Inspection created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "9b20818ac06f",
+            "altitude": 18.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "9b20818ac06f"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "0459de2566b6",
+              "drone_id": "9b20818ac06f"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "0459de2566b6",
+              "drone_id": "9b20818ac06f"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794238354.586642,
+      "last_updated": 1794238354.586642
+    },
+    {
+      "id": "742aaaed",
+      "name": "Target Inspection 3",
+      "content": "Drone Delta must take off to 19 meters, navigate to target Search Cell 2, and take a photo.",
+      "content_aliases": [
+        "Send Delta to locate Search Cell 2 at 19m altitude and capture photograph",
+        "Deploy drone Delta for target Search Cell 2 photography mission at elevation 19 meters",
+        "Delta reconnaissance task: take off to 19m, find and photograph Search Cell 2",
+        "Assign Delta to survey Search Cell 2 at 19 meters and document with photo"
+      ],
+      "description": "Drone finds and photographs a target",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Target Inspection created by Built-in template",
+      "difficulty": "medium",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "0f63aa7bea9f",
+            "altitude": 19.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "0f63aa7bea9f"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "d80456bd9503",
+              "drone_id": "0f63aa7bea9f"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "d80456bd9503",
+              "drone_id": "0f63aa7bea9f"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794238354.5890272,
+      "last_updated": 1794238354.5890272
+    },
+    {
+      "id": "82d525ba",
+      "name": "Cross Target Swap After Discovery",
+      "content": "Drone Foxtrot should find target Far-Side Depot South, and drone Echo should find target Far-Side Depot North. After the first discovery, the drones swap assignments: Foxtrot goes to Far-Side Depot North and Echo goes to Far-Side Depot South at 22 meters.",
+      "content_aliases": [
+        "Send Foxtrot to Far-Side Depot South and Echo to Far-Side Depot North, then have them exchange targets after takeoff to 22m.",
+        "Cross-assignment mission: Foxtrot reaches Far-Side Depot South, Echo reaches Far-Side Depot North, then both swap and fly to the opposite target at 22 meters.",
+        "Use Foxtrot and Echo for a target swap at 22m: Foxtrot first finds Far-Side Depot South, Echo first finds Far-Side Depot North, then they move to the opposite targets.",
+        "Two drones, two targets, then swap at 22m: Foxtrot handles Far-Side Depot South first and later Far-Side Depot North, while Echo handles Far-Side Depot North first and later Far-Side Depot South."
+      ],
+      "description": "Two drones reach separate targets, then swap targets",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Cross Target Swap After Discovery created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "e3c13154f845",
+            "altitude": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "9b20818ac06f",
+            "altitude": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "e3c13154f845",
+            "x": 94.0,
+            "y": 630.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "9b20818ac06f",
+            "x": 94.0,
+            "y": 80.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "e3c13154f845",
+            "x": 94.0,
+            "y": 80.0,
+            "z": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/move_to",
+          "parameters": {
+            "id": "9b20818ac06f",
+            "x": 94.0,
+            "y": 630.0,
+            "z": 22.0
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "e3c13154f845",
+              "min_altitude": 22.0,
+              "max_altitude": 22.0,
+              "tolerance": 1.0
+            }
+          },
+          {
+            "endpoint": "/check/drone_has_taken_off",
+            "parameters": {
+              "drone_id": "9b20818ac06f",
+              "min_altitude": 22.0,
+              "max_altitude": 22.0,
+              "tolerance": 1.0
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "df0c5316cbf1",
+              "drone_id": "e3c13154f845"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "5b2e38a6de34",
+              "drone_id": "9b20818ac06f"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "5b2e38a6de34",
+              "drone_id": "e3c13154f845"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "df0c5316cbf1",
+              "drone_id": "9b20818ac06f"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_off",
+        "move_to",
+        "move_to",
+        "move_to",
+        "move_to"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794238809.156029,
+      "last_updated": 1794238809.156029
+    },
+    {
+      "id": "78a2a141",
+      "name": "Multiple Target Inspection 1",
+      "content": "Drone Delta must take off to 16 meters, navigate to target Search Cell 1, take a photo, then navigate to target Alpha Home Charger and take another photo.",
+      "content_aliases": [
+        "Have Delta take off to 16m, reach Search Cell 1 for a photo, then proceed to Alpha Home Charger for a second photo.",
+        "Delta dual-target inspection: climb to 16 meters, visit Search Cell 1 and Alpha Home Charger in sequence, and capture a photo at each.",
+        "Deploy Delta to photograph Search Cell 1 then Alpha Home Charger after takeoff to 16m altitude.",
+        "Two-target survey for Delta: take off to 16m, navigate to Search Cell 1 for imaging, then image Alpha Home Charger."
+      ],
+      "description": "One drone finds and photographs two targets",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Multiple Target Inspection created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "0f63aa7bea9f",
+            "altitude": 16.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "0f63aa7bea9f"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "0f63aa7bea9f"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "34b721bebc7a",
+              "drone_id": "0f63aa7bea9f"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "34b721bebc7a",
+              "drone_id": "0f63aa7bea9f"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "ca247944ad8f",
+              "drone_id": "0f63aa7bea9f"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "ca247944ad8f",
+              "drone_id": "0f63aa7bea9f"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_photo",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794238915.850018,
+      "last_updated": 1794238915.850018
+    },
+    {
+      "id": "cc6431ae",
+      "name": "Multiple Target Inspection 2",
+      "content": "Drone Bravo must take off to 16 meters, navigate to target Recovery Outpost Two, take a photo, then navigate to target Delta Home Charger and take another photo.",
+      "content_aliases": [
+        "Have Bravo take off to 16m, reach Recovery Outpost Two for a photo, then proceed to Delta Home Charger for a second photo.",
+        "Bravo dual-target inspection: climb to 16 meters, visit Recovery Outpost Two and Delta Home Charger in sequence, and capture a photo at each.",
+        "Deploy Bravo to photograph Recovery Outpost Two then Delta Home Charger after takeoff to 16m altitude.",
+        "Two-target survey for Bravo: take off to 16m, navigate to Recovery Outpost Two for imaging, then image Delta Home Charger."
+      ],
+      "description": "One drone finds and photographs two targets",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Multiple Target Inspection created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "1cc16c1f84b1",
+            "altitude": 16.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "1cc16c1f84b1"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "1cc16c1f84b1"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "843cbdc8bae2",
+              "drone_id": "1cc16c1f84b1"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "843cbdc8bae2",
+              "drone_id": "1cc16c1f84b1"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "d856db47dbc1",
+              "drone_id": "1cc16c1f84b1"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "d856db47dbc1",
+              "drone_id": "1cc16c1f84b1"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_photo",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794238915.852462,
+      "last_updated": 1794238915.852462
+    },
+    {
+      "id": "fca574b9",
+      "name": "Multiple Target Inspection 3",
+      "content": "Drone Delta must take off to 22 meters, navigate to target Protected Reserve Beacon, take a photo, then navigate to target Foxtrot Home Charger and take another photo.",
+      "content_aliases": [
+        "Have Delta take off to 22m, reach Protected Reserve Beacon for a photo, then proceed to Foxtrot Home Charger for a second photo.",
+        "Delta dual-target inspection: climb to 22 meters, visit Protected Reserve Beacon and Foxtrot Home Charger in sequence, and capture a photo at each.",
+        "Deploy Delta to photograph Protected Reserve Beacon then Foxtrot Home Charger after takeoff to 22m altitude.",
+        "Two-target survey for Delta: take off to 22m, navigate to Protected Reserve Beacon for imaging, then image Foxtrot Home Charger."
+      ],
+      "description": "One drone finds and photographs two targets",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Multiple Target Inspection created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "0f63aa7bea9f",
+            "altitude": 22.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "0f63aa7bea9f"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "0f63aa7bea9f"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "9a06b8bfa395",
+              "drone_id": "0f63aa7bea9f"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "9a06b8bfa395",
+              "drone_id": "0f63aa7bea9f"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached_by_drone",
+            "parameters": {
+              "target_id": "8cce386a301e",
+              "drone_id": "0f63aa7bea9f"
+            }
+          },
+          {
+            "endpoint": "/check/target_in_photo_taken_by_drone",
+            "parameters": {
+              "target_id": "8cce386a301e",
+              "drone_id": "0f63aa7bea9f"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "take_photo",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794238915.854645,
+      "last_updated": 1794238915.854645
+    },
+    {
+      "id": "0266a63a",
+      "name": "Sequential Multi-Target Visit",
+      "content": "Drone Echo performs sequential multi-target mission: take off to 25 meters, visit targets Echo Home Charger, Inspection West, and Bravo Home Charger in sequence. At each target, get within the target radius, hover for observation, and take a photo. Plan optimal route to minimize flight distance.",
+      "content_aliases": [
+        "Have Echo climb to 25m and visit Echo Home Charger, Inspection West, Bravo Home Charger in order; at each, enter the target radius, hover to observe, and capture a photo while following the shortest route.",
+        "Echo sequential inspection run: take off to 25 meters, proceed Echo Home Charger → Inspection West → Bravo Home Charger, and for each target hover within range and take a photo, optimizing the path length.",
+        "Plan an efficient three-target tour for Echo at 25m: visit Echo Home Charger, then Inspection West, then Bravo Home Charger, hovering inside each target radius for observation and photo capture.",
+        "Sequential coverage for Echo: ascend to 25m, reach Echo Home Charger, Inspection West, Bravo Home Charger in order, hover at each to observe, and take a photo while minimizing travel distance."
+      ],
+      "description": "Visit multiple targets in optimal sequence",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Sequential Multi-Target Visit created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "9b20818ac06f",
+            "altitude": 25.0
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/hover",
+          "parameters": {
+            "id": "9b20818ac06f"
+          }
+        },
+        {
+          "endpoint": "/drones/{id}/command/take_photo",
+          "parameters": {
+            "id": "9b20818ac06f"
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "78504df00da3"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "f8a40e136add"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "78e643dee733"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "hover",
+        "take_photo"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794238968.828036,
+      "last_updated": 1794238968.828036
+    },
+    {
+      "id": "0412dbcd",
+      "name": "Target Assignment 50% Progress With 3 Targets",
+      "content": "Take off necessary drones and assign them to reach required targets Inspection West, Inspection East, and Far-Side Depot North; if those targets alone do not exceed 50% session task progress, continue reaching additional assigned targets until progress exceeds 50%.",
+      "content_aliases": [
+        "Dispatch available drones to the mandatory targets Inspection West, Inspection East, and Far-Side Depot North, then reach more assigned targets as needed until progress passes 50%.",
+        "Ensure Inspection West, Inspection East, and Far-Side Depot North are reached, and keep assigning drones to other targets if needed to push session progress above 50%.",
+        "Use drones to cover required targets Inspection West, Inspection East, and Far-Side Depot North, then continue with additional assigned targets until session progress is over 50%."
+      ],
+      "description": "Reach three required targets and continue target assignment until progress exceeds 50%",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Target Assignment 50% Progress With 3 Targets created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/task_progress",
+            "parameters": {
+              "expected_progress": 0.5
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "f8a40e136add"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "e964d4dd6b5e"
+            }
+          },
+          {
+            "endpoint": "/check/target_is_reached",
+            "parameters": {
+              "target_id": "5b2e38a6de34"
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off",
+        "move_to"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794238704.589661,
+      "last_updated": 1794238704.589661
+    },
+    {
+      "id": "6eae0e64",
+      "name": "Target Assignment Task Completion",
+      "content": "take off necessary drones and  assigned them to all targets (within task radius) until the session task progress exceeds 95%.",
+      "content_aliases": [
+        "Launch the required drones and assign them to all targets within the task radius until session progress passes 95%.",
+        "Assign all targets to the available drones and continue until overall task progress exceeds 95%.",
+        "Dispatch necessary drones to cover every target and keep working until session task progress is above 95%."
+      ],
+      "description": "Assign targets and reach 95% session task progress",
+      "creator": "Victor Zhang",
+      "originated_from": "Task Template Target Assignment Task Completion created by Built-in template",
+      "difficulty": "hard",
+      "related_apis": [
+        {
+          "endpoint": "/drones/{id}/command/take_off",
+          "parameters": {
+            "id": "0f63aa7bea9f",
+            "altitude": 14.0
+          }
+        }
+      ],
+      "execution_check_apis": {
+        "logic": "and",
+        "checks": [
+          {
+            "endpoint": "/check/task_progress",
+            "parameters": {
+              "expected_progress": 0.95
+            }
+          }
+        ]
+      },
+      "commands": [
+        "take_off"
+      ],
+      "is_done": false,
+      "is_passed": false,
+      "created_at": 1794238864.60677,
+      "last_updated": 1794238864.60677
+    }
+  ],
+  "history": {
+    "command_history": [],
+    "status_history": {
+      "2592c9873dff": [
+        {
+          "status": "idle",
+          "position": {
+            "x": 944.0,
+            "y": 80.0,
+            "z": 0.0
+          },
+          "battery_level": 100.0,
+          "battery_volume": 5000.0,
+          "timestamp": 1794238206.1789591
+        }
+      ],
+      "1cc16c1f84b1": [
+        {
+          "status": "idle",
+          "position": {
+            "x": 944.0,
+            "y": 180.0,
+            "z": 0.0
+          },
+          "battery_level": 100.0,
+          "battery_volume": 5500.0,
+          "timestamp": 1794238206.178974
+        }
+      ],
+      "6964955cd21c": [
+        {
+          "status": "idle",
+          "position": {
+            "x": 944.0,
+            "y": 280.0,
+            "z": 0.0
+          },
+          "battery_level": 100.0,
+          "battery_volume": 6000.0,
+          "timestamp": 1794238206.178981
+        }
+      ],
+      "0f63aa7bea9f": [
+        {
+          "status": "idle",
+          "position": {
+            "x": 944.0,
+            "y": 380.0,
+            "z": 0.0
+          },
+          "battery_level": 100.0,
+          "battery_volume": 6500.0,
+          "timestamp": 1794238206.178987
+        }
+      ],
+      "9b20818ac06f": [
+        {
+          "status": "idle",
+          "position": {
+            "x": 944.0,
+            "y": 480.0,
+            "z": 0.0
+          },
+          "battery_level": 100.0,
+          "battery_volume": 7000.0,
+          "timestamp": 1794238206.178992
+        }
+      ],
+      "e3c13154f845": [
+        {
+          "status": "idle",
+          "position": {
+            "x": 944.0,
+            "y": 580.0,
+            "z": 0.0
+          },
+          "battery_level": 100.0,
+          "battery_volume": 7500.0,
+          "timestamp": 1794238206.178996
+        }
+      ]
+    },
+    "path_history": {},
+    "target_reaches": {
+      "by_drone": {},
+      "by_target": {}
+    },
+    "moving_target_tracking": {},
+    "area_coverage": {}
+  }
+}

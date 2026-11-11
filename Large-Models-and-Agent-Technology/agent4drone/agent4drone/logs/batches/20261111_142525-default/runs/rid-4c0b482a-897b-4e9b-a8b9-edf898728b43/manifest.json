@@ -1,0 +1,131 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-4c0b482a-897b-4e9b-a8b9-edf898728b43",
+  "experiment": {
+    "run_id": "rid-4c0b482a-897b-4e9b-a8b9-edf898728b43",
+    "experiment_id": "eid-ed43ca8e-406a-58ba-9afa-942a45f5c575"
+  },
+  "service_instance_id": "20261111T142454-a919bf8cb920",
+  "batch_file": "../../batch.json",
+  "command_id": "7b0f102e-5260-4296-bff0-77ec772e5f65",
+  "job_id": null,
+  "command": "Drone Cargo 13 performs sequential multi-target mission: take off to 22 meters, visit targets Customer Drop 17, Customer Drop 04, and Customer Drop 15 in sequence. At each target, get within the target radius, hover for observation, and take a photo. Plan optimal route to minimize flight distance.",
+  "created_at": "2026-11-11 14:28:19",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-11 14:28:40",
+  "requested_run_id": null,
+  "started_at": "2026-11-11 14:28:19",
+  "runtime": {
+    "run_id": "rid-4c0b482a-897b-4e9b-a8b9-edf898728b43",
+    "experiment": {
+      "run_id": "rid-4c0b482a-897b-4e9b-a8b9-edf898728b43",
+      "experiment_id": "eid-ed43ca8e-406a-58ba-9afa-942a45f5c575"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "c36c9ec9",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 5,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "c36c9ec9",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "8b34cca7ed56bf2e25413abbd6cfe252023208d65d8361b653e96156bf6712e2",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "[TASK FAILED] 连续 3 次工具调用失败，已停止重试。最后错误：任务里没有可解析的航点，也不是可识别的覆盖/编队任务\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Cargo 13 performs sequential multi-target mission: take off to 22 meters, visit targets Customer Drop 17, Customer Drop 04, and Customer Drop 15 in sequence. At each target, get within the target radius, hover for observation, and take a photo. Plan optimal route to minimize flight distance.",
+            "drones": [
+              "Cargo 13"
+            ],
+            "altitude": 22
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"error\": \"任务里没有可解析的航点，也不是可识别的覆盖/编队任务\"}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "target_coverage",
+            "params": {
+              "drone_id": "ea2e78bb",
+              "targets": [
+                "Customer Drop 17",
+                "Customer Drop 04",
+                "Customer Drop 15"
+              ],
+              "altitude": 22,
+              "clearance": 5,
+              "photos": true
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"error\": \"模板 target_coverage 缺少参数: 'center'\", \"templates\": [\"altitude_stage\", \"grid_survey\", \"target_photo\", \"line_formation\", \"perimeter_patrol\", \"relay_message\", \"corridor_detour\", \"battery_cycle\", \"target_coverage\", \"emergency_land\"]}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": "{\"template\": \"target_coverage\", \"params\": {\"drone_id\": \"ea2e78bb\", \"targets\": [\"Customer Drop 17\", \"Customer Drop 04\", \"Customer Drop 15\"], \"altitude\": 22, \"clearance\": 5, \"photos\": true, \"center\": {\"x\": 900.0, \"y\": 650.0}}",
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"error\": \"需要 template\", \"templates\": [\"altitude_stage\", \"grid_survey\", \"target_photo\", \"line_formation\", \"perimeter_patrol\", \"relay_message\", \"corridor_detour\", \"battery_cycle\", \"target_coverage\", \"emergency_land\"]}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": "{\"template\": \"target_coverage\", \"params\": {\"drone_id\": \"ea2e78bb\", \"targets\": [\"Customer Drop 17\", \"Customer Drop 04\", \"Customer Drop 15\"], \"altitude\": 22, \"clearance\": 5, \"photos\": true, \"center\": {\"x\": 900.0, \"y\": 650.0}}",
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"error\": \"需要 template\", \"templates\": [\"altitude_stage\", \"grid_survey\", \"target_photo\", \"line_formation\", \"perimeter_patrol\", \"relay_message\", \"corridor_detour\", \"battery_cycle\", \"target_coverage\", \"emergency_land\"]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 35632,
+      "completion_tokens": 614,
+      "total_tokens": 36246,
+      "llm_calls": 5
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

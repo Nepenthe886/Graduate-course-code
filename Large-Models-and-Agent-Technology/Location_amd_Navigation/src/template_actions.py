@@ -180,11 +180,23 @@ _EXAMPLE: dict[str, str] = {
 }
 
 
-def build_template_spec(template_id: str, params: dict | None = None) -> dict:
+def build_template_spec(template_id: str, params: dict | None = None,
+                        world=None) -> dict:
     """把模板 + 参数展开成可执行 spec；未知模板返回 {"error": ...}。"""
     if template_id not in TEMPLATES:
         return {"error": f"未知模板: {template_id}（可选: {', '.join(TEMPLATES)}）"}
     p = dict(params or {})
+    if template_id == "target_photo" and world is not None \
+            and ("x" not in p or "y" not in p):
+        target_name = str(p.get("target") or p.get("target_name") or "").strip()
+        if target_name:
+            target = world.target_by_name(target_name)
+            if target is None:
+                return {"error": f"地图中找不到目标 {target_name}；"
+                                 "请改用 nav_execute_mission(task_text=完整任务)",
+                        "expected_params": TEMPLATES[template_id].get("params")}
+            p["x"] = float(target.center[0])
+            p["y"] = float(target.center[1])
     builder = _BUILDERS[template_id]
     try:
         return builder(p)
@@ -433,11 +445,13 @@ _BUILDERS = {
 
 def execute_template(map_path: str, drone_id: str, template_id: str, params: dict,
                      api_base: str = "http://127.0.0.1:8000",
-                     config_path: str | None = None) -> dict:
+                     config_path: str | None = None, cancel_event=None,
+                     world=None) -> dict:
     """执行模板动作：build spec -> 行为树执行。"""
     from .mission_run import execute_actions
 
-    spec = build_template_spec(template_id, params)
+    spec = build_template_spec(template_id, params, world=world)
     if spec.get("error"):
         return {"ok": False, "error": spec["error"]}
-    return execute_actions(map_path, drone_id, spec, api_base, config_path)
+    return execute_actions(map_path, drone_id, spec, api_base, config_path,
+                           cancel_event=cancel_event)

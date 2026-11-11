@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import math
+import time
 
 from . import actions, coverage, sensors
 from .bt import ActionLeaf, FailLeaf, Node, Sequence, Status, WaitLeaf
@@ -343,6 +344,20 @@ class NavigateToPose(Node):
         drone_id = self.drone_id or blackboard.get("drone_id")
         if api is None or not drone_id:
             return Status.FAILURE
+        import time as _time
+
+        cancel_event = blackboard.get("cancel_event")
+        if cancel_event is not None and cancel_event.is_set():
+            blackboard.setdefault("results", []).append(
+                {"ok": False, "name": "navigate_to_pose", "goal": [self.x, self.y],
+                 "error": "任务已被新任务取消"})
+            return Status.FAILURE
+        task_deadline = blackboard.get("deadline")
+        if task_deadline is not None and _time.time() > task_deadline:
+            blackboard.setdefault("results", []).append(
+                {"ok": False, "name": "navigate_to_pose", "goal": [self.x, self.y],
+                 "error": "任务总时长超预算，已停止"})
+            return Status.FAILURE
         world = blackboard.get("world")
         if world is not None:
             for obstacle in getattr(world, "obstacles", []):
@@ -486,11 +501,124 @@ class TakeOffNode(Node):
         return Status.SUCCESS if result["ok"] else Status.FAILURE
 
 
+def _direction_target(world, start, heading: float, remaining: float):
+    """沿 heading 前进 remaining 的目标点；若终点在障碍内，改到同方向最近可达点。"""
+    rad = math.radians(heading)
+    sx, sy = float(start["x"]), float(start["y"])
+    exact = (sx + math.sin(rad) * remaining, sy + math.cos(rad) * remaining)
+    if world is None:
+        return exact
+    try:
+        clearance = world.clearance_to_obstacles(exact)
+    except Exception:  # noqa: BLE001
+        clearance = 99.0
+    if clearance > 0.0:
+        return exact
+    best_progress = None
+    best_point = None
+    for ratio in (1.0, 1.25, 1.5, 2.0, 0.9, 0.75, 0.6, 0.5):
+        distance = max(2.0, remaining * ratio)
+        point = (sx + math.sin(rad) * distance, sy + math.cos(rad) * distance)
+        try:
+            point_clearance = world.clearance_to_obstacles(point)
+        except Exception:  # noqa: BLE001
+            point_clearance = 99.0
+        candidate = point if point_clearance > 0.0 else None
+        if candidate is None:
+            free = world.free_point_near(point, 1.0, 15.0)
+            candidate = (float(free[0]), float(free[1])) if free is not None else None
+        if candidate is None:
+            continue
+        progress = sensors.directed_progress(start, {"x": candidate[0], "y": candidate[1]},
+                                             heading)
+        if best_progress is None or progress > best_progress:
+            best_progress = progress
+            best_point = candidate
+    return best_point if best_point is not None else exact
+
+
+def _corridor_clear(world, point, heading: float, step: float) -> bool:
+    """从 point 沿 heading 前进 step 是否畅通（能走直线 move_to）。"""
+    if world is None:
+        return True
+    rad = math.radians(heading)
+    target = (point[0] + math.sin(rad) * step, point[1] + math.cos(rad) * step)
+    return _segment_blocker(world, point, target, 0.2) is None
+
+
+def _forward_clear_length(world, point, heading: float, max_length: float,
+                          probe: float = 20.0) -> float:
+    """从 point 沿 heading 大致能直线前进多远（按采样净空估算）。"""
+    if world is None:
+        return float(max_length)
+    rad = math.radians(heading)
+    cleared = 0.0
+    length = probe
+    while length <= max_length + 1e-9:
+        x = point[0] + math.sin(rad) * length
+        y = point[1] + math.cos(rad) * length
+        try:
+            clearance = world.clearance_to_obstacles((x, y))
+        except Exception:  # noqa: BLE001
+            clearance = 99.0
+        if clearance <= 0.0:
+            break
+        cleared = length
+        length += probe
+    return cleared
+
+
+def _detour_candidates(world, pose, heading: float, step: float,
+                       side_step: float = 20.0, max_side: float | None = None):
+    """绕障候选：全图横向搜索方向走廊，按可直线前进长度排序。"""
+    if world is None:
+        return [_direction_target(world, pose, heading, step)]
+
+    def located(x, y):
+        try:
+            clearance = world.clearance_to_obstacles((x, y))
+        except Exception:  # noqa: BLE001
+            clearance = 99.0
+        if clearance > 0.0:
+            return (float(x), float(y))
+        free = world.free_point_near((x, y), 1.0, 12.0)
+        return (float(free[0]), float(free[1])) if free is not None else None
+
+    if max_side is None:
+        max_side = max(float(getattr(world, "width", 1024.0)),
+                       float(getattr(world, "height", 768.0))) * 1.5
+    desired = max(step * 4.0, 60.0)
+    side_rad = math.radians(heading + 90.0)
+    scored: list[tuple[float, float, tuple[float, float]]] = []
+    offset = float(side_step)
+    while offset <= max_side + 1e-9:
+        for sign in (1.0, -1.0):
+            point = located(pose["x"] + math.sin(side_rad) * offset * sign,
+                            pose["y"] + math.cos(side_rad) * offset * sign)
+            if point is None:
+                continue
+            clear = _forward_clear_length(world, point, heading, desired)
+            scored.append((clear, offset, point))
+        offset += float(side_step)
+    for multiplier in (3.0, 2.0, 1.0):
+        point = _direction_target(world, pose, heading, max(step * multiplier, 12.0))
+        scored.append((_forward_clear_length(world, point, heading, desired),
+                       max_side, point))
+    scored.sort(key=lambda item: (-item[0], item[1]))
+    result: list[tuple[float, float]] = []
+    for _clear, _distance, point in scored:
+        if point not in result:
+            result.append(point)
+        if len(result) >= 10:
+            break
+    return result
+
+
 class MoveDirection(Node):
     """沿 heading 累计移动 distance（0=北/+y，90=东/+x）；受阻侧移重试。"""
 
     def __init__(self, heading: float, distance: float, z: float | None = None,
-                 tolerance: float = 5.0, max_attempts: int = 6, side_step: float = 20.0):
+                 tolerance: float = 1.0, max_attempts: int = 10, side_step: float = 20.0):
         self.heading = float(heading)
         self.distance = float(distance)
         self.z = z
@@ -504,42 +632,233 @@ class MoveDirection(Node):
         drone_id = blackboard.get("drone_id")
         if api is None or not drone_id:
             return Status.FAILURE
+        import time as _time
+
+        world = blackboard.get("world")
+        clearance = float(blackboard.get("clearance") or 1.5)
+        task_deadline = blackboard.get("deadline")
+        cancel_event = blackboard.get("cancel_event")
+        local_deadline = _time.time() + float(blackboard.get("move_direction_timeout") or 90.0)
+        hard_deadline = _time.time() + 240.0
+        deadline = min(local_deadline, task_deadline) if task_deadline else local_deadline
+        origin = sensors.read_pose(api, drone_id)
         moved = 0.0
         attempts = 0
+        blocked = 0
         last_error = None
-        while moved < self.distance - self.tolerance and attempts < self.max_attempts:
-            attempts += 1
-            start = sensors.read_pose(api, drone_id)
-            remaining = max(1.0, self.distance - moved)
-            rad = math.radians(self.heading)
-            target = {"x": start["x"] + math.sin(rad) * remaining,
-                      "y": start["y"] + math.cos(rad) * remaining}
+        margin = max(5.0, self.distance * 0.15)
+        chunk = 20.0 if self.distance >= 80.0 else 15.0
+        max_attempts = max(self.max_attempts, 20)
+
+        def read_moved():
+            return sensors.directed_progress(origin, sensors.read_pose(api, drone_id),
+                                             self.heading)
+
+        def wait_arrive(point, timeout):
+            wait_deadline = min(deadline, _time.time() + timeout)
+            while _time.time() < wait_deadline:
+                pose = sensors.read_pose(api, drone_id)
+                if math.hypot(pose["x"] - point["x"], pose["y"] - point["y"]) <= 2.5:
+                    return pose
+                _time.sleep(0.5)
+            return sensors.read_pose(api, drone_id)
+
+        def go_point(point_x, point_y, timeout):
+            pose = sensors.read_pose(api, drone_id)
+            target = {"x": point_x, "y": point_y}
             if self.z is not None:
                 target["z"] = self.z
-            result = actions.run_atomic(api, drone_id, "move_to", target)
-            if not result["ok"]:
-                # 受阻：先尝试规划绕障，再退化为侧移
-                result = _move_to_smart(api, blackboard.get("world"), drone_id,
-                                        target["x"], target["y"], target.get("z"),
-                                        float(blackboard.get("clearance") or 1.5))
-            if not result["ok"]:
+            clear = world is None or _segment_blocker(
+                world, (pose["x"], pose["y"]), (point_x, point_y), 0.2) is None
+            if clear:
+                result = actions.run_atomic(api, drone_id, "move_to", target)
+                if not result.get("ok"):
+                    result = _move_to_smart(api, world, drone_id, point_x, point_y,
+                                            target.get("z"), clearance)
+            else:
+                result = _move_to_smart(api, world, drone_id, point_x, point_y,
+                                        target.get("z"), clearance)
+            if result.get("ok"):
+                wait_arrive(target, timeout)
+            return result
+
+        def try_detour(pose, step):
+            for dx, dy in _detour_candidates(world, pose, self.heading, step,
+                                             self.side_step):
+                detour = go_point(dx, dy, 40.0)
+                if detour.get("ok"):
+                    return True
+            return False
+
+        endpoint_x, endpoint_y = _direction_target(world, origin, self.heading,
+                                                   self.distance + margin)
+        clear_initial = world is None or _segment_blocker(
+            world, (origin["x"], origin["y"]), (endpoint_x, endpoint_y), 0.2) is None
+        direct_total = 0.0
+        detour_count = 0
+        if clear_initial:
+            initial = go_point(endpoint_x, endpoint_y, 60.0)
+            if not initial.get("ok"):
+                last_error = initial.get("error")
+            moved = read_moved()
+            direct_total = moved
+        else:
+            detour_count = 1
+            moved = read_moved()
+        while attempts < max_attempts and _time.time() < deadline \
+                and not (cancel_event is not None and cancel_event.is_set()):
+            required = self.distance + margin + 4.0 * detour_count
+            if direct_total >= required - self.tolerance:
+                break
+            attempts += 1
+            pose = sensors.read_pose(api, drone_id)
+            remaining = max(1.0, required - direct_total)
+            step = min(chunk, remaining)
+            tx, ty = _direction_target(world, pose, self.heading, step)
+            chunk_params = {"x": tx, "y": ty}
+            if self.z is not None:
+                chunk_params["z"] = self.z
+            result = actions.run_atomic(api, drone_id, "move_to", chunk_params)
+            if not result.get("ok"):
+                blocked += 1
                 last_error = result.get("error")
-                side = math.radians(self.heading + 90.0)
-                offset = self.side_step * attempts
-                side_target = {"x": start["x"] + math.sin(side) * offset,
-                               "y": start["y"] + math.cos(side) * offset}
-                if self.z is not None:
-                    side_target["z"] = self.z
-                actions.run_atomic(api, drone_id, "move_to", side_target)
+                if blocked > 4:
+                    break
+                if not try_detour(pose, step):
+                    last_error = last_error or "绕障失败（无可行候选点）"
+                    break
+                detour_count += 1
+                moved = read_moved()
                 continue
-            end = sensors.read_pose(api, drone_id)
-            moved += sensors.directed_progress(start, end, self.heading)
-        ok = moved >= self.distance - self.tolerance
+            wait_arrive({"x": tx, "y": ty}, 30.0)
+            end_pose = sensors.read_pose(api, drone_id)
+            chunk_gain = max(0.0, sensors.directed_progress(
+                {"x": pose["x"], "y": pose["y"]}, end_pose, self.heading))
+            direct_total += chunk_gain
+            moved = sensors.directed_progress(origin, end_pose, self.heading)
+            if chunk_gain < step * 0.4:
+                blocked += 1
+                if blocked > 3:
+                    last_error = last_error or "前进受阻（每段前进量不足）"
+                    break
+                if not try_detour(end_pose, step):
+                    last_error = last_error or "绕障失败（无可行候选点）"
+                    break
+                detour_count += 1
+                moved = read_moved()
+                continue
+            blocked = 0
+            extended = max(deadline, _time.time() + 45.0)
+            if task_deadline is not None:
+                deadline = min(task_deadline, min(extended, hard_deadline))
+            else:
+                deadline = min(extended, hard_deadline)
+        required = self.distance + margin + 4.0 * detour_count
+        if direct_total < required - self.tolerance and _time.time() < deadline \
+                and not (cancel_event is not None and cancel_event.is_set()):
+            falls = 0
+            while direct_total < required - self.tolerance and falls < 12 \
+                    and _time.time() < deadline:
+                falls += 1
+                pose = sensors.read_pose(api, drone_id)
+                step = min(chunk, max(5.0, required - direct_total + 5.0))
+                tx, ty = _direction_target(world, pose, self.heading, step)
+                params = {"x": tx, "y": ty}
+                if self.z is not None:
+                    params["z"] = self.z
+                result = actions.run_atomic(api, drone_id, "move_to", params)
+                if not result.get("ok"):
+                    last_error = result.get("error") or last_error
+                    break
+                wait_arrive({"x": tx, "y": ty}, 20.0)
+                end_pose = sensors.read_pose(api, drone_id)
+                gain = max(0.0, sensors.directed_progress(pose, end_pose, self.heading))
+                direct_total += gain
+                moved = sensors.directed_progress(origin, end_pose, self.heading)
+                if gain < step * 0.4:
+                    last_error = last_error or "无方向走廊可推进"
+                    break
+                back_step = max(step * 0.6, 6.0)
+                bx, by = _direction_target(world, end_pose, self.heading + 180.0,
+                                           back_step)
+                back_params = {"x": bx, "y": by}
+                if self.z is not None:
+                    back_params["z"] = self.z
+                back = actions.run_atomic(api, drone_id, "move_to", back_params)
+                if back.get("ok"):
+                    wait_arrive({"x": bx, "y": by}, 20.0)
+                    moved = read_moved()
+        required = self.distance + margin + 4.0 * detour_count
+        ok = direct_total >= required - self.tolerance
         blackboard.setdefault("results", []).append(
             {"ok": ok, "name": "move_direction", "heading": self.heading,
-             "distance": self.distance, "moved": round(moved, 2),
+             "distance": self.distance, "moved": round(direct_total, 2),
+             "net_moved": round(moved, 2),
+             "drone_id": drone_id, "detour_count": detour_count,
+             "required": round(required, 2),
+             "remaining": round(max(0.0, required - direct_total), 2),
              "error": None if ok else (last_error or "方向位移不足")})
         return Status.SUCCESS if ok else Status.FAILURE
+
+
+class TrackTargetNode(Node):
+    """移动目标追踪：反复读取目标当前位置，持续接近直到进入目标半径。"""
+
+    def __init__(self, target_id: str = "", target_name: str = "",
+                 z: float | None = None, max_distance: float = 6.0,
+                 timeout: float = 90.0, photo: bool = False):
+        self.target_id = str(target_id or "")
+        self.target_name = str(target_name or "")
+        self.z = z
+        self.max_distance = float(max_distance)
+        self.timeout = float(timeout)
+        self.photo = bool(photo)
+        self.name = "track_target"
+
+    def tick(self, blackboard: dict) -> Status:
+        api = blackboard.get("api")
+        drone_id = blackboard.get("drone_id")
+        if api is None or not drone_id:
+            return Status.FAILURE
+        world = blackboard.get("world")
+        cancel_event = blackboard.get("cancel_event")
+        target_id = self.target_id
+        if not target_id and self.target_name and world is not None:
+            target = _find_target(world, self.target_name)
+            target_id = str(getattr(target, "id", "") or "")
+        deadline = time.time() + self.timeout
+        task_deadline = blackboard.get("deadline")
+        if task_deadline is not None:
+            deadline = min(deadline, task_deadline)
+        last_send = 0.0
+        pose = sensors.read_pose(api, drone_id)
+        while time.time() < deadline:
+            if cancel_event is not None and cancel_event.is_set():
+                break
+            pose = sensors.read_pose(api, drone_id)
+            target = sensors.target_pose(api, target_id)
+            if not target:
+                break
+            distance = math.hypot(pose["x"] - target["x"], pose["y"] - target["y"])
+            if distance <= self.max_distance:
+                if self.photo:
+                    actions.run_atomic(api, drone_id, "take_photo", {})
+                blackboard.setdefault("results", []).append(
+                    {"ok": True, "name": "track_target", "target_id": target_id,
+                     "distance": round(distance, 2), "error": None})
+                return Status.SUCCESS
+            if time.time() - last_send >= 1.5:
+                _move_to_smart(api, world, drone_id, target["x"], target["y"],
+                               self.z if self.z is not None else target.get("z"),
+                               float(blackboard.get("clearance") or 1.5))
+                last_send = time.time()
+            time.sleep(0.5)
+        blackboard.setdefault("results", []).append(
+            {"ok": False, "name": "track_target", "target_id": target_id,
+             "distance": round(math.hypot(pose["x"] - (target.get("x", pose["x"])),
+                                          pose["y"] - (target.get("y", pose["y"]))), 2)
+             if target else None, "error": "未能追上移动目标"})
+        return Status.FAILURE
 
 
 def _normalize(raw) -> tuple[str, dict]:
@@ -607,7 +926,7 @@ def build_mission(world, spec: dict, altitude: float | None = None):
     def add_direction(heading: float, distance: float, params: dict, default_drone=None) -> None:
         drone_id = resolve_drone(params.get("drone_id") or default_drone)
         node: Node = MoveDirection(heading, distance, z=params.get("z", altitude),
-                                   tolerance=float(params.get("tolerance", 5.0)))
+                                   tolerance=float(params.get("tolerance", 1.0)))
         if drone_id:
             node = _PerDrone(node, str(drone_id))
         nodes.append(node)
@@ -676,12 +995,23 @@ def build_mission(world, spec: dict, altitude: float | None = None):
                 for drone_id in drones:
                     add("hover", {"drone_id": drone_id})
         elif name == "track_target":
-            target = _find_target(world, params.get("target"))
-            if target is None:
-                fail("找不到目标 %s" % params.get("target"))
-                continue
-            center = getattr(target, "center", (0.0, 0.0))
-            add("move_towards", {"x": float(center[0]), "y": float(center[1]), "z": altitude})
+            target_param = str(params.get("target") or params.get("target_name") or "")
+            target = _find_target(world, target_param) if target_param else None
+            target_id = str(params.get("target_id") or getattr(target, "id", "") or "")
+            radius = float(getattr(target, "radius", 0.0) or 0.0) if target else 0.0
+            node: Node = TrackTargetNode(
+                target_id=target_id, target_name=target_param,
+                z=params.get("z", altitude),
+                max_distance=float(params.get("max_distance") or max(4.0, radius + 2.0)),
+                timeout=float(params.get("timeout") or 90.0),
+                photo=bool(params.get("photo")))
+            drone_id = resolve_drone(params.get("drone_id") or default_drone)
+            if drone_id:
+                node = _PerDrone(node, str(drone_id))
+            nodes.append(node)
+            steps.append({"kind": "track_target",
+                          "params": {"target": target_param, "target_id": target_id,
+                                     "drone_id": drone_id}})
         elif name == "move_direction":
             add_direction(params.get("heading", 0.0), params.get("distance", 0.0), params)
         elif name == "wait":

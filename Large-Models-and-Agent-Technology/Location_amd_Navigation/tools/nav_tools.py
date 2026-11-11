@@ -19,6 +19,30 @@ from src.planner import Planner
 from src.worldmap import WorldMap
 
 
+def _mission_guarded(method):
+    """给任务类工具加互斥：新任务开始前取消旧任务并等待其退出。"""
+
+    def wrapper(self, *args, **kwargs):
+        from src.mission_run import begin_mission_task, end_mission_task
+
+        event = begin_mission_task()
+        try:
+            return method(self, *args, cancel_event=event, **kwargs)
+        finally:
+            end_mission_task(event)
+
+    wrapper.__name__ = getattr(method, "__name__", "mission_guarded")
+    return wrapper
+
+
+def _load_json_url(url: str, timeout: float = 3.0):
+    try:
+        with urllib.request.urlopen(url, timeout=timeout) as response:
+            return json.loads(response.read().decode("utf-8", "replace"))
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def _compact_result(result: Any) -> dict:
     """压缩执行结果，避免几百步明细撑爆模型上下文。"""
     if not isinstance(result, dict):
@@ -392,7 +416,8 @@ class NavToolkit:
         return plan_mission(data, self.world, start, self.planner)
 
     # ---------- 12 交给行为树执行（L1 唯一入口）----------
-    def nav_execute_mission(self, input_json: Any = None) -> dict:
+    @_mission_guarded
+    def nav_execute_mission(self, input_json: Any = None, cancel_event=None) -> dict:
         """L1->L2 入口：把整条任务交给行为树执行（逐点推进，不需要模型规划航点）。
 
         input_json = {
@@ -411,6 +436,7 @@ class NavToolkit:
         if not drone_values and data.get("drone_id"):
             drone_values.append(str(data["drone_id"]))
         task_text = str(data.get("task_text") or "")
+        progress_info = self._progress_info(task_text)
         if not drone_values or re.search(r"any available drone", task_text, re.I):
             best = self._best_drone()
             if isinstance(best, dict) and best.get("id"):
@@ -557,7 +583,8 @@ class NavToolkit:
                                 "land_at_end": bool(spec.get("land_at_end", False)),
                                 "ensure_takeoff": False}
                     return execute_mission(str(self.map_path), resolved or drone_id,
-                                           sub_spec, self.config.uav_api_base)
+                                           sub_spec, self.config.uav_api_base,
+                                           cancel_event=cancel_event)
 
                 merged: dict[str, dict] = {}
                 workers = max(1, min(len(per_drone), 6))
@@ -597,23 +624,28 @@ class NavToolkit:
                 for result in results:
                     failures.extend(result.get("failures") or [])
                 completed = all(bool(r.get("ok")) for r in results)
-                return {"ok": completed, "completed": completed,
-                        "mode": "multi_drone_parallel",
-                        "drones": drone_order,
-                        "steps": sum(len(r.get("executed") or []) for r in results),
-                        "failures": failures[:5],
-                        "results": [_compact_result(r) for r in results]}
+                response = {"ok": completed, "completed": completed,
+                            "mode": "multi_drone_parallel",
+                            "drones": drone_order,
+                            "steps": sum(len(r.get("executed") or []) for r in results),
+                            "failures": failures[:5],
+                            "results": [_compact_result(r) for r in results]}
+                if progress_info is not None:
+                    response["task_progress"] = progress_info
+                return response
             return self._mission_compact(execute_mission(str(self.map_path), drone_id, spec,
-                                                         self.config.uav_api_base))
+                                                         self.config.uav_api_base,
+                                                         cancel_event=cancel_event), task_text)
         if len(resolved_ids) == 1:
             results = [execute_mission(str(self.map_path), resolved_ids[0], spec,
-                                       self.config.uav_api_base)]
+                                       self.config.uav_api_base, cancel_event=cancel_event)]
         else:
             from concurrent.futures import ThreadPoolExecutor, as_completed
 
             def _run_waypoints(did: str) -> dict:
                 return execute_mission(str(self.map_path), did, spec,
-                                       self.config.uav_api_base)
+                                       self.config.uav_api_base,
+                                       cancel_event=cancel_event)
 
             results_map: dict[str, dict] = {}
             with ThreadPoolExecutor(max_workers=min(len(resolved_ids), 6)) as pool:
@@ -629,19 +661,45 @@ class NavToolkit:
                                                 "failures": [{"error": "未执行"}]}
                        for did in resolved_ids]
         if len(results) == 1:
-            return self._mission_compact(results[0])
-        return {"ok": all(bool(r.get("ok")) for r in results),
-                "completed": all(bool(r.get("ok")) for r in results),
-                "mode": "waypoints_parallel",
-                "hint": "任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具",
-                "drones": resolved_ids,
-                "results": [_compact_result(r) for r in results]}
+            return self._mission_compact(results[0], task_text)
+        response = {"ok": all(bool(r.get("ok")) for r in results),
+                    "completed": all(bool(r.get("ok")) for r in results),
+                    "mode": "waypoints_parallel",
+                    "hint": "任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具",
+                    "drones": resolved_ids,
+                    "results": [_compact_result(r) for r in results]}
+        if progress_info is not None:
+            response["task_progress"] = progress_info
+        return response
 
-    @staticmethod
-    def _mission_compact(result: dict) -> dict:
+    def _progress_info(self, task_text: str):
+        """进度类任务：查询服务器 task-progress 是否支持统计。"""
+        if not re.search(r"progress|session\s+task\s+progress|任务进度",
+                         task_text or "", re.I):
+            return None
+        url = self.config.uav_api_base.rstrip("/") + "/sessions/current/task-progress"
+        data = _load_json_url(url)
+        if not isinstance(data, dict):
+            return None
+        info = {"task_type": data.get("task_type"),
+                "progress": data.get("progress_percentage")}
+        message = str(data.get("status_message") or "")
+        if "no progress tracking" in message.lower():
+            info["supported"] = False
+            info["note"] = ("当前会话 task_type=%s 不支持进度统计（服务器 progress 恒为 %s），"
+                            "任务中的进度要求无法通过飞行动作满足"
+                            % (data.get("task_type"), data.get("progress_percentage")))
+        else:
+            info["supported"] = True
+        return info
+
+    def _mission_compact(self, result: dict, task_text: str = "") -> dict:
         compact = _compact_result(result)
         completed = bool(result.get("ok")) and not (result.get("failures") or [])
         compact["completed"] = completed
+        progress = self._progress_info(task_text)
+        if progress is not None:
+            compact["task_progress"] = progress
         if completed:
             compact["hint"] = "任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具"
         return compact
@@ -846,7 +904,8 @@ class NavToolkit:
         return {"assignments": result}
 
     # ---------- 13 官方模板组合动作 ----------
-    def nav_template_action(self, input_json: Any = None) -> dict:
+    @_mission_guarded
+    def nav_template_action(self, input_json: Any = None, cancel_event=None) -> dict:
         """按官方 10 类任务模板执行组合动作（L1 一次调用完成整条任务）。
 
         input_json = {"template": "corridor_detour",
@@ -1003,11 +1062,12 @@ class NavToolkit:
                             "error": f"第 {idx} 个角点 ({x:.1f},{y:.1f}) 位于障碍物内部，该任务不可行",
                             "nearest_free_point": [round(near[0], 2), round(near[1], 2)] if near else None,
                             "hint": "任务坐标落入障碍物，建议换任务实例或使用最近自由点"}
-        spec = build_template_spec(template, params)
+        spec = build_template_spec(template, params, world=self.world)
         if spec.get("error"):
             return {"error": spec["error"], "templates": list(TEMPLATES)}
         result = execute_template(str(self.map_path), drone_id, template, params,
-                                  self.config.uav_api_base)
+                                  self.config.uav_api_base, cancel_event=cancel_event,
+                                  world=self.world)
         return _compact_result(result)
 
 

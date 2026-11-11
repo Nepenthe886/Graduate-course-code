@@ -1,0 +1,91 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-1376ca2f-eedf-4b36-8f39-309620d73443",
+  "experiment": {
+    "run_id": "rid-1376ca2f-eedf-4b36-8f39-309620d73443",
+    "experiment_id": "eid-1465e8da-19a4-5848-83a1-e6e428b6f730"
+  },
+  "service_instance_id": "20261111T152220-0a56eafc26b0",
+  "batch_file": "../../batch.json",
+  "command_id": "23a60639-c683-48b3-b40e-c547ae93fa07",
+  "job_id": null,
+  "command": "Drone Relief UAV 01 performs a marathon flight. Take off to 23 meters, fly to start point (101, 136, 23), then navigate through 10 waypoints: (205, 127, 23), (331, 272, 23), (405, 353, 23), (549, 475, 23), (645, 571, 23), (771, 630, 23), (870, 797, 23), (987, 823, 23), (891, 133, 23), (172, 804, 23). Avoid obstacles S01 Fragmented civil building 18, S01 Isolated obstruction 06. Finally, fly to end point (553, 555, 23) and land.",
+  "created_at": "2026-11-11 15:27:12",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-11 15:27:55",
+  "requested_run_id": null,
+  "started_at": "2026-11-11 15:27:12",
+  "runtime": {
+    "run_id": "rid-1376ca2f-eedf-4b36-8f39-309620d73443",
+    "experiment": {
+      "run_id": "rid-1376ca2f-eedf-4b36-8f39-309620d73443",
+      "experiment_id": "eid-1465e8da-19a4-5848-83a1-e6e428b6f730"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "0775fd84c87ad912",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "0775fd84c87ad912",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "a4e31a3895b149c653c986d4e32dcf02a540379a9c8a31c92dd64a22fb208b8a",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Relief UAV 01 performs a marathon flight. Take off to 23 meters, fly to start point (101, 136, 23), then navigate through 10 waypoints: (205, 127, 23), (331, 272, 23), (405, 353, 23), (549, 475, 23), (645, 571, 23), (771, 630, 23), (870, 797, 23), (987, 823, 23), (891, 133, 23), (172, 804, 23). Avoid obstacles S01 Fragmented civil building 18, S01 Isolated obstruction 06. Finally, fly to end point (553, 555, 23) and land.",
+            "drones": [
+              "Relief UAV 01"
+            ],
+            "altitude": 23
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 12, \"legs\": 12, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"c61fe89f\", \"drone_id\": \"1953c083\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 23.0m (battery: -0.5%/-0mAh, remaining: 99.5%/100mAh)\", \"timestamp\": 1794382067.555883}, \"steps\": 13, \"sample\": [{\"leg\": 1, \"goal\": [101.0, 136.0], \"waypoints\": 3, \"plan_ms\": 1258, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [205.0, 127.0], \"waypoints\": 3, \"plan_ms\": 46, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [331.0, 272.0], \"waypoints\": 2, \"plan_ms\": 31, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14320,
+      "completion_tokens": 283,
+      "total_tokens": 14603,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-605b1fe5-e732-415c-848e-47f35fe0bb99",
+  "experiment": {
+    "run_id": "rid-605b1fe5-e732-415c-848e-47f35fe0bb99",
+    "experiment_id": "eid-74ef050f-b015-5595-9455-bbc3d5f7cd58"
+  },
+  "service_instance_id": "20261111T130236-423c91b753cb",
+  "batch_file": "../../batch.json",
+  "command_id": "a0d6e965-e380-4fa0-8163-419432071d48",
+  "job_id": null,
+  "command": "Send drones Yard 16 and Yard 8 to target Bay 034. Both drones should take off to 20 meters and reach the same target.",
+  "created_at": "2026-11-11 13:03:23",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-11 13:03:36",
+  "requested_run_id": null,
+  "started_at": "2026-11-11 13:03:23",
+  "runtime": {
+    "run_id": "rid-605b1fe5-e732-415c-848e-47f35fe0bb99",
+    "experiment": {
+      "run_id": "rid-605b1fe5-e732-415c-848e-47f35fe0bb99",
+      "experiment_id": "eid-74ef050f-b015-5595-9455-bbc3d5f7cd58"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "1520a780",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "1520a780",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "5c4bee169753078aac6319a60ad62a40248ef060d6e22b57cbe8be9598598fe8",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Send drones Yard 16 and Yard 8 to target Bay 034. Both drones should take off to 20 meters and reach the same target.",
+            "drones": [
+              "Yard 16",
+              "Yard 8"
+            ],
+            "altitude": 20.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Yard 16\", \"Yard 8\"], \"steps\": 4, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 20.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [115.0, 286.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 20.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [115.0, 286.0], \"attempts\": 1}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14358,
+      "completion_tokens": 94,
+      "total_tokens": 14452,
+      "llm_calls": 2
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

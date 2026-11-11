@@ -1,0 +1,105 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-52993724-4f54-47a3-95c5-384148f919b0",
+  "experiment": {
+    "run_id": "rid-52993724-4f54-47a3-95c5-384148f919b0",
+    "experiment_id": "eid-ed43ca8e-406a-58ba-9afa-942a45f5c575"
+  },
+  "service_instance_id": "20261111T142454-a919bf8cb920",
+  "batch_file": "../../batch.json",
+  "command_id": "37167299-d068-4006-ab25-34f17f4779ea",
+  "job_id": null,
+  "command": "Drone Cargo 2 must take off to 18 meters, navigate to target Customer Drop 18, take a photo, then navigate to target Customer Drop 05 and take another photo.",
+  "created_at": "2026-11-11 14:27:54",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-11 14:28:09",
+  "requested_run_id": null,
+  "started_at": "2026-11-11 14:27:54",
+  "runtime": {
+    "run_id": "rid-52993724-4f54-47a3-95c5-384148f919b0",
+    "experiment": {
+      "run_id": "rid-52993724-4f54-47a3-95c5-384148f919b0",
+      "experiment_id": "eid-ed43ca8e-406a-58ba-9afa-942a45f5c575"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "c36c9ec9",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 3,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "c36c9ec9",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "3b16514d6d8039d891f5d87983fa0948e1583d756eb1cf13363c55bd2e875708",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "target_photo",
+            "params": {
+              "altitude": 18.0,
+              "drone_id": "6913353b",
+              "target": "Customer Drop"
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 18.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [75.0, 65.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Cargo 2 must take off to 18 meters, navigate to target Customer Drop 18, take a photo, then navigate to target Customer Drop 05 and take another photo.",
+            "drone_id": "6913353b",
+            "altitude": 18.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 7, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 18.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [375.0, 665.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 20909,
+      "completion_tokens": 155,
+      "total_tokens": 21064,
+      "llm_calls": 3
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

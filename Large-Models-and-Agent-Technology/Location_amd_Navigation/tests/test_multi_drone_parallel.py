@@ -35,7 +35,8 @@ class MultiDroneParallelTest(unittest.TestCase):
     def _run(self, include_approach: bool):
         records: list[dict] = []
 
-        def fake(map_path, drone_id, spec, api_base=None, config_path=None):
+        def fake(map_path, drone_id, spec, api_base=None, config_path=None,
+                 cancel_event=None):
             start = time.time()
             time.sleep(0.15)
             kinds = [str(a.get("name") or a.get("kind")) for a in (spec.get("actions") or [])]

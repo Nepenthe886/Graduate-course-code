@@ -476,6 +476,24 @@ def _resolve_drone_id(task_text: str, uav_base: str) -> str:
     return ""
 
 
+def _best_drone_id(uav_base: str) -> str:
+    """按电量挑选一架可用无人机（任务未点名时兜底）。"""
+    drones = _http_json(f"{uav_base.rstrip('/')}/drones", timeout=3.0)
+    if not isinstance(drones, list):
+        return ""
+    best_id = ""
+    best_battery = -1.0
+    for drone in drones:
+        try:
+            battery = float(drone.get("battery_level") or 0.0)
+        except (TypeError, ValueError):
+            battery = 0.0
+        if battery > best_battery:
+            best_battery = battery
+            best_id = str(drone.get("id") or "")
+    return best_id
+
+
 def _mission_already_called(messages: list) -> bool:
     for message in messages or []:
         if not isinstance(message, dict):
@@ -505,10 +523,13 @@ def enforce_mission_delegation(payload: dict, request_messages: list, task_text:
     relay_task = bool(re.search(r"relay|broadcast", task_text or "", re.I))
     fleet_task = bool(re.search(r"target sweep|guard point|perimeter|photographs?\s+targets?|"
                                 r"surveys?\s+target|assign|coordinated search sweep", task_text or "", re.I))
-    target_named_task = bool(re.search(
-        r"\btarget\s+[A-Za-z][A-Za-z0-9 _-]*?\b\d{1,3}\b", task_text or "", re.I)) \
-        and bool(re.search(r"navigate|fly|find|go\s*to|goes\s+to|photo|photograph|capture|"
-                           r"inspect|reach|assign|swap", task_text or "", re.I))
+    target_mention = bool(re.search(r"\btargets?\s+[A-Z][A-Za-z0-9 _-]*",
+                                    task_text or "")) \
+        or bool(re.search(r"\btarget\s+[A-Za-z][A-Za-z0-9 _-]*?\b\d{1,3}\b",
+                          task_text or "", re.I))
+    target_named_task = target_mention and bool(re.search(
+        r"navigate|fly|find|go\s*to|goes\s+to|photo|photograph|capture|"
+        r"inspect|reach|assign|swap", task_text or "", re.I))
     action_hits = len(re.findall(r"take\s*off|take-off|takeoff|move|fly|go to|head to|navigate|"
                                  r"photo|photograph|capture|loiter|hover|rotate|turn|land",
                                  task_text or "", re.I))
@@ -520,10 +541,11 @@ def enforce_mission_delegation(payload: dict, request_messages: list, task_text:
         return payload, None
     if _mission_already_called(request_messages):
         return payload, None
-    drone_id = _resolve_drone_id(task_text, uav_base)
+    drone_id = _resolve_drone_id(task_text, uav_base) or _best_drone_id(uav_base)
     if not drone_id:
         return payload, "mission_enforce_skipped_no_drone"
-    altitude_match = re.search(r"take\s+off\s+to\s+(\d+(?:\.\d+)?)\s*m", task_text or "", re.I)
+    altitude_match = re.search(r"take\s+off[^.\n]{0,40}?to\s+(\d+(?:\.\d+)?)\s*m",
+                               task_text or "", re.I)
     if altitude_match:
         altitude = float(altitude_match.group(1))
     elif points:
@@ -947,8 +969,11 @@ def _recent_tool_errors(messages: list) -> tuple[int, str]:
         status = str(data.get("status") or "")
         failed = data.get("ok") is False or status in ("error", "failed") or bool(data.get("error"))
         if failed:
+            message_text = str(data.get("message") or data.get("error") or "")
+            if "缺少参数" in message_text or "expected_params" in message_text:
+                continue  # 缺参提示不计入连续失败
             count += 1
-            last = str(data.get("message") or data.get("error") or last)
+            last = message_text or last
         else:
             break
     return count, last

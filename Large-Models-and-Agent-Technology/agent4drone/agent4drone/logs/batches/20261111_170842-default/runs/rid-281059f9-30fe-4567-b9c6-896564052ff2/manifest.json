@@ -1,0 +1,132 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-281059f9-30fe-4567-b9c6-896564052ff2",
+  "experiment": {
+    "run_id": "rid-281059f9-30fe-4567-b9c6-896564052ff2",
+    "experiment_id": "eid-7e74e75e-0fa3-5fc1-b076-2e19369286ea"
+  },
+  "service_instance_id": "20261111T170824-29a1aa2d6f0c",
+  "batch_file": "../../batch.json",
+  "command_id": "c47dcc50-3c7e-44c8-89ac-60434f1ea71c",
+  "job_id": null,
+  "command": "Drone Delta must take off to 16 meters, navigate to target Search Cell 1, take a photo, then navigate to target Alpha Home Charger and take another photo.",
+  "created_at": "2026-11-11 17:09:13",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-11 17:09:34",
+  "requested_run_id": null,
+  "started_at": "2026-11-11 17:09:13",
+  "runtime": {
+    "run_id": "rid-281059f9-30fe-4567-b9c6-896564052ff2",
+    "experiment": {
+      "run_id": "rid-281059f9-30fe-4567-b9c6-896564052ff2",
+      "experiment_id": "eid-7e74e75e-0fa3-5fc1-b076-2e19369286ea"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "76fdf8f96380",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 6,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "76fdf8f96380",
+  "requested_session_id": null,
+  "session_source": "runtime_observed",
+  "prompt_sha256": "7c7dfb11ae39cd6bf6d3ae79500ed7c894469f0c69672beb4fe56e36a325aaa4",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"2592c9873dff\",\n    \"name\": \"Alpha\",\n    \"model\": \"Scout\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 80.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 22.0,\n    \"max_altitude\": 90.0,\n    \"battery_capacity\": 5000.0,\n    \"perceived_radius\": 60.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 80.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388151.4765983\n  },\n  {\n    \"id\": \"1cc16c1f84b1\",\n    \"name\": \"Bravo\",\n    \"model\": \"Surveyor\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 180.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 16.0,\n    \"max_altitude\": 80.0,\n    \"battery_capacity\": 5500.0,\n    \"perceived_radius\": 42.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 180.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388151.4766352\n  },\n  {\n    \"id\": \"6964955cd21c\",\n    \"name\": \"Charlie\",\n    \"model\": \"Relay\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 244.0,\n      \"y\": 530.0,\n      \"z\": 0.0\n    },\n    \"heading\": 296.565051177078,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 18.0,\n    \"max_altitude\": 85.0,\n    \"battery_capacity\": 6000.0,\n    \"perceived_radius\": 75.0,\n    \"task_radius\": 12.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 280.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388151.4766521\n  },\n  {\n    \"id\": \"0f63aa7bea9f\",\n    \"name\": \"Delta\",\n    \"model\": \"Reserve\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 244.0,\n      \"y\": 260.0,\n      \"z\": 0.0\n    },\n    \"heading\": 270.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 75.0,\n    \"battery_capacity\": 6500.0,\n    \"perceived_radius\": 45.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 380.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388151.4766665\n  },\n  {\n    \"id\": \"9b20818ac06f\",\n    \"name\": \"Echo\",\n    \"model\": \"Recovery\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 94.0,\n      \"y\": 630.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 12.0,\n    \"max_altitude\": 65.0,\n    \"battery_capacity\": 7000.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 6.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 480.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388151.476681\n  },\n  {\n    \"id\": \"e3c13154f845\",\n    \"name\": \"Foxtrot\",\n    \"model\": \"Recovery\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 94.0,\n      \"y\": 80.0,\n      \"z\": 0.0\n    },\n    \"heading\": 180.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 12.0,\n    \"max_altitude\": 65.0,\n    \"battery_capacity\": 7500.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 6.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 580.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794388151.4766939\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"76fdf8f96380\",\n  \"name\": \"Canyon Switchback Coordination\",\n  \"description\": \"Multiple alternating barriers produce long switchback routes for multi-drone rendezvous and recovery. All 20 tasks are generated from the 10 submitted templates. Six heterogeneous drones, two genuinely moving couriers, four search cells, and ten charging stations are included. A full-height physical perimeter prevents shortcuts outside the mission boundary.\",\n  \"status\": \"active\",\n  \"creator\": \"LLM & Agent Course - \\u4e00\\u8d77\\u73a9\\u539f\\u795e\\u5427\\u961f\",\n  \"task_type\": \"others\",\n  \"task_description\": \"20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1794013200.0,\n  \"last_updated\": 1794388166.0503364,\n  \"statistics\": {\n    \"drone_count\": 6,\n    \"target_count\": 19,\n    \"obstacle_count\": 8,\n    \"task_count\": 10,\n    \"environment_id\": \"ae2fb95d4494\",\n    \"total_commands_executed\": 32,\n    \"total_flight_time\": 376.0274828550154,\n    \"total_distance_traveled\": 4873.038582938109,\n    \"total_target_reaches\": 30,\n    \"drones_with_target_reaches\": 4,\n    \"unique_targets_reached\": 11,\n    \"session_time\": 616.6408972740173,\n    \"command_history_size\": 32,\n    \"task_progress\": {\n      \"task_type\": \"others\",\n      \"progress_percentage\": 0,\n      \"is_completed\": false,\n      \"status_message\": \"No progress tracking for this task type\",\n      \"details\": {},\n      \"target_reach_summary\": {\n        \"total_reaches\": 30,\n        \"drones_with_reaches\": 4,\n        \"unique_targets_reached\": 11\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 12,\n        \"average_coverage\": 48.26388888888889,\n        \"fully_covered_targets\": 8\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"ae2fb95d4494\",\n  \"name\": \"Canyon Switchback Coordination Environment\",\n  \"weather\": \"partly_cloudy\",\n  \"temperature\": 9.595266666406856,\n  \"humidity\": 50.0,\n  \"pressure\": 920.0,\n  \"wind_speed\": 1.2627904635882905,\n  \"wind_direction\": \"south\",\n  \"visibility\": 8000.0,\n  \"created_at\": 1794013200.0,\n  \"last_updated\": 1794388170.5735826\n}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "battery_cycle",
+            "params": {
+              "altitude": 16.0,
+              "drone_id": "2592c9873dff",
+              "charge_amount": 30.0
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 16.0, \"error\": null}, {\"ok\": true, \"name\": \"hover\", \"error\": null}, {\"ok\": true, \"name\": \"return_home\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Delta must take off to 16 meters, navigate to target Search Cell 1, take a photo, then navigate to target Alpha Home Charger and take another photo.",
+            "drone_id": "2592c9873dff",
+            "altitude": 16.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Delta\", \"Alpha\"], \"steps\": 8, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 4, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 16.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [784.0, 260.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 4, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 16.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [944.0, 80.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 49733,
+      "completion_tokens": 151,
+      "total_tokens": 49884,
+      "llm_calls": 6
+    },
+    "empty_response_retries": 0
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

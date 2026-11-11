@@ -49,7 +49,8 @@ class YardDualRouteTest(unittest.TestCase):
     def test_parallel_execution(self):
         records: list[tuple[str, int]] = []
 
-        def fake(map_path, drone_id, spec, api_base=None, config_path=None):
+        def fake(map_path, drone_id, spec, api_base=None, config_path=None,
+                 cancel_event=None):
             time.sleep(0.2)
             records.append((drone_id, len(spec.get("actions") or [])))
             return {"ok": True, "executed": [{"name": "x"}], "failures": []}

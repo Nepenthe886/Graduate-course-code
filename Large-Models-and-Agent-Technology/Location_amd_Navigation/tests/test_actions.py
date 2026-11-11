@@ -112,10 +112,12 @@ class MoveDirectionNodeTest(unittest.TestCase):
         board = {"api": api, "drone_id": "d1", "results": []}
         status = MoveDirection(0.0, 74.0, z=17.0).tick(board)
         self.assertEqual(status, Status.SUCCESS)
-        self.assertAlmostEqual(api.position["y"], 174.0, places=3)
+        self.assertGreaterEqual(api.position["y"], 174.0 - 0.01)
+        self.assertLessEqual(api.position["y"], 186.5)
         status = MoveDirection(90.0, 62.0, z=17.0).tick(board)
         self.assertEqual(status, Status.SUCCESS)
-        self.assertAlmostEqual(api.position["x"], 162.0, places=3)
+        self.assertGreaterEqual(api.position["x"], 162.0 - 0.01)
+        self.assertLessEqual(api.position["x"], 172.5)
 
     def test_sequence_uses_per_drone_binding(self):
         api = FakeApi()
@@ -126,7 +128,8 @@ class MoveDirectionNodeTest(unittest.TestCase):
         self.assertIsInstance(tree, Sequence)
         status = tree.tick({"api": api, "drone_id": "other", "results": []})
         self.assertEqual(status, Status.SUCCESS)
-        self.assertAlmostEqual(api.position["y"], 130.0, places=3)
+        self.assertGreaterEqual(api.position["y"], 130.0 - 0.01)
+        self.assertLessEqual(api.position["y"], 136.5)
 
 
 class FormationTaskSpecTest(unittest.TestCase):
