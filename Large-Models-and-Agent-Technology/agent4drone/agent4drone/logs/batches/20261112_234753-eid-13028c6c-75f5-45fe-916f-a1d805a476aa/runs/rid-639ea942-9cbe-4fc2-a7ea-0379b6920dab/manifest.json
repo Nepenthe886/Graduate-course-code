@@ -1,0 +1,140 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-639ea942-9cbe-4fc2-a7ea-0379b6920dab",
+  "experiment": {
+    "experiment_id": "eid-13028c6c-75f5-45fe-916f-a1d805a476aa",
+    "start_reason": "start",
+    "run_id": "rid-639ea942-9cbe-4fc2-a7ea-0379b6920dab",
+    "session_id": "f1f58621",
+    "session_name": "Path Planning Corner",
+    "task_id": "a7ea5a55",
+    "task_name": "Triple Flight Marathon Navigation 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "2f2a00919fc8b8dc396a2064dbdab31524daccbcd52dd8feb9a16dd318ff88a7",
+    "session_snapshot_hash": "2d2aaa161b83c7015b10134ea7a202f47e72c87fa7501a12ef8d4ec44b2eb443",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T230907-99f013f35a65",
+  "batch_file": "../../batch.json",
+  "command_id": "87550599-939b-4434-afb3-2bec4d9c728c",
+  "job_id": "17544caa-3cec-4eb5-91e2-d06cbbe60017",
+  "command": "Drones Drone 6, Drone 3, and Drone 9 perform a triple marathon flight at 21 meters. Drone 6 route: fly to and start at  (70, 132, 21), then waypoints (186, 179, 21), (790, 252, 21), (145, 284, 21), (822, 419, 21), (181, 432, 21), (808, 520, 21), (245, 627, 21), (878, 711, 21), (198, 822, 21), (672, 847, 21), then end (895, 929, 21) and land. Drone 3 route: fly to and start at  (514, 69, 21), then waypoints (458, 161, 21), (901, 253, 21), (156, 301, 21), (865, 428, 21), (175, 506, 21), (860, 609, 21), (123, 660, 21), (867, 726, 21), (265, 868, 21), (564, 866, 21), then end (555, 896, 21) and land. Drone 9 route: fly to and start at  (885, 91, 21), then waypoints (806, 192, 21), (141, 226, 21), (838, 328, 21), (249, 420, 21), (782, 432, 21), (138, 549, 21), (862, 632, 21), (221, 733, 21), (734, 762, 21), (322, 873, 21), then end (80, 861, 21) and land.",
+  "created_at": "2026-11-12 23:55:25",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-12 23:56:37",
+  "requested_run_id": null,
+  "started_at": "2026-11-12 23:55:25",
+  "runtime": {
+    "run_id": "rid-639ea942-9cbe-4fc2-a7ea-0379b6920dab",
+    "experiment": {
+      "experiment_id": "eid-13028c6c-75f5-45fe-916f-a1d805a476aa",
+      "start_reason": "start",
+      "run_id": "rid-639ea942-9cbe-4fc2-a7ea-0379b6920dab",
+      "session_id": "f1f58621",
+      "session_name": "Path Planning Corner",
+      "task_id": "a7ea5a55",
+      "task_name": "Triple Flight Marathon Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "2f2a00919fc8b8dc396a2064dbdab31524daccbcd52dd8feb9a16dd318ff88a7",
+      "session_snapshot_hash": "2d2aaa161b83c7015b10134ea7a202f47e72c87fa7501a12ef8d4ec44b2eb443",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "f1f58621",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "f1f58621",
+  "requested_session_id": "f1f58621",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "0249d7645692f4afc2323d8342a4fde51fbb1a1a3f21598a13af0f9d3ea8295e",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Drone 6, Drone 3, and Drone 9 perform a triple marathon flight at 21 meters. Drone 6 route: fly to and start at  (70, 132, 21), then waypoints (186, 179, 21), (790, 252, 21), (145, 284, 21), (822, 419, 21), (181, 432, 21), (808, 520, 21), (245, 627, 21), (878, 711, 21), (198, 822, 21), (672, 847, 21), then end (895, 929, 21) and land. Drone 3 route: fly to and start at  (514, 69, 21), then waypoints (458, 161, 21), (901, 253, 21), (156, 301, 21), (865, 428, 21), (175, 506, 21), (860, 609, 21), (123, 660, 21), (867, 726, 21), (265, 868, 21), (564, 866, 21), then end (555, 896, 21) and land. Drone 9 route: fly to and start at  (885, 91, 21), then waypoints (806, 192, 21), (141, 226, 21), (838, 328, 21), (249, 420, 21), (782, 432, 21), (138, 549, 21), (862, 632, 21), (221, 733, 21), (734, 762, 21), (322, 873, 21), then end (80, 861, 21) and land.",
+            "drones": [
+              "Drone 6",
+              "Drone 3",
+              "Drone 9"
+            ],
+            "altitude": 21
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Drone 6\", \"Drone 3\", \"Drone 9\"], \"steps\": 42, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 21.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [70.0, 132.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [186.0, 179.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 21.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [514.0, 69.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [458.0, 161.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 21.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [885.0, 91.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [806.0, 192.0], \"attempts\": 1}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 15380,
+      "completion_tokens": 638,
+      "total_tokens": 16018,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-639ea942-9cbe-4fc2-a7ea-0379b6920dab",
+    "command_id": "87550599-939b-4434-afb3-2bec4d9c728c",
+    "experiment": {
+      "experiment_id": "eid-13028c6c-75f5-45fe-916f-a1d805a476aa",
+      "start_reason": "start",
+      "run_id": "rid-639ea942-9cbe-4fc2-a7ea-0379b6920dab",
+      "session_id": "f1f58621",
+      "session_name": "Path Planning Corner",
+      "task_id": "a7ea5a55",
+      "task_name": "Triple Flight Marathon Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "2f2a00919fc8b8dc396a2064dbdab31524daccbcd52dd8feb9a16dd318ff88a7",
+      "session_snapshot_hash": "2d2aaa161b83c7015b10134ea7a202f47e72c87fa7501a12ef8d4ec44b2eb443",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-639ea942-9cbe-4fc2-a7ea-0379b6920dab",
+      "request_history": "/agent/runs/rid-639ea942-9cbe-4fc2-a7ea-0379b6920dab/artifacts/request_history",
+      "events": "/agent/runs/rid-639ea942-9cbe-4fc2-a7ea-0379b6920dab/artifacts/events",
+      "related_apis": "/agent/runs/rid-639ea942-9cbe-4fc2-a7ea-0379b6920dab/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-639ea942-9cbe-4fc2-a7ea-0379b6920dab/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

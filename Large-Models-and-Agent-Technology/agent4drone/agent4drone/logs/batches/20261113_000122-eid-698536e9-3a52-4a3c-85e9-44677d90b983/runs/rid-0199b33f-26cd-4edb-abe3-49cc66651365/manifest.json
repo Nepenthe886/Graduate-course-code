@@ -1,0 +1,152 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-0199b33f-26cd-4edb-abe3-49cc66651365",
+  "experiment": {
+    "experiment_id": "eid-698536e9-3a52-4a3c-85e9-44677d90b983",
+    "start_reason": "start",
+    "run_id": "rid-0199b33f-26cd-4edb-abe3-49cc66651365",
+    "session_id": "4bbb3f4e",
+    "session_name": "Canyon Switchback Coordination",
+    "task_id": "fca574b9",
+    "task_name": "Multiple Target Inspection 3",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "4f3e0f2028e15a35db3c85feab4ff26cd28d044d86d77991ecf68915a5ee0bbb",
+    "session_snapshot_hash": "af8862243e84e5b8ef90070a450f0591a782608ef4b23311f0e9264c5dd6b761",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T230907-99f013f35a65",
+  "batch_file": "../../batch.json",
+  "command_id": "1b4d6dba-55b2-40ef-af37-c1e2c3dd595c",
+  "job_id": "e790e2d7-077a-4a84-8319-7b06720b8cd2",
+  "command": "Drone Delta must take off to 22 meters, navigate to target Protected Reserve Beacon, take a photo, then navigate to target Foxtrot Home Charger and take another photo.",
+  "created_at": "2026-11-13 00:04:17",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 00:04:31",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 00:04:17",
+  "runtime": {
+    "run_id": "rid-0199b33f-26cd-4edb-abe3-49cc66651365",
+    "experiment": {
+      "experiment_id": "eid-698536e9-3a52-4a3c-85e9-44677d90b983",
+      "start_reason": "start",
+      "run_id": "rid-0199b33f-26cd-4edb-abe3-49cc66651365",
+      "session_id": "4bbb3f4e",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "fca574b9",
+      "task_name": "Multiple Target Inspection 3",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "4f3e0f2028e15a35db3c85feab4ff26cd28d044d86d77991ecf68915a5ee0bbb",
+      "session_snapshot_hash": "af8862243e84e5b8ef90070a450f0591a782608ef4b23311f0e9264c5dd6b761",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "4bbb3f4e",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 3,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "4bbb3f4e",
+  "requested_session_id": "4bbb3f4e",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "60a21dfab0c1cc585ad488f21dd9d13c523281b633df7779c6c1786fa8aa501e",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "battery_cycle",
+            "params": {
+              "altitude": 22.0,
+              "drone_id": "0f63aa7bea9f",
+              "charge_amount": 30.0
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 22.0, \"error\": null}, {\"ok\": true, \"name\": \"hover\", \"error\": null}, {\"ok\": true, \"name\": \"return_home\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Delta must take off to 22 meters, navigate to target Protected Reserve Beacon, take a photo, then navigate to target Foxtrot Home Charger and take another photo.",
+            "drone_id": "0f63aa7bea9f",
+            "altitude": 22.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 7, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 22.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [94.0, 690.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 19853,
+      "completion_tokens": 138,
+      "total_tokens": 19991,
+      "llm_calls": 3
+    },
+    "token_usage_available": true,
+    "run_id": "rid-0199b33f-26cd-4edb-abe3-49cc66651365",
+    "command_id": "1b4d6dba-55b2-40ef-af37-c1e2c3dd595c",
+    "experiment": {
+      "experiment_id": "eid-698536e9-3a52-4a3c-85e9-44677d90b983",
+      "start_reason": "start",
+      "run_id": "rid-0199b33f-26cd-4edb-abe3-49cc66651365",
+      "session_id": "4bbb3f4e",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "fca574b9",
+      "task_name": "Multiple Target Inspection 3",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "4f3e0f2028e15a35db3c85feab4ff26cd28d044d86d77991ecf68915a5ee0bbb",
+      "session_snapshot_hash": "af8862243e84e5b8ef90070a450f0591a782608ef4b23311f0e9264c5dd6b761",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-0199b33f-26cd-4edb-abe3-49cc66651365",
+      "request_history": "/agent/runs/rid-0199b33f-26cd-4edb-abe3-49cc66651365/artifacts/request_history",
+      "events": "/agent/runs/rid-0199b33f-26cd-4edb-abe3-49cc66651365/artifacts/events",
+      "related_apis": "/agent/runs/rid-0199b33f-26cd-4edb-abe3-49cc66651365/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-0199b33f-26cd-4edb-abe3-49cc66651365/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

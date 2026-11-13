@@ -1,0 +1,155 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-e9a3cf82-d1a0-48e2-be62-009d39d9e946",
+  "experiment": {
+    "experiment_id": "eid-2b502e64-61be-4ac0-9d32-c8529673bfd3",
+    "start_reason": "start",
+    "run_id": "rid-e9a3cf82-d1a0-48e2-be62-009d39d9e946",
+    "session_id": "6db2ff84",
+    "session_name": "Path Planning Moderate",
+    "task_id": "e1672bc5",
+    "task_name": "Delivery to Specific Location 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "e9bd8b3b06225a74f11a3f7ad48666f24cdc782dc391484ef8c33a757a159e34",
+    "session_snapshot_hash": "9f09900e8ac946c1f3b79c25175e5a940917578847386a79c67992f24b72a5c1",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T220638-c617a4fef94d",
+  "batch_file": "../../batch.json",
+  "command_id": "5f9104e9-40e0-485a-9f7f-5609ece8812f",
+  "job_id": "214972d7-c397-4174-980c-e19afa62e210",
+  "command": "Drone 1 should take off to 15 meters altitude, fly to pickup point at (230, 190, 15), land to collect goods, then take off again to 15 meters, fly to delivery point at (679, 485, 15), and land to complete delivery.",
+  "created_at": "2026-11-12 22:19:56",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-12 22:20:15",
+  "requested_run_id": null,
+  "started_at": "2026-11-12 22:19:56",
+  "runtime": {
+    "run_id": "rid-e9a3cf82-d1a0-48e2-be62-009d39d9e946",
+    "experiment": {
+      "experiment_id": "eid-2b502e64-61be-4ac0-9d32-c8529673bfd3",
+      "start_reason": "start",
+      "run_id": "rid-e9a3cf82-d1a0-48e2-be62-009d39d9e946",
+      "session_id": "6db2ff84",
+      "session_name": "Path Planning Moderate",
+      "task_id": "e1672bc5",
+      "task_name": "Delivery to Specific Location 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "e9bd8b3b06225a74f11a3f7ad48666f24cdc782dc391484ef8c33a757a159e34",
+      "session_snapshot_hash": "9f09900e8ac946c1f3b79c25175e5a940917578847386a79c67992f24b72a5c1",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "6db2ff84",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 3,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "6db2ff84",
+  "requested_session_id": "6db2ff84",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "eb08183fe9e51f065f1d96ce787b03c930a945a28483aa149a2dca30835d658f",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "altitude_stage",
+            "params": {
+              "altitude": 15.0,
+              "drone_id": "712aca20",
+              "alt1": 15.0,
+              "alt2": 15.0
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 15.0, \"error\": null}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "fly to pickup point at (230, 190, 15), land to collect goods, take off again to 15 meters, fly to delivery point at (679, 485, 15), and land to complete delivery.",
+            "drones": [
+              "Drone 1"
+            ],
+            "altitude": 15.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 2, \"legs\": 2, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"d172daf8\", \"drone_id\": \"712aca20\", \"command\": \"take_off\", \"status\": \"error\", \"message\": \"Cannot take off from current status: DroneStatus.HOVERING\", \"timestamp\": 1794493210.5718665}, \"steps\": 3, \"sample\": [{\"leg\": 1, \"goal\": [230.0, 190.0], \"waypoints\": 6, \"plan_ms\": 2089, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [679.0, 485.0], \"waypoints\": 6, \"plan_ms\": 338, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"action\": \"land\"}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 20739,
+      "completion_tokens": 152,
+      "total_tokens": 20891,
+      "llm_calls": 3
+    },
+    "token_usage_available": true,
+    "run_id": "rid-e9a3cf82-d1a0-48e2-be62-009d39d9e946",
+    "command_id": "5f9104e9-40e0-485a-9f7f-5609ece8812f",
+    "experiment": {
+      "experiment_id": "eid-2b502e64-61be-4ac0-9d32-c8529673bfd3",
+      "start_reason": "start",
+      "run_id": "rid-e9a3cf82-d1a0-48e2-be62-009d39d9e946",
+      "session_id": "6db2ff84",
+      "session_name": "Path Planning Moderate",
+      "task_id": "e1672bc5",
+      "task_name": "Delivery to Specific Location 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "e9bd8b3b06225a74f11a3f7ad48666f24cdc782dc391484ef8c33a757a159e34",
+      "session_snapshot_hash": "9f09900e8ac946c1f3b79c25175e5a940917578847386a79c67992f24b72a5c1",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-e9a3cf82-d1a0-48e2-be62-009d39d9e946",
+      "request_history": "/agent/runs/rid-e9a3cf82-d1a0-48e2-be62-009d39d9e946/artifacts/request_history",
+      "events": "/agent/runs/rid-e9a3cf82-d1a0-48e2-be62-009d39d9e946/artifacts/events",
+      "related_apis": "/agent/runs/rid-e9a3cf82-d1a0-48e2-be62-009d39d9e946/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-e9a3cf82-d1a0-48e2-be62-009d39d9e946/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

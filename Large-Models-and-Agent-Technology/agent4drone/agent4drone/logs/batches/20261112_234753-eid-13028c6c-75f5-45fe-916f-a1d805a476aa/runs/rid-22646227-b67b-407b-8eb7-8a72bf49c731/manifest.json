@@ -1,0 +1,136 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-22646227-b67b-407b-8eb7-8a72bf49c731",
+  "experiment": {
+    "experiment_id": "eid-13028c6c-75f5-45fe-916f-a1d805a476aa",
+    "start_reason": "start",
+    "run_id": "rid-22646227-b67b-407b-8eb7-8a72bf49c731",
+    "session_id": "f1f58621",
+    "session_name": "Path Planning Corner",
+    "task_id": "b5dc98a5",
+    "task_name": "Triangle Formation - 3 Drones 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "8d00a88fbf5034b7ef68e40101484441d84d1150f9ff3cbf1f8fe2084198b655",
+    "session_snapshot_hash": "583228110a16bf42224bb38af9eed85d4e9935b2405d6709712ea9c7c87e2347",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T230907-99f013f35a65",
+  "batch_file": "../../batch.json",
+  "command_id": "99c5002e-f5dc-4845-a67f-c7b611e8b55c",
+  "job_id": "73f16166-36f0-4337-9879-5511fd6b5060",
+  "command": "Drones Drone 6, Drone 4, and Drone 1 should take off to 20 meters altitude and form a triangle formation around target at position (591, 503, 20). Drone 6 positions at (591, 482, 20), Drone 4 at (522, 497, 20), and Drone 1 at (474, 515, 20). After formation is established, all drones maintain hovering.",
+  "created_at": "2026-11-12 23:59:22",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-12 23:59:39",
+  "requested_run_id": null,
+  "started_at": "2026-11-12 23:59:22",
+  "runtime": {
+    "run_id": "rid-22646227-b67b-407b-8eb7-8a72bf49c731",
+    "experiment": {
+      "experiment_id": "eid-13028c6c-75f5-45fe-916f-a1d805a476aa",
+      "start_reason": "start",
+      "run_id": "rid-22646227-b67b-407b-8eb7-8a72bf49c731",
+      "session_id": "f1f58621",
+      "session_name": "Path Planning Corner",
+      "task_id": "b5dc98a5",
+      "task_name": "Triangle Formation - 3 Drones 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "8d00a88fbf5034b7ef68e40101484441d84d1150f9ff3cbf1f8fe2084198b655",
+      "session_snapshot_hash": "583228110a16bf42224bb38af9eed85d4e9935b2405d6709712ea9c7c87e2347",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "f1f58621",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "f1f58621",
+  "requested_session_id": "f1f58621",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "bab21a7f5dfa2dda56efca04ab2a061212b1d4501c2750c66188b678ad5a5659",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Drone 6, Drone 4, and Drone 1 should take off to 20 meters altitude and form a triangle formation around target at position (591, 503, 20). Drone 6 positions at (591, 482, 20), Drone 4 at (522, 497, 20), and Drone 1 at (474, 515, 20). After formation is established, all drones maintain hovering.",
+            "drone_id": "3399dfb4",
+            "altitude": 20.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Drone 6\", \"Drone 4\", \"Drone 1\"], \"steps\": 9, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 20.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [591.0, 482.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 20.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [522.0, 497.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 20.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [474.0, 515.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 13919,
+      "completion_tokens": 147,
+      "total_tokens": 14066,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-22646227-b67b-407b-8eb7-8a72bf49c731",
+    "command_id": "99c5002e-f5dc-4845-a67f-c7b611e8b55c",
+    "experiment": {
+      "experiment_id": "eid-13028c6c-75f5-45fe-916f-a1d805a476aa",
+      "start_reason": "start",
+      "run_id": "rid-22646227-b67b-407b-8eb7-8a72bf49c731",
+      "session_id": "f1f58621",
+      "session_name": "Path Planning Corner",
+      "task_id": "b5dc98a5",
+      "task_name": "Triangle Formation - 3 Drones 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "8d00a88fbf5034b7ef68e40101484441d84d1150f9ff3cbf1f8fe2084198b655",
+      "session_snapshot_hash": "583228110a16bf42224bb38af9eed85d4e9935b2405d6709712ea9c7c87e2347",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-22646227-b67b-407b-8eb7-8a72bf49c731",
+      "request_history": "/agent/runs/rid-22646227-b67b-407b-8eb7-8a72bf49c731/artifacts/request_history",
+      "events": "/agent/runs/rid-22646227-b67b-407b-8eb7-8a72bf49c731/artifacts/events",
+      "related_apis": "/agent/runs/rid-22646227-b67b-407b-8eb7-8a72bf49c731/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-22646227-b67b-407b-8eb7-8a72bf49c731/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

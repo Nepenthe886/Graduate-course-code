@@ -1,0 +1,139 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-262fd412-d6c2-4874-8733-47b2d21eb9ef",
+  "experiment": {
+    "experiment_id": "eid-e3601e9f-d41e-4638-8cd9-8747b283d3ba",
+    "start_reason": "start",
+    "run_id": "rid-262fd412-d6c2-4874-8733-47b2d21eb9ef",
+    "session_id": "da0945df",
+    "session_name": "Path Planning Moderate",
+    "task_id": "54de2122",
+    "task_name": "Dual Flight Marathon Navigation 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "d4cf6786ee7a9ab1c3a503fe2115d398b8523071d51869392843604e25392af2",
+    "session_snapshot_hash": "de275ced7891193cbcf70648832f698b47cb560de4a32422ad6ec61bc52af794",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T230907-99f013f35a65",
+  "batch_file": "../../batch.json",
+  "command_id": "fdfc0d67-0009-4ba3-a9cc-567a92ad00d0",
+  "job_id": "d48250ca-d53e-401d-ae63-f14c0ca6a1c2",
+  "command": "Drones Drone 4 and Drone 7 perform a dual marathon flight at 29 meters. Drone 4 route: fly to and start at (94, 62, 29), then waypoints (139, 209, 29), (922, 238, 29), (230, 283, 29), (886, 361, 29), (182, 549, 29), (924, 558, 29), (175, 627, 29), (842, 696, 29), (357, 892, 29), (631, 874, 29), then end (891, 928, 29) and land. Drone 7 route: fly to and start at  (926, 116, 29), then waypoints (916, 205, 29), (152, 258, 29), (884, 337, 29), (129, 367, 29), (929, 507, 29), (138, 547, 29), (856, 644, 29), (158, 741, 29), (833, 769, 29), (377, 888, 29), then end (111, 890, 29) and land.",
+  "created_at": "2026-11-12 23:35:37",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-12 23:36:33",
+  "requested_run_id": null,
+  "started_at": "2026-11-12 23:35:37",
+  "runtime": {
+    "run_id": "rid-262fd412-d6c2-4874-8733-47b2d21eb9ef",
+    "experiment": {
+      "experiment_id": "eid-e3601e9f-d41e-4638-8cd9-8747b283d3ba",
+      "start_reason": "start",
+      "run_id": "rid-262fd412-d6c2-4874-8733-47b2d21eb9ef",
+      "session_id": "da0945df",
+      "session_name": "Path Planning Moderate",
+      "task_id": "54de2122",
+      "task_name": "Dual Flight Marathon Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "d4cf6786ee7a9ab1c3a503fe2115d398b8523071d51869392843604e25392af2",
+      "session_snapshot_hash": "de275ced7891193cbcf70648832f698b47cb560de4a32422ad6ec61bc52af794",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "da0945df",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "da0945df",
+  "requested_session_id": "da0945df",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "3e8b5a40b6a19dfaa9a1d98a5bea5dfa79cdaab35913586ad7ba6d27e3ebc9e8",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Drone 4 and Drone 7 perform a dual marathon flight at 29 meters. Drone 4 route: fly to and start at (94, 62, 29), then waypoints (139, 209, 29), (922, 238, 29), (230, 283, 29), (886, 361, 29), (182, 549, 29), (924, 558, 29), (175, 627, 29), (842, 696, 29), (357, 892, 29), (631, 874, 29), then end (891, 928, 29) and land. Drone 7 route: fly to and start at  (926, 116, 29), then waypoints (916, 205, 29), (152, 258, 29), (884, 337, 29), (129, 367, 29), (929, 507, 29), (138, 547, 29), (856, 644, 29), (158, 741, 29), (833, 769, 29), (377, 888, 29), then end (111, 890, 29) and land.",
+            "drones": [
+              "Drone 4",
+              "Drone 7"
+            ],
+            "altitude": 29
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Drone 4\", \"Drone 7\"], \"steps\": 28, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 29.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [94.0, 62.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [139.0, 209.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 29.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [926.0, 116.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [916.0, 205.0], \"attempts\": 1}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14671,
+      "completion_tokens": 443,
+      "total_tokens": 15114,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-262fd412-d6c2-4874-8733-47b2d21eb9ef",
+    "command_id": "fdfc0d67-0009-4ba3-a9cc-567a92ad00d0",
+    "experiment": {
+      "experiment_id": "eid-e3601e9f-d41e-4638-8cd9-8747b283d3ba",
+      "start_reason": "start",
+      "run_id": "rid-262fd412-d6c2-4874-8733-47b2d21eb9ef",
+      "session_id": "da0945df",
+      "session_name": "Path Planning Moderate",
+      "task_id": "54de2122",
+      "task_name": "Dual Flight Marathon Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "d4cf6786ee7a9ab1c3a503fe2115d398b8523071d51869392843604e25392af2",
+      "session_snapshot_hash": "de275ced7891193cbcf70648832f698b47cb560de4a32422ad6ec61bc52af794",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-262fd412-d6c2-4874-8733-47b2d21eb9ef",
+      "request_history": "/agent/runs/rid-262fd412-d6c2-4874-8733-47b2d21eb9ef/artifacts/request_history",
+      "events": "/agent/runs/rid-262fd412-d6c2-4874-8733-47b2d21eb9ef/artifacts/events",
+      "related_apis": "/agent/runs/rid-262fd412-d6c2-4874-8733-47b2d21eb9ef/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-262fd412-d6c2-4874-8733-47b2d21eb9ef/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

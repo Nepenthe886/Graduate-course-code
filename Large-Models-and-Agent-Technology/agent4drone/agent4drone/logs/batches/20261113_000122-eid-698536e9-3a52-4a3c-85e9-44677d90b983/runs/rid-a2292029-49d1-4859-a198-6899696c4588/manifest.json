@@ -1,0 +1,179 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-a2292029-49d1-4859-a198-6899696c4588",
+  "experiment": {
+    "experiment_id": "eid-698536e9-3a52-4a3c-85e9-44677d90b983",
+    "start_reason": "start",
+    "run_id": "rid-a2292029-49d1-4859-a198-6899696c4588",
+    "session_id": "4bbb3f4e",
+    "session_name": "Canyon Switchback Coordination",
+    "task_id": "b1cf0b57",
+    "task_name": "Target Inspection 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "5451101f0a6a61a1f53fe4a9f536158e93abf33c1ed69a170df47987aeb44af8",
+    "session_snapshot_hash": "2780f5cfb99fbde13b9918b609d2e0402be6a243437a751f035a7c0f21c2d894",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T230907-99f013f35a65",
+  "batch_file": "../../batch.json",
+  "command_id": "f7665e20-b3b1-4302-973c-f3b84d6a1bf6",
+  "job_id": "f97599cd-99b9-4844-8ff3-4d0e485f8c73",
+  "command": "Drone Charlie must take off to 16 meters, navigate to target Search Cell 4, and take a photo.",
+  "created_at": "2026-11-13 00:01:22",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 00:01:44",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 00:01:22",
+  "runtime": {
+    "run_id": "rid-a2292029-49d1-4859-a198-6899696c4588",
+    "experiment": {
+      "experiment_id": "eid-698536e9-3a52-4a3c-85e9-44677d90b983",
+      "start_reason": "start",
+      "run_id": "rid-a2292029-49d1-4859-a198-6899696c4588",
+      "session_id": "4bbb3f4e",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "b1cf0b57",
+      "task_name": "Target Inspection 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "5451101f0a6a61a1f53fe4a9f536158e93abf33c1ed69a170df47987aeb44af8",
+      "session_snapshot_hash": "2780f5cfb99fbde13b9918b609d2e0402be6a243437a751f035a7c0f21c2d894",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "f1f58621",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 6,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "4bbb3f4e",
+  "requested_session_id": "4bbb3f4e",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "7c819c9ce2917574cd068abffdba7e8669239822208e31227cdf0f1cf68a3130",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"2592c9873dff\",\n    \"name\": \"Alpha\",\n    \"model\": \"Scout\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 80.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 22.0,\n    \"max_altitude\": 90.0,\n    \"battery_capacity\": 5000.0,\n    \"perceived_radius\": 60.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 80.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794499280.4064548\n  },\n  {\n    \"id\": \"1cc16c1f84b1\",\n    \"name\": \"Bravo\",\n    \"model\": \"Surveyor\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 180.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 16.0,\n    \"max_altitude\": 80.0,\n    \"battery_capacity\": 5500.0,\n    \"perceived_radius\": 42.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 180.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794499280.4064808\n  },\n  {\n    \"id\": \"6964955cd21c\",\n    \"name\": \"Charlie\",\n    \"model\": \"Relay\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 280.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 18.0,\n    \"max_altitude\": 85.0,\n    \"battery_capacity\": 6000.0,\n    \"perceived_radius\": 75.0,\n    \"task_radius\": 12.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 280.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794499280.4064913\n  },\n  {\n    \"id\": \"0f63aa7bea9f\",\n    \"name\": \"Delta\",\n    \"model\": \"Reserve\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 380.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 75.0,\n    \"battery_capacity\": 6500.0,\n    \"perceived_radius\": 45.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 380.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794499280.4064994\n  },\n  {\n    \"id\": \"9b20818ac06f\",\n    \"name\": \"Echo\",\n    \"model\": \"Recovery\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 480.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 12.0,\n    \"max_altitude\": 65.0,\n    \"battery_capacity\": 7000.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 6.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 480.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794499280.4065065\n  },\n  {\n    \"id\": \"e3c13154f845\",\n    \"name\": \"Foxtrot\",\n    \"model\": \"Recovery\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 580.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 12.0,\n    \"max_altitude\": 65.0,\n    \"battery_capacity\": 7500.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 6.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 580.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794499280.406514\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"4bbb3f4e\",\n  \"name\": \"Canyon Switchback Coordination\",\n  \"description\": \"Multiple alternating barriers produce long switchback routes for multi-drone rendezvous and recovery. All 20 tasks are generated from the 10 submitted templates. Six heterogeneous drones, two genuinely moving couriers, four search cells, and ten charging stations are included. A full-height physical perimeter prevents shortcuts outside the mission boundary.\",\n  \"status\": \"active\",\n  \"creator\": \"LLM & Agent Course - \\u4e00\\u8d77\\u73a9\\u539f\\u795e\\u5427\\u961f\",\n  \"task_type\": \"target_assignment\",\n  \"task_description\": \"20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1794013200.0,\n  \"last_updated\": 1794499294.8974743,\n  \"statistics\": {\n    \"drone_count\": 6,\n    \"target_count\": 19,\n    \"obstacle_count\": 8,\n    \"task_count\": 10,\n    \"environment_id\": \"ae2fb95d4494\",\n    \"total_commands_executed\": 0,\n    \"total_flight_time\": 0.0,\n    \"total_distance_traveled\": 0.0,\n    \"total_target_reaches\": 0,\n    \"drones_with_target_reaches\": 0,\n    \"unique_targets_reached\": 0,\n    \"session_time\": 47.61297631263733,\n    \"command_history_size\": 0,\n    \"task_progress\": {\n      \"task_type\": \"target_assignment\",\n      \"progress_percentage\": 0,\n      \"is_completed\": false,\n      \"status_message\": \"Task to be Done\",\n      \"details\": {\n        \"total_targets\": 9,\n        \"visited_targets\": 0,\n        \"unvisited_targets\": 9\n      },\n      \"target_reach_summary\": {\n        \"total_reaches\": 0,\n        \"drones_with_reaches\": 0,\n        \"unique_targets_reached\": 0\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 0,\n        \"average_coverage\": 0.0,\n        \"fully_covered_targets\": 0\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"ae2fb95d4494\",\n  \"name\": \"Canyon Switchback Coordination Environment\",\n  \"weather\": \"windy\",\n  \"temperature\": 20.20139387843418,\n  \"humidity\": 50.0,\n  \"pressure\": 920.0,\n  \"wind_speed\": 4.50716605238847,\n  \"wind_direction\": \"northwest\",\n  \"visibility\": 8000.0,\n  \"created_at\": 1794013200.0,\n  \"last_updated\": 1794499299.8250487\n}"
+      ],
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "target_photo",
+            "params": {
+              "altitude": 16.0,
+              "drone_id": "6964955cd21c",
+              "target": "Search Cell"
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 16.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [784.0, 260.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Charlie must take off to 16 meters, navigate to target Search Cell 4, and take a photo.",
+            "drone_id": "6964955cd21c",
+            "altitude": 16.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 4, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 16.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [244.0, 530.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 49421,
+      "completion_tokens": 127,
+      "total_tokens": 49548,
+      "llm_calls": 6
+    },
+    "token_usage_available": true,
+    "run_id": "rid-a2292029-49d1-4859-a198-6899696c4588",
+    "command_id": "f7665e20-b3b1-4302-973c-f3b84d6a1bf6",
+    "experiment": {
+      "experiment_id": "eid-698536e9-3a52-4a3c-85e9-44677d90b983",
+      "start_reason": "start",
+      "run_id": "rid-a2292029-49d1-4859-a198-6899696c4588",
+      "session_id": "4bbb3f4e",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "b1cf0b57",
+      "task_name": "Target Inspection 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "5451101f0a6a61a1f53fe4a9f536158e93abf33c1ed69a170df47987aeb44af8",
+      "session_snapshot_hash": "2780f5cfb99fbde13b9918b609d2e0402be6a243437a751f035a7c0f21c2d894",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-a2292029-49d1-4859-a198-6899696c4588",
+      "request_history": "/agent/runs/rid-a2292029-49d1-4859-a198-6899696c4588/artifacts/request_history",
+      "events": "/agent/runs/rid-a2292029-49d1-4859-a198-6899696c4588/artifacts/events",
+      "related_apis": "/agent/runs/rid-a2292029-49d1-4859-a198-6899696c4588/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-a2292029-49d1-4859-a198-6899696c4588/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

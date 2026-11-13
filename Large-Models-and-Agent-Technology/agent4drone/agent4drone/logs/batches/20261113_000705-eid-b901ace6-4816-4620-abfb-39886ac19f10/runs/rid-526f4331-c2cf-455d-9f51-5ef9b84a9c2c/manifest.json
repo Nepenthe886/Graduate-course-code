@@ -1,0 +1,152 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-526f4331-c2cf-455d-9f51-5ef9b84a9c2c",
+  "experiment": {
+    "experiment_id": "eid-b901ace6-4816-4620-abfb-39886ac19f10",
+    "start_reason": "start",
+    "run_id": "rid-526f4331-c2cf-455d-9f51-5ef9b84a9c2c",
+    "session_id": "983d47dc",
+    "session_name": "Flooded Meander Settlement",
+    "task_id": "e976b38e",
+    "task_name": "Two Find Two Support 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "a9730705f5734cd01ddee7e9f548109ac9450a10eb7ae44ef22e6810c5f0afb0",
+    "session_snapshot_hash": "f18185ef69fb855b8eab8817a6482d1d7ae4d9779ccbfaa706d973aed1f1cffc",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T230907-99f013f35a65",
+  "batch_file": "../../batch.json",
+  "command_id": "7b72a320-2a37-4b88-a51c-9f60f16aa0ca",
+  "job_id": "029db390-ac35-4651-8cb1-f79b860b5678",
+  "command": "Assign drone Relief UAV 01 to target Civilian utility inspection 04 and drone Relief UAV 04 to target Civilian Damage Survey 2. After those targets are found, send drone Relief UAV 07 to Civilian utility inspection 04 and drone Relief UAV 02 to Civilian Damage Survey 2. All four drones should operate at 17 meters.",
+  "created_at": "2026-11-13 00:15:24",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 00:16:53",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 00:15:24",
+  "runtime": {
+    "run_id": "rid-526f4331-c2cf-455d-9f51-5ef9b84a9c2c",
+    "experiment": {
+      "experiment_id": "eid-b901ace6-4816-4620-abfb-39886ac19f10",
+      "start_reason": "start",
+      "run_id": "rid-526f4331-c2cf-455d-9f51-5ef9b84a9c2c",
+      "session_id": "983d47dc",
+      "session_name": "Flooded Meander Settlement",
+      "task_id": "e976b38e",
+      "task_name": "Two Find Two Support 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "a9730705f5734cd01ddee7e9f548109ac9450a10eb7ae44ef22e6810c5f0afb0",
+      "session_snapshot_hash": "f18185ef69fb855b8eab8817a6482d1d7ae4d9779ccbfaa706d973aed1f1cffc",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "983d47dc",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 3,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "983d47dc",
+  "requested_session_id": "983d47dc",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "0f9ae252fed07e95772ae4bd1e461f26fcffa6861ff3c48ff7a3f373d9b5efeb",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "target_photo",
+            "params": {
+              "altitude": 17.0,
+              "drone_id": "1953c083",
+              "target": "Civilian"
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 17.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [930.58202, 432.425], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Assign drone Relief UAV 01 to target Civilian utility inspection 04 and drone Relief UAV 04 to target Civilian Damage Survey 2. After those targets are found, send drone Relief UAV 07 to Civilian utility inspection 04 and drone Relief UAV 02 to Civilian Damage Survey 2. All four drones should operate at 17 meters.",
+            "drone_id": "1953c083",
+            "altitude": 32.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Relief UAV 01\", \"Relief UAV 04\", \"Relief UAV 07\", \"Relief UAV 02\"], \"steps\": 8, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 17.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [930.58, 432.43], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 17.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [393.0, 158.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 17.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [930.58, 432.43], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 17.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [393.0, 158.0], \"attempts\": 1}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 21064,
+      "completion_tokens": 218,
+      "total_tokens": 21282,
+      "llm_calls": 3
+    },
+    "token_usage_available": true,
+    "run_id": "rid-526f4331-c2cf-455d-9f51-5ef9b84a9c2c",
+    "command_id": "7b72a320-2a37-4b88-a51c-9f60f16aa0ca",
+    "experiment": {
+      "experiment_id": "eid-b901ace6-4816-4620-abfb-39886ac19f10",
+      "start_reason": "start",
+      "run_id": "rid-526f4331-c2cf-455d-9f51-5ef9b84a9c2c",
+      "session_id": "983d47dc",
+      "session_name": "Flooded Meander Settlement",
+      "task_id": "e976b38e",
+      "task_name": "Two Find Two Support 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "a9730705f5734cd01ddee7e9f548109ac9450a10eb7ae44ef22e6810c5f0afb0",
+      "session_snapshot_hash": "f18185ef69fb855b8eab8817a6482d1d7ae4d9779ccbfaa706d973aed1f1cffc",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-526f4331-c2cf-455d-9f51-5ef9b84a9c2c",
+      "request_history": "/agent/runs/rid-526f4331-c2cf-455d-9f51-5ef9b84a9c2c/artifacts/request_history",
+      "events": "/agent/runs/rid-526f4331-c2cf-455d-9f51-5ef9b84a9c2c/artifacts/events",
+      "related_apis": "/agent/runs/rid-526f4331-c2cf-455d-9f51-5ef9b84a9c2c/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-526f4331-c2cf-455d-9f51-5ef9b84a9c2c/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

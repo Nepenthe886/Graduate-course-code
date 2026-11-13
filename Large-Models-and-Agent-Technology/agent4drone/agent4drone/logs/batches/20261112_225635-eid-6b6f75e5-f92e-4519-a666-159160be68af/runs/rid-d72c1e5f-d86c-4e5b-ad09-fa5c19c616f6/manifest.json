@@ -1,0 +1,142 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-d72c1e5f-d86c-4e5b-ad09-fa5c19c616f6",
+  "experiment": {
+    "experiment_id": "eid-6b6f75e5-f92e-4519-a666-159160be68af",
+    "previous_experiment_id": "eid-09ef1b04-f042-4448-9122-127963cdbdc3",
+    "retry_of_run_id": "rid-3d30ba0c-00d9-429e-86b2-390f3a108332",
+    "start_reason": "start",
+    "run_id": "rid-d72c1e5f-d86c-4e5b-ad09-fa5c19c616f6",
+    "session_id": "24fa30be",
+    "session_name": "Path Planning Moderate",
+    "task_id": "9926ea90",
+    "task_name": "Triangle Formation - 3 Drones 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "646cda2b988acf292cfcd1b1ffd41e24b3a00458ec456121eb5f7735371b07cb",
+    "session_snapshot_hash": "a959a134c317b03d391da310332e5d092f1b1b0d29745c57428c577811e079e1",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T224306-0c56b7c2aef3",
+  "batch_file": "../../batch.json",
+  "command_id": "7394f5e3-721b-43fe-9e59-6d332e226daa",
+  "job_id": "d2f2f3ac-baed-4fec-bbe3-81e685736b46",
+  "command": "Drones Drone 7, Drone 3, and Drone 9 should take off to 21 meters altitude and form a triangle formation around target at position (600, 518, 21). Drone 7 positions at (600, 529, 21), Drone 3 at (411, 629, 21), and Drone 9 at (544, 645, 21). After formation is established, all drones maintain hovering.",
+  "created_at": "2026-11-12 22:56:35",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-12 22:56:49",
+  "requested_run_id": null,
+  "started_at": "2026-11-12 22:56:35",
+  "runtime": {
+    "run_id": "rid-d72c1e5f-d86c-4e5b-ad09-fa5c19c616f6",
+    "experiment": {
+      "experiment_id": "eid-6b6f75e5-f92e-4519-a666-159160be68af",
+      "previous_experiment_id": "eid-09ef1b04-f042-4448-9122-127963cdbdc3",
+      "retry_of_run_id": "rid-3d30ba0c-00d9-429e-86b2-390f3a108332",
+      "start_reason": "start",
+      "run_id": "rid-d72c1e5f-d86c-4e5b-ad09-fa5c19c616f6",
+      "session_id": "24fa30be",
+      "session_name": "Path Planning Moderate",
+      "task_id": "9926ea90",
+      "task_name": "Triangle Formation - 3 Drones 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "646cda2b988acf292cfcd1b1ffd41e24b3a00458ec456121eb5f7735371b07cb",
+      "session_snapshot_hash": "a959a134c317b03d391da310332e5d092f1b1b0d29745c57428c577811e079e1",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "24fa30be",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "24fa30be",
+  "requested_session_id": "24fa30be",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "7c096abd2bd765d9c0d6c384bd6a83ea112c410f0892c8452485626892eb5450",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "The task failed due to unreachable waypoints for Drone 3 and Drone 9, as their target positions are inside obstacles. Specifically:\n\n- Drone 3's target position (411, 629, 21) is inside Polygon Obstacle 3.\n- Drone 9's target position (544, 645, 21) is inside Polygon Obstacle 7.\n\n[TASK FAILED]\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Drone 7, Drone 3, and Drone 9 should take off to 21 meters altitude and form a triangle formation around target at position (600, 518, 21). Drone 7 positions at (600, 529, 21), Drone 3 at (411, 629, 21), and Drone 9 at (544, 645, 21). After formation is established, all drones maintain hovering.",
+            "drone_id": "ad8fbae5",
+            "altitude": 21.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"completed\": false, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Drone 7\", \"Drone 3\", \"Drone 9\"], \"steps\": 9, \"failures\": [{\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [411.0, 629.0], \"error\": \"目标点位于障碍 Polygon Obstacle 3 内部，物理不可达（地图不匹配）\"}, {\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [544.0, 645.0], \"error\": \"目标点位于障碍 Polygon Obstacle 7 内部，物理不可达（地图不匹配）\"}], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 21.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [600.0, 529.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}, {\"ok\": false, \"mode\": \"actions\", \"hint\": \"存在不可达航点（位于障碍物内部），请在最终回答中明确列出\", \"unreachable_waypoints\": [{\"goal\": [411.0, 629.0], \"obstacle\": \"Polygon Obstacle 3\", \"reason\": \"航点位于障碍物内部，无法到达\"}], \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 21.0, \"error\": null}, {\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [411.0, 629.0], \"error\": \"目标点位于障碍 Polygon Obstacle 3 内部，物理不可达（地图不匹配）\"}, {\"ok\": true, \"name\": \"land\", \"drone_id\": \"ad8fbae5\", \"cleanup\": true}], \"failures\": [{\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [411.0, 629.0], \"error\": \"目标点位于障碍 Polygon Obstacle 3 内部，物理不可达（地图不匹配）\"}]}, {\"ok\": false, \"mode\": \"actions\", \"hint\": \"存在不可达航点（位于障碍物内部），请在最终回答中明确列出\", \"unreachable_waypoints\": [{\"goal\": [544.0, 645.0], \"obstacle\": \"Polygon Obstacle 7\", \"reason\": \"航点位于障碍物内部，无法到达\"}], \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 21.0, \"error\": null}, {\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [544.0, 645.0], \"error\": \"目标点位于障碍 Polygon Obstacle 7 内部，物理不可达（地图不匹配）\"}, {\"ok\": true, \"name\": \"land\", \"drone_id\": \"ab81720f\", \"cleanup\": true}], \"failures\": [{\"ok\": false, \"name\": \"navigate_to_pose\", \"goal\": [544.0, 645.0], \"error\": \"目标点位于障碍 Polygon Obstacle 7 内部，物理不可达（地图不匹配）\"}]}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14343,
+      "completion_tokens": 277,
+      "total_tokens": 14620,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-d72c1e5f-d86c-4e5b-ad09-fa5c19c616f6",
+    "command_id": "7394f5e3-721b-43fe-9e59-6d332e226daa",
+    "experiment": {
+      "experiment_id": "eid-6b6f75e5-f92e-4519-a666-159160be68af",
+      "previous_experiment_id": "eid-09ef1b04-f042-4448-9122-127963cdbdc3",
+      "retry_of_run_id": "rid-3d30ba0c-00d9-429e-86b2-390f3a108332",
+      "start_reason": "start",
+      "run_id": "rid-d72c1e5f-d86c-4e5b-ad09-fa5c19c616f6",
+      "session_id": "24fa30be",
+      "session_name": "Path Planning Moderate",
+      "task_id": "9926ea90",
+      "task_name": "Triangle Formation - 3 Drones 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "646cda2b988acf292cfcd1b1ffd41e24b3a00458ec456121eb5f7735371b07cb",
+      "session_snapshot_hash": "a959a134c317b03d391da310332e5d092f1b1b0d29745c57428c577811e079e1",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-d72c1e5f-d86c-4e5b-ad09-fa5c19c616f6",
+      "request_history": "/agent/runs/rid-d72c1e5f-d86c-4e5b-ad09-fa5c19c616f6/artifacts/request_history",
+      "events": "/agent/runs/rid-d72c1e5f-d86c-4e5b-ad09-fa5c19c616f6/artifacts/events",
+      "related_apis": "/agent/runs/rid-d72c1e5f-d86c-4e5b-ad09-fa5c19c616f6/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-d72c1e5f-d86c-4e5b-ad09-fa5c19c616f6/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

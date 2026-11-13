@@ -1,0 +1,138 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-0d1353d2-e2fc-4358-9753-da7560c3ac19",
+  "experiment": {
+    "experiment_id": "eid-e3601e9f-d41e-4638-8cd9-8747b283d3ba",
+    "start_reason": "start",
+    "run_id": "rid-0d1353d2-e2fc-4358-9753-da7560c3ac19",
+    "session_id": "da0945df",
+    "session_name": "Path Planning Moderate",
+    "task_id": "e89b91a8",
+    "task_name": "Multi-Waypoint Delivery Route 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "87c44fc8e24a1c14188e473e3c7dc56f422ac9f87b916d59836233a619319b5a",
+    "session_snapshot_hash": "c74ea6fa091fd781f23d897ae8f492536f24902301fe83d0a5379c9d4affe910",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T230907-99f013f35a65",
+  "batch_file": "../../batch.json",
+  "command_id": "567399a1-d2f9-4caa-8aa4-d4598196558a",
+  "job_id": "78525cc9-e8a1-4ae4-b600-403af85d49f4",
+  "command": "Drone 7 executes delivery route: take off to 19 meters, fly to waypoint 1 at (276, 319, 19) and land to deliver. Then take off, fly to waypoint 2 at (540, 254, 19) and land. Finally take off, fly to waypoint 3 at (693, 483, 19) and land to complete the mission.",
+  "created_at": "2026-11-12 23:39:23",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-12 23:39:44",
+  "requested_run_id": null,
+  "started_at": "2026-11-12 23:39:23",
+  "runtime": {
+    "run_id": "rid-0d1353d2-e2fc-4358-9753-da7560c3ac19",
+    "experiment": {
+      "experiment_id": "eid-e3601e9f-d41e-4638-8cd9-8747b283d3ba",
+      "start_reason": "start",
+      "run_id": "rid-0d1353d2-e2fc-4358-9753-da7560c3ac19",
+      "session_id": "da0945df",
+      "session_name": "Path Planning Moderate",
+      "task_id": "e89b91a8",
+      "task_name": "Multi-Waypoint Delivery Route 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "87c44fc8e24a1c14188e473e3c7dc56f422ac9f87b916d59836233a619319b5a",
+      "session_snapshot_hash": "c74ea6fa091fd781f23d897ae8f492536f24902301fe83d0a5379c9d4affe910",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "da0945df",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "da0945df",
+  "requested_session_id": "da0945df",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "036035556fa47bdb04c4262b593851d99ac561fec6c84ee2d0111caa0ab52a3f",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone 7 executes delivery route: take off to 19 meters, fly to waypoint 1 at (276, 319, 19) and land to deliver. Then take off, fly to waypoint 2 at (540, 254, 19) and land. Finally take off, fly to waypoint 3 at (693, 483, 19) and land to complete the mission.",
+            "drones": [
+              "Drone 7"
+            ],
+            "altitude": 19
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 3, \"legs\": 3, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"f9c1dc74\", \"drone_id\": \"633e4d3f\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 19.0m (battery: -0.5%/-0mAh, remaining: 99.5%/79mAh)\", \"timestamp\": 1794497979.8120337}, \"steps\": 4, \"sample\": [{\"leg\": 1, \"goal\": [276.0, 319.0], \"waypoints\": 8, \"plan_ms\": 2102, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [540.0, 254.0], \"waypoints\": 2, \"plan_ms\": 56, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [693.0, 483.0], \"waypoints\": 4, \"plan_ms\": 184, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 13894,
+      "completion_tokens": 149,
+      "total_tokens": 14043,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-0d1353d2-e2fc-4358-9753-da7560c3ac19",
+    "command_id": "567399a1-d2f9-4caa-8aa4-d4598196558a",
+    "experiment": {
+      "experiment_id": "eid-e3601e9f-d41e-4638-8cd9-8747b283d3ba",
+      "start_reason": "start",
+      "run_id": "rid-0d1353d2-e2fc-4358-9753-da7560c3ac19",
+      "session_id": "da0945df",
+      "session_name": "Path Planning Moderate",
+      "task_id": "e89b91a8",
+      "task_name": "Multi-Waypoint Delivery Route 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "87c44fc8e24a1c14188e473e3c7dc56f422ac9f87b916d59836233a619319b5a",
+      "session_snapshot_hash": "c74ea6fa091fd781f23d897ae8f492536f24902301fe83d0a5379c9d4affe910",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-0d1353d2-e2fc-4358-9753-da7560c3ac19",
+      "request_history": "/agent/runs/rid-0d1353d2-e2fc-4358-9753-da7560c3ac19/artifacts/request_history",
+      "events": "/agent/runs/rid-0d1353d2-e2fc-4358-9753-da7560c3ac19/artifacts/events",
+      "related_apis": "/agent/runs/rid-0d1353d2-e2fc-4358-9753-da7560c3ac19/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-0d1353d2-e2fc-4358-9753-da7560c3ac19/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

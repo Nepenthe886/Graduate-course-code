@@ -1,0 +1,136 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-d2449dc5-5be3-412b-9937-b29a702eab99",
+  "experiment": {
+    "experiment_id": "eid-09ef1b04-f042-4448-9122-127963cdbdc3",
+    "start_reason": "start",
+    "run_id": "rid-d2449dc5-5be3-412b-9937-b29a702eab99",
+    "session_id": "24fa30be",
+    "session_name": "Path Planning Moderate",
+    "task_id": "8d6e1a51",
+    "task_name": "Quick Checkpoint Visit 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "4f032bf3d0d22a206ec2c3daeba08edffd9b111138277d289c49a29e1f81b6c8",
+    "session_snapshot_hash": "13c91c1d261f83e121c79d17bafd942e2edcccde4445b55d26364f6e4c2a10d5",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T224306-0c56b7c2aef3",
+  "batch_file": "../../batch.json",
+  "command_id": "359946aa-9b34-4616-88b4-44d769cb48c9",
+  "job_id": "35962288-fdd1-444b-9ab5-1cb1914411e9",
+  "command": "Drone 10 takes off to 14 meters, flies to checkpoint at (490, 382, 14), and hovers briefly.",
+  "created_at": "2026-11-12 22:44:33",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-12 22:44:43",
+  "requested_run_id": null,
+  "started_at": "2026-11-12 22:44:33",
+  "runtime": {
+    "run_id": "rid-d2449dc5-5be3-412b-9937-b29a702eab99",
+    "experiment": {
+      "experiment_id": "eid-09ef1b04-f042-4448-9122-127963cdbdc3",
+      "start_reason": "start",
+      "run_id": "rid-d2449dc5-5be3-412b-9937-b29a702eab99",
+      "session_id": "24fa30be",
+      "session_name": "Path Planning Moderate",
+      "task_id": "8d6e1a51",
+      "task_name": "Quick Checkpoint Visit 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "4f032bf3d0d22a206ec2c3daeba08edffd9b111138277d289c49a29e1f81b6c8",
+      "session_snapshot_hash": "13c91c1d261f83e121c79d17bafd942e2edcccde4445b55d26364f6e4c2a10d5",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "24fa30be",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "24fa30be",
+  "requested_session_id": "24fa30be",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "1bf2bb76519de2f75eb8eb21f9334695d606e0d518dc55e3a1a9e182f5e76200",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone 10 takes off to 14 meters, flies to checkpoint at (490, 382, 14), and hovers briefly.",
+            "drone_id": "fe7ff43b",
+            "altitude": 14.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 14.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [490.0, 382.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 13490,
+      "completion_tokens": 46,
+      "total_tokens": 13536,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-d2449dc5-5be3-412b-9937-b29a702eab99",
+    "command_id": "359946aa-9b34-4616-88b4-44d769cb48c9",
+    "experiment": {
+      "experiment_id": "eid-09ef1b04-f042-4448-9122-127963cdbdc3",
+      "start_reason": "start",
+      "run_id": "rid-d2449dc5-5be3-412b-9937-b29a702eab99",
+      "session_id": "24fa30be",
+      "session_name": "Path Planning Moderate",
+      "task_id": "8d6e1a51",
+      "task_name": "Quick Checkpoint Visit 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "4f032bf3d0d22a206ec2c3daeba08edffd9b111138277d289c49a29e1f81b6c8",
+      "session_snapshot_hash": "13c91c1d261f83e121c79d17bafd942e2edcccde4445b55d26364f6e4c2a10d5",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-d2449dc5-5be3-412b-9937-b29a702eab99",
+      "request_history": "/agent/runs/rid-d2449dc5-5be3-412b-9937-b29a702eab99/artifacts/request_history",
+      "events": "/agent/runs/rid-d2449dc5-5be3-412b-9937-b29a702eab99/artifacts/events",
+      "related_apis": "/agent/runs/rid-d2449dc5-5be3-412b-9937-b29a702eab99/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-d2449dc5-5be3-412b-9937-b29a702eab99/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

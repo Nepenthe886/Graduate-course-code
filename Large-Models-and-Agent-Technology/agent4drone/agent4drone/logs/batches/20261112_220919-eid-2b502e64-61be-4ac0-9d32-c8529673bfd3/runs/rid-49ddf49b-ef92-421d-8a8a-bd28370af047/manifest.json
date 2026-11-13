@@ -1,0 +1,136 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-49ddf49b-ef92-421d-8a8a-bd28370af047",
+  "experiment": {
+    "experiment_id": "eid-2b502e64-61be-4ac0-9d32-c8529673bfd3",
+    "start_reason": "start",
+    "run_id": "rid-49ddf49b-ef92-421d-8a8a-bd28370af047",
+    "session_id": "6db2ff84",
+    "session_name": "Path Planning Moderate",
+    "task_id": "4091061d",
+    "task_name": "Line Formation - 2 Drones 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "491f21e36ea71678582082fe0eda1bfc44a1b5e9737cde55f188b98d456eb2a9",
+    "session_snapshot_hash": "9c74f06cd5c98dabaff357ad052323913c03da11367220dd340e8e8dfd996596",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T220638-c617a4fef94d",
+  "batch_file": "../../batch.json",
+  "command_id": "f27957d7-e46f-4582-8efb-444949d35d38",
+  "job_id": "45e48a0d-de0f-48a5-b507-9744223d88cd",
+  "command": "Drones Drone 2 and Drone 1 form a line formation: both take off to 17 meters. Drone 2 positions at (454, 490, 17) and Drone 1 flys to (483, 549, 17) first, and then move to 15 meters at most to Drone 2. Both maintain formation for monitoring.",
+  "created_at": "2026-11-12 22:20:52",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-12 22:21:08",
+  "requested_run_id": null,
+  "started_at": "2026-11-12 22:20:52",
+  "runtime": {
+    "run_id": "rid-49ddf49b-ef92-421d-8a8a-bd28370af047",
+    "experiment": {
+      "experiment_id": "eid-2b502e64-61be-4ac0-9d32-c8529673bfd3",
+      "start_reason": "start",
+      "run_id": "rid-49ddf49b-ef92-421d-8a8a-bd28370af047",
+      "session_id": "6db2ff84",
+      "session_name": "Path Planning Moderate",
+      "task_id": "4091061d",
+      "task_name": "Line Formation - 2 Drones 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "491f21e36ea71678582082fe0eda1bfc44a1b5e9737cde55f188b98d456eb2a9",
+      "session_snapshot_hash": "9c74f06cd5c98dabaff357ad052323913c03da11367220dd340e8e8dfd996596",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "6db2ff84",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "6db2ff84",
+  "requested_session_id": "6db2ff84",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "9c2cde9587c3f38ccc4b198a4d0aa043c3615e9f8e6eedefa01f5f9de2b8889a",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Drone 2 and Drone 1 form a line formation: both take off to 17 meters. Drone 2 positions at (454, 490, 17) and Drone 1 flys to (483, 549, 17) first, and then move to 15 meters at most to Drone 2. Both maintain formation for monitoring.",
+            "drone_id": "712aca20",
+            "altitude": 17.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Drone 2\", \"Drone 1\"], \"steps\": 7, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 17.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [454.0, 490.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 4, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 17.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [483.0, 549.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 13769,
+      "completion_tokens": 155,
+      "total_tokens": 13924,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-49ddf49b-ef92-421d-8a8a-bd28370af047",
+    "command_id": "f27957d7-e46f-4582-8efb-444949d35d38",
+    "experiment": {
+      "experiment_id": "eid-2b502e64-61be-4ac0-9d32-c8529673bfd3",
+      "start_reason": "start",
+      "run_id": "rid-49ddf49b-ef92-421d-8a8a-bd28370af047",
+      "session_id": "6db2ff84",
+      "session_name": "Path Planning Moderate",
+      "task_id": "4091061d",
+      "task_name": "Line Formation - 2 Drones 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "491f21e36ea71678582082fe0eda1bfc44a1b5e9737cde55f188b98d456eb2a9",
+      "session_snapshot_hash": "9c74f06cd5c98dabaff357ad052323913c03da11367220dd340e8e8dfd996596",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-49ddf49b-ef92-421d-8a8a-bd28370af047",
+      "request_history": "/agent/runs/rid-49ddf49b-ef92-421d-8a8a-bd28370af047/artifacts/request_history",
+      "events": "/agent/runs/rid-49ddf49b-ef92-421d-8a8a-bd28370af047/artifacts/events",
+      "related_apis": "/agent/runs/rid-49ddf49b-ef92-421d-8a8a-bd28370af047/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-49ddf49b-ef92-421d-8a8a-bd28370af047/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

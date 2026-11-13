@@ -1,0 +1,153 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-73bfbacb-dad7-4308-ad50-58defcdfe67a",
+  "experiment": {
+    "experiment_id": "eid-b901ace6-4816-4620-abfb-39886ac19f10",
+    "start_reason": "start",
+    "run_id": "rid-73bfbacb-dad7-4308-ad50-58defcdfe67a",
+    "session_id": "983d47dc",
+    "session_name": "Flooded Meander Settlement",
+    "task_id": "db2a8775",
+    "task_name": "Fleet Target Sweep (4 Drones) 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "54cec3e49c7e63c6c8477cd947df1b7046cafae372b1e3c339a3354cf4b00360",
+    "session_snapshot_hash": "71ef263e9310565b1868952de65589aea55a87c5f4b3c889ff1f00011a52fa50",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261112T230907-99f013f35a65",
+  "batch_file": "../../batch.json",
+  "command_id": "4668541c-5732-45a9-a163-ce0bcfa62911",
+  "job_id": "e5a65754-401e-4854-bc02-63b70802b0eb",
+  "command": "Four-drone target sweep: Relief UAV 07, Relief UAV 10, Relief UAV 01, and Relief UAV 02 take off together to 18 meters altitude. Relief UAV 07 flies to target Temporary shelter assessment 09, Relief UAV 10 flies to target Civilian Damage Survey 2, Relief UAV 01 flies to target Relief Rendezvous 2, and Relief UAV 02 flies to target Shelter access assessment 02. After reaching the targets, all four drones move west for 74m, then south for 66m, then north for 84m together. Each drone must complete the specified directional movements (west 74m, south 66m, north 84m) regardless of starting position - if obstacles block the path, drones should adjust position as needed to complete the full directed distance in each heading.",
+  "created_at": "2026-11-13 00:18:48",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 00:19:11",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 00:18:48",
+  "runtime": {
+    "run_id": "rid-73bfbacb-dad7-4308-ad50-58defcdfe67a",
+    "experiment": {
+      "experiment_id": "eid-b901ace6-4816-4620-abfb-39886ac19f10",
+      "start_reason": "start",
+      "run_id": "rid-73bfbacb-dad7-4308-ad50-58defcdfe67a",
+      "session_id": "983d47dc",
+      "session_name": "Flooded Meander Settlement",
+      "task_id": "db2a8775",
+      "task_name": "Fleet Target Sweep (4 Drones) 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "54cec3e49c7e63c6c8477cd947df1b7046cafae372b1e3c339a3354cf4b00360",
+      "session_snapshot_hash": "71ef263e9310565b1868952de65589aea55a87c5f4b3c889ff1f00011a52fa50",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "983d47dc",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 3,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "983d47dc",
+  "requested_session_id": "983d47dc",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "b732cd363023238c9e41d258197d8f0dd36d7b0744da2b2da1ff6f354568877b",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "altitude_stage",
+            "params": {
+              "altitude": 18.0,
+              "drone_id": "1953c083",
+              "alt1": 18.0,
+              "alt2": 18.0
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 18.0, \"error\": null}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Four-drone target sweep: Relief UAV 07, Relief UAV 10, Relief UAV 01, and Relief UAV 02 take off together to 18 meters altitude. Relief UAV 07 flies to target Temporary shelter assessment 09, Relief UAV 10 flies to target Civilian Damage Survey 2, Relief UAV 01 flies to target Relief Rendezvous 2, and Relief UAV 02 flies to target Shelter access assessment 02. After reaching the targets, all four drones move west for 74m, then south for 66m, then north for 84m together. Each drone must complete the specified directional movements (west 74m, south 66m, north 84m) regardless of starting position - if obstacles block the path, drones should adjust position as needed to complete the full directed distance in each heading.",
+            "drone_id": "1953c083",
+            "altitude": 18.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Relief UAV 07\", \"Relief UAV 10\", \"Relief UAV 01\", \"Relief UAV 02\"], \"steps\": 20, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 18.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [111.47, 290.6], \"attempts\": 1}, {\"ok\": true, \"name\": \"move_direction\", \"heading\": 270.0, \"distance\": 74.0, \"moved\": 85.1, \"net_moved\": 85.1, \"drone_id\": \"0220399e\", \"detour_count\": 0, \"required\": 85.1, \"remaining\": 0.0, \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 18.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [393.0, 158.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"move_direction\", \"heading\": 270.0, \"distance\": 74.0, \"moved\": 85.1, \"net_moved\": 85.1, \"drone_id\": \"a4fc57be\", \"detour_count\": 0, \"required\": 85.1, \"remaining\": 0.0, \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 18.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [863.42, 654.02], \"attempts\": 1}, {\"ok\": true, \"name\": \"move_direction\", \"heading\": 270.0, \"distance\": 74.0, \"moved\": 93.1, \"net_moved\": 93.1, \"drone_id\": \"1953c083\", \"detour_count\": 2, \"required\": 93.1, \"remaining\": 0.0, \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 18.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [813.21, 466.01], \"attempts\": 1}, {\"ok\": true, \"name\": \"move_direction\", \"heading\": 270.0, \"distance\": 74.0, \"moved\": 85.1, \"net_moved\": 85.1, \"drone_id\": \"f0eb962a\", \"detour_count\": 0, \"required\": 85.1, \"remaining\": 0.0, \"error\": null}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 21924,
+      "completion_tokens": 334,
+      "total_tokens": 22258,
+      "llm_calls": 3
+    },
+    "token_usage_available": true,
+    "run_id": "rid-73bfbacb-dad7-4308-ad50-58defcdfe67a",
+    "command_id": "4668541c-5732-45a9-a163-ce0bcfa62911",
+    "experiment": {
+      "experiment_id": "eid-b901ace6-4816-4620-abfb-39886ac19f10",
+      "start_reason": "start",
+      "run_id": "rid-73bfbacb-dad7-4308-ad50-58defcdfe67a",
+      "session_id": "983d47dc",
+      "session_name": "Flooded Meander Settlement",
+      "task_id": "db2a8775",
+      "task_name": "Fleet Target Sweep (4 Drones) 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "54cec3e49c7e63c6c8477cd947df1b7046cafae372b1e3c339a3354cf4b00360",
+      "session_snapshot_hash": "71ef263e9310565b1868952de65589aea55a87c5f4b3c889ff1f00011a52fa50",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-73bfbacb-dad7-4308-ad50-58defcdfe67a",
+      "request_history": "/agent/runs/rid-73bfbacb-dad7-4308-ad50-58defcdfe67a/artifacts/request_history",
+      "events": "/agent/runs/rid-73bfbacb-dad7-4308-ad50-58defcdfe67a/artifacts/events",
+      "related_apis": "/agent/runs/rid-73bfbacb-dad7-4308-ad50-58defcdfe67a/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-73bfbacb-dad7-4308-ad50-58defcdfe67a/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

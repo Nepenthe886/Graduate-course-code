@@ -26,12 +26,13 @@ class Obstacle:
         """二维占用廓形（绝对坐标）。"""
         if self.type == "polygon" and self.vertices:
             return [(float(v["x"]), float(v["y"])) for v in self.vertices]
-        if self.type == "circle" and self.radius:
+        if self.type in ("circle", "point") and self.radius:
             return geometry.circle_to_polygon(self.center, float(self.radius), segments)
         if self.type == "ellipse" and self.width and self.length:
             return geometry.ellipse_to_polygon(self.center, float(self.width), float(self.length), segments)
-        # 兜底：把未知类型当作半径 10 m 的圆
-        return geometry.circle_to_polygon(self.center, 10.0, segments)
+        # 兜底：优先使用障碍自身半径，未提供时按 10 m 圆处理
+        return geometry.circle_to_polygon(self.center, max(float(self.radius or 10.0), 1.0),
+                                          segments)
 
     def contains(self, point: tuple[float, float]) -> bool:
         return geometry.point_in_polygon(point, self.footprint())
