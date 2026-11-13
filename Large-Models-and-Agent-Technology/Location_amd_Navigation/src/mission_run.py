@@ -413,6 +413,71 @@ def _multitarget_spec(task_text: str, world, altitude: float, land: bool):
             "visits": visits, "photo_count": len(visits), "task_text": text}
 
 
+def _patrol_route_spec(task_text: str, world, altitude: float, land: bool):
+    """每架机沿各自 waypoint 列表巡逻（例如 Cargo 9 路线 A→B，Cargo 14 路线 C→D）。
+
+    只处理同时出现 patrol 与 waypoints/route、且至少一架机有 >=2 个坐标的任务；
+    其它任务继续交给 _named_position_spec，避免把坐标点任务误判为航线。
+    """
+    text = task_text or ""
+    if world is None:
+        return None
+    if not re.search(r"patrol|patrols|patrolling", text, re.I):
+        return None
+    if not re.search(r"waypoints?|route", text, re.I):
+        return None
+    drone_names = _named_drones_in_text(world, text)
+    if len(drone_names) < 2:
+        return None
+    tokens: list[tuple[int, str]] = []
+    for name in sorted(drone_names, key=len, reverse=True):
+        pattern = re.compile(r"(?<!\w)" + re.escape(name) + r"(?!\w)", re.I)
+        for match in pattern.finditer(text):
+            tokens.append((match.start(), name))
+    if not tokens:
+        return None
+    tokens.sort()
+    routes: dict[str, list[tuple[float, float, float]]] = {}
+    for match in COORD_RE.finditer(text):
+        owner = None
+        owner_pos = -1
+        for pos, name in tokens:
+            if pos < match.start() and pos > owner_pos:
+                owner_pos = pos
+                owner = name
+        if owner is None:
+            continue
+        routes.setdefault(owner, []).append(
+            (float(match.group(1)), float(match.group(2)), float(match.group(3))))
+    if len(routes) < 2 or not any(len(points) >= 2 for points in routes.values()):
+        return None
+    alt = _parse_altitude(text, altitude)
+    hover = bool(re.search(r"hover|maintain|patrol|monitor|observe", text, re.I))
+    photo = bool(re.search(r"photo|photograph|capture|image", text, re.I))
+    actions: list[dict] = []
+    for name in routes:
+        actions.append({"name": "take_off",
+                        "params": {"altitude": alt, "drone_id": name}})
+    for name, points in routes.items():
+        for x, y, z in points:
+            actions.append({"name": "move_to",
+                            "params": {"x": round(x, 2), "y": round(y, 2), "z": z,
+                                       "drone_id": name}})
+        if hover:
+            actions.append({"name": "hover", "params": {"drone_id": name}})
+        if photo:
+            actions.append({"name": "take_photo", "params": {"drone_id": name}})
+    wants_land = bool(re.search(r"\blands?\b|\blanded\b|touch\s*down", text, re.I)) or land
+    if wants_land and re.search(r"\blands?\b|\blanded\b|touch\s*down", text, re.I):
+        for name in routes:
+            actions.append({"name": "land", "params": {"drone_id": name}})
+    return {"actions": actions, "altitude": alt, "land_at_end": False,
+            "patrol_routes": [{"drone": name, "waypoints": [
+                {"x": x, "y": y, "z": z} for x, y, z in points]}
+                for name, points in routes.items()],
+            "task_text": text}
+
+
 def _named_position_spec(task_text: str, world, altitude: float, land: bool):
     """多机各自前往文本中指定的坐标点（guard point / position / waypoint 等）。"""
     if world is None:
@@ -1401,6 +1466,9 @@ def _build_spec_base(task_text: str, altitude: float, land: bool = True,
     fleet = _fleet_spec(task_text, world, altitude, land)
     if fleet is not None:
         return fleet
+    patrol_route = _patrol_route_spec(task_text, world, altitude, land)
+    if patrol_route is not None:
+        return patrol_route
     named_position = _named_position_spec(task_text, world, altitude, land)
     if named_position is not None:
         return named_position

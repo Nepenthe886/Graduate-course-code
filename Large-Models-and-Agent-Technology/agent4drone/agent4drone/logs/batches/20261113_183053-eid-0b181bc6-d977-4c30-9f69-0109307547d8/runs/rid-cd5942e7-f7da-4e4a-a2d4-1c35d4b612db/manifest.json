@@ -1,0 +1,140 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-cd5942e7-f7da-4e4a-a2d4-1c35d4b612db",
+  "experiment": {
+    "experiment_id": "eid-0b181bc6-d977-4c30-9f69-0109307547d8",
+    "start_reason": "start",
+    "run_id": "rid-cd5942e7-f7da-4e4a-a2d4-1c35d4b612db",
+    "session_id": "1520a780",
+    "session_name": "Port Container Inventory",
+    "task_id": "716cbb08",
+    "task_name": "Triple Flight Marathon Navigation 2",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "05912f41f33fcb87cb7fe6e1c4cf945094c8433ad1b084e71b49e8f22da658ae",
+    "session_snapshot_hash": "c9ef3abdf546ff48e48f8d003aa99880fce0f205ff4fc791ff21c405fe8111e7",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T182101-b90f6b7edffb",
+  "batch_file": "../../batch.json",
+  "command_id": "1472fa05-7b75-462e-a42b-64dfca6ce560",
+  "job_id": "03194915-8ff7-4c0e-ba81-594153ad7b85",
+  "command": "Drones Yard 1, Yard 19, and Yard 21 perform a triple marathon flight at 22 meters. Yard 1 route: fly to and start at  (109, 94, 22), then waypoints (107, 195, 22), (900, 256, 22), (148, 288, 22), (859, 350, 22), (231, 470, 22), (811, 570, 22), (181, 616, 22), (833, 685, 22), (226, 837, 22), (676, 958, 22), then end (924, 943, 22) and land. Yard 19 route: fly to and start at  (535, 67, 22), then waypoints (527, 190, 22), (943, 291, 22), (85, 326, 22), (958, 397, 22), (128, 499, 22), (882, 577, 22), (196, 655, 22), (911, 711, 22), (401, 888, 22), (631, 937, 22), then end (555, 867, 22) and land. Yard 21 route: fly to and start at  (889, 123, 22), then waypoints (909, 168, 22), (220, 255, 22), (785, 291, 22), (128, 399, 22), (924, 477, 22), (152, 555, 22), (808, 606, 22), (198, 685, 22), (805, 776, 22), (314, 880, 22), then end (68, 861, 22) and land.",
+  "created_at": "2026-11-13 18:40:01",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 18:41:00",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 18:40:02",
+  "runtime": {
+    "run_id": "rid-cd5942e7-f7da-4e4a-a2d4-1c35d4b612db",
+    "experiment": {
+      "experiment_id": "eid-0b181bc6-d977-4c30-9f69-0109307547d8",
+      "start_reason": "start",
+      "run_id": "rid-cd5942e7-f7da-4e4a-a2d4-1c35d4b612db",
+      "session_id": "1520a780",
+      "session_name": "Port Container Inventory",
+      "task_id": "716cbb08",
+      "task_name": "Triple Flight Marathon Navigation 2",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "05912f41f33fcb87cb7fe6e1c4cf945094c8433ad1b084e71b49e8f22da658ae",
+      "session_snapshot_hash": "c9ef3abdf546ff48e48f8d003aa99880fce0f205ff4fc791ff21c405fe8111e7",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "1520a780",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "1520a780",
+  "requested_session_id": "1520a780",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "4c1e6a9cb0ef1ce1471b3d857615dbec164234c8e46d35479b955df0458eb857",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Yard 1, Yard 19, and Yard 21 perform a triple marathon flight at 22 meters. Yard 1 route: fly to and start at  (109, 94, 22), then waypoints (107, 195, 22), (900, 256, 22), (148, 288, 22), (859, 350, 22), (231, 470, 22), (811, 570, 22), (181, 616, 22), (833, 685, 22), (226, 837, 22), (676, 958, 22), then end (924, 943, 22) and land. Yard 19 route: fly to and start at  (535, 67, 22), then waypoints (527, 190, 22), (943, 291, 22), (85, 326, 22), (958, 397, 22), (128, 499, 22), (882, 577, 22), (196, 655, 22), (911, 711, 22), (401, 888, 22), (631, 937, 22), then end (555, 867, 22) and land. Yard 21 route: fly to and start at  (889, 123, 22), then waypoints (909, 168, 22), (220, 255, 22), (785, 291, 22), (128, 399, 22), (924, 477, 22), (152, 555, 22), (808, 606, 22), (198, 685, 22), (805, 776, 22), (314, 880, 22), then end (68, 861, 22) and land.",
+            "drones": [
+              "Yard 1",
+              "Yard 19",
+              "Yard 21"
+            ],
+            "altitude": 22
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Yard 1\", \"Yard 19\", \"Yard 21\"], \"steps\": 42, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 22.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [109.0, 94.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [107.0, 195.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 22.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [535.0, 67.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [527.0, 190.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 22.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [889.0, 123.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [909.0, 168.0], \"attempts\": 1}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 16333,
+      "completion_tokens": 644,
+      "total_tokens": 16977,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-cd5942e7-f7da-4e4a-a2d4-1c35d4b612db",
+    "command_id": "1472fa05-7b75-462e-a42b-64dfca6ce560",
+    "experiment": {
+      "experiment_id": "eid-0b181bc6-d977-4c30-9f69-0109307547d8",
+      "start_reason": "start",
+      "run_id": "rid-cd5942e7-f7da-4e4a-a2d4-1c35d4b612db",
+      "session_id": "1520a780",
+      "session_name": "Port Container Inventory",
+      "task_id": "716cbb08",
+      "task_name": "Triple Flight Marathon Navigation 2",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "05912f41f33fcb87cb7fe6e1c4cf945094c8433ad1b084e71b49e8f22da658ae",
+      "session_snapshot_hash": "c9ef3abdf546ff48e48f8d003aa99880fce0f205ff4fc791ff21c405fe8111e7",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-cd5942e7-f7da-4e4a-a2d4-1c35d4b612db",
+      "request_history": "/agent/runs/rid-cd5942e7-f7da-4e4a-a2d4-1c35d4b612db/artifacts/request_history",
+      "events": "/agent/runs/rid-cd5942e7-f7da-4e4a-a2d4-1c35d4b612db/artifacts/events",
+      "related_apis": "/agent/runs/rid-cd5942e7-f7da-4e4a-a2d4-1c35d4b612db/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-cd5942e7-f7da-4e4a-a2d4-1c35d4b612db/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

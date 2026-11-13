@@ -1,0 +1,142 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-117dc9dc-0f44-4abd-bfeb-ea4b41b61846",
+  "experiment": {
+    "experiment_id": "eid-308af13a-a2d0-43b4-8934-9bd5d91f2321",
+    "start_reason": "start",
+    "run_id": "rid-117dc9dc-0f44-4abd-bfeb-ea4b41b61846",
+    "session_id": "c36c9ec9",
+    "session_name": "Urban Parcel Delivery",
+    "task_id": "3cd26959",
+    "task_name": "Fleet Coordinated Takeoff and Formation (5 Drones) 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "4da42192c0332c2eb158ad477514dffb06fa4b9e228df7aea1c903f4a42b9b03",
+    "session_snapshot_hash": "db04244b13f59efa1d63cf86042f580cc30dc522fe76992aa6ab4d03da30f74d",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T182101-b90f6b7edffb",
+  "batch_file": "../../batch.json",
+  "command_id": "a020a7a5-4df5-4c00-9492-4907ad516566",
+  "job_id": "fc1e0073-1b12-4cf6-9731-28d05231ac7f",
+  "command": "Five-drone coordination exercise: Cargo 11, Cargo 9, Cargo 15, Cargo 4, and Cargo 10 take off together to 25 meters altitude, then hold formation at positions (496, 394, 25), (670, 393, 25), (708, 570, 25), (704, 569, 25), and (514, 577, 25) respectively for synchronized operation. Then all five drones move north for 98m, and next move east for 104m. Each drone must complete the specified directional movements (north 98m, then east 104m) regardless of starting position - if obstacles block the path, drones should adjust position as needed to complete the full directed distance in each heading.",
+  "created_at": "2026-11-13 18:29:34",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 18:29:48",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 18:29:34",
+  "runtime": {
+    "run_id": "rid-117dc9dc-0f44-4abd-bfeb-ea4b41b61846",
+    "experiment": {
+      "experiment_id": "eid-308af13a-a2d0-43b4-8934-9bd5d91f2321",
+      "start_reason": "start",
+      "run_id": "rid-117dc9dc-0f44-4abd-bfeb-ea4b41b61846",
+      "session_id": "c36c9ec9",
+      "session_name": "Urban Parcel Delivery",
+      "task_id": "3cd26959",
+      "task_name": "Fleet Coordinated Takeoff and Formation (5 Drones) 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "4da42192c0332c2eb158ad477514dffb06fa4b9e228df7aea1c903f4a42b9b03",
+      "session_snapshot_hash": "db04244b13f59efa1d63cf86042f580cc30dc522fe76992aa6ab4d03da30f74d",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "c36c9ec9",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "c36c9ec9",
+  "requested_session_id": "c36c9ec9",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "3db44388334761896e70c84ab52b1b2d006e105dc07e94010e5927042db3e474",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Five-drone coordination exercise: Cargo 11, Cargo 9, Cargo 15, Cargo 4, and Cargo 10 take off together to 25 meters altitude, then hold formation at positions (496, 394, 25), (670, 393, 25), (708, 570, 25), (704, 569, 25), and (514, 577, 25) respectively for synchronized operation. Then all five drones move north for 98m, and next move east for 104m. Each drone must complete the specified directional movements (north 98m, then east 104m) regardless of starting position - if obstacles block the path, drones should adjust position as needed to complete the full directed distance in each heading.",
+            "drones": [
+              "Cargo 11",
+              "Cargo 9",
+              "Cargo 15",
+              "Cargo 4",
+              "Cargo 10"
+            ],
+            "altitude": 25
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Cargo 11\", \"Cargo 9\", \"Cargo 15\", \"Cargo 4\", \"Cargo 10\"], \"steps\": 25, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 25.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [496.0, 394.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"move_direction\", \"heading\": 0.0, \"distance\": 98.0, \"moved\": 112.7, \"net_moved\": 112.7, \"drone_id\": \"16936622\", \"detour_count\": 0, \"required\": 112.7, \"remaining\": 0.0, \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 25.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [670.0, 393.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"move_direction\", \"heading\": 0.0, \"distance\": 98.0, \"moved\": 112.7, \"net_moved\": 112.7, \"drone_id\": \"ec30382e\", \"detour_count\": 0, \"required\": 112.7, \"remaining\": 0.0, \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 25.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [708.0, 570.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"move_direction\", \"heading\": 0.0, \"distance\": 98.0, \"moved\": 112.7, \"net_moved\": 112.7, \"drone_id\": \"c299e3e2\", \"detour_count\": 0, \"required\": 112.7, \"remaining\": 0.0, \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 25.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [704.0, 569.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"move_direction\", \"heading\": 0.0, \"distance\": 98.0, \"moved\": 112.7, \"net_moved\": 112.7, \"drone_id\": \"abd2978a\", \"detour_count\": 0, \"required\": 112.7, \"remaining\": 0.0, \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 25.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [514.0, 577.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"move_direction\", \"heading\": 0.0, \"distance\": 98.0, \"moved\": 112.7, \"net_moved\": 112.7, \"drone_id\": \"bfbbe860\", \"detour_count\": 0, \"required\": 112.7, \"remaining\": 0.0, \"error\": null}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 15229,
+      "completion_tokens": 266,
+      "total_tokens": 15495,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-117dc9dc-0f44-4abd-bfeb-ea4b41b61846",
+    "command_id": "a020a7a5-4df5-4c00-9492-4907ad516566",
+    "experiment": {
+      "experiment_id": "eid-308af13a-a2d0-43b4-8934-9bd5d91f2321",
+      "start_reason": "start",
+      "run_id": "rid-117dc9dc-0f44-4abd-bfeb-ea4b41b61846",
+      "session_id": "c36c9ec9",
+      "session_name": "Urban Parcel Delivery",
+      "task_id": "3cd26959",
+      "task_name": "Fleet Coordinated Takeoff and Formation (5 Drones) 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "4da42192c0332c2eb158ad477514dffb06fa4b9e228df7aea1c903f4a42b9b03",
+      "session_snapshot_hash": "db04244b13f59efa1d63cf86042f580cc30dc522fe76992aa6ab4d03da30f74d",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-117dc9dc-0f44-4abd-bfeb-ea4b41b61846",
+      "request_history": "/agent/runs/rid-117dc9dc-0f44-4abd-bfeb-ea4b41b61846/artifacts/request_history",
+      "events": "/agent/runs/rid-117dc9dc-0f44-4abd-bfeb-ea4b41b61846/artifacts/events",
+      "related_apis": "/agent/runs/rid-117dc9dc-0f44-4abd-bfeb-ea4b41b61846/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-117dc9dc-0f44-4abd-bfeb-ea4b41b61846/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

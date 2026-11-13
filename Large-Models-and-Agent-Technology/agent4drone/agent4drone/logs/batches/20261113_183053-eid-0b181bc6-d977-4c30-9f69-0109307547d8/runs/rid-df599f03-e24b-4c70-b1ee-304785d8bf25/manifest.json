@@ -1,0 +1,139 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-df599f03-e24b-4c70-b1ee-304785d8bf25",
+  "experiment": {
+    "experiment_id": "eid-0b181bc6-d977-4c30-9f69-0109307547d8",
+    "start_reason": "start",
+    "run_id": "rid-df599f03-e24b-4c70-b1ee-304785d8bf25",
+    "session_id": "1520a780",
+    "session_name": "Port Container Inventory",
+    "task_id": "15ad444d",
+    "task_name": "Dual Flight Marathon Navigation 2",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "26dcb92f536a6b5cad36e240613f0f9f2956bdf5b1900259f88997e2fcbcc7da",
+    "session_snapshot_hash": "1421b7c94172977230d3572553ae02d953a41e7d92c954005f5c8c5e88615e5d",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T182101-b90f6b7edffb",
+  "batch_file": "../../batch.json",
+  "command_id": "74b816e7-b730-4d65-a3d7-03f9ca052e73",
+  "job_id": "b4a0bea5-df3e-4df1-859a-880b1fce86b0",
+  "command": "Drones Yard 5 and Yard 24 perform a dual marathon flight at 21 meters. Yard 5 route: fly to and start at (114, 97, 21), then waypoints (156, 200, 21), (827, 169, 21), (135, 277, 21), (781, 403, 21), (114, 503, 21), (853, 637, 21), (206, 702, 21), (867, 709, 21), (380, 768, 21), (728, 843, 21), then end (955, 958, 21) and land. Yard 24 route: fly to and start at  (951, 55, 21), then waypoints (894, 209, 21), (156, 189, 21), (916, 354, 21), (183, 414, 21), (917, 547, 21), (87, 627, 21), (892, 705, 21), (263, 744, 21), (733, 795, 21), (384, 900, 21), then end (137, 881, 21) and land.",
+  "created_at": "2026-11-13 18:39:15",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 18:39:53",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 18:39:16",
+  "runtime": {
+    "run_id": "rid-df599f03-e24b-4c70-b1ee-304785d8bf25",
+    "experiment": {
+      "experiment_id": "eid-0b181bc6-d977-4c30-9f69-0109307547d8",
+      "start_reason": "start",
+      "run_id": "rid-df599f03-e24b-4c70-b1ee-304785d8bf25",
+      "session_id": "1520a780",
+      "session_name": "Port Container Inventory",
+      "task_id": "15ad444d",
+      "task_name": "Dual Flight Marathon Navigation 2",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "26dcb92f536a6b5cad36e240613f0f9f2956bdf5b1900259f88997e2fcbcc7da",
+      "session_snapshot_hash": "1421b7c94172977230d3572553ae02d953a41e7d92c954005f5c8c5e88615e5d",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "1520a780",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "1520a780",
+  "requested_session_id": "1520a780",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "4c1e6a9cb0ef1ce1471b3d857615dbec164234c8e46d35479b955df0458eb857",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Yard 5 and Yard 24 perform a dual marathon flight at 21 meters. Yard 5 route: fly to and start at (114, 97, 21), then waypoints (156, 200, 21), (827, 169, 21), (135, 277, 21), (781, 403, 21), (114, 503, 21), (853, 637, 21), (206, 702, 21), (867, 709, 21), (380, 768, 21), (728, 843, 21), then end (955, 958, 21) and land. Yard 24 route: fly to and start at  (951, 55, 21), then waypoints (894, 209, 21), (156, 189, 21), (916, 354, 21), (183, 414, 21), (917, 547, 21), (87, 627, 21), (892, 705, 21), (263, 744, 21), (733, 795, 21), (384, 900, 21), then end (137, 881, 21) and land.",
+            "drones": [
+              "Yard 5",
+              "Yard 24"
+            ],
+            "altitude": 21
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Yard 5\", \"Yard 24\"], \"steps\": 28, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 21.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [114.0, 97.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [156.0, 200.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 14, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 21.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [951.0, 55.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [894.0, 209.0], \"attempts\": 1}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 15614,
+      "completion_tokens": 445,
+      "total_tokens": 16059,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-df599f03-e24b-4c70-b1ee-304785d8bf25",
+    "command_id": "74b816e7-b730-4d65-a3d7-03f9ca052e73",
+    "experiment": {
+      "experiment_id": "eid-0b181bc6-d977-4c30-9f69-0109307547d8",
+      "start_reason": "start",
+      "run_id": "rid-df599f03-e24b-4c70-b1ee-304785d8bf25",
+      "session_id": "1520a780",
+      "session_name": "Port Container Inventory",
+      "task_id": "15ad444d",
+      "task_name": "Dual Flight Marathon Navigation 2",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "26dcb92f536a6b5cad36e240613f0f9f2956bdf5b1900259f88997e2fcbcc7da",
+      "session_snapshot_hash": "1421b7c94172977230d3572553ae02d953a41e7d92c954005f5c8c5e88615e5d",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-df599f03-e24b-4c70-b1ee-304785d8bf25",
+      "request_history": "/agent/runs/rid-df599f03-e24b-4c70-b1ee-304785d8bf25/artifacts/request_history",
+      "events": "/agent/runs/rid-df599f03-e24b-4c70-b1ee-304785d8bf25/artifacts/events",
+      "related_apis": "/agent/runs/rid-df599f03-e24b-4c70-b1ee-304785d8bf25/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-df599f03-e24b-4c70-b1ee-304785d8bf25/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

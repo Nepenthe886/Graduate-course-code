@@ -1,0 +1,154 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-b82d3e21-5592-48d7-8c2a-d39b22b6dbb3",
+  "experiment": {
+    "experiment_id": "eid-b81758c1-f774-4c7a-a7a0-0fc786242377",
+    "start_reason": "start",
+    "run_id": "rid-b82d3e21-5592-48d7-8c2a-d39b22b6dbb3",
+    "session_id": "76fdf8f96380",
+    "session_name": "Canyon Switchback Coordination",
+    "task_id": "82d525ba",
+    "task_name": "Cross Target Swap After Discovery",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "44c7f1aec118e415ae0662f3b223f62ae04e0e418b0247295f513cf7a73fd615",
+    "session_snapshot_hash": "55d4b5170b86d7fee1176934ab57fd0be9c3d181432a7e6d1a85179c6b898c27",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T125322-b5ae4baeafa4",
+  "batch_file": "../../batch.json",
+  "command_id": "f04a5023-4084-4885-aa0e-409248ba91c1",
+  "job_id": "34ae1932-dbc4-40f6-a0d0-34fbecb2624a",
+  "command": "Drone Foxtrot should find target Far-Side Depot South, and drone Echo should find target Far-Side Depot North. After the first discovery, the drones swap assignments: Foxtrot goes to Far-Side Depot North and Echo goes to Far-Side Depot South at 22 meters.",
+  "created_at": "2026-11-13 13:23:38",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 13:23:55",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 13:23:38",
+  "runtime": {
+    "run_id": "rid-b82d3e21-5592-48d7-8c2a-d39b22b6dbb3",
+    "experiment": {
+      "experiment_id": "eid-b81758c1-f774-4c7a-a7a0-0fc786242377",
+      "start_reason": "start",
+      "run_id": "rid-b82d3e21-5592-48d7-8c2a-d39b22b6dbb3",
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "82d525ba",
+      "task_name": "Cross Target Swap After Discovery",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "44c7f1aec118e415ae0662f3b223f62ae04e0e418b0247295f513cf7a73fd615",
+      "session_snapshot_hash": "55d4b5170b86d7fee1176934ab57fd0be9c3d181432a7e6d1a85179c6b898c27",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "76fdf8f96380",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 4,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "76fdf8f96380",
+  "requested_session_id": "76fdf8f96380",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "c045e194849a72d101c573c96329563ca924e8f23050df27c3e23537a44f5a94",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"76fdf8f96380\",\n  \"name\": \"Canyon Switchback Coordination\",\n  \"description\": \"Multiple alternating barriers produce long switchback routes for multi-drone rendezvous and recovery. All 20 tasks are generated from the 10 submitted templates. Six heterogeneous drones, two genuinely moving couriers, four search cells, and ten charging stations are included. A full-height physical perimeter prevents shortcuts outside the mission boundary.\",\n  \"status\": \"active\",\n  \"creator\": \"LLM & Agent Course - \\u4e00\\u8d77\\u73a9\\u539f\\u795e\\u5427\\u961f\",\n  \"task_type\": \"target_assignment\",\n  \"task_description\": \"20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1794013200.0,\n  \"last_updated\": 1794547427.9370124,\n  \"statistics\": {\n    \"drone_count\": 6,\n    \"target_count\": 19,\n    \"obstacle_count\": 8,\n    \"task_count\": 10,\n    \"environment_id\": \"ae2fb95d4494\",\n    \"total_commands_executed\": 27,\n    \"total_flight_time\": 110.35622668441587,\n    \"total_distance_traveled\": 1684.9835088909142,\n    \"total_target_reaches\": 17,\n    \"drones_with_target_reaches\": 3,\n    \"unique_targets_reached\": 7,\n    \"session_time\": 111.41752600669861,\n    \"command_history_size\": 27,\n    \"task_progress\": {\n      \"task_type\": \"target_assignment\",\n      \"progress_percentage\": 33,\n      \"is_completed\": false,\n      \"status_message\": \"Task to be Done\",\n      \"details\": {\n        \"total_targets\": 9,\n        \"visited_targets\": 3,\n        \"unvisited_targets\": 6\n      },\n      \"target_reach_summary\": {\n        \"total_reaches\": 17,\n        \"drones_with_reaches\": 3,\n        \"unique_targets_reached\": 7\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 8,\n        \"average_coverage\": 27.211257309941523,\n        \"fully_covered_targets\": 4\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"2592c9873dff\",\n    \"name\": \"Alpha\",\n    \"model\": \"Scout\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 80.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 22.0,\n    \"max_altitude\": 90.0,\n    \"battery_capacity\": 5000.0,\n    \"perceived_radius\": 60.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 80.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794547414.5702884\n  },\n  {\n    \"id\": \"1cc16c1f84b1\",\n    \"name\": \"Bravo\",\n    \"model\": \"Surveyor\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 180.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 16.0,\n    \"max_altitude\": 80.0,\n    \"battery_capacity\": 5500.0,\n    \"perceived_radius\": 42.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 180.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794547414.5703237\n  },\n  {\n    \"id\": \"6964955cd21c\",\n    \"name\": \"Charlie\",\n    \"model\": \"Relay\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 244.0,\n      \"y\": 530.0,\n      \"z\": 0.0\n    },\n    \"heading\": 296.565051177078,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 18.0,\n    \"max_altitude\": 85.0,\n    \"battery_capacity\": 6000.0,\n    \"perceived_radius\": 75.0,\n    \"task_radius\": 12.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 280.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794547414.570338\n  },\n  {\n    \"id\": \"0f63aa7bea9f\",\n    \"name\": \"Delta\",\n    \"model\": \"Reserve\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 244.0,\n      \"y\": 260.0,\n      \"z\": 0.0\n    },\n    \"heading\": 270.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 75.0,\n    \"battery_capacity\": 6500.0,\n    \"perceived_radius\": 45.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 380.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794547414.5703492\n  },\n  {\n    \"id\": \"9b20818ac06f\",\n    \"name\": \"Echo\",\n    \"model\": \"Recovery\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 764.0,\n      \"y\": 480.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 12.0,\n    \"max_altitude\": 65.0,\n    \"battery_capacity\": 7000.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 6.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 480.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794547414.5703607\n  },\n  {\n    \"id\": \"e3c13154f845\",\n    \"name\": \"Foxtrot\",\n    \"model\": \"Recovery\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 944.0,\n      \"y\": 580.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 12.0,\n    \"max_altitude\": 65.0,\n    \"battery_capacity\": 7500.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 6.0,\n    \"home_position\": {\n      \"x\": 944.0,\n      \"y\": 580.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1794013200.0,\n    \"last_updated\": 1794547414.570371\n  }\n]"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Foxtrot should find target Far-Side Depot South, and drone Echo should find target Far-Side Depot North. After the first discovery, the drones swap assignments: Foxtrot goes to Far-Side Depot North and Echo goes to Far-Side Depot South at 22 meters.",
+            "drone_id": "9b20818ac06f",
+            "altitude": 32.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Foxtrot\", \"Echo\"], \"steps\": 6, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 22.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [94.0, 630.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [94.0, 80.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 22.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [94.0, 80.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [94.0, 630.0], \"attempts\": 1}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 31171,
+      "completion_tokens": 79,
+      "total_tokens": 31250,
+      "llm_calls": 4
+    },
+    "token_usage_available": true,
+    "run_id": "rid-b82d3e21-5592-48d7-8c2a-d39b22b6dbb3",
+    "command_id": "f04a5023-4084-4885-aa0e-409248ba91c1",
+    "experiment": {
+      "experiment_id": "eid-b81758c1-f774-4c7a-a7a0-0fc786242377",
+      "start_reason": "start",
+      "run_id": "rid-b82d3e21-5592-48d7-8c2a-d39b22b6dbb3",
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "82d525ba",
+      "task_name": "Cross Target Swap After Discovery",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "44c7f1aec118e415ae0662f3b223f62ae04e0e418b0247295f513cf7a73fd615",
+      "session_snapshot_hash": "55d4b5170b86d7fee1176934ab57fd0be9c3d181432a7e6d1a85179c6b898c27",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-b82d3e21-5592-48d7-8c2a-d39b22b6dbb3",
+      "request_history": "/agent/runs/rid-b82d3e21-5592-48d7-8c2a-d39b22b6dbb3/artifacts/request_history",
+      "events": "/agent/runs/rid-b82d3e21-5592-48d7-8c2a-d39b22b6dbb3/artifacts/events",
+      "related_apis": "/agent/runs/rid-b82d3e21-5592-48d7-8c2a-d39b22b6dbb3/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-b82d3e21-5592-48d7-8c2a-d39b22b6dbb3/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

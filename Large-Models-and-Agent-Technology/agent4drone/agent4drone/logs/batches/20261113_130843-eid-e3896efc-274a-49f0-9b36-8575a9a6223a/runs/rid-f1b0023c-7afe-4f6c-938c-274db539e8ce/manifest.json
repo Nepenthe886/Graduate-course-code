@@ -1,0 +1,141 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-f1b0023c-7afe-4f6c-938c-274db539e8ce",
+  "experiment": {
+    "experiment_id": "eid-e3896efc-274a-49f0-9b36-8575a9a6223a",
+    "start_reason": "start",
+    "run_id": "rid-f1b0023c-7afe-4f6c-938c-274db539e8ce",
+    "session_id": "e34553f4",
+    "session_name": "Path Planning Corner",
+    "task_id": "f048c662",
+    "task_name": "Simple Rotation Test 2",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "c13a211da4ab476e301eccab4e47af585a444ce319de1b5407c63f1a638602de",
+    "session_snapshot_hash": "4b8d1e17c9bcb23c78f305e5e4297d90aa1f5f4130e9614df9df0ad3d1c6ed2e",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T125322-b5ae4baeafa4",
+  "batch_file": "../../batch.json",
+  "command_id": "ca1210a4-a36c-41bd-b96b-bb9bb326a395",
+  "job_id": "e8de657f-f2ab-48ea-8e50-d3199db48cb8",
+  "command": "Drone 8 takes off to 12 meters altitude, then rotates to face heading 307 degrees and hovers.",
+  "created_at": "2026-11-13 13:09:02",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 13:09:11",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 13:09:02",
+  "runtime": {
+    "run_id": "rid-f1b0023c-7afe-4f6c-938c-274db539e8ce",
+    "experiment": {
+      "experiment_id": "eid-e3896efc-274a-49f0-9b36-8575a9a6223a",
+      "start_reason": "start",
+      "run_id": "rid-f1b0023c-7afe-4f6c-938c-274db539e8ce",
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "f048c662",
+      "task_name": "Simple Rotation Test 2",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "c13a211da4ab476e301eccab4e47af585a444ce319de1b5407c63f1a638602de",
+      "session_snapshot_hash": "4b8d1e17c9bcb23c78f305e5e4297d90aa1f5f4130e9614df9df0ad3d1c6ed2e",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "e34553f4",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "e34553f4",
+  "requested_session_id": "e34553f4",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "3d42fe5c144f7fc9c6a2f692ebe8e6a9c832b0bc190cae866b20d4d2c655c42d",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "altitude_stage",
+            "params": {
+              "altitude": 12.0,
+              "drone_id": "b68001a8",
+              "alt1": 12.0,
+              "alt2": 12.0,
+              "heading": 307.0
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 12.0, \"error\": null}, {\"ok\": true, \"name\": \"rotate\", \"error\": null}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 13359,
+      "completion_tokens": 48,
+      "total_tokens": 13407,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-f1b0023c-7afe-4f6c-938c-274db539e8ce",
+    "command_id": "ca1210a4-a36c-41bd-b96b-bb9bb326a395",
+    "experiment": {
+      "experiment_id": "eid-e3896efc-274a-49f0-9b36-8575a9a6223a",
+      "start_reason": "start",
+      "run_id": "rid-f1b0023c-7afe-4f6c-938c-274db539e8ce",
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "f048c662",
+      "task_name": "Simple Rotation Test 2",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "c13a211da4ab476e301eccab4e47af585a444ce319de1b5407c63f1a638602de",
+      "session_snapshot_hash": "4b8d1e17c9bcb23c78f305e5e4297d90aa1f5f4130e9614df9df0ad3d1c6ed2e",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-f1b0023c-7afe-4f6c-938c-274db539e8ce",
+      "request_history": "/agent/runs/rid-f1b0023c-7afe-4f6c-938c-274db539e8ce/artifacts/request_history",
+      "events": "/agent/runs/rid-f1b0023c-7afe-4f6c-938c-274db539e8ce/artifacts/events",
+      "related_apis": "/agent/runs/rid-f1b0023c-7afe-4f6c-938c-274db539e8ce/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-f1b0023c-7afe-4f6c-938c-274db539e8ce/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

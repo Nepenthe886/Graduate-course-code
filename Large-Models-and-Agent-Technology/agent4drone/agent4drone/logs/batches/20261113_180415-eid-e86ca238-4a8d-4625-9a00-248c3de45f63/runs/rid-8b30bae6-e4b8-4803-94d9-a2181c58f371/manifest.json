@@ -1,0 +1,138 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-8b30bae6-e4b8-4803-94d9-a2181c58f371",
+  "experiment": {
+    "experiment_id": "eid-e86ca238-4a8d-4625-9a00-248c3de45f63",
+    "start_reason": "start",
+    "run_id": "rid-8b30bae6-e4b8-4803-94d9-a2181c58f371",
+    "session_id": "c36c9ec9",
+    "session_name": "Urban Parcel Delivery",
+    "task_id": "93ff5b19",
+    "task_name": "Extended Hover Observation 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "9cf4f90413e9626a8a06e2eb885002d033ab07e2bffe679a3a897282d6307e25",
+    "session_snapshot_hash": "16d3958db715866fc91f40d15968566136f206ad6abf22c19396ee7395d4085c",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T174949-f53b4ec5c36e",
+  "batch_file": "../../batch.json",
+  "command_id": "667eb30b-d37f-4dc8-85ad-486a5e1a4ae7",
+  "job_id": "f35ff61f-182e-44a8-ae15-25b7663e5aee",
+  "command": "Drone Cargo 6 stationary observation mission: take off to 18 meters, fly to observation point (458, 643, 18), hover at this position for at least 19 seconds while maintaining position.",
+  "created_at": "2026-11-13 18:06:11",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 18:06:22",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 18:06:11",
+  "runtime": {
+    "run_id": "rid-8b30bae6-e4b8-4803-94d9-a2181c58f371",
+    "experiment": {
+      "experiment_id": "eid-e86ca238-4a8d-4625-9a00-248c3de45f63",
+      "start_reason": "start",
+      "run_id": "rid-8b30bae6-e4b8-4803-94d9-a2181c58f371",
+      "session_id": "c36c9ec9",
+      "session_name": "Urban Parcel Delivery",
+      "task_id": "93ff5b19",
+      "task_name": "Extended Hover Observation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "9cf4f90413e9626a8a06e2eb885002d033ab07e2bffe679a3a897282d6307e25",
+      "session_snapshot_hash": "16d3958db715866fc91f40d15968566136f206ad6abf22c19396ee7395d4085c",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "c36c9ec9",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "c36c9ec9",
+  "requested_session_id": "c36c9ec9",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "3db44388334761896e70c84ab52b1b2d006e105dc07e94010e5927042db3e474",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "take off to 18 meters, fly to observation point (458, 643, 18), hover at this position for at least 19 seconds while maintaining position.",
+            "drones": [
+              "Cargo 6"
+            ],
+            "altitude": 18
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 18.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [458.0, 643.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 13907,
+      "completion_tokens": 91,
+      "total_tokens": 13998,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-8b30bae6-e4b8-4803-94d9-a2181c58f371",
+    "command_id": "667eb30b-d37f-4dc8-85ad-486a5e1a4ae7",
+    "experiment": {
+      "experiment_id": "eid-e86ca238-4a8d-4625-9a00-248c3de45f63",
+      "start_reason": "start",
+      "run_id": "rid-8b30bae6-e4b8-4803-94d9-a2181c58f371",
+      "session_id": "c36c9ec9",
+      "session_name": "Urban Parcel Delivery",
+      "task_id": "93ff5b19",
+      "task_name": "Extended Hover Observation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "9cf4f90413e9626a8a06e2eb885002d033ab07e2bffe679a3a897282d6307e25",
+      "session_snapshot_hash": "16d3958db715866fc91f40d15968566136f206ad6abf22c19396ee7395d4085c",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-8b30bae6-e4b8-4803-94d9-a2181c58f371",
+      "request_history": "/agent/runs/rid-8b30bae6-e4b8-4803-94d9-a2181c58f371/artifacts/request_history",
+      "events": "/agent/runs/rid-8b30bae6-e4b8-4803-94d9-a2181c58f371/artifacts/events",
+      "related_apis": "/agent/runs/rid-8b30bae6-e4b8-4803-94d9-a2181c58f371/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-8b30bae6-e4b8-4803-94d9-a2181c58f371/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

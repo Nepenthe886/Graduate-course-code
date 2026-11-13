@@ -1,0 +1,163 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-08930800-4f0d-4ec1-9c3c-83a6272495b1",
+  "experiment": {
+    "experiment_id": "eid-0b181bc6-d977-4c30-9f69-0109307547d8",
+    "start_reason": "start",
+    "run_id": "rid-08930800-4f0d-4ec1-9c3c-83a6272495b1",
+    "session_id": "1520a780",
+    "session_name": "Port Container Inventory",
+    "task_id": "5f66f6d0",
+    "task_name": "Triple Drone Target Search 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "ad73e5adfa5a62a7d9503e5711db775f909c48f1400d19e092e1337cf6d5dfec",
+    "session_snapshot_hash": "9290ac090d9007bde04ff0ef936ba8196fca9ab0b9bac2091f6e3840bade251a",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T182101-b90f6b7edffb",
+  "batch_file": "../../batch.json",
+  "command_id": "7885b6a7-b025-4e1c-b82a-1d11a598f255",
+  "job_id": "c7daa641-0560-4a7d-8ea8-cb384995fffc",
+  "command": "Assign drones Yard 9, Yard 26, and Yard 8 to search target Bay 006. All three drones should take off to 19 meters, converge on the target, and complete the search together.",
+  "created_at": "2026-11-13 18:43:12",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 18:43:35",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 18:43:12",
+  "runtime": {
+    "run_id": "rid-08930800-4f0d-4ec1-9c3c-83a6272495b1",
+    "experiment": {
+      "experiment_id": "eid-0b181bc6-d977-4c30-9f69-0109307547d8",
+      "start_reason": "start",
+      "run_id": "rid-08930800-4f0d-4ec1-9c3c-83a6272495b1",
+      "session_id": "1520a780",
+      "session_name": "Port Container Inventory",
+      "task_id": "5f66f6d0",
+      "task_name": "Triple Drone Target Search 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "ad73e5adfa5a62a7d9503e5711db775f909c48f1400d19e092e1337cf6d5dfec",
+      "session_snapshot_hash": "9290ac090d9007bde04ff0ef936ba8196fca9ab0b9bac2091f6e3840bade251a",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "1520a780",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 5,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "1520a780",
+  "requested_session_id": "1520a780",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "4c1e6a9cb0ef1ce1471b3d857615dbec164234c8e46d35479b955df0458eb857",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"31f97671\",\n    \"name\": \"Yard 1\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 100.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 100.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8424935,\n    \"last_updated\": 1794566587.9494803\n  },\n  {\n    \"id\": \"50594ca2\",\n    \"name\": \"Yard 2\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 158.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 158.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8425076,\n    \"last_updated\": 1794566587.9495292\n  },\n  {\n    \"id\": \"03e3714b\",\n    \"name\": \"Yard 3\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 216.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 216.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8425188,\n    \"last_updated\": 1794566587.9495466\n  },\n  {\n    \"id\": \"4b717f15\",\n    \"name\": \"Yard 4\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 274.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 274.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.842529,\n    \"last_updated\": 1794566587.9495687\n  },\n  {\n    \"id\": \"60f23347\",\n    \"name\": \"Yard 5\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 332.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 332.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8425388,\n    \"last_updated\": 1794566587.9495835\n  },\n  {\n    \"id\": \"69f0b0f4\",\n    \"name\": \"Yard 6\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 390.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 390.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8425517,\n    \"last_updated\": 1794566587.9495978\n  },\n  {\n    \"id\": \"d7ebaeba\",\n    \"name\": \"Yard 7\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 448.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 448.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8425655,\n    \"last_updated\": 1794566587.9496129\n  },\n  {\n    \"id\": \"276aba1b\",\n    \"name\": \"Yard 8\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 506.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 506.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8425791,\n    \"last_updated\": 1794566587.949627\n  },\n  {\n    \"id\": \"d4565251\",\n    \"name\": \"Yard 9\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 564.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 564.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8425925,\n    \"last_updated\": 1794566587.9496408\n  },\n  {\n    \"id\": \"ea35de01\",\n    \"name\": \"Yard 10\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 622.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 622.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8426058,\n    \"last_updated\": 1794566587.9496548\n  },\n  {\n    \"id\": \"65fe60d1\",\n    \"name\": \"Yard 11\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 680.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 680.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.842619,\n    \"last_updated\": 1794566587.9496686\n  },\n  {\n    \"id\": \"54ebf85c\",\n    \"name\": \"Yard 12\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 738.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 738.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8426316,\n    \"last_updated\": 1794566587.9496832\n  },\n  {\n    \"id\": \"61fbe297\",\n    \"name\": \"Yard 13\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 796.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 796.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8426447,\n    \"last_updated\": 1794566587.9496975\n  },\n  {\n    \"id\": \"6df13419\",\n    \"name\": \"Yard 14\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 854.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 854.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.842658,\n    \"last_updated\": 1794566587.9497118\n  },\n  {\n    \"id\": \"c9cab98e\",\n    \"name\": \"Yard 15\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 912.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 912.0,\n      \"y\": 715.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8426716,\n    \"last_updated\": 1794566587.9497259\n  },\n  {\n    \"id\": \"56aae23f\",\n    \"name\": \"Yard 16\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 100.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 100.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.842683,\n    \"last_updated\": 1794566587.9497397\n  },\n  {\n    \"id\": \"7fc35929\",\n    \"name\": \"Yard 17\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 158.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 158.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8426926,\n    \"last_updated\": 1794566587.949755\n  },\n  {\n    \"id\": \"7e39afd7\",\n    \"name\": \"Yard 18\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 216.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 216.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8427022,\n    \"last_updated\": 1794566587.9497688\n  },\n  {\n    \"id\": \"b14df444\",\n    \"name\": \"Yard 19\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 274.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 274.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8427129,\n    \"last_updated\": 1794566587.9497828\n  },\n  {\n    \"id\": \"c23a0d38\",\n    \"name\": \"Yard 20\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 332.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 332.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.842723,\n    \"last_updated\": 1794566587.9497972\n  },\n  {\n    \"id\": \"3e155460\",\n    \"name\": \"Yard 21\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 390.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 390.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8427322,\n    \"last_updated\": 1794566587.9498105\n  },\n  {\n    \"id\": \"3cdc196e\",\n    \"name\": \"Yard 22\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 448.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 448.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8427415,\n    \"last_updated\": 1794566587.9498322\n  },\n  {\n    \"id\": \"9700f4f4\",\n    \"name\": \"Yard 23\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 506.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 506.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8427525,\n    \"last_updated\": 1794566587.9498465\n  },\n  {\n    \"id\": \"4f5f4562\",\n    \"name\": \"Yard 24\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 564.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 564.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.842762,\n    \"last_updated\": 1794566587.9498606\n  },\n  {\n    \"id\": \"d8799e2a\",\n    \"name\": \"Yard 25\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 622.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 622.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8427715,\n    \"last_updated\": 1794566587.9498744\n  },\n  {\n    \"id\": \"5b5d19ab\",\n    \"name\": \"Yard 26\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 680.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 680.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8427808,\n    \"last_updated\": 1794566587.9498882\n  },\n  {\n    \"id\": \"1de5fb4c\",\n    \"name\": \"Yard 27\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 738.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 738.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8427904,\n    \"last_updated\": 1794566587.9499018\n  },\n  {\n    \"id\": \"8911ec66\",\n    \"name\": \"Yard 28\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 796.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 796.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8428,\n    \"last_updated\": 1794566587.949916\n  },\n  {\n    \"id\": \"d334a9f1\",\n    \"name\": \"Yard 29\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 854.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 854.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8428094,\n    \"last_updated\": 1794566587.9499297\n  },\n  {\n    \"id\": \"b1aa6840\",\n    \"name\": \"Yard 30\",\n    \"model\": \"Quad-Yard\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 912.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 10.0,\n    \"max_altitude\": 60.0,\n    \"battery_capacity\": 60.0,\n    \"perceived_radius\": 35.0,\n    \"task_radius\": 8.0,\n    \"home_position\": {\n      \"x\": 912.0,\n      \"y\": 745.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793321309.8428183,\n    \"last_updated\": 1794566587.9499443\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"1520a780\",\n  \"name\": \"Port Container Inventory\",\n  \"description\": \"Container terminal inventory at full scale: 100 bays on the faces of 56 m aisles between 64 container stacks (half impassable, half 12 m high), gantry crane legs and light masts; a 30-drone yard fleet with a short 35 m perception radius launches from the gate area in the south. Difficulty level: Extreme (30 drones, 100 targets, 90 obstacles).\",\n  \"status\": \"active\",\n  \"creator\": \"LLM & Agent Course - \\u5e38\\u89c4\\u8d5b\\u9053\\u961f\",\n  \"task_type\": \"target_assignment\",\n  \"task_description\": \"24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1793321309.7980375,\n  \"last_updated\": 1794566602.6740334,\n  \"statistics\": {\n    \"drone_count\": 30,\n    \"target_count\": 100,\n    \"obstacle_count\": 90,\n    \"task_count\": 20,\n    \"environment_id\": \"68a1c220\",\n    \"total_commands_executed\": 0,\n    \"total_flight_time\": 0.0,\n    \"total_distance_traveled\": 0.0,\n    \"total_target_reaches\": 0,\n    \"drones_with_target_reaches\": 0,\n    \"unique_targets_reached\": 0,\n    \"session_time\": 18.96041250228882,\n    \"command_history_size\": 0,\n    \"task_progress\": {\n      \"task_type\": \"target_assignment\",\n      \"progress_percentage\": 0,\n      \"is_completed\": false,\n      \"status_message\": \"Task to be Done\",\n      \"details\": {\n        \"total_targets\": 100,\n        \"visited_targets\": 0,\n        \"unvisited_targets\": 100\n      },\n      \"target_reach_summary\": {\n        \"total_reaches\": 0,\n        \"drones_with_reaches\": 0,\n        \"unique_targets_reached\": 0\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 0,\n        \"average_coverage\": 0.0,\n        \"fully_covered_targets\": 0\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"68a1c220\",\n  \"name\": \"Port Drizzle\",\n  \"weather\": \"rain\",\n  \"temperature\": 22.507132857438684,\n  \"humidity\": 88.0,\n  \"pressure\": 1013.0,\n  \"wind_speed\": 9.618499232933596,\n  \"wind_direction\": \"south\",\n  \"visibility\": 5000.0,\n  \"created_at\": 1793321309.8424506,\n  \"last_updated\": 1794566607.5177488\n}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Assign drones Yard 9, Yard 26, and Yard 8 to search target Bay 006. All three drones should take off to 19 meters, converge on the target, and complete the search together.",
+            "drone_id": "276aba1b",
+            "altitude": 19.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Yard 9\", \"Yard 26\", \"Yard 8\"], \"steps\": 6, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 19.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [355.0, 134.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 19.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [355.0, 134.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 2, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 19.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [355.0, 134.0], \"attempts\": 1}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 44076,
+      "completion_tokens": 152,
+      "total_tokens": 44228,
+      "llm_calls": 5
+    },
+    "token_usage_available": true,
+    "run_id": "rid-08930800-4f0d-4ec1-9c3c-83a6272495b1",
+    "command_id": "7885b6a7-b025-4e1c-b82a-1d11a598f255",
+    "experiment": {
+      "experiment_id": "eid-0b181bc6-d977-4c30-9f69-0109307547d8",
+      "start_reason": "start",
+      "run_id": "rid-08930800-4f0d-4ec1-9c3c-83a6272495b1",
+      "session_id": "1520a780",
+      "session_name": "Port Container Inventory",
+      "task_id": "5f66f6d0",
+      "task_name": "Triple Drone Target Search 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "ad73e5adfa5a62a7d9503e5711db775f909c48f1400d19e092e1337cf6d5dfec",
+      "session_snapshot_hash": "9290ac090d9007bde04ff0ef936ba8196fca9ab0b9bac2091f6e3840bade251a",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-08930800-4f0d-4ec1-9c3c-83a6272495b1",
+      "request_history": "/agent/runs/rid-08930800-4f0d-4ec1-9c3c-83a6272495b1/artifacts/request_history",
+      "events": "/agent/runs/rid-08930800-4f0d-4ec1-9c3c-83a6272495b1/artifacts/events",
+      "related_apis": "/agent/runs/rid-08930800-4f0d-4ec1-9c3c-83a6272495b1/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-08930800-4f0d-4ec1-9c3c-83a6272495b1/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

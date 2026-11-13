@@ -1,0 +1,136 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-788303d5-9e12-4c4c-ab95-28bfdb209e22",
+  "experiment": {
+    "experiment_id": "eid-155737ec-2ff5-4fa6-b45c-ce4c2b4f730e",
+    "start_reason": "start",
+    "run_id": "rid-788303d5-9e12-4c4c-ab95-28bfdb209e22",
+    "session_id": "0775fd84c87ad912",
+    "session_name": "Flooded Meander Settlement",
+    "task_id": "78130d6f",
+    "task_name": "Triangle Formation - 3 Drones 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "882a10f40e400c08ec4bb53b8ee6afbd4ca7fa496ae9ebdf520751c7c4529a2d",
+    "session_snapshot_hash": "8ab4ebe3c27f77717e128ce7eeedc6788a5d69aa340c7403f14b4209a460a722",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T174949-f53b4ec5c36e",
+  "batch_file": "../../batch.json",
+  "command_id": "5aa1a4ec-2e6d-4fa8-97ff-eb2a7d6b4368",
+  "job_id": "b9efb856-d100-4b50-a2f8-3aacf4940402",
+  "command": "Drones Relief UAV 04, Relief UAV 09, and Relief UAV 07 should take off to 21 meters altitude and form a triangle formation around target at position (493, 649, 21). Relief UAV 04 positions at (493, 419, 21), Relief UAV 09 at (538, 410, 21), and Relief UAV 07 at (374, 556, 21). After formation is established, all drones maintain hovering.",
+  "created_at": "2026-11-13 17:55:32",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 17:57:53",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 17:55:32",
+  "runtime": {
+    "run_id": "rid-788303d5-9e12-4c4c-ab95-28bfdb209e22",
+    "experiment": {
+      "experiment_id": "eid-155737ec-2ff5-4fa6-b45c-ce4c2b4f730e",
+      "start_reason": "start",
+      "run_id": "rid-788303d5-9e12-4c4c-ab95-28bfdb209e22",
+      "session_id": "0775fd84c87ad912",
+      "session_name": "Flooded Meander Settlement",
+      "task_id": "78130d6f",
+      "task_name": "Triangle Formation - 3 Drones 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "882a10f40e400c08ec4bb53b8ee6afbd4ca7fa496ae9ebdf520751c7c4529a2d",
+      "session_snapshot_hash": "8ab4ebe3c27f77717e128ce7eeedc6788a5d69aa340c7403f14b4209a460a722",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "0775fd84c87ad912",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "0775fd84c87ad912",
+  "requested_session_id": "0775fd84c87ad912",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "f71d8b4af8ffd8a66b1aaa8370f94f430c8d2d61a8af79b3e1a5d622b0602a4c",
+  "recording_status": "complete",
+  "result": {
+    "success": false,
+    "output": "The task failed because one of the drones (Relief UAV 04) cannot reach its designated position due to an obstacle. The obstacle is \"S01 Flooded meander safety cordon 01,\" and the drone's target position is inside the obstacle's footprint. \n\nTo resolve this, we need to adjust the drone's position to a safe location that is outside the obstacle's footprint. Let's move Relief UAV 04 to a nearby safe position and then proceed with the formation.\n\n[TASK FAILED]\n\n[verification] Agent reported the task as FAILED; task completion was not verified.",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drones Relief UAV 04, Relief UAV 09, and Relief UAV 07 should take off to 21 meters altitude and form a triangle formation around target at position (493, 649, 21). Relief UAV 04 positions at (493, 419, 21), Relief UAV 09 at (538, 410, 21), and Relief UAV 07 at (374, 556, 21). After formation is established, all drones maintain hovering.",
+            "drone_id": "370417fd",
+            "altitude": 21.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": false, \"completed\": false, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Relief UAV 04\", \"Relief UAV 09\", \"Relief UAV 07\"], \"steps\": 9, \"failures\": [], \"results\": [{\"ok\": false, \"mode\": \"actions\", \"hint\": \"存在不可达航点（位于障碍物内部），请在最终回答中明确列出\", \"unreachable_waypoints\": [{\"goal\": [493.0, 419.0], \"obstacle\": \"S01 Flooded meander safety cordon 01\", \"reason\": \"航点位于障碍物内部，无法到达\"}], \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 21.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [494.4336681975545, 416.56005638618416], \"requested_goal\": [493.0, 419.0], \"fallback_goal\": [494.4336681975545, 416.56005638618416], \"fallback_distance\": 2.83, \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 21.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [538.0, 410.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 21.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [374.0, 556.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14331,
+      "completion_tokens": 320,
+      "total_tokens": 14651,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-788303d5-9e12-4c4c-ab95-28bfdb209e22",
+    "command_id": "5aa1a4ec-2e6d-4fa8-97ff-eb2a7d6b4368",
+    "experiment": {
+      "experiment_id": "eid-155737ec-2ff5-4fa6-b45c-ce4c2b4f730e",
+      "start_reason": "start",
+      "run_id": "rid-788303d5-9e12-4c4c-ab95-28bfdb209e22",
+      "session_id": "0775fd84c87ad912",
+      "session_name": "Flooded Meander Settlement",
+      "task_id": "78130d6f",
+      "task_name": "Triangle Formation - 3 Drones 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "882a10f40e400c08ec4bb53b8ee6afbd4ca7fa496ae9ebdf520751c7c4529a2d",
+      "session_snapshot_hash": "8ab4ebe3c27f77717e128ce7eeedc6788a5d69aa340c7403f14b4209a460a722",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-788303d5-9e12-4c4c-ab95-28bfdb209e22",
+      "request_history": "/agent/runs/rid-788303d5-9e12-4c4c-ab95-28bfdb209e22/artifacts/request_history",
+      "events": "/agent/runs/rid-788303d5-9e12-4c4c-ab95-28bfdb209e22/artifacts/events",
+      "related_apis": "/agent/runs/rid-788303d5-9e12-4c4c-ab95-28bfdb209e22/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-788303d5-9e12-4c4c-ab95-28bfdb209e22/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

@@ -134,6 +134,77 @@ def _repair_route(world, start, points, margin: float = 0.2):
     return repaired
 
 
+# 目标点落在 height=0 障碍内时的受控回退：仅当最近自由点在检查容差内才回退
+BLOCKED_TARGET_FALLBACK_MAX_DISTANCE = 3.0
+BLOCKED_TARGET_FALLBACK_CLEARANCE = 0.05
+BLOCKED_TARGET_FALLBACK_PATH_MARGIN = 0.02
+BLOCKED_TARGET_FALLBACK_ARRIVAL_TOLERANCE = 0.15
+
+
+def _nearest_free_point(world, point: tuple[float, float],
+                        clearance: float = BLOCKED_TARGET_FALLBACK_CLEARANCE,
+                        max_distance: float = BLOCKED_TARGET_FALLBACK_MAX_DISTANCE,
+                        start: tuple[float, float] | None = None,
+                        path_margin: float = BLOCKED_TARGET_FALLBACK_PATH_MARGIN):
+    """查找障碍内目标点最近的自由点（沿最近边界向外平移 clearance）。
+
+    若提供 start，则只返回从 start 直线可达（不穿障）的候选点；
+    同侧没有候选时返回 None，避免跨长障碍回退后仍被服务器拒绝。
+    返回 (distance, x, y)；找不到或超过 max_distance 则返回 None。
+    """
+    if world is None:
+        return None
+    px, py = float(point[0]), float(point[1])
+    best = None
+    candidates: list[tuple[float, float, float]] = []
+    for obstacle in getattr(world, "obstacles", []) or []:
+        try:
+            polygon = obstacle.footprint()
+        except Exception:  # noqa: BLE001
+            continue
+        if not polygon:
+            continue
+        n = len(polygon)
+        for index in range(n):
+            ax, ay = polygon[index]
+            bx, by = polygon[(index + 1) % n]
+            vx, vy = bx - ax, by - ay
+            denom = vx * vx + vy * vy
+            if denom < 1e-12:
+                continue
+            t = max(0.0, min(1.0, ((px - ax) * vx + (py - ay) * vy) / denom))
+            qx, qy = ax + t * vx, ay + t * vy
+            edge_distance = math.hypot(qx - px, qy - py)
+            if edge_distance < 1e-6:
+                continue
+            ux = (qx - px) / edge_distance
+            uy = (qy - py) / edge_distance
+            cx = qx + ux * clearance
+            cy = qy + uy * clearance
+            if not (0.0 <= cx <= world.width and 0.0 <= cy <= world.height):
+                continue
+            try:
+                if world.clearance_to_obstacles((cx, cy)) < clearance:
+                    continue
+            except Exception:  # noqa: BLE001
+                continue
+            distance = math.hypot(cx - px, cy - py)
+            if distance > max_distance:
+                continue
+            if start is not None:
+                try:
+                    blocker = _route_blocker(world, start, [(cx, cy)], margin=path_margin)
+                except Exception:  # noqa: BLE001
+                    blocker = "unknown"
+                if blocker is not None:
+                    continue
+            if best is None or distance < best[0]:
+                best = (distance, cx, cy)
+    return best
+
+
+
+
 def _route_blocker(world, start, points, margin: float = 0.2):
     """逐段检查折线是否与障碍相交（0 余量语义，贴近服务器），返回首个阻挡障碍名。"""
     from .planner import Planner
@@ -359,21 +430,68 @@ class NavigateToPose(Node):
                  "error": "任务总时长超预算，已停止"})
             return Status.FAILURE
         world = blackboard.get("world")
+        requested_goal = (self.x, self.y)
+        fallback = None
         if world is not None:
             for obstacle in getattr(world, "obstacles", []):
                 try:
-                    if obstacle.contains((self.x, self.y)):
+                    if not obstacle.contains((self.x, self.y)):
+                        continue
+                    fallback_max = float(blackboard.get(
+                        "blocked_target_fallback_max_distance",
+                        BLOCKED_TARGET_FALLBACK_MAX_DISTANCE))
+                    fallback_clearance = float(blackboard.get(
+                        "blocked_target_fallback_clearance",
+                        BLOCKED_TARGET_FALLBACK_CLEARANCE))
+                    try:
+                        current = sensors.read_pose(api, drone_id)
+                        current_xy = (float(current["x"]), float(current["y"]))
+                    except Exception:  # noqa: BLE001
+                        current_xy = None
+                    fallback = _nearest_free_point(
+                        world, (self.x, self.y), fallback_clearance, fallback_max,
+                        start=current_xy)
+                    if fallback is None:
                         blackboard.setdefault("results", []).append(
                             {"ok": False, "name": "navigate_to_pose", "goal": [self.x, self.y],
-                             "error": "目标点位于障碍 %s 内部，物理不可达（地图不匹配）" % obstacle.name})
+                             "error": "目标点位于障碍 %s 内部，且同侧最近可达点超出回退阈值 %s m "
+                                      "或位于障碍另一侧，物理不可达" % (obstacle.name, fallback_max)})
                         return Status.FAILURE
+                    self.x, self.y = float(fallback[1]), float(fallback[2])
+                    break
                 except Exception:  # noqa: BLE001
                     continue
         result = {"ok": False, "name": "navigate_to_pose", "goal": [self.x, self.y]}
-        attempts = (self.clearance, min(self.clearance * 2.0, 3.5),
-                    min(self.clearance * 3.0, 4.0))
+        if fallback is not None:
+            result["requested_goal"] = [requested_goal[0], requested_goal[1]]
+            result["fallback_goal"] = [self.x, self.y]
+            result["fallback_distance"] = round(float(fallback[0]), 2)
+            attempts = (max(0.02, float(blackboard.get(
+                "blocked_target_fallback_clearance", BLOCKED_TARGET_FALLBACK_CLEARANCE))),)
+            saved_tolerance = self.tolerance
+            self.tolerance = min(self.tolerance,
+                                 BLOCKED_TARGET_FALLBACK_ARRIVAL_TOLERANCE)
+        else:
+            attempts = (self.clearance, min(self.clearance * 2.0, 3.5),
+                        min(self.clearance * 3.0, 4.0))
+            saved_tolerance = None
         for attempt, clearance in enumerate(attempts, 1):
-            move = _move_to_smart(api, world, drone_id, self.x, self.y, self.z, clearance)
+            move = None
+            if fallback is not None:
+                # 回退点紧贴障碍边界，直线可达时直接 move_to，
+                # 避免规划器因 clearance 余量拒绝贴边终点。
+                try:
+                    pose = sensors.read_pose(api, drone_id)
+                    direct_clear = world is None or _segment_blocker(
+                        world, (pose["x"], pose["y"]), (self.x, self.y),
+                        BLOCKED_TARGET_FALLBACK_PATH_MARGIN) is None
+                except Exception:  # noqa: BLE001
+                    direct_clear = False
+                if direct_clear:
+                    move = actions.run_atomic(api, drone_id, "move_to",
+                                              {"x": self.x, "y": self.y, "z": self.z})
+            if move is None:
+                move = _move_to_smart(api, world, drone_id, self.x, self.y, self.z, clearance)
             if move.get("ok") and self._wait_arrival(api, drone_id):
                 result["ok"] = True
                 result["attempts"] = attempt
@@ -382,6 +500,8 @@ class NavigateToPose(Node):
             result["error"] = error or result.get("error")
             if world is not None and ("block" in error.lower() or "intersect" in error.lower()):
                 self._backoff(api, world, drone_id)
+        if saved_tolerance is not None:
+            self.tolerance = saved_tolerance
         if result["ok"] and self.heading is not None:
             rotated = actions.run_atomic(api, drone_id, "rotate", {"heading": self.heading})
             if not rotated.get("ok"):
@@ -614,6 +734,28 @@ def _detour_candidates(world, pose, heading: float, step: float,
     return result
 
 
+def _heading_aligned_gain(pose_from: dict, pose_to: dict, heading: float,
+                         tolerance_deg: float = 5.0) -> float:
+    """沿 heading 方向的有效位移：移动方向与 heading 夹角超过容差则不计入。
+
+    服务器方向距离检查只累计近似沿指定方向的移动，斜向/侧向绕行段不计入；
+    自检必须使用同一口径，否则绕行后会出现“自认已够、服务器不足”。
+    """
+    dx = float(pose_to.get("x", 0.0)) - float(pose_from.get("x", 0.0))
+    dy = float(pose_to.get("y", 0.0)) - float(pose_from.get("y", 0.0))
+    if abs(dx) < 1e-9 and abs(dy) < 1e-9:
+        return 0.0
+    rad = math.radians(float(heading))
+    forward = dx * math.sin(rad) + dy * math.cos(rad)
+    if forward <= 0.0:
+        return 0.0
+    move_heading = math.degrees(math.atan2(dx, dy))
+    diff = abs((move_heading - float(heading) + 180.0) % 360.0 - 180.0)
+    if diff > tolerance_deg:
+        return 0.0
+    return forward
+
+
 class MoveDirection(Node):
     """沿 heading 累计移动 distance（0=北/+y，90=东/+x）；受阻侧移重试。"""
 
@@ -700,8 +842,9 @@ class MoveDirection(Node):
             initial = go_point(endpoint_x, endpoint_y, 60.0)
             if not initial.get("ok"):
                 last_error = initial.get("error")
+            initial_pose = sensors.read_pose(api, drone_id)
             moved = read_moved()
-            direct_total = moved
+            direct_total = max(0.0, _heading_aligned_gain(origin, initial_pose, self.heading))
         else:
             detour_count = 1
             moved = read_moved()
@@ -732,8 +875,7 @@ class MoveDirection(Node):
                 continue
             wait_arrive({"x": tx, "y": ty}, 30.0)
             end_pose = sensors.read_pose(api, drone_id)
-            chunk_gain = max(0.0, sensors.directed_progress(
-                {"x": pose["x"], "y": pose["y"]}, end_pose, self.heading))
+            chunk_gain = max(0.0, _heading_aligned_gain(pose, end_pose, self.heading))
             direct_total += chunk_gain
             moved = sensors.directed_progress(origin, end_pose, self.heading)
             if chunk_gain < step * 0.4:
@@ -772,7 +914,7 @@ class MoveDirection(Node):
                     break
                 wait_arrive({"x": tx, "y": ty}, 20.0)
                 end_pose = sensors.read_pose(api, drone_id)
-                gain = max(0.0, sensors.directed_progress(pose, end_pose, self.heading))
+                gain = max(0.0, _heading_aligned_gain(pose, end_pose, self.heading))
                 direct_total += gain
                 moved = sensors.directed_progress(origin, end_pose, self.heading)
                 if gain < step * 0.4:

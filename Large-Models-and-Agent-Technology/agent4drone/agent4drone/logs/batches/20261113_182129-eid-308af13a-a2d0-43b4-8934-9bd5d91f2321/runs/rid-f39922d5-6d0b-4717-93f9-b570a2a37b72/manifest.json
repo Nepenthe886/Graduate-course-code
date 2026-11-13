@@ -1,0 +1,163 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-f39922d5-6d0b-4717-93f9-b570a2a37b72",
+  "experiment": {
+    "experiment_id": "eid-308af13a-a2d0-43b4-8934-9bd5d91f2321",
+    "start_reason": "start",
+    "run_id": "rid-f39922d5-6d0b-4717-93f9-b570a2a37b72",
+    "session_id": "c36c9ec9",
+    "session_name": "Urban Parcel Delivery",
+    "task_id": "15e6ad77",
+    "task_name": "Cross Target Swap After Discovery 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "3a21a487e623f6d0f71c6ba7a2d75ca7a7be15e08855d0d6496b8cf6569c1154",
+    "session_snapshot_hash": "cde62480c871427ec3aefe1ee2dcbb53b8b3898d7de078bffc6067c9febb85a0",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T182101-b90f6b7edffb",
+  "batch_file": "../../batch.json",
+  "command_id": "4adad9a6-d5ad-4b95-a668-2d33123d3bf2",
+  "job_id": "55a4a268-47a4-4532-aaa4-e9476d909f92",
+  "command": "Drone Cargo 3 should find target Customer Drop 12, and drone Cargo 14 should find target Customer Drop 16. After the first discovery, the drones swap assignments: Cargo 3 goes to Customer Drop 16 and Cargo 14 goes to Customer Drop 12 at 16 meters.",
+  "created_at": "2026-11-13 18:27:21",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 18:27:39",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 18:27:21",
+  "runtime": {
+    "run_id": "rid-f39922d5-6d0b-4717-93f9-b570a2a37b72",
+    "experiment": {
+      "experiment_id": "eid-308af13a-a2d0-43b4-8934-9bd5d91f2321",
+      "start_reason": "start",
+      "run_id": "rid-f39922d5-6d0b-4717-93f9-b570a2a37b72",
+      "session_id": "c36c9ec9",
+      "session_name": "Urban Parcel Delivery",
+      "task_id": "15e6ad77",
+      "task_name": "Cross Target Swap After Discovery 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "3a21a487e623f6d0f71c6ba7a2d75ca7a7be15e08855d0d6496b8cf6569c1154",
+      "session_snapshot_hash": "cde62480c871427ec3aefe1ee2dcbb53b8b3898d7de078bffc6067c9febb85a0",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "c36c9ec9",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 5,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "c36c9ec9",
+  "requested_session_id": "c36c9ec9",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "3db44388334761896e70c84ab52b1b2d006e105dc07e94010e5927042db3e474",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "list_drones",
+          "tool_input": {},
+          "log": "Preparing to call tool 'list_drones'",
+          "message_log": null
+        },
+        "[\n  {\n    \"id\": \"d69e53ed\",\n    \"name\": \"Cargo 1\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 880.0,\n      \"y\": 650.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 880.0,\n      \"y\": 650.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896032,\n    \"last_updated\": 1794565637.3405333\n  },\n  {\n    \"id\": \"6913353b\",\n    \"name\": \"Cargo 2\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 902.0,\n      \"y\": 650.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 902.0,\n      \"y\": 650.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896123,\n    \"last_updated\": 1794565637.3405654\n  },\n  {\n    \"id\": \"a1b9c761\",\n    \"name\": \"Cargo 3\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 924.0,\n      \"y\": 650.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 924.0,\n      \"y\": 650.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896178,\n    \"last_updated\": 1794565637.3405793\n  },\n  {\n    \"id\": \"abd2978a\",\n    \"name\": \"Cargo 4\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 946.0,\n      \"y\": 650.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 946.0,\n      \"y\": 650.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896266,\n    \"last_updated\": 1794565637.3405895\n  },\n  {\n    \"id\": \"213808d1\",\n    \"name\": \"Cargo 5\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 968.0,\n      \"y\": 650.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 968.0,\n      \"y\": 650.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896311,\n    \"last_updated\": 1794565637.3406112\n  },\n  {\n    \"id\": \"398058ac\",\n    \"name\": \"Cargo 6\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 880.0,\n      \"y\": 675.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 880.0,\n      \"y\": 675.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.789636,\n    \"last_updated\": 1794565637.3406208\n  },\n  {\n    \"id\": \"564ccec7\",\n    \"name\": \"Cargo 7\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 902.0,\n      \"y\": 675.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 902.0,\n      \"y\": 675.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.789641,\n    \"last_updated\": 1794565637.3406296\n  },\n  {\n    \"id\": \"7d7bbd77\",\n    \"name\": \"Cargo 8\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 924.0,\n      \"y\": 675.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 924.0,\n      \"y\": 675.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896457,\n    \"last_updated\": 1794565637.3406384\n  },\n  {\n    \"id\": \"ec30382e\",\n    \"name\": \"Cargo 9\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 946.0,\n      \"y\": 675.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 946.0,\n      \"y\": 675.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896502,\n    \"last_updated\": 1794565637.3406475\n  },\n  {\n    \"id\": \"bfbbe860\",\n    \"name\": \"Cargo 10\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 968.0,\n      \"y\": 675.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 968.0,\n      \"y\": 675.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896545,\n    \"last_updated\": 1794565637.340657\n  },\n  {\n    \"id\": \"16936622\",\n    \"name\": \"Cargo 11\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 880.0,\n      \"y\": 700.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 880.0,\n      \"y\": 700.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896588,\n    \"last_updated\": 1794565637.3406658\n  },\n  {\n    \"id\": \"eb3fd6b4\",\n    \"name\": \"Cargo 12\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 902.0,\n      \"y\": 700.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 902.0,\n      \"y\": 700.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896633,\n    \"last_updated\": 1794565637.3406746\n  },\n  {\n    \"id\": \"ea2e78bb\",\n    \"name\": \"Cargo 13\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 924.0,\n      \"y\": 700.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 924.0,\n      \"y\": 700.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896676,\n    \"last_updated\": 1794565637.3406868\n  },\n  {\n    \"id\": \"bbd6b7bd\",\n    \"name\": \"Cargo 14\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 946.0,\n      \"y\": 700.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 946.0,\n      \"y\": 700.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896717,\n    \"last_updated\": 1794565637.3407\n  },\n  {\n    \"id\": \"c299e3e2\",\n    \"name\": \"Cargo 15\",\n    \"model\": \"Hexa-Cargo\",\n    \"status\": \"idle\",\n    \"position\": {\n      \"x\": 968.0,\n      \"y\": 700.0,\n      \"z\": 0.0\n    },\n    \"heading\": 0.0,\n    \"speed\": 0.0,\n    \"battery_level\": 100.0,\n    \"max_speed\": 14.0,\n    \"max_altitude\": 120.0,\n    \"battery_capacity\": 150.0,\n    \"perceived_radius\": 50.0,\n    \"task_radius\": 10.0,\n    \"home_position\": {\n      \"x\": 968.0,\n      \"y\": 700.0,\n      \"z\": 0.0\n    },\n    \"created_at\": 1793520750.7896762,\n    \"last_updated\": 1794565637.3407092\n  }\n]"
+      ],
+      [
+        {
+          "tool": "get_session_info",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_session_info'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"c36c9ec9\",\n  \"name\": \"Urban Parcel Delivery\",\n  \"description\": \"Dense downtown street grid (20 building blocks, high-rise blocks impassable, low-rise blocks 30 m tall) with 20 customer drop zones at street crossings and three charging hubs; a 15-drone cargo fleet operates from a depot in the north-east corner (y grows northwards). Difficulty level: Moderate (15 drones, 23 targets, 23 obstacles).\",\n  \"status\": \"active\",\n  \"creator\": \"LLM & Agent Course - \\u5e38\\u89c4\\u8d5b\\u9053\\u961f\",\n  \"task_type\": \"target_assignment\",\n  \"task_description\": \"24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.\",\n  \"is_distance_3d\": false,\n  \"canvas_width\": 1024.0,\n  \"canvas_height\": 768.0,\n  \"created_at\": 1793520750.7730548,\n  \"last_updated\": 1794565651.8690207,\n  \"statistics\": {\n    \"drone_count\": 15,\n    \"target_count\": 23,\n    \"obstacle_count\": 23,\n    \"task_count\": 20,\n    \"environment_id\": \"5e9a0f00\",\n    \"total_commands_executed\": 0,\n    \"total_flight_time\": 0.0,\n    \"total_distance_traveled\": 0.0,\n    \"total_target_reaches\": 0,\n    \"drones_with_target_reaches\": 0,\n    \"unique_targets_reached\": 0,\n    \"session_time\": 18.713526487350464,\n    \"command_history_size\": 0,\n    \"task_progress\": {\n      \"task_type\": \"target_assignment\",\n      \"progress_percentage\": 0,\n      \"is_completed\": false,\n      \"status_message\": \"Task to be Done\",\n      \"details\": {\n        \"total_targets\": 20,\n        \"visited_targets\": 0,\n        \"unvisited_targets\": 20\n      },\n      \"target_reach_summary\": {\n        \"total_reaches\": 0,\n        \"drones_with_reaches\": 0,\n        \"unique_targets_reached\": 0\n      },\n      \"area_coverage_summary\": {\n        \"total_targets_tracked\": 0,\n        \"average_coverage\": 0.0,\n        \"fully_covered_targets\": 0\n      }\n    }\n  }\n}"
+      ],
+      [
+        {
+          "tool": "get_weather",
+          "tool_input": {},
+          "log": "Preparing to call tool 'get_weather'",
+          "message_log": null
+        },
+        "{\n  \"id\": \"5e9a0f00\",\n  \"name\": \"Downtown Clear Day\",\n  \"weather\": \"clear\",\n  \"temperature\": 23.519425312562323,\n  \"humidity\": 55.0,\n  \"pressure\": 1013.0,\n  \"wind_speed\": 3.947570560121211,\n  \"wind_direction\": \"west\",\n  \"visibility\": 10000.0,\n  \"created_at\": 1793520750.7895746,\n  \"last_updated\": 1794565656.6812434\n}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Cargo 3 should find target Customer Drop 12, and drone Cargo 14 should find target Customer Drop 16. After the first discovery, the drones swap assignments: Cargo 3 goes to Customer Drop 16 and Cargo 14 goes to Customer Drop 12 at 16 meters.",
+            "drone_id": "a1b9c761",
+            "altitude": 32.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"completed\": true, \"mode\": \"multi_drone_parallel\", \"drones\": [\"Cargo 3\", \"Cargo 14\"], \"steps\": 6, \"failures\": [], \"results\": [{\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 16.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [225.0, 365.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [825.0, 515.0], \"attempts\": 1}], \"failures\": []}, {\"ok\": true, \"mode\": \"actions\", \"steps\": 3, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 16.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [825.0, 515.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [225.0, 365.0], \"attempts\": 1}], \"failures\": []}]}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 42881,
+      "completion_tokens": 92,
+      "total_tokens": 42973,
+      "llm_calls": 5
+    },
+    "token_usage_available": true,
+    "run_id": "rid-f39922d5-6d0b-4717-93f9-b570a2a37b72",
+    "command_id": "4adad9a6-d5ad-4b95-a668-2d33123d3bf2",
+    "experiment": {
+      "experiment_id": "eid-308af13a-a2d0-43b4-8934-9bd5d91f2321",
+      "start_reason": "start",
+      "run_id": "rid-f39922d5-6d0b-4717-93f9-b570a2a37b72",
+      "session_id": "c36c9ec9",
+      "session_name": "Urban Parcel Delivery",
+      "task_id": "15e6ad77",
+      "task_name": "Cross Target Swap After Discovery 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "3a21a487e623f6d0f71c6ba7a2d75ca7a7be15e08855d0d6496b8cf6569c1154",
+      "session_snapshot_hash": "cde62480c871427ec3aefe1ee2dcbb53b8b3898d7de078bffc6067c9febb85a0",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-f39922d5-6d0b-4717-93f9-b570a2a37b72",
+      "request_history": "/agent/runs/rid-f39922d5-6d0b-4717-93f9-b570a2a37b72/artifacts/request_history",
+      "events": "/agent/runs/rid-f39922d5-6d0b-4717-93f9-b570a2a37b72/artifacts/events",
+      "related_apis": "/agent/runs/rid-f39922d5-6d0b-4717-93f9-b570a2a37b72/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-f39922d5-6d0b-4717-93f9-b570a2a37b72/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

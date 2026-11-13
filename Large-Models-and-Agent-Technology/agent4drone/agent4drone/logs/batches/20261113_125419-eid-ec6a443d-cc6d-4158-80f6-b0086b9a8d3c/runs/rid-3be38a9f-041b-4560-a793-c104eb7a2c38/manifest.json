@@ -1,0 +1,138 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-3be38a9f-041b-4560-a793-c104eb7a2c38",
+  "experiment": {
+    "experiment_id": "eid-ec6a443d-cc6d-4158-80f6-b0086b9a8d3c",
+    "start_reason": "start",
+    "run_id": "rid-3be38a9f-041b-4560-a793-c104eb7a2c38",
+    "session_id": "24fa30be",
+    "session_name": "Path Planning Moderate",
+    "task_id": "0bd26065",
+    "task_name": "Fly Several Waypoints 2",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "dfea59010d833ae3ee004f00217f25db254ba9b591f5bed611625e9383309177",
+    "session_snapshot_hash": "f33624d628ad558d9a97d86ef76feaca6d8719074dc64504c77b43bd97166456",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T125322-b5ae4baeafa4",
+  "batch_file": "../../batch.json",
+  "command_id": "5990cfaa-3611-45c8-96ba-31b20e235fe3",
+  "job_id": "313ad05d-5c6f-4f77-a495-a252424f1970",
+  "command": "Drone 9 should take off to 17 meters and fly through multiple waypoints: (170, 237, 17), (557, 120, 17), (710, 321, 17), (537, 508, 17), (143, 522, 17).",
+  "created_at": "2026-11-13 12:56:26",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 12:56:49",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 12:56:26",
+  "runtime": {
+    "run_id": "rid-3be38a9f-041b-4560-a793-c104eb7a2c38",
+    "experiment": {
+      "experiment_id": "eid-ec6a443d-cc6d-4158-80f6-b0086b9a8d3c",
+      "start_reason": "start",
+      "run_id": "rid-3be38a9f-041b-4560-a793-c104eb7a2c38",
+      "session_id": "24fa30be",
+      "session_name": "Path Planning Moderate",
+      "task_id": "0bd26065",
+      "task_name": "Fly Several Waypoints 2",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "dfea59010d833ae3ee004f00217f25db254ba9b591f5bed611625e9383309177",
+      "session_snapshot_hash": "f33624d628ad558d9a97d86ef76feaca6d8719074dc64504c77b43bd97166456",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "24fa30be",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "24fa30be",
+  "requested_session_id": "24fa30be",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "5833e25aadc8b8b5ecb913bdca0cdab8f14e33b5aeb62fad8dcb33c684b6d8be",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone 9 should take off to 17 meters and fly through multiple waypoints: (170, 237, 17), (557, 120, 17), (710, 321, 17), (537, 508, 17), (143, 522, 17).",
+            "drones": [
+              "Drone 9"
+            ],
+            "altitude": 17
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 5, \"legs\": 5, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"fd546feb\", \"drone_id\": \"ab81720f\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 17.0m (battery: -0.5%/-0mAh, remaining: 99.5%/63mAh)\", \"timestamp\": 1794545804.0498462}, \"steps\": 5, \"sample\": [{\"leg\": 1, \"goal\": [710.0, 321.0], \"waypoints\": 5, \"plan_ms\": 2023, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [557.0, 120.0], \"waypoints\": 3, \"plan_ms\": 85, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [537.0, 508.0], \"waypoints\": 2, \"plan_ms\": 41, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 13851,
+      "completion_tokens": 138,
+      "total_tokens": 13989,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-3be38a9f-041b-4560-a793-c104eb7a2c38",
+    "command_id": "5990cfaa-3611-45c8-96ba-31b20e235fe3",
+    "experiment": {
+      "experiment_id": "eid-ec6a443d-cc6d-4158-80f6-b0086b9a8d3c",
+      "start_reason": "start",
+      "run_id": "rid-3be38a9f-041b-4560-a793-c104eb7a2c38",
+      "session_id": "24fa30be",
+      "session_name": "Path Planning Moderate",
+      "task_id": "0bd26065",
+      "task_name": "Fly Several Waypoints 2",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "dfea59010d833ae3ee004f00217f25db254ba9b591f5bed611625e9383309177",
+      "session_snapshot_hash": "f33624d628ad558d9a97d86ef76feaca6d8719074dc64504c77b43bd97166456",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-3be38a9f-041b-4560-a793-c104eb7a2c38",
+      "request_history": "/agent/runs/rid-3be38a9f-041b-4560-a793-c104eb7a2c38/artifacts/request_history",
+      "events": "/agent/runs/rid-3be38a9f-041b-4560-a793-c104eb7a2c38/artifacts/events",
+      "related_apis": "/agent/runs/rid-3be38a9f-041b-4560-a793-c104eb7a2c38/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-3be38a9f-041b-4560-a793-c104eb7a2c38/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-a37a50b8-5006-4f2d-92fb-360ed370c822",
+  "experiment": {
+    "experiment_id": "eid-b81758c1-f774-4c7a-a7a0-0fc786242377",
+    "start_reason": "start",
+    "run_id": "rid-a37a50b8-5006-4f2d-92fb-360ed370c822",
+    "session_id": "76fdf8f96380",
+    "session_name": "Canyon Switchback Coordination",
+    "task_id": "edfcc479",
+    "task_name": "Target Inspection 2",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "bb93d4eb97411247aa24e74ba7f826a6dec4528759638be3a3701fe54c409136",
+    "session_snapshot_hash": "83ccde455a0ce6e2d88ffe30988bda09779f9fa683ede69664c5821138880c59",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T125322-b5ae4baeafa4",
+  "batch_file": "../../batch.json",
+  "command_id": "736d2a8a-1487-4c75-a5b2-90294624afa7",
+  "job_id": "c50951c7-d148-4b27-8504-641c1596714a",
+  "command": "Drone Echo must take off to 18 meters, navigate to target Recovery Outpost One, and take a photo.",
+  "created_at": "2026-11-13 13:22:55",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 13:23:09",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 13:22:56",
+  "runtime": {
+    "run_id": "rid-a37a50b8-5006-4f2d-92fb-360ed370c822",
+    "experiment": {
+      "experiment_id": "eid-b81758c1-f774-4c7a-a7a0-0fc786242377",
+      "start_reason": "start",
+      "run_id": "rid-a37a50b8-5006-4f2d-92fb-360ed370c822",
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "edfcc479",
+      "task_name": "Target Inspection 2",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "bb93d4eb97411247aa24e74ba7f826a6dec4528759638be3a3701fe54c409136",
+      "session_snapshot_hash": "83ccde455a0ce6e2d88ffe30988bda09779f9fa683ede69664c5821138880c59",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "76fdf8f96380",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 3,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "76fdf8f96380",
+  "requested_session_id": "76fdf8f96380",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "e331f2817982eafab61aa0feded1bf167beb47ed7ec4e76101d6bb2c0009cd25",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_template_action",
+          "tool_input": {
+            "template": "target_photo",
+            "params": {
+              "altitude": 18.0,
+              "drone_id": "9b20818ac06f",
+              "target": "Recovery Outpost One"
+            }
+          },
+          "log": "Preparing to call tool 'nav_template_action'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 5, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 18.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [764.0, 480.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"take_photo\", \"error\": null}], \"failures\": []}"
+      ],
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Echo must take off to 18 meters, navigate to target Recovery Outpost One, and take a photo.",
+            "drone_id": "9b20818ac06f",
+            "altitude": 18.0
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"mode\": \"actions\", \"steps\": 4, \"sample\": [{\"ok\": true, \"name\": \"take_off\", \"altitude\": 18.0, \"error\": null}, {\"ok\": true, \"name\": \"navigate_to_pose\", \"goal\": [764.0, 480.0], \"attempts\": 1}, {\"ok\": true, \"name\": \"hover\", \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 19865,
+      "completion_tokens": 56,
+      "total_tokens": 19921,
+      "llm_calls": 3
+    },
+    "token_usage_available": true,
+    "run_id": "rid-a37a50b8-5006-4f2d-92fb-360ed370c822",
+    "command_id": "736d2a8a-1487-4c75-a5b2-90294624afa7",
+    "experiment": {
+      "experiment_id": "eid-b81758c1-f774-4c7a-a7a0-0fc786242377",
+      "start_reason": "start",
+      "run_id": "rid-a37a50b8-5006-4f2d-92fb-360ed370c822",
+      "session_id": "76fdf8f96380",
+      "session_name": "Canyon Switchback Coordination",
+      "task_id": "edfcc479",
+      "task_name": "Target Inspection 2",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "bb93d4eb97411247aa24e74ba7f826a6dec4528759638be3a3701fe54c409136",
+      "session_snapshot_hash": "83ccde455a0ce6e2d88ffe30988bda09779f9fa683ede69664c5821138880c59",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-a37a50b8-5006-4f2d-92fb-360ed370c822",
+      "request_history": "/agent/runs/rid-a37a50b8-5006-4f2d-92fb-360ed370c822/artifacts/request_history",
+      "events": "/agent/runs/rid-a37a50b8-5006-4f2d-92fb-360ed370c822/artifacts/events",
+      "related_apis": "/agent/runs/rid-a37a50b8-5006-4f2d-92fb-360ed370c822/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-a37a50b8-5006-4f2d-92fb-360ed370c822/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

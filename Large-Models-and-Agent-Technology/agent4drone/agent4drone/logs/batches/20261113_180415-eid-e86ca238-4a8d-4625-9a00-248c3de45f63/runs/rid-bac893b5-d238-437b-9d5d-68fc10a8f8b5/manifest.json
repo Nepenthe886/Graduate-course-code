@@ -1,0 +1,138 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-bac893b5-d238-437b-9d5d-68fc10a8f8b5",
+  "experiment": {
+    "experiment_id": "eid-e86ca238-4a8d-4625-9a00-248c3de45f63",
+    "start_reason": "start",
+    "run_id": "rid-bac893b5-d238-437b-9d5d-68fc10a8f8b5",
+    "session_id": "c36c9ec9",
+    "session_name": "Urban Parcel Delivery",
+    "task_id": "e5e3623a",
+    "task_name": "Flight Marathon Navigation 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "fb59a4180d5350d2d4bf13924b5375cceee179d7e8f326b0ab8f9b4aea327cfd",
+    "session_snapshot_hash": "3ecdd4f52b20ff56b813e024df11bbc74ee79a2f186317896200a95e85e70fa2",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T174949-f53b4ec5c36e",
+  "batch_file": "../../batch.json",
+  "command_id": "4eb9dea4-0022-4135-81d8-faa8c80413d1",
+  "job_id": "4afb0787-754f-4239-bd79-4eea0e1fc740",
+  "command": "Drone Cargo 8 performs a marathon flight. Take off to 24 meters, fly to start point (134, 196, 24), then navigate through 10 waypoints: (210, 176, 24), (396, 208, 24), (428, 342, 24), (523, 420, 24), (698, 572, 24), (784, 641, 24), (877, 752, 24), (987, 862, 24), (846, 189, 24), (117, 847, 24). Avoid obstacles Building 2, Water Tower. Finally, fly to end point (587, 512, 24) and land.",
+  "created_at": "2026-11-13 18:05:10",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 18:05:31",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 18:05:10",
+  "runtime": {
+    "run_id": "rid-bac893b5-d238-437b-9d5d-68fc10a8f8b5",
+    "experiment": {
+      "experiment_id": "eid-e86ca238-4a8d-4625-9a00-248c3de45f63",
+      "start_reason": "start",
+      "run_id": "rid-bac893b5-d238-437b-9d5d-68fc10a8f8b5",
+      "session_id": "c36c9ec9",
+      "session_name": "Urban Parcel Delivery",
+      "task_id": "e5e3623a",
+      "task_name": "Flight Marathon Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "fb59a4180d5350d2d4bf13924b5375cceee179d7e8f326b0ab8f9b4aea327cfd",
+      "session_snapshot_hash": "3ecdd4f52b20ff56b813e024df11bbc74ee79a2f186317896200a95e85e70fa2",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "c36c9ec9",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "c36c9ec9",
+  "requested_session_id": "c36c9ec9",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "3db44388334761896e70c84ab52b1b2d006e105dc07e94010e5927042db3e474",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Cargo 8 performs a marathon flight. Take off to 24 meters, fly to start point (134, 196, 24), then navigate through 10 waypoints: (210, 176, 24), (396, 208, 24), (428, 342, 24), (523, 420, 24), (698, 572, 24), (784, 641, 24), (877, 752, 24), (987, 862, 24), (846, 189, 24), (117, 847, 24). Avoid obstacles Building 2, Water Tower. Finally, fly to end point (587, 512, 24) and land.",
+            "drones": [
+              "Cargo 8"
+            ],
+            "altitude": 24
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 12, \"legs\": 12, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"3324f33d\", \"drone_id\": \"7d7bbd77\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 24.0m (battery: -0.5%/-1mAh, remaining: 99.5%/149mAh)\", \"timestamp\": 1794564327.6954556}, \"steps\": 13, \"sample\": [{\"leg\": 1, \"goal\": [134.0, 196.0], \"waypoints\": 6, \"plan_ms\": 239, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [210.0, 176.0], \"waypoints\": 2, \"plan_ms\": 7, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [396.0, 208.0], \"waypoints\": 2, \"plan_ms\": 14, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14683,
+      "completion_tokens": 265,
+      "total_tokens": 14948,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-bac893b5-d238-437b-9d5d-68fc10a8f8b5",
+    "command_id": "4eb9dea4-0022-4135-81d8-faa8c80413d1",
+    "experiment": {
+      "experiment_id": "eid-e86ca238-4a8d-4625-9a00-248c3de45f63",
+      "start_reason": "start",
+      "run_id": "rid-bac893b5-d238-437b-9d5d-68fc10a8f8b5",
+      "session_id": "c36c9ec9",
+      "session_name": "Urban Parcel Delivery",
+      "task_id": "e5e3623a",
+      "task_name": "Flight Marathon Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "fb59a4180d5350d2d4bf13924b5375cceee179d7e8f326b0ab8f9b4aea327cfd",
+      "session_snapshot_hash": "3ecdd4f52b20ff56b813e024df11bbc74ee79a2f186317896200a95e85e70fa2",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-bac893b5-d238-437b-9d5d-68fc10a8f8b5",
+      "request_history": "/agent/runs/rid-bac893b5-d238-437b-9d5d-68fc10a8f8b5/artifacts/request_history",
+      "events": "/agent/runs/rid-bac893b5-d238-437b-9d5d-68fc10a8f8b5/artifacts/events",
+      "related_apis": "/agent/runs/rid-bac893b5-d238-437b-9d5d-68fc10a8f8b5/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-bac893b5-d238-437b-9d5d-68fc10a8f8b5/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

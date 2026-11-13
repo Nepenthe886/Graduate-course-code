@@ -1,0 +1,138 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-37137d78-ba30-4357-93b0-02ae1b2b093b",
+  "experiment": {
+    "experiment_id": "eid-155737ec-2ff5-4fa6-b45c-ce4c2b4f730e",
+    "start_reason": "start",
+    "run_id": "rid-37137d78-ba30-4357-93b0-02ae1b2b093b",
+    "session_id": "0775fd84c87ad912",
+    "session_name": "Flooded Meander Settlement",
+    "task_id": "691199f2",
+    "task_name": "Patrol Mission - Quadrangle 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "8535a1dfd4e00c005813d13895f8ee96e7805d4ca92d2ce37867e6ef68ac5286",
+    "session_snapshot_hash": "499688f13e0245570f1cdb9a1d5de916365c040e45b0ada5c1537dbc585df9f9",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T174949-f53b4ec5c36e",
+  "batch_file": "../../batch.json",
+  "command_id": "18346a34-f0bf-48db-9d6b-a0d9654cf12e",
+  "job_id": "1ce29f57-53e1-43c0-b33c-0da62ef5009b",
+  "command": "Drone Relief UAV 03 should take off to 17 meters altitude, then fly a quadrangle patrol route visiting four points in different sectors: (231, 233, 17), (806, 153, 17), (789, 868, 17), (127, 886, 17), and finally return to the start point (231, 233, 17).",
+  "created_at": "2026-11-13 17:50:54",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 17:51:19",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 17:50:54",
+  "runtime": {
+    "run_id": "rid-37137d78-ba30-4357-93b0-02ae1b2b093b",
+    "experiment": {
+      "experiment_id": "eid-155737ec-2ff5-4fa6-b45c-ce4c2b4f730e",
+      "start_reason": "start",
+      "run_id": "rid-37137d78-ba30-4357-93b0-02ae1b2b093b",
+      "session_id": "0775fd84c87ad912",
+      "session_name": "Flooded Meander Settlement",
+      "task_id": "691199f2",
+      "task_name": "Patrol Mission - Quadrangle 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "8535a1dfd4e00c005813d13895f8ee96e7805d4ca92d2ce37867e6ef68ac5286",
+      "session_snapshot_hash": "499688f13e0245570f1cdb9a1d5de916365c040e45b0ada5c1537dbc585df9f9",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "0775fd84c87ad912",
+    "task_type": null,
+    "task_description": "20 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "0775fd84c87ad912",
+  "requested_session_id": "0775fd84c87ad912",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "f71d8b4af8ffd8a66b1aaa8370f94f430c8d2d61a8af79b3e1a5d622b0602a4c",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Relief UAV 03 should take off to 17 meters altitude, then fly a quadrangle patrol route visiting four points in different sectors: (231, 233, 17), (806, 153, 17), (789, 868, 17), (127, 886, 17), and finally return to the start point (231, 233, 17).",
+            "drones": [
+              "Relief UAV 03"
+            ],
+            "altitude": 17
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 5, \"legs\": 5, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"5632afe3\", \"drone_id\": \"73f88722\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 17.0m (battery: -0.5%/-0mAh, remaining: 99.5%/100mAh)\", \"timestamp\": 1794563473.195147}, \"steps\": 5, \"sample\": [{\"leg\": 1, \"goal\": [231.0, 233.0], \"waypoints\": 1, \"plan_ms\": 7, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [806.0, 153.0], \"waypoints\": 1, \"plan_ms\": 15, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [789.0, 868.0], \"waypoints\": 5, \"plan_ms\": 1619, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14125,
+      "completion_tokens": 161,
+      "total_tokens": 14286,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-37137d78-ba30-4357-93b0-02ae1b2b093b",
+    "command_id": "18346a34-f0bf-48db-9d6b-a0d9654cf12e",
+    "experiment": {
+      "experiment_id": "eid-155737ec-2ff5-4fa6-b45c-ce4c2b4f730e",
+      "start_reason": "start",
+      "run_id": "rid-37137d78-ba30-4357-93b0-02ae1b2b093b",
+      "session_id": "0775fd84c87ad912",
+      "session_name": "Flooded Meander Settlement",
+      "task_id": "691199f2",
+      "task_name": "Patrol Mission - Quadrangle 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "8535a1dfd4e00c005813d13895f8ee96e7805d4ca92d2ce37867e6ef68ac5286",
+      "session_snapshot_hash": "499688f13e0245570f1cdb9a1d5de916365c040e45b0ada5c1537dbc585df9f9",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-37137d78-ba30-4357-93b0-02ae1b2b093b",
+      "request_history": "/agent/runs/rid-37137d78-ba30-4357-93b0-02ae1b2b093b/artifacts/request_history",
+      "events": "/agent/runs/rid-37137d78-ba30-4357-93b0-02ae1b2b093b/artifacts/events",
+      "related_apis": "/agent/runs/rid-37137d78-ba30-4357-93b0-02ae1b2b093b/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-37137d78-ba30-4357-93b0-02ae1b2b093b/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

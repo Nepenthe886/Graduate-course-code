@@ -1,0 +1,138 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-1773aa26-cd31-4550-9461-a7859c5bf26b",
+  "experiment": {
+    "experiment_id": "eid-e3896efc-274a-49f0-9b36-8575a9a6223a",
+    "start_reason": "start",
+    "run_id": "rid-1773aa26-cd31-4550-9461-a7859c5bf26b",
+    "session_id": "e34553f4",
+    "session_name": "Path Planning Corner",
+    "task_id": "4d7cf1a7",
+    "task_name": "Extreme Flight Marathon Navigation 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "df428902278fc02a278d8c9a3f7c63579e2ffd1547cc141afe87b13e602628a8",
+    "session_snapshot_hash": "30b15c28c797a2073df6a4bedecf93e490df592d72be45749f925efb08e1b73e",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T125322-b5ae4baeafa4",
+  "batch_file": "../../batch.json",
+  "command_id": "5711022c-1ecc-4e0b-8ef3-b43ca3c5d517",
+  "job_id": "65fd4acb-0af3-48dc-a2be-678a7b1bfc16",
+  "command": "Drone 10 performs an extreme marathon flight. Take off to 34 meters, fly to start point (112, 53, 34), then zigzag across the full map through 20 intermediate waypoints: (84, 178, 34), (889, 231, 34), (167, 285, 34), (821, 342, 34), (144, 399, 34), (919, 518, 34), (147, 580, 34), (782, 616, 34), (176, 774, 34), (844, 821, 34), (259, 910, 34), (849, 892, 34), (424, 764, 34), (980, 619, 34), (44, 583, 34), (914, 386, 34), (138, 380, 34), (800, 128, 34), (276, 869, 34), (725, 452, 34). Avoid obstacles Circle Obstacle 4, Polygon Obstacle 26, and Polygon Obstacle 20. Finally, fly to end point (881, 957, 34) and land.",
+  "created_at": "2026-11-13 13:14:40",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 13:15:07",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 13:14:40",
+  "runtime": {
+    "run_id": "rid-1773aa26-cd31-4550-9461-a7859c5bf26b",
+    "experiment": {
+      "experiment_id": "eid-e3896efc-274a-49f0-9b36-8575a9a6223a",
+      "start_reason": "start",
+      "run_id": "rid-1773aa26-cd31-4550-9461-a7859c5bf26b",
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "4d7cf1a7",
+      "task_name": "Extreme Flight Marathon Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "df428902278fc02a278d8c9a3f7c63579e2ffd1547cc141afe87b13e602628a8",
+      "session_snapshot_hash": "30b15c28c797a2073df6a4bedecf93e490df592d72be45749f925efb08e1b73e",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "e34553f4",
+    "task_type": null,
+    "task_description": "",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "e34553f4",
+  "requested_session_id": "e34553f4",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "db065ba28dbb5ef053aeaa0574979a2b8fc8b1b84bc6f13967b2427bc488ff9d",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone 10 performs an extreme marathon flight. Take off to 34 meters, fly to start point (112, 53, 34), then zigzag across the full map through 20 intermediate waypoints: (84, 178, 34), (889, 231, 34), (167, 285, 34), (821, 342, 34), (144, 399, 34), (919, 518, 34), (147, 580, 34), (782, 616, 34), (176, 774, 34), (844, 821, 34), (259, 910, 34), (849, 892, 34), (424, 764, 34), (980, 619, 34), (44, 583, 34), (914, 386, 34), (138, 380, 34), (800, 128, 34), (276, 869, 34), (725, 452, 34). Avoid obstacles Circle Obstacle 4, Polygon Obstacle 26, and Polygon Obstacle 20. Finally, fly to end point (881, 957, 34) and land.",
+            "drones": [
+              "Drone 10"
+            ],
+            "altitude": 34
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 22, \"legs\": 22, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"506804bb\", \"drone_id\": \"5518d687\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 34.0m (battery: -0.5%/-0mAh, remaining: 99.5%/97mAh)\", \"timestamp\": 1794546899.3999617}, \"steps\": 23, \"sample\": [{\"leg\": 1, \"goal\": [112.0, 53.0], \"waypoints\": 7, \"plan_ms\": 2196, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [84.0, 178.0], \"waypoints\": 2, \"plan_ms\": 31, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [167.0, 285.0], \"waypoints\": 6, \"plan_ms\": 215, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14718,
+      "completion_tokens": 426,
+      "total_tokens": 15144,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-1773aa26-cd31-4550-9461-a7859c5bf26b",
+    "command_id": "5711022c-1ecc-4e0b-8ef3-b43ca3c5d517",
+    "experiment": {
+      "experiment_id": "eid-e3896efc-274a-49f0-9b36-8575a9a6223a",
+      "start_reason": "start",
+      "run_id": "rid-1773aa26-cd31-4550-9461-a7859c5bf26b",
+      "session_id": "e34553f4",
+      "session_name": "Path Planning Corner",
+      "task_id": "4d7cf1a7",
+      "task_name": "Extreme Flight Marathon Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "df428902278fc02a278d8c9a3f7c63579e2ffd1547cc141afe87b13e602628a8",
+      "session_snapshot_hash": "30b15c28c797a2073df6a4bedecf93e490df592d72be45749f925efb08e1b73e",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-1773aa26-cd31-4550-9461-a7859c5bf26b",
+      "request_history": "/agent/runs/rid-1773aa26-cd31-4550-9461-a7859c5bf26b/artifacts/request_history",
+      "events": "/agent/runs/rid-1773aa26-cd31-4550-9461-a7859c5bf26b/artifacts/events",
+      "related_apis": "/agent/runs/rid-1773aa26-cd31-4550-9461-a7859c5bf26b/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-1773aa26-cd31-4550-9461-a7859c5bf26b/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}

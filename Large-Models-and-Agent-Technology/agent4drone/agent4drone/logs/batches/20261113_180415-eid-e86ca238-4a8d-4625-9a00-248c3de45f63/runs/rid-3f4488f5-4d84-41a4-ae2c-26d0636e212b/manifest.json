@@ -1,0 +1,138 @@
+{
+  "schema_version": 3,
+  "run_id": "rid-3f4488f5-4d84-41a4-ae2c-26d0636e212b",
+  "experiment": {
+    "experiment_id": "eid-e86ca238-4a8d-4625-9a00-248c3de45f63",
+    "start_reason": "start",
+    "run_id": "rid-3f4488f5-4d84-41a4-ae2c-26d0636e212b",
+    "session_id": "c36c9ec9",
+    "session_name": "Urban Parcel Delivery",
+    "task_id": "6d46727c",
+    "task_name": "Complex Obstacle Course Navigation 1",
+    "repeat_index": 1,
+    "command_source": "content",
+    "command_index": 0,
+    "task_snapshot_hash": "1611942437f4a4c6e07a2283716bc3a1f1c5c4b9c77b651ff63594798b6152c6",
+    "session_snapshot_hash": "409756facc5ab572635da788b3d39d51764a6361c487a30574a66f0644a264e9",
+    "checker_version": "0.4.9"
+  },
+  "service_instance_id": "20261113T174949-f53b4ec5c36e",
+  "batch_file": "../../batch.json",
+  "command_id": "3c203048-5558-4e1f-b1d8-a9256953c23e",
+  "job_id": "bb1c5388-6dcc-4f7e-87b8-97e34ff1fd29",
+  "command": "Drone Cargo 9 navigates complex obstacle course from start (323, 340, 18) through waypoints (443, 365, 18), (523, 421, 18), (551, 498, 18), (403, 700, 18) to destination (662, 795, 18). Course includes obstacles Building 4, Telecom Mast 1, and Building 11. Must visit all waypoints in sequence while avoiding all obstacles, adjusting altitude as needed. Reach destination and land safely.",
+  "created_at": "2026-11-13 18:04:44",
+  "execution_status": "completed",
+  "execution_finished_at": "2026-11-13 18:04:59",
+  "requested_run_id": null,
+  "started_at": "2026-11-13 18:04:44",
+  "runtime": {
+    "run_id": "rid-3f4488f5-4d84-41a4-ae2c-26d0636e212b",
+    "experiment": {
+      "experiment_id": "eid-e86ca238-4a8d-4625-9a00-248c3de45f63",
+      "start_reason": "start",
+      "run_id": "rid-3f4488f5-4d84-41a4-ae2c-26d0636e212b",
+      "session_id": "c36c9ec9",
+      "session_name": "Urban Parcel Delivery",
+      "task_id": "6d46727c",
+      "task_name": "Complex Obstacle Course Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "1611942437f4a4c6e07a2283716bc3a1f1c5c4b9c77b651ff63594798b6152c6",
+      "session_snapshot_hash": "409756facc5ab572635da788b3d39d51764a6361c487a30574a66f0644a264e9",
+      "checker_version": "0.4.9"
+    },
+    "provider": "openai-compatible",
+    "model": "Qwen3-8B",
+    "uav_base_url": "http://localhost:8000",
+    "session_id": "c36c9ec9",
+    "task_type": null,
+    "task_description": "24 independent tasks sampled from the paired task templates. Reset to this pristine session before each task.",
+    "max_iterations": 150,
+    "empty_response_retries": 0,
+    "temperature": 0.1,
+    "uav_agent.py_sha256": "dbf57b0af28dc92a7ea55b16f0ef66406c15d2f7e1dd61ba8afa032e2e056f57",
+    "uav_api_client.py_sha256": "36ac541ed303e15ea2c7d6425f648863983ca9070e951ab436b3696a467c8c91",
+    "uav_langchain_tools.py_sha256": "420e4e37712de34cffd859cc172ad6c9f685c2658de5cf3e4c20a45d06319132",
+    "agent_api_service.py_sha256": "648c65f0c47b48acd92214e7d8677c076e8f6ab64bd722ea3f7e9e1920db4745",
+    "template/system_prompt.py_sha256": "c4f346f3f3ff4e6a7f409e036b55d5045fdb7558ce489c6981626336a3bf2889"
+  },
+  "llm_io_recording": true,
+  "llm_calls_file": "llm_calls.jsonl",
+  "llm_io_schema_version": 1,
+  "llm_call_count": 2,
+  "llm_recording_errors": 0,
+  "llm_incomplete_calls": 0,
+  "llm_recording_status": "complete",
+  "observed_session_id": "c36c9ec9",
+  "requested_session_id": "c36c9ec9",
+  "session_source": "runtime_observed",
+  "prompt_sha256": "3db44388334761896e70c84ab52b1b2d006e105dc07e94010e5927042db3e474",
+  "recording_status": "complete",
+  "result": {
+    "success": true,
+    "output": "[TASK DONE]",
+    "intermediate_steps": [
+      [
+        {
+          "tool": "nav_execute_mission",
+          "tool_input": {
+            "task_text": "Drone Cargo 9 navigates complex obstacle course from start (323, 340, 18) through waypoints (443, 365, 18), (523, 421, 18), (551, 498, 18), (403, 700, 18) to destination (662, 795, 18). Course includes obstacles Building 4, Telecom Mast 1, and Building 11. Must visit all waypoints in sequence while avoiding all obstacles, adjusting altitude as needed. Reach destination and land safely.",
+            "drones": [
+              "Cargo 9"
+            ],
+            "altitude": 18
+          },
+          "log": "Preparing to call tool 'nav_execute_mission'",
+          "message_log": null
+        },
+        "{\"ok\": true, \"planned\": {\"waypoints\": 6, \"legs\": 6, \"mode\": \"per_leg_jit\"}, \"photos_taken\": 0, \"take_off\": {\"command_id\": \"b8ff4276\", \"drone_id\": \"ec30382e\", \"command\": \"take_off\", \"status\": \"success\", \"message\": \"Drone taking off to altitude 18.0m (battery: -0.5%/-1mAh, remaining: 99.5%/149mAh)\", \"timestamp\": 1794564296.741757}, \"steps\": 7, \"sample\": [{\"leg\": 1, \"goal\": [323.0, 340.0], \"waypoints\": 4, \"plan_ms\": 193, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 2, \"goal\": [443.0, 365.0], \"waypoints\": 1, \"plan_ms\": 3, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}, {\"leg\": 3, \"goal\": [523.0, 421.0], \"waypoints\": 2, \"plan_ms\": 8, \"arrived\": true, \"distance_m\": 0.0, \"target\": null, \"target_reached\": null, \"error\": null}], \"failures\": [], \"completed\": true, \"hint\": \"任务已执行完成，请直接输出 [TASK DONE]，不要再调用任何工具\"}"
+      ]
+    ],
+    "token_usage": {
+      "prompt_tokens": 14449,
+      "completion_tokens": 189,
+      "total_tokens": 14638,
+      "llm_calls": 2
+    },
+    "token_usage_available": true,
+    "run_id": "rid-3f4488f5-4d84-41a4-ae2c-26d0636e212b",
+    "command_id": "3c203048-5558-4e1f-b1d8-a9256953c23e",
+    "experiment": {
+      "experiment_id": "eid-e86ca238-4a8d-4625-9a00-248c3de45f63",
+      "start_reason": "start",
+      "run_id": "rid-3f4488f5-4d84-41a4-ae2c-26d0636e212b",
+      "session_id": "c36c9ec9",
+      "session_name": "Urban Parcel Delivery",
+      "task_id": "6d46727c",
+      "task_name": "Complex Obstacle Course Navigation 1",
+      "repeat_index": 1,
+      "command_source": "content",
+      "command_index": 0,
+      "task_snapshot_hash": "1611942437f4a4c6e07a2283716bc3a1f1c5c4b9c77b651ff63594798b6152c6",
+      "session_snapshot_hash": "409756facc5ab572635da788b3d39d51764a6361c487a30574a66f0644a264e9",
+      "checker_version": "0.4.9"
+    },
+    "artifacts": {
+      "manifest": "/agent/runs/rid-3f4488f5-4d84-41a4-ae2c-26d0636e212b",
+      "request_history": "/agent/runs/rid-3f4488f5-4d84-41a4-ae2c-26d0636e212b/artifacts/request_history",
+      "events": "/agent/runs/rid-3f4488f5-4d84-41a4-ae2c-26d0636e212b/artifacts/events",
+      "related_apis": "/agent/runs/rid-3f4488f5-4d84-41a4-ae2c-26d0636e212b/artifacts/related_apis",
+      "llm_calls": "/agent/runs/rid-3f4488f5-4d84-41a4-ae2c-26d0636e212b/artifacts/llm_calls"
+    },
+    "recording_status": "complete"
+  },
+  "related_apis": {
+    "schema_version": 1,
+    "file": "related_apis.jsonl",
+    "source": "agent_trace",
+    "conversion_status": "empty",
+    "recording_status": "complete",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_indices": [],
+    "issues": [],
+    "count": 0,
+    "replay_validation": "not_run"
+  }
+}
